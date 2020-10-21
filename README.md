@@ -12,13 +12,13 @@ Modify this README to describe:
 
 ## Creating a Pulumi Terraform Bridge Provider
 
-First, clone this repo with the name of the desired provider in place of `xyz`:
+First, clone this repo with the name of the desired provider in place of `proxmoxve`:
 
 ```
-git clone https://github.com/pulumi/pulumi-tf-provider-boilerplate pulumi-xyz
+git clone https://github.com/pulumi/pulumi-tf-provider-boilerplate pulumi-proxmoxve
 ```
 
-Second, replace references to `xyz` with the name of your provider:
+Second, replace references to `proxmoxve` with the name of your provider:
 
 ```
 make prepare NAME=foo REPOSITORY=github.com/pulumi/pulumi-foo
@@ -72,14 +72,14 @@ To use from Python, install using `pip`:
 
 To use from Go, use `go get` to grab the latest version of the library
 
-    $ go get github.com/pulumi/pulumi-xyz/sdk/go/...
+    $ go get github.com/matchlighter/pulumi-proxmoxve/sdk/go/...
 
 ## Configuration
 
-The following configuration points are available for the `xyz` provider:
+The following configuration points are available for the `proxmoxve` provider:
 
-- `xyz:apiKey` (environment: `XYZ_API_KEY`) - the API key for `xyz`
-- `xyz:region` (environment: `XYZ_REGION`) - the region in which to deploy resources
+- `proxmoxve:apiKey` (environment: `PROXMOXVE_API_KEY`) - the API key for `proxmoxve`
+- `proxmoxve:region` (environment: `PROXMOXVE_REGION`) - the region in which to deploy resources
 
 ## Reference
 

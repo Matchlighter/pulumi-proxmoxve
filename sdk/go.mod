@@ -1,3 +1,3 @@
-module github.com/pulumi/pulumi-xyz/sdk
+module github.com/matchlighter/pulumi-proxmoxve/sdk
 
 go 1.14

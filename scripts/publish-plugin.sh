@@ -4,7 +4,7 @@
 set -o nounset -o errexit -o pipefail
 
 # Update this with the name of the provider
-PROVIDER_NAME="xyz"
+PROVIDER_NAME="proxmoxve"
 
 ROOT=$(dirname $0)/..
 WORK_PATH=$(mktemp -d)
@@ -20,7 +20,7 @@ if [ "$(go env GOOS)" = "windows" ]; then
 fi
 
 (cd provider && go build \
-   -ldflags "-X github.com/pulumi/pulumi-${PROVIDER_NAME}/provider/pkg/version.Version=${VERSION}" \
+   -ldflags "-X github.com/matchlighter/pulumi-${PROVIDER_NAME}/provider/pkg/version.Version=${VERSION}" \
    -o "${WORK_PATH}/pulumi-resource-${PROVIDER_NAME}${BIN_SUFFIX}" \
    "${ROOT}/cmd/pulumi-resource-${PROVIDER_NAME}")
 
