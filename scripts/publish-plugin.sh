@@ -19,6 +19,8 @@ if [ "$(go env GOOS)" = "windows" ]; then
     BIN_SUFFIX=".exe"
 fi
 
+echo "Building ${PLUGIN_PACKAGE_NAME}..."
+
 (cd provider && go build \
    -ldflags "-X github.com/matchlighter/pulumi-${PROVIDER_NAME}/provider/pkg/version.Version=${VERSION}" \
    -o "${WORK_PATH}/pulumi-resource-${PROVIDER_NAME}${BIN_SUFFIX}" \
@@ -26,6 +28,8 @@ fi
 
 # Tar up the plugin
 tar -czf ${PLUGIN_PACKAGE_PATH} -C ${WORK_PATH} .
+
+cp ${PLUGIN_PACKAGE_PATH} ./plugin/${PLUGIN_PACKAGE_NAME}
 
 # Assume the provided role using the session name and (optional) external ID.
 # Uses the "default" credentials, ignoring AWS_PROFILE if set.
@@ -64,15 +68,15 @@ function unassume_iam_role() {
     unset {AWS_ACCESS_KEY_ID,AWS_SECRET_ACCESS_KEY,AWS_SESSION_TOKEN}
 }
 
-echo "Uploading ${PLUGIN_PACKAGE_NAME} to s3://get.pulumi.com..."
-assume_iam_role \
-     "arn:aws:iam::058607598222:role/PulumiUploadRelease" \
-     "upload-plugin-pulumi-resource-${PROVIDER_NAME}" \
-     "upload-pulumi-release"
-aws s3 cp \
-    --only-show-errors --acl public-read \
-    "${PLUGIN_PACKAGE_PATH}" "s3://get.pulumi.com/releases/plugins/${PLUGIN_PACKAGE_NAME}"
-unassume_iam_role
+# echo "Uploading ${PLUGIN_PACKAGE_NAME} to s3://get.pulumi.com..."
+# assume_iam_role \
+#      "arn:aws:iam::058607598222:role/PulumiUploadRelease" \
+#      "upload-plugin-pulumi-resource-${PROVIDER_NAME}" \
+#      "upload-pulumi-release"
+# aws s3 cp \
+#     --only-show-errors --acl public-read \
+#     "${PLUGIN_PACKAGE_PATH}" "s3://get.pulumi.com/releases/plugins/${PLUGIN_PACKAGE_NAME}"
+# unassume_iam_role
 
-rm -rf "${PLUGIN_PACKAGE_DIR}"
-rm -rf "${WORK_PATH}"
+# rm -rf "${PLUGIN_PACKAGE_DIR}"
+# rm -rf "${WORK_PATH}"
