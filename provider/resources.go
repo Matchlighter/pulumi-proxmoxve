@@ -111,6 +111,8 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		PreConfigureCallback: preConfigureCallback,
 		Resources:            map[string]*tfbridge.ResourceInfo{
+			"proxmox_vm_qemu": {Tok: makeResource(mainMod, "qemu_vm")},
+			"proxmox_lxc": {Tok: makeResource(mainMod, "lxc_container")}
 			// Map each resource in the Terraform provider to a Pulumi type. Two examples
 			// are below - the single line form is the common case. The multi-line form is
 			// needed only if you wish to override types or other default options.
