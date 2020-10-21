@@ -1,5 +1,7 @@
 # Pulumi Proxmox VE Provider
 
+Work in Progress Pulumi Provider for use with Proxmox VE
+
 ## Installing
 
 This package is available in many languages in the standard packaging formats.
@@ -28,14 +30,4 @@ To use from Go, use `go get` to grab the latest version of the library
 
 ## Configuration
 
-The following configuration points are available for the `proxmoxve` provider:
-
-- `proxmoxve:apiKey` (environment: `PROXMOXVE_API_KEY`) - the API key for `proxmoxve`
-- `proxmoxve:region` (environment: `PROXMOXVE_REGION`) - the region in which to deploy resources
-
-## Reference
-
-For detailed reference documentation, please visit [the API docs][1].
-
-
-[1]: https://www.pulumi.com/docs/reference/pkg/x/
+Provider configuration is as documented on https://github.com/Telmate/terraform-provider-proxmox
