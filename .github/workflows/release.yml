@@ -1,5 +1,3 @@
-name: release
-
 "on":
   push:
     tags:
@@ -10,9 +8,6 @@ env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-  NUGET_PUBLISH_KEY: ${{ secrets.NUGET_PUBLISH_KEY }}
-  PULUMI_LOCAL_NUGET: ${{ github.workspace }}/nuget
-  PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
   GO111MODULE: "on"
 
 jobs:
@@ -159,6 +154,7 @@ jobs:
         repo: pulumi/pulumictl
     - name: Install Pulumi CLI
       uses: pulumi/action-install-pulumi-cli@b811287a6e06bb7e5d8b91132b839c67e3f9c6ed
+    # TODO
     # - name: Run golangci
     #   run: cd sdk/go/proxmoxve && golangci-lint run -c ../../../.golangci.yml
 
@@ -281,6 +277,14 @@ jobs:
         path: ${{ github.workspace}}/sdk
     - name: Unzip DotNet SDK
       run: tar -zxf ${{ github.workspace}}/sdk/dotnet.tar.gz -C ${{ github.workspace}}/sdk/dotnet
+
+    - name: Publish NPM Package
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        package: ./sdk/nodejs/bin/package.json
+        token: ${{ secrets.NPM_TOKEN }}
+
+    # TODO
     # - env:
     #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     #   name: Publish SDKs
@@ -343,7 +347,7 @@ jobs:
       run: tar -zxf ${{ github.workspace}}/sdk/${{ matrix.language}}.tar.gz -C ${{
         github.workspace}}/sdk/${{ matrix.language}}
     - name: Update path
-      run: echo ::add-path::${{ github.workspace }}/bin
+      run: echo ${{ github.workspace }}/bin >> $GITHUB_PATH
     - name: Install Python deps
       run: |-
         pip3 install virtualenv==20.0.23
