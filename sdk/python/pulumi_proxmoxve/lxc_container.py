@@ -10,10 +10,10 @@ from . import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
-__all__ = ['Lxc_container']
+__all__ = ['LXCContainer']
 
 
-class Lxc_container(pulumi.CustomResource):
+class LXCContainer(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -25,16 +25,16 @@ class Lxc_container(pulumi.CustomResource):
                  cpulimit: Optional[pulumi.Input[int]] = None,
                  cpuunits: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
-                 features: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Lxc_containerFeatureArgs']]]]] = None,
+                 features: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LXCContainerFeatureArgs']]]]] = None,
                  force: Optional[pulumi.Input[bool]] = None,
                  hookscript: Optional[pulumi.Input[str]] = None,
                  hostname: Optional[pulumi.Input[str]] = None,
                  ignore_unpack_errors: Optional[pulumi.Input[bool]] = None,
                  lock: Optional[pulumi.Input[str]] = None,
                  memory: Optional[pulumi.Input[int]] = None,
-                 mountpoints: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Lxc_containerMountpointArgs']]]]] = None,
+                 mountpoints: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LXCContainerMountpointArgs']]]]] = None,
                  nameserver: Optional[pulumi.Input[str]] = None,
-                 networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Lxc_containerNetworkArgs']]]]] = None,
+                 networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LXCContainerNetworkArgs']]]]] = None,
                  onboot: Optional[pulumi.Input[bool]] = None,
                  ostemplate: Optional[pulumi.Input[str]] = None,
                  ostype: Optional[pulumi.Input[str]] = None,
@@ -60,7 +60,7 @@ class Lxc_container(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Create a Lxc_container resource with the given unique name, props, and options.
+        Create a LXCContainer resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -122,8 +122,8 @@ class Lxc_container(pulumi.CustomResource):
             __props__['unprivileged'] = unprivileged
             __props__['unuseds'] = unuseds
             __props__['vmid'] = vmid
-        super(Lxc_container, __self__).__init__(
-            'proxmoxve:index/lxc_container:lxc_container',
+        super(LXCContainer, __self__).__init__(
+            'proxmoxve:index/lXCContainer:LXCContainer',
             resource_name,
             __props__,
             opts)
@@ -140,16 +140,16 @@ class Lxc_container(pulumi.CustomResource):
             cpulimit: Optional[pulumi.Input[int]] = None,
             cpuunits: Optional[pulumi.Input[int]] = None,
             description: Optional[pulumi.Input[str]] = None,
-            features: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Lxc_containerFeatureArgs']]]]] = None,
+            features: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LXCContainerFeatureArgs']]]]] = None,
             force: Optional[pulumi.Input[bool]] = None,
             hookscript: Optional[pulumi.Input[str]] = None,
             hostname: Optional[pulumi.Input[str]] = None,
             ignore_unpack_errors: Optional[pulumi.Input[bool]] = None,
             lock: Optional[pulumi.Input[str]] = None,
             memory: Optional[pulumi.Input[int]] = None,
-            mountpoints: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Lxc_containerMountpointArgs']]]]] = None,
+            mountpoints: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LXCContainerMountpointArgs']]]]] = None,
             nameserver: Optional[pulumi.Input[str]] = None,
-            networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Lxc_containerNetworkArgs']]]]] = None,
+            networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LXCContainerNetworkArgs']]]]] = None,
             onboot: Optional[pulumi.Input[bool]] = None,
             ostemplate: Optional[pulumi.Input[str]] = None,
             ostype: Optional[pulumi.Input[str]] = None,
@@ -170,9 +170,9 @@ class Lxc_container(pulumi.CustomResource):
             unique: Optional[pulumi.Input[bool]] = None,
             unprivileged: Optional[pulumi.Input[bool]] = None,
             unuseds: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-            vmid: Optional[pulumi.Input[int]] = None) -> 'Lxc_container':
+            vmid: Optional[pulumi.Input[int]] = None) -> 'LXCContainer':
         """
-        Get an existing Lxc_container resource's state with the given name, id, and optional extra
+        Get an existing LXCContainer resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -222,7 +222,7 @@ class Lxc_container(pulumi.CustomResource):
         __props__["unprivileged"] = unprivileged
         __props__["unuseds"] = unuseds
         __props__["vmid"] = vmid
-        return Lxc_container(resource_name, opts=opts, __props__=__props__)
+        return LXCContainer(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter
@@ -266,7 +266,7 @@ class Lxc_container(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def features(self) -> pulumi.Output[Optional[Sequence['outputs.Lxc_containerFeature']]]:
+    def features(self) -> pulumi.Output[Optional[Sequence['outputs.LXCContainerFeature']]]:
         return pulumi.get(self, "features")
 
     @property
@@ -301,7 +301,7 @@ class Lxc_container(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def mountpoints(self) -> pulumi.Output[Optional[Sequence['outputs.Lxc_containerMountpoint']]]:
+    def mountpoints(self) -> pulumi.Output[Optional[Sequence['outputs.LXCContainerMountpoint']]]:
         return pulumi.get(self, "mountpoints")
 
     @property
@@ -311,7 +311,7 @@ class Lxc_container(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def networks(self) -> pulumi.Output[Optional[Sequence['outputs.Lxc_containerNetwork']]]:
+    def networks(self) -> pulumi.Output[Optional[Sequence['outputs.LXCContainerNetwork']]]:
         return pulumi.get(self, "networks")
 
     @property

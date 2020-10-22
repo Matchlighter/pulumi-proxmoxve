@@ -2,9 +2,9 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 // Export members:
-export * from "./lxc_container";
+export * from "./lxccontainer";
 export * from "./provider";
-export * from "./qemu_vm";
+export * from "./qemuVM";
 
 // Export sub-modules:
 import * as config from "./config";

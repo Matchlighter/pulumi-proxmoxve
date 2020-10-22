@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Proxmoxve.Inputs
 {
 
-    public sealed class Qemu_vmSerialArgs : Pulumi.ResourceArgs
+    public sealed class QemuVMSerialGetArgs : Pulumi.ResourceArgs
     {
         [Input("id", required: true)]
         public Input<int> Id { get; set; } = null!;
@@ -18,7 +18,7 @@ namespace Pulumi.Proxmoxve.Inputs
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
-        public Qemu_vmSerialArgs()
+        public QemuVMSerialGetArgs()
         {
         }
     }

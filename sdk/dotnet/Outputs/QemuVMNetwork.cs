@@ -11,7 +11,7 @@ namespace Pulumi.Proxmoxve.Outputs
 {
 
     [OutputType]
-    public sealed class Qemu_vmNetwork
+    public sealed class QemuVMNetwork
     {
         public readonly string? Bridge;
         public readonly bool? Firewall;
@@ -23,7 +23,7 @@ namespace Pulumi.Proxmoxve.Outputs
         public readonly int? Tag;
 
         [OutputConstructor]
-        private Qemu_vmNetwork(
+        private QemuVMNetwork(
             string? bridge,
 
             bool? firewall,

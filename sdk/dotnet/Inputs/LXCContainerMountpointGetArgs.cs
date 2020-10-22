@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Proxmoxve.Inputs
 {
 
-    public sealed class Lxc_containerMountpointArgs : Pulumi.ResourceArgs
+    public sealed class LXCContainerMountpointGetArgs : Pulumi.ResourceArgs
     {
         [Input("acl")]
         public Input<bool>? Acl { get; set; }
@@ -36,7 +36,7 @@ namespace Pulumi.Proxmoxve.Inputs
         [Input("volume", required: true)]
         public Input<string> Volume { get; set; } = null!;
 
-        public Lxc_containerMountpointArgs()
+        public LXCContainerMountpointGetArgs()
         {
         }
     }

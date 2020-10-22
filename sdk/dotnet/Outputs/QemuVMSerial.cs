@@ -7,19 +7,23 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Proxmoxve.Inputs
+namespace Pulumi.Proxmoxve.Outputs
 {
 
-    public sealed class Qemu_vmSerialGetArgs : Pulumi.ResourceArgs
+    [OutputType]
+    public sealed class QemuVMSerial
     {
-        [Input("id", required: true)]
-        public Input<int> Id { get; set; } = null!;
+        public readonly int Id;
+        public readonly string Type;
 
-        [Input("type", required: true)]
-        public Input<string> Type { get; set; } = null!;
+        [OutputConstructor]
+        private QemuVMSerial(
+            int id,
 
-        public Qemu_vmSerialGetArgs()
+            string type)
         {
+            Id = id;
+            Type = type;
         }
     }
 }

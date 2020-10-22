@@ -59,7 +59,7 @@
         ]
     },
     "types": {
-        "proxmoxve:index/lxc_containerFeature:lxc_containerFeature": {
+        "proxmoxve:index/LXCContainerFeature:LXCContainerFeature": {
             "properties": {
                 "fuse": {
                     "type": "boolean",
@@ -96,7 +96,7 @@
             },
             "type": "object"
         },
-        "proxmoxve:index/lxc_containerMountpoint:lxc_containerMountpoint": {
+        "proxmoxve:index/LXCContainerMountpoint:LXCContainerMountpoint": {
             "properties": {
                 "acl": {
                     "type": "boolean",
@@ -169,7 +169,7 @@
                 "volume"
             ]
         },
-        "proxmoxve:index/lxc_containerNetwork:lxc_containerNetwork": {
+        "proxmoxve:index/LXCContainerNetwork:LXCContainerNetwork": {
             "properties": {
                 "bridge": {
                     "type": "string",
@@ -281,7 +281,7 @@
                 "name"
             ]
         },
-        "proxmoxve:index/qemu_vmDisk:qemu_vmDisk": {
+        "proxmoxve:index/QemuVMDisk:QemuVMDisk": {
             "properties": {
                 "backup": {
                     "type": "boolean",
@@ -446,7 +446,7 @@
                 }
             }
         },
-        "proxmoxve:index/qemu_vmNetwork:qemu_vmNetwork": {
+        "proxmoxve:index/QemuVMNetwork:QemuVMNetwork": {
             "properties": {
                 "bridge": {
                     "type": "string",
@@ -528,7 +528,7 @@
                 }
             }
         },
-        "proxmoxve:index/qemu_vmSerial:qemu_vmSerial": {
+        "proxmoxve:index/QemuVMSerial:QemuVMSerial": {
             "properties": {
                 "id": {
                     "type": "integer",
@@ -553,7 +553,7 @@
                 "type"
             ]
         },
-        "proxmoxve:index/qemu_vmVga:qemu_vmVga": {
+        "proxmoxve:index/QemuVMVga:QemuVMVga": {
             "properties": {
                 "memory": {
                     "type": "integer",
@@ -623,7 +623,7 @@
         ]
     },
     "resources": {
-        "proxmoxve:index/lxc_container:lxc_container": {
+        "proxmoxve:index/lXCContainer:LXCContainer": {
             "properties": {
                 "arch": {
                     "type": "string"
@@ -652,7 +652,7 @@
                 "features": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/proxmoxve:index/lxc_containerFeature:lxc_containerFeature"
+                        "$ref": "#/types/proxmoxve:index/LXCContainerFeature:LXCContainerFeature"
                     }
                 },
                 "force": {
@@ -676,7 +676,7 @@
                 "mountpoints": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/proxmoxve:index/lxc_containerMountpoint:lxc_containerMountpoint"
+                        "$ref": "#/types/proxmoxve:index/LXCContainerMountpoint:LXCContainerMountpoint"
                     }
                 },
                 "nameserver": {
@@ -685,7 +685,7 @@
                 "networks": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/proxmoxve:index/lxc_containerNetwork:lxc_containerNetwork"
+                        "$ref": "#/types/proxmoxve:index/LXCContainerNetwork:LXCContainerNetwork"
                     }
                 },
                 "onboot": {
@@ -786,7 +786,7 @@
                 "features": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/proxmoxve:index/lxc_containerFeature:lxc_containerFeature"
+                        "$ref": "#/types/proxmoxve:index/LXCContainerFeature:LXCContainerFeature"
                     }
                 },
                 "force": {
@@ -810,7 +810,7 @@
                 "mountpoints": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/proxmoxve:index/lxc_containerMountpoint:lxc_containerMountpoint"
+                        "$ref": "#/types/proxmoxve:index/LXCContainerMountpoint:LXCContainerMountpoint"
                     }
                 },
                 "nameserver": {
@@ -819,7 +819,7 @@
                 "networks": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/proxmoxve:index/lxc_containerNetwork:lxc_containerNetwork"
+                        "$ref": "#/types/proxmoxve:index/LXCContainerNetwork:LXCContainerNetwork"
                     }
                 },
                 "onboot": {
@@ -893,7 +893,7 @@
                 "targetNode"
             ],
             "stateInputs": {
-                "description": "Input properties used for looking up and filtering lxc_container resources.\n",
+                "description": "Input properties used for looking up and filtering LXCContainer resources.\n",
                 "properties": {
                     "arch": {
                         "type": "string"
@@ -922,7 +922,7 @@
                     "features": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/proxmoxve:index/lxc_containerFeature:lxc_containerFeature"
+                            "$ref": "#/types/proxmoxve:index/LXCContainerFeature:LXCContainerFeature"
                         }
                     },
                     "force": {
@@ -946,7 +946,7 @@
                     "mountpoints": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/proxmoxve:index/lxc_containerMountpoint:lxc_containerMountpoint"
+                            "$ref": "#/types/proxmoxve:index/LXCContainerMountpoint:LXCContainerMountpoint"
                         }
                     },
                     "nameserver": {
@@ -955,7 +955,7 @@
                     "networks": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/proxmoxve:index/lxc_containerNetwork:lxc_containerNetwork"
+                            "$ref": "#/types/proxmoxve:index/LXCContainerNetwork:LXCContainerNetwork"
                         }
                     },
                     "onboot": {
@@ -1028,7 +1028,7 @@
                 "type": "object"
             }
         },
-        "proxmoxve:index/qemu_vm:qemu_vm": {
+        "proxmoxve:index/qemuVM:QemuVM": {
             "properties": {
                 "agent": {
                     "type": "integer"
@@ -1086,7 +1086,7 @@
                 "disks": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/proxmoxve:index/qemu_vmDisk:qemu_vmDisk"
+                        "$ref": "#/types/proxmoxve:index/QemuVMDisk:QemuVMDisk"
                     }
                 },
                 "forceCreate": {
@@ -1135,7 +1135,7 @@
                 "networks": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/proxmoxve:index/qemu_vmNetwork:qemu_vmNetwork"
+                        "$ref": "#/types/proxmoxve:index/QemuVMNetwork:QemuVMNetwork"
                     }
                 },
                 "nic": {
@@ -1172,7 +1172,7 @@
                 "serials": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/proxmoxve:index/qemu_vmSerial:qemu_vmSerial"
+                        "$ref": "#/types/proxmoxve:index/QemuVMSerial:QemuVMSerial"
                     }
                 },
                 "sockets": {
@@ -1213,7 +1213,7 @@
                 "vgas": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/proxmoxve:index/qemu_vmVga:qemu_vmVga"
+                        "$ref": "#/types/proxmoxve:index/QemuVMVga:QemuVMVga"
                     }
                 },
                 "vlan": {
@@ -1292,7 +1292,7 @@
                 "disks": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/proxmoxve:index/qemu_vmDisk:qemu_vmDisk"
+                        "$ref": "#/types/proxmoxve:index/QemuVMDisk:QemuVMDisk"
                     }
                 },
                 "forceCreate": {
@@ -1341,7 +1341,7 @@
                 "networks": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/proxmoxve:index/qemu_vmNetwork:qemu_vmNetwork"
+                        "$ref": "#/types/proxmoxve:index/QemuVMNetwork:QemuVMNetwork"
                     }
                 },
                 "nic": {
@@ -1378,7 +1378,7 @@
                 "serials": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/proxmoxve:index/qemu_vmSerial:qemu_vmSerial"
+                        "$ref": "#/types/proxmoxve:index/QemuVMSerial:QemuVMSerial"
                     }
                 },
                 "sockets": {
@@ -1413,7 +1413,7 @@
                 "vgas": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/proxmoxve:index/qemu_vmVga:qemu_vmVga"
+                        "$ref": "#/types/proxmoxve:index/QemuVMVga:QemuVMVga"
                     }
                 },
                 "vlan": {
@@ -1428,7 +1428,7 @@
                 "targetNode"
             ],
             "stateInputs": {
-                "description": "Input properties used for looking up and filtering qemu_vm resources.\n",
+                "description": "Input properties used for looking up and filtering QemuVM resources.\n",
                 "properties": {
                     "agent": {
                         "type": "integer"
@@ -1486,7 +1486,7 @@
                     "disks": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/proxmoxve:index/qemu_vmDisk:qemu_vmDisk"
+                            "$ref": "#/types/proxmoxve:index/QemuVMDisk:QemuVMDisk"
                         }
                     },
                     "forceCreate": {
@@ -1535,7 +1535,7 @@
                     "networks": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/proxmoxve:index/qemu_vmNetwork:qemu_vmNetwork"
+                            "$ref": "#/types/proxmoxve:index/QemuVMNetwork:QemuVMNetwork"
                         }
                     },
                     "nic": {
@@ -1572,7 +1572,7 @@
                     "serials": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/proxmoxve:index/qemu_vmSerial:qemu_vmSerial"
+                            "$ref": "#/types/proxmoxve:index/QemuVMSerial:QemuVMSerial"
                         }
                     },
                     "sockets": {
@@ -1613,7 +1613,7 @@
                     "vgas": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/proxmoxve:index/qemu_vmVga:qemu_vmVga"
+                            "$ref": "#/types/proxmoxve:index/QemuVMVga:QemuVMVga"
                         }
                     },
                     "vlan": {

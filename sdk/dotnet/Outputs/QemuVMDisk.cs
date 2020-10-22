@@ -11,7 +11,7 @@ namespace Pulumi.Proxmoxve.Outputs
 {
 
     [OutputType]
-    public sealed class Qemu_vmDisk
+    public sealed class QemuVMDisk
     {
         public readonly bool? Backup;
         public readonly string? Cache;
@@ -33,7 +33,7 @@ namespace Pulumi.Proxmoxve.Outputs
         public readonly string Type;
 
         [OutputConstructor]
-        private Qemu_vmDisk(
+        private QemuVMDisk(
             bool? backup,
 
             string? cache,

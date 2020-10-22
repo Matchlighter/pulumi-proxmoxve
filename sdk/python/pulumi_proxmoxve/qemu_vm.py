@@ -10,10 +10,10 @@ from . import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
-__all__ = ['Qemu_vm']
+__all__ = ['QemuVM']
 
 
-class Qemu_vm(pulumi.CustomResource):
+class QemuVM(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -34,7 +34,7 @@ class Qemu_vm(pulumi.CustomResource):
                  define_connection_info: Optional[pulumi.Input[bool]] = None,
                  desc: Optional[pulumi.Input[str]] = None,
                  disk_gb: Optional[pulumi.Input[float]] = None,
-                 disks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Qemu_vmDiskArgs']]]]] = None,
+                 disks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['QemuVMDiskArgs']]]]] = None,
                  force_create: Optional[pulumi.Input[bool]] = None,
                  force_recreate_on_change_of: Optional[pulumi.Input[str]] = None,
                  full_clone: Optional[pulumi.Input[bool]] = None,
@@ -49,7 +49,7 @@ class Qemu_vm(pulumi.CustomResource):
                  memory: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  nameserver: Optional[pulumi.Input[str]] = None,
-                 networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Qemu_vmNetworkArgs']]]]] = None,
+                 networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['QemuVMNetworkArgs']]]]] = None,
                  nic: Optional[pulumi.Input[str]] = None,
                  numa: Optional[pulumi.Input[bool]] = None,
                  onboot: Optional[pulumi.Input[bool]] = None,
@@ -60,7 +60,7 @@ class Qemu_vm(pulumi.CustomResource):
                  qemu_os: Optional[pulumi.Input[str]] = None,
                  scsihw: Optional[pulumi.Input[str]] = None,
                  searchdomain: Optional[pulumi.Input[str]] = None,
-                 serials: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Qemu_vmSerialArgs']]]]] = None,
+                 serials: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['QemuVMSerialArgs']]]]] = None,
                  sockets: Optional[pulumi.Input[int]] = None,
                  ssh_forward_ip: Optional[pulumi.Input[str]] = None,
                  ssh_private_key: Optional[pulumi.Input[str]] = None,
@@ -70,14 +70,14 @@ class Qemu_vm(pulumi.CustomResource):
                  storage_type: Optional[pulumi.Input[str]] = None,
                  target_node: Optional[pulumi.Input[str]] = None,
                  vcpus: Optional[pulumi.Input[int]] = None,
-                 vgas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Qemu_vmVgaArgs']]]]] = None,
+                 vgas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['QemuVMVgaArgs']]]]] = None,
                  vlan: Optional[pulumi.Input[int]] = None,
                  vmid: Optional[pulumi.Input[int]] = None,
                  __props__=None,
                  __name__=None,
                  __opts__=None):
         """
-        Create a Qemu_vm resource with the given unique name, props, and options.
+        Create a QemuVM resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -179,8 +179,8 @@ class Qemu_vm(pulumi.CustomResource):
             __props__['vmid'] = vmid
             __props__['ssh_host'] = None
             __props__['ssh_port'] = None
-        super(Qemu_vm, __self__).__init__(
-            'proxmoxve:index/qemu_vm:qemu_vm',
+        super(QemuVM, __self__).__init__(
+            'proxmoxve:index/qemuVM:QemuVM',
             resource_name,
             __props__,
             opts)
@@ -206,7 +206,7 @@ class Qemu_vm(pulumi.CustomResource):
             define_connection_info: Optional[pulumi.Input[bool]] = None,
             desc: Optional[pulumi.Input[str]] = None,
             disk_gb: Optional[pulumi.Input[float]] = None,
-            disks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Qemu_vmDiskArgs']]]]] = None,
+            disks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['QemuVMDiskArgs']]]]] = None,
             force_create: Optional[pulumi.Input[bool]] = None,
             force_recreate_on_change_of: Optional[pulumi.Input[str]] = None,
             full_clone: Optional[pulumi.Input[bool]] = None,
@@ -221,7 +221,7 @@ class Qemu_vm(pulumi.CustomResource):
             memory: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
             nameserver: Optional[pulumi.Input[str]] = None,
-            networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Qemu_vmNetworkArgs']]]]] = None,
+            networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['QemuVMNetworkArgs']]]]] = None,
             nic: Optional[pulumi.Input[str]] = None,
             numa: Optional[pulumi.Input[bool]] = None,
             onboot: Optional[pulumi.Input[bool]] = None,
@@ -232,7 +232,7 @@ class Qemu_vm(pulumi.CustomResource):
             qemu_os: Optional[pulumi.Input[str]] = None,
             scsihw: Optional[pulumi.Input[str]] = None,
             searchdomain: Optional[pulumi.Input[str]] = None,
-            serials: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Qemu_vmSerialArgs']]]]] = None,
+            serials: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['QemuVMSerialArgs']]]]] = None,
             sockets: Optional[pulumi.Input[int]] = None,
             ssh_forward_ip: Optional[pulumi.Input[str]] = None,
             ssh_host: Optional[pulumi.Input[str]] = None,
@@ -244,11 +244,11 @@ class Qemu_vm(pulumi.CustomResource):
             storage_type: Optional[pulumi.Input[str]] = None,
             target_node: Optional[pulumi.Input[str]] = None,
             vcpus: Optional[pulumi.Input[int]] = None,
-            vgas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['Qemu_vmVgaArgs']]]]] = None,
+            vgas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['QemuVMVgaArgs']]]]] = None,
             vlan: Optional[pulumi.Input[int]] = None,
-            vmid: Optional[pulumi.Input[int]] = None) -> 'Qemu_vm':
+            vmid: Optional[pulumi.Input[int]] = None) -> 'QemuVM':
         """
-        Get an existing Qemu_vm resource's state with the given name, id, and optional extra
+        Get an existing QemuVM resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -317,7 +317,7 @@ class Qemu_vm(pulumi.CustomResource):
         __props__["vgas"] = vgas
         __props__["vlan"] = vlan
         __props__["vmid"] = vmid
-        return Qemu_vm(resource_name, opts=opts, __props__=__props__)
+        return QemuVM(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter
@@ -406,7 +406,7 @@ class Qemu_vm(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def disks(self) -> pulumi.Output[Optional[Sequence['outputs.Qemu_vmDisk']]]:
+    def disks(self) -> pulumi.Output[Optional[Sequence['outputs.QemuVMDisk']]]:
         return pulumi.get(self, "disks")
 
     @property
@@ -481,7 +481,7 @@ class Qemu_vm(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def networks(self) -> pulumi.Output[Optional[Sequence['outputs.Qemu_vmNetwork']]]:
+    def networks(self) -> pulumi.Output[Optional[Sequence['outputs.QemuVMNetwork']]]:
         return pulumi.get(self, "networks")
 
     @property
@@ -536,7 +536,7 @@ class Qemu_vm(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def serials(self) -> pulumi.Output[Optional[Sequence['outputs.Qemu_vmSerial']]]:
+    def serials(self) -> pulumi.Output[Optional[Sequence['outputs.QemuVMSerial']]]:
         return pulumi.get(self, "serials")
 
     @property
@@ -596,7 +596,7 @@ class Qemu_vm(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def vgas(self) -> pulumi.Output[Optional[Sequence['outputs.Qemu_vmVga']]]:
+    def vgas(self) -> pulumi.Output[Optional[Sequence['outputs.QemuVMVga']]]:
         return pulumi.get(self, "vgas")
 
     @property

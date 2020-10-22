@@ -11,18 +11,18 @@ namespace Pulumi.Proxmoxve.Outputs
 {
 
     [OutputType]
-    public sealed class Qemu_vmSerial
+    public sealed class QemuVMVga
     {
-        public readonly int Id;
-        public readonly string Type;
+        public readonly int? Memory;
+        public readonly string? Type;
 
         [OutputConstructor]
-        private Qemu_vmSerial(
-            int id,
+        private QemuVMVga(
+            int? memory,
 
-            string type)
+            string? type)
         {
-            Id = id;
+            Memory = memory;
             Type = type;
         }
     }

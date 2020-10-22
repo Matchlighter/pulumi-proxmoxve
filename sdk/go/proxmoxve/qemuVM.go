@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-type Qemu_vm struct {
+type QemuVM struct {
 	pulumi.CustomResourceState
 
 	Agent    pulumi.IntPtrOutput    `pulumi:"agent"`
@@ -32,7 +32,7 @@ type Qemu_vm struct {
 	Desc                 pulumi.StringPtrOutput `pulumi:"desc"`
 	// Deprecated: Use `disk.size` instead
 	DiskGb                  pulumi.Float64PtrOutput `pulumi:"diskGb"`
-	Disks                   Qemu_vmDiskArrayOutput  `pulumi:"disks"`
+	Disks                   QemuVMDiskArrayOutput   `pulumi:"disks"`
 	ForceCreate             pulumi.BoolPtrOutput    `pulumi:"forceCreate"`
 	ForceRecreateOnChangeOf pulumi.StringPtrOutput  `pulumi:"forceRecreateOnChangeOf"`
 	FullClone               pulumi.BoolPtrOutput    `pulumi:"fullClone"`
@@ -44,73 +44,73 @@ type Qemu_vm struct {
 	Iso                     pulumi.StringPtrOutput  `pulumi:"iso"`
 	Kvm                     pulumi.BoolPtrOutput    `pulumi:"kvm"`
 	// Deprecated: Use `network.macaddr` to access the auto generated MAC address
-	Mac        pulumi.StringPtrOutput    `pulumi:"mac"`
-	Memory     pulumi.IntPtrOutput       `pulumi:"memory"`
-	Name       pulumi.StringOutput       `pulumi:"name"`
-	Nameserver pulumi.StringOutput       `pulumi:"nameserver"`
-	Networks   Qemu_vmNetworkArrayOutput `pulumi:"networks"`
+	Mac        pulumi.StringPtrOutput   `pulumi:"mac"`
+	Memory     pulumi.IntPtrOutput      `pulumi:"memory"`
+	Name       pulumi.StringOutput      `pulumi:"name"`
+	Nameserver pulumi.StringOutput      `pulumi:"nameserver"`
+	Networks   QemuVMNetworkArrayOutput `pulumi:"networks"`
 	// Deprecated: Use `network` instead
-	Nic             pulumi.StringPtrOutput   `pulumi:"nic"`
-	Numa            pulumi.BoolPtrOutput     `pulumi:"numa"`
-	Onboot          pulumi.BoolPtrOutput     `pulumi:"onboot"`
-	OsNetworkConfig pulumi.StringPtrOutput   `pulumi:"osNetworkConfig"`
-	OsType          pulumi.StringPtrOutput   `pulumi:"osType"`
-	Pool            pulumi.StringPtrOutput   `pulumi:"pool"`
-	Preprovision    pulumi.BoolPtrOutput     `pulumi:"preprovision"`
-	QemuOs          pulumi.StringPtrOutput   `pulumi:"qemuOs"`
-	Scsihw          pulumi.StringOutput      `pulumi:"scsihw"`
-	Searchdomain    pulumi.StringOutput      `pulumi:"searchdomain"`
-	Serials         Qemu_vmSerialArrayOutput `pulumi:"serials"`
-	Sockets         pulumi.IntPtrOutput      `pulumi:"sockets"`
-	SshForwardIp    pulumi.StringPtrOutput   `pulumi:"sshForwardIp"`
-	SshHost         pulumi.StringOutput      `pulumi:"sshHost"`
-	SshPort         pulumi.StringOutput      `pulumi:"sshPort"`
-	SshPrivateKey   pulumi.StringPtrOutput   `pulumi:"sshPrivateKey"`
-	SshUser         pulumi.StringPtrOutput   `pulumi:"sshUser"`
-	Sshkeys         pulumi.StringPtrOutput   `pulumi:"sshkeys"`
+	Nic             pulumi.StringPtrOutput  `pulumi:"nic"`
+	Numa            pulumi.BoolPtrOutput    `pulumi:"numa"`
+	Onboot          pulumi.BoolPtrOutput    `pulumi:"onboot"`
+	OsNetworkConfig pulumi.StringPtrOutput  `pulumi:"osNetworkConfig"`
+	OsType          pulumi.StringPtrOutput  `pulumi:"osType"`
+	Pool            pulumi.StringPtrOutput  `pulumi:"pool"`
+	Preprovision    pulumi.BoolPtrOutput    `pulumi:"preprovision"`
+	QemuOs          pulumi.StringPtrOutput  `pulumi:"qemuOs"`
+	Scsihw          pulumi.StringOutput     `pulumi:"scsihw"`
+	Searchdomain    pulumi.StringOutput     `pulumi:"searchdomain"`
+	Serials         QemuVMSerialArrayOutput `pulumi:"serials"`
+	Sockets         pulumi.IntPtrOutput     `pulumi:"sockets"`
+	SshForwardIp    pulumi.StringPtrOutput  `pulumi:"sshForwardIp"`
+	SshHost         pulumi.StringOutput     `pulumi:"sshHost"`
+	SshPort         pulumi.StringOutput     `pulumi:"sshPort"`
+	SshPrivateKey   pulumi.StringPtrOutput  `pulumi:"sshPrivateKey"`
+	SshUser         pulumi.StringPtrOutput  `pulumi:"sshUser"`
+	Sshkeys         pulumi.StringPtrOutput  `pulumi:"sshkeys"`
 	// Deprecated: Use `disk.storage` instead
 	Storage pulumi.StringPtrOutput `pulumi:"storage"`
 	// Deprecated: Use `disk.type` instead
 	StorageType pulumi.StringPtrOutput `pulumi:"storageType"`
 	TargetNode  pulumi.StringOutput    `pulumi:"targetNode"`
 	Vcpus       pulumi.IntPtrOutput    `pulumi:"vcpus"`
-	Vgas        Qemu_vmVgaArrayOutput  `pulumi:"vgas"`
+	Vgas        QemuVMVgaArrayOutput   `pulumi:"vgas"`
 	// Deprecated: Use `network.tag` instead
 	Vlan pulumi.IntPtrOutput `pulumi:"vlan"`
 	Vmid pulumi.IntOutput    `pulumi:"vmid"`
 }
 
-// NewQemu_vm registers a new resource with the given unique name, arguments, and options.
-func NewQemu_vm(ctx *pulumi.Context,
-	name string, args *Qemu_vmArgs, opts ...pulumi.ResourceOption) (*Qemu_vm, error) {
+// NewQemuVM registers a new resource with the given unique name, arguments, and options.
+func NewQemuVM(ctx *pulumi.Context,
+	name string, args *QemuVMArgs, opts ...pulumi.ResourceOption) (*QemuVM, error) {
 	if args == nil || args.TargetNode == nil {
 		return nil, errors.New("missing required argument 'TargetNode'")
 	}
 	if args == nil {
-		args = &Qemu_vmArgs{}
+		args = &QemuVMArgs{}
 	}
-	var resource Qemu_vm
-	err := ctx.RegisterResource("proxmoxve:index/qemu_vm:qemu_vm", name, args, &resource, opts...)
+	var resource QemuVM
+	err := ctx.RegisterResource("proxmoxve:index/qemuVM:QemuVM", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// GetQemu_vm gets an existing Qemu_vm resource's state with the given name, ID, and optional
+// GetQemuVM gets an existing QemuVM resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetQemu_vm(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *Qemu_vmState, opts ...pulumi.ResourceOption) (*Qemu_vm, error) {
-	var resource Qemu_vm
-	err := ctx.ReadResource("proxmoxve:index/qemu_vm:qemu_vm", name, id, state, &resource, opts...)
+func GetQemuVM(ctx *pulumi.Context,
+	name string, id pulumi.IDInput, state *QemuVMState, opts ...pulumi.ResourceOption) (*QemuVM, error) {
+	var resource QemuVM
+	err := ctx.ReadResource("proxmoxve:index/qemuVM:QemuVM", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// Input properties used for looking up and filtering Qemu_vm resources.
-type qemu_vmState struct {
+// Input properties used for looking up and filtering QemuVM resources.
+type qemuVMState struct {
 	Agent    *int    `pulumi:"agent"`
 	Balloon  *int    `pulumi:"balloon"`
 	Bios     *string `pulumi:"bios"`
@@ -129,56 +129,56 @@ type qemu_vmState struct {
 	DefineConnectionInfo *bool   `pulumi:"defineConnectionInfo"`
 	Desc                 *string `pulumi:"desc"`
 	// Deprecated: Use `disk.size` instead
-	DiskGb                  *float64      `pulumi:"diskGb"`
-	Disks                   []Qemu_vmDisk `pulumi:"disks"`
-	ForceCreate             *bool         `pulumi:"forceCreate"`
-	ForceRecreateOnChangeOf *string       `pulumi:"forceRecreateOnChangeOf"`
-	FullClone               *bool         `pulumi:"fullClone"`
-	Hastate                 *string       `pulumi:"hastate"`
-	Hotplug                 *string       `pulumi:"hotplug"`
-	Ipconfig0               *string       `pulumi:"ipconfig0"`
-	Ipconfig1               *string       `pulumi:"ipconfig1"`
-	Ipconfig2               *string       `pulumi:"ipconfig2"`
-	Iso                     *string       `pulumi:"iso"`
-	Kvm                     *bool         `pulumi:"kvm"`
+	DiskGb                  *float64     `pulumi:"diskGb"`
+	Disks                   []QemuVMDisk `pulumi:"disks"`
+	ForceCreate             *bool        `pulumi:"forceCreate"`
+	ForceRecreateOnChangeOf *string      `pulumi:"forceRecreateOnChangeOf"`
+	FullClone               *bool        `pulumi:"fullClone"`
+	Hastate                 *string      `pulumi:"hastate"`
+	Hotplug                 *string      `pulumi:"hotplug"`
+	Ipconfig0               *string      `pulumi:"ipconfig0"`
+	Ipconfig1               *string      `pulumi:"ipconfig1"`
+	Ipconfig2               *string      `pulumi:"ipconfig2"`
+	Iso                     *string      `pulumi:"iso"`
+	Kvm                     *bool        `pulumi:"kvm"`
 	// Deprecated: Use `network.macaddr` to access the auto generated MAC address
-	Mac        *string          `pulumi:"mac"`
-	Memory     *int             `pulumi:"memory"`
-	Name       *string          `pulumi:"name"`
-	Nameserver *string          `pulumi:"nameserver"`
-	Networks   []Qemu_vmNetwork `pulumi:"networks"`
+	Mac        *string         `pulumi:"mac"`
+	Memory     *int            `pulumi:"memory"`
+	Name       *string         `pulumi:"name"`
+	Nameserver *string         `pulumi:"nameserver"`
+	Networks   []QemuVMNetwork `pulumi:"networks"`
 	// Deprecated: Use `network` instead
-	Nic             *string         `pulumi:"nic"`
-	Numa            *bool           `pulumi:"numa"`
-	Onboot          *bool           `pulumi:"onboot"`
-	OsNetworkConfig *string         `pulumi:"osNetworkConfig"`
-	OsType          *string         `pulumi:"osType"`
-	Pool            *string         `pulumi:"pool"`
-	Preprovision    *bool           `pulumi:"preprovision"`
-	QemuOs          *string         `pulumi:"qemuOs"`
-	Scsihw          *string         `pulumi:"scsihw"`
-	Searchdomain    *string         `pulumi:"searchdomain"`
-	Serials         []Qemu_vmSerial `pulumi:"serials"`
-	Sockets         *int            `pulumi:"sockets"`
-	SshForwardIp    *string         `pulumi:"sshForwardIp"`
-	SshHost         *string         `pulumi:"sshHost"`
-	SshPort         *string         `pulumi:"sshPort"`
-	SshPrivateKey   *string         `pulumi:"sshPrivateKey"`
-	SshUser         *string         `pulumi:"sshUser"`
-	Sshkeys         *string         `pulumi:"sshkeys"`
+	Nic             *string        `pulumi:"nic"`
+	Numa            *bool          `pulumi:"numa"`
+	Onboot          *bool          `pulumi:"onboot"`
+	OsNetworkConfig *string        `pulumi:"osNetworkConfig"`
+	OsType          *string        `pulumi:"osType"`
+	Pool            *string        `pulumi:"pool"`
+	Preprovision    *bool          `pulumi:"preprovision"`
+	QemuOs          *string        `pulumi:"qemuOs"`
+	Scsihw          *string        `pulumi:"scsihw"`
+	Searchdomain    *string        `pulumi:"searchdomain"`
+	Serials         []QemuVMSerial `pulumi:"serials"`
+	Sockets         *int           `pulumi:"sockets"`
+	SshForwardIp    *string        `pulumi:"sshForwardIp"`
+	SshHost         *string        `pulumi:"sshHost"`
+	SshPort         *string        `pulumi:"sshPort"`
+	SshPrivateKey   *string        `pulumi:"sshPrivateKey"`
+	SshUser         *string        `pulumi:"sshUser"`
+	Sshkeys         *string        `pulumi:"sshkeys"`
 	// Deprecated: Use `disk.storage` instead
 	Storage *string `pulumi:"storage"`
 	// Deprecated: Use `disk.type` instead
-	StorageType *string      `pulumi:"storageType"`
-	TargetNode  *string      `pulumi:"targetNode"`
-	Vcpus       *int         `pulumi:"vcpus"`
-	Vgas        []Qemu_vmVga `pulumi:"vgas"`
+	StorageType *string     `pulumi:"storageType"`
+	TargetNode  *string     `pulumi:"targetNode"`
+	Vcpus       *int        `pulumi:"vcpus"`
+	Vgas        []QemuVMVga `pulumi:"vgas"`
 	// Deprecated: Use `network.tag` instead
 	Vlan *int `pulumi:"vlan"`
 	Vmid *int `pulumi:"vmid"`
 }
 
-type Qemu_vmState struct {
+type QemuVMState struct {
 	Agent    pulumi.IntPtrInput
 	Balloon  pulumi.IntPtrInput
 	Bios     pulumi.StringPtrInput
@@ -198,7 +198,7 @@ type Qemu_vmState struct {
 	Desc                 pulumi.StringPtrInput
 	// Deprecated: Use `disk.size` instead
 	DiskGb                  pulumi.Float64PtrInput
-	Disks                   Qemu_vmDiskArrayInput
+	Disks                   QemuVMDiskArrayInput
 	ForceCreate             pulumi.BoolPtrInput
 	ForceRecreateOnChangeOf pulumi.StringPtrInput
 	FullClone               pulumi.BoolPtrInput
@@ -214,7 +214,7 @@ type Qemu_vmState struct {
 	Memory     pulumi.IntPtrInput
 	Name       pulumi.StringPtrInput
 	Nameserver pulumi.StringPtrInput
-	Networks   Qemu_vmNetworkArrayInput
+	Networks   QemuVMNetworkArrayInput
 	// Deprecated: Use `network` instead
 	Nic             pulumi.StringPtrInput
 	Numa            pulumi.BoolPtrInput
@@ -226,7 +226,7 @@ type Qemu_vmState struct {
 	QemuOs          pulumi.StringPtrInput
 	Scsihw          pulumi.StringPtrInput
 	Searchdomain    pulumi.StringPtrInput
-	Serials         Qemu_vmSerialArrayInput
+	Serials         QemuVMSerialArrayInput
 	Sockets         pulumi.IntPtrInput
 	SshForwardIp    pulumi.StringPtrInput
 	SshHost         pulumi.StringPtrInput
@@ -240,17 +240,17 @@ type Qemu_vmState struct {
 	StorageType pulumi.StringPtrInput
 	TargetNode  pulumi.StringPtrInput
 	Vcpus       pulumi.IntPtrInput
-	Vgas        Qemu_vmVgaArrayInput
+	Vgas        QemuVMVgaArrayInput
 	// Deprecated: Use `network.tag` instead
 	Vlan pulumi.IntPtrInput
 	Vmid pulumi.IntPtrInput
 }
 
-func (Qemu_vmState) ElementType() reflect.Type {
-	return reflect.TypeOf((*qemu_vmState)(nil)).Elem()
+func (QemuVMState) ElementType() reflect.Type {
+	return reflect.TypeOf((*qemuVMState)(nil)).Elem()
 }
 
-type qemu_vmArgs struct {
+type qemuVMArgs struct {
 	Agent    *int    `pulumi:"agent"`
 	Balloon  *int    `pulumi:"balloon"`
 	Bios     *string `pulumi:"bios"`
@@ -269,55 +269,55 @@ type qemu_vmArgs struct {
 	DefineConnectionInfo *bool   `pulumi:"defineConnectionInfo"`
 	Desc                 *string `pulumi:"desc"`
 	// Deprecated: Use `disk.size` instead
-	DiskGb                  *float64      `pulumi:"diskGb"`
-	Disks                   []Qemu_vmDisk `pulumi:"disks"`
-	ForceCreate             *bool         `pulumi:"forceCreate"`
-	ForceRecreateOnChangeOf *string       `pulumi:"forceRecreateOnChangeOf"`
-	FullClone               *bool         `pulumi:"fullClone"`
-	Hastate                 *string       `pulumi:"hastate"`
-	Hotplug                 *string       `pulumi:"hotplug"`
-	Ipconfig0               *string       `pulumi:"ipconfig0"`
-	Ipconfig1               *string       `pulumi:"ipconfig1"`
-	Ipconfig2               *string       `pulumi:"ipconfig2"`
-	Iso                     *string       `pulumi:"iso"`
-	Kvm                     *bool         `pulumi:"kvm"`
+	DiskGb                  *float64     `pulumi:"diskGb"`
+	Disks                   []QemuVMDisk `pulumi:"disks"`
+	ForceCreate             *bool        `pulumi:"forceCreate"`
+	ForceRecreateOnChangeOf *string      `pulumi:"forceRecreateOnChangeOf"`
+	FullClone               *bool        `pulumi:"fullClone"`
+	Hastate                 *string      `pulumi:"hastate"`
+	Hotplug                 *string      `pulumi:"hotplug"`
+	Ipconfig0               *string      `pulumi:"ipconfig0"`
+	Ipconfig1               *string      `pulumi:"ipconfig1"`
+	Ipconfig2               *string      `pulumi:"ipconfig2"`
+	Iso                     *string      `pulumi:"iso"`
+	Kvm                     *bool        `pulumi:"kvm"`
 	// Deprecated: Use `network.macaddr` to access the auto generated MAC address
-	Mac        *string          `pulumi:"mac"`
-	Memory     *int             `pulumi:"memory"`
-	Name       *string          `pulumi:"name"`
-	Nameserver *string          `pulumi:"nameserver"`
-	Networks   []Qemu_vmNetwork `pulumi:"networks"`
+	Mac        *string         `pulumi:"mac"`
+	Memory     *int            `pulumi:"memory"`
+	Name       *string         `pulumi:"name"`
+	Nameserver *string         `pulumi:"nameserver"`
+	Networks   []QemuVMNetwork `pulumi:"networks"`
 	// Deprecated: Use `network` instead
-	Nic             *string         `pulumi:"nic"`
-	Numa            *bool           `pulumi:"numa"`
-	Onboot          *bool           `pulumi:"onboot"`
-	OsNetworkConfig *string         `pulumi:"osNetworkConfig"`
-	OsType          *string         `pulumi:"osType"`
-	Pool            *string         `pulumi:"pool"`
-	Preprovision    *bool           `pulumi:"preprovision"`
-	QemuOs          *string         `pulumi:"qemuOs"`
-	Scsihw          *string         `pulumi:"scsihw"`
-	Searchdomain    *string         `pulumi:"searchdomain"`
-	Serials         []Qemu_vmSerial `pulumi:"serials"`
-	Sockets         *int            `pulumi:"sockets"`
-	SshForwardIp    *string         `pulumi:"sshForwardIp"`
-	SshPrivateKey   *string         `pulumi:"sshPrivateKey"`
-	SshUser         *string         `pulumi:"sshUser"`
-	Sshkeys         *string         `pulumi:"sshkeys"`
+	Nic             *string        `pulumi:"nic"`
+	Numa            *bool          `pulumi:"numa"`
+	Onboot          *bool          `pulumi:"onboot"`
+	OsNetworkConfig *string        `pulumi:"osNetworkConfig"`
+	OsType          *string        `pulumi:"osType"`
+	Pool            *string        `pulumi:"pool"`
+	Preprovision    *bool          `pulumi:"preprovision"`
+	QemuOs          *string        `pulumi:"qemuOs"`
+	Scsihw          *string        `pulumi:"scsihw"`
+	Searchdomain    *string        `pulumi:"searchdomain"`
+	Serials         []QemuVMSerial `pulumi:"serials"`
+	Sockets         *int           `pulumi:"sockets"`
+	SshForwardIp    *string        `pulumi:"sshForwardIp"`
+	SshPrivateKey   *string        `pulumi:"sshPrivateKey"`
+	SshUser         *string        `pulumi:"sshUser"`
+	Sshkeys         *string        `pulumi:"sshkeys"`
 	// Deprecated: Use `disk.storage` instead
 	Storage *string `pulumi:"storage"`
 	// Deprecated: Use `disk.type` instead
-	StorageType *string      `pulumi:"storageType"`
-	TargetNode  string       `pulumi:"targetNode"`
-	Vcpus       *int         `pulumi:"vcpus"`
-	Vgas        []Qemu_vmVga `pulumi:"vgas"`
+	StorageType *string     `pulumi:"storageType"`
+	TargetNode  string      `pulumi:"targetNode"`
+	Vcpus       *int        `pulumi:"vcpus"`
+	Vgas        []QemuVMVga `pulumi:"vgas"`
 	// Deprecated: Use `network.tag` instead
 	Vlan *int `pulumi:"vlan"`
 	Vmid *int `pulumi:"vmid"`
 }
 
-// The set of arguments for constructing a Qemu_vm resource.
-type Qemu_vmArgs struct {
+// The set of arguments for constructing a QemuVM resource.
+type QemuVMArgs struct {
 	Agent    pulumi.IntPtrInput
 	Balloon  pulumi.IntPtrInput
 	Bios     pulumi.StringPtrInput
@@ -337,7 +337,7 @@ type Qemu_vmArgs struct {
 	Desc                 pulumi.StringPtrInput
 	// Deprecated: Use `disk.size` instead
 	DiskGb                  pulumi.Float64PtrInput
-	Disks                   Qemu_vmDiskArrayInput
+	Disks                   QemuVMDiskArrayInput
 	ForceCreate             pulumi.BoolPtrInput
 	ForceRecreateOnChangeOf pulumi.StringPtrInput
 	FullClone               pulumi.BoolPtrInput
@@ -353,7 +353,7 @@ type Qemu_vmArgs struct {
 	Memory     pulumi.IntPtrInput
 	Name       pulumi.StringPtrInput
 	Nameserver pulumi.StringPtrInput
-	Networks   Qemu_vmNetworkArrayInput
+	Networks   QemuVMNetworkArrayInput
 	// Deprecated: Use `network` instead
 	Nic             pulumi.StringPtrInput
 	Numa            pulumi.BoolPtrInput
@@ -365,7 +365,7 @@ type Qemu_vmArgs struct {
 	QemuOs          pulumi.StringPtrInput
 	Scsihw          pulumi.StringPtrInput
 	Searchdomain    pulumi.StringPtrInput
-	Serials         Qemu_vmSerialArrayInput
+	Serials         QemuVMSerialArrayInput
 	Sockets         pulumi.IntPtrInput
 	SshForwardIp    pulumi.StringPtrInput
 	SshPrivateKey   pulumi.StringPtrInput
@@ -377,12 +377,12 @@ type Qemu_vmArgs struct {
 	StorageType pulumi.StringPtrInput
 	TargetNode  pulumi.StringInput
 	Vcpus       pulumi.IntPtrInput
-	Vgas        Qemu_vmVgaArrayInput
+	Vgas        QemuVMVgaArrayInput
 	// Deprecated: Use `network.tag` instead
 	Vlan pulumi.IntPtrInput
 	Vmid pulumi.IntPtrInput
 }
 
-func (Qemu_vmArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*qemu_vmArgs)(nil)).Elem()
+func (QemuVMArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*qemuVMArgs)(nil)).Elem()
 }

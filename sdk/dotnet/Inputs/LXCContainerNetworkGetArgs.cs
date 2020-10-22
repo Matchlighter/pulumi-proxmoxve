@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Proxmoxve.Inputs
 {
 
-    public sealed class Lxc_containerNetworkArgs : Pulumi.ResourceArgs
+    public sealed class LXCContainerNetworkGetArgs : Pulumi.ResourceArgs
     {
         [Input("bridge")]
         public Input<string>? Bridge { get; set; }
@@ -51,7 +51,7 @@ namespace Pulumi.Proxmoxve.Inputs
         [Input("type")]
         public Input<string>? Type { get; set; }
 
-        public Lxc_containerNetworkArgs()
+        public LXCContainerNetworkGetArgs()
         {
         }
     }

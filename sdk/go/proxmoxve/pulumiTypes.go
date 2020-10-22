@@ -10,119 +10,119 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-type Lxc_containerFeature struct {
+type LXCContainerFeature struct {
 	Fuse    *bool   `pulumi:"fuse"`
 	Keyctl  *bool   `pulumi:"keyctl"`
 	Mount   *string `pulumi:"mount"`
 	Nesting *bool   `pulumi:"nesting"`
 }
 
-// Lxc_containerFeatureInput is an input type that accepts Lxc_containerFeatureArgs and Lxc_containerFeatureOutput values.
-// You can construct a concrete instance of `Lxc_containerFeatureInput` via:
+// LXCContainerFeatureInput is an input type that accepts LXCContainerFeatureArgs and LXCContainerFeatureOutput values.
+// You can construct a concrete instance of `LXCContainerFeatureInput` via:
 //
-//          Lxc_containerFeatureArgs{...}
-type Lxc_containerFeatureInput interface {
+//          LXCContainerFeatureArgs{...}
+type LXCContainerFeatureInput interface {
 	pulumi.Input
 
-	ToLxc_containerFeatureOutput() Lxc_containerFeatureOutput
-	ToLxc_containerFeatureOutputWithContext(context.Context) Lxc_containerFeatureOutput
+	ToLXCContainerFeatureOutput() LXCContainerFeatureOutput
+	ToLXCContainerFeatureOutputWithContext(context.Context) LXCContainerFeatureOutput
 }
 
-type Lxc_containerFeatureArgs struct {
+type LXCContainerFeatureArgs struct {
 	Fuse    pulumi.BoolPtrInput   `pulumi:"fuse"`
 	Keyctl  pulumi.BoolPtrInput   `pulumi:"keyctl"`
 	Mount   pulumi.StringPtrInput `pulumi:"mount"`
 	Nesting pulumi.BoolPtrInput   `pulumi:"nesting"`
 }
 
-func (Lxc_containerFeatureArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*Lxc_containerFeature)(nil)).Elem()
+func (LXCContainerFeatureArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LXCContainerFeature)(nil)).Elem()
 }
 
-func (i Lxc_containerFeatureArgs) ToLxc_containerFeatureOutput() Lxc_containerFeatureOutput {
-	return i.ToLxc_containerFeatureOutputWithContext(context.Background())
+func (i LXCContainerFeatureArgs) ToLXCContainerFeatureOutput() LXCContainerFeatureOutput {
+	return i.ToLXCContainerFeatureOutputWithContext(context.Background())
 }
 
-func (i Lxc_containerFeatureArgs) ToLxc_containerFeatureOutputWithContext(ctx context.Context) Lxc_containerFeatureOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(Lxc_containerFeatureOutput)
+func (i LXCContainerFeatureArgs) ToLXCContainerFeatureOutputWithContext(ctx context.Context) LXCContainerFeatureOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LXCContainerFeatureOutput)
 }
 
-// Lxc_containerFeatureArrayInput is an input type that accepts Lxc_containerFeatureArray and Lxc_containerFeatureArrayOutput values.
-// You can construct a concrete instance of `Lxc_containerFeatureArrayInput` via:
+// LXCContainerFeatureArrayInput is an input type that accepts LXCContainerFeatureArray and LXCContainerFeatureArrayOutput values.
+// You can construct a concrete instance of `LXCContainerFeatureArrayInput` via:
 //
-//          Lxc_containerFeatureArray{ Lxc_containerFeatureArgs{...} }
-type Lxc_containerFeatureArrayInput interface {
+//          LXCContainerFeatureArray{ LXCContainerFeatureArgs{...} }
+type LXCContainerFeatureArrayInput interface {
 	pulumi.Input
 
-	ToLxc_containerFeatureArrayOutput() Lxc_containerFeatureArrayOutput
-	ToLxc_containerFeatureArrayOutputWithContext(context.Context) Lxc_containerFeatureArrayOutput
+	ToLXCContainerFeatureArrayOutput() LXCContainerFeatureArrayOutput
+	ToLXCContainerFeatureArrayOutputWithContext(context.Context) LXCContainerFeatureArrayOutput
 }
 
-type Lxc_containerFeatureArray []Lxc_containerFeatureInput
+type LXCContainerFeatureArray []LXCContainerFeatureInput
 
-func (Lxc_containerFeatureArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]Lxc_containerFeature)(nil)).Elem()
+func (LXCContainerFeatureArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LXCContainerFeature)(nil)).Elem()
 }
 
-func (i Lxc_containerFeatureArray) ToLxc_containerFeatureArrayOutput() Lxc_containerFeatureArrayOutput {
-	return i.ToLxc_containerFeatureArrayOutputWithContext(context.Background())
+func (i LXCContainerFeatureArray) ToLXCContainerFeatureArrayOutput() LXCContainerFeatureArrayOutput {
+	return i.ToLXCContainerFeatureArrayOutputWithContext(context.Background())
 }
 
-func (i Lxc_containerFeatureArray) ToLxc_containerFeatureArrayOutputWithContext(ctx context.Context) Lxc_containerFeatureArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(Lxc_containerFeatureArrayOutput)
+func (i LXCContainerFeatureArray) ToLXCContainerFeatureArrayOutputWithContext(ctx context.Context) LXCContainerFeatureArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LXCContainerFeatureArrayOutput)
 }
 
-type Lxc_containerFeatureOutput struct{ *pulumi.OutputState }
+type LXCContainerFeatureOutput struct{ *pulumi.OutputState }
 
-func (Lxc_containerFeatureOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*Lxc_containerFeature)(nil)).Elem()
+func (LXCContainerFeatureOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LXCContainerFeature)(nil)).Elem()
 }
 
-func (o Lxc_containerFeatureOutput) ToLxc_containerFeatureOutput() Lxc_containerFeatureOutput {
+func (o LXCContainerFeatureOutput) ToLXCContainerFeatureOutput() LXCContainerFeatureOutput {
 	return o
 }
 
-func (o Lxc_containerFeatureOutput) ToLxc_containerFeatureOutputWithContext(ctx context.Context) Lxc_containerFeatureOutput {
+func (o LXCContainerFeatureOutput) ToLXCContainerFeatureOutputWithContext(ctx context.Context) LXCContainerFeatureOutput {
 	return o
 }
 
-func (o Lxc_containerFeatureOutput) Fuse() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v Lxc_containerFeature) *bool { return v.Fuse }).(pulumi.BoolPtrOutput)
+func (o LXCContainerFeatureOutput) Fuse() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LXCContainerFeature) *bool { return v.Fuse }).(pulumi.BoolPtrOutput)
 }
 
-func (o Lxc_containerFeatureOutput) Keyctl() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v Lxc_containerFeature) *bool { return v.Keyctl }).(pulumi.BoolPtrOutput)
+func (o LXCContainerFeatureOutput) Keyctl() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LXCContainerFeature) *bool { return v.Keyctl }).(pulumi.BoolPtrOutput)
 }
 
-func (o Lxc_containerFeatureOutput) Mount() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v Lxc_containerFeature) *string { return v.Mount }).(pulumi.StringPtrOutput)
+func (o LXCContainerFeatureOutput) Mount() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LXCContainerFeature) *string { return v.Mount }).(pulumi.StringPtrOutput)
 }
 
-func (o Lxc_containerFeatureOutput) Nesting() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v Lxc_containerFeature) *bool { return v.Nesting }).(pulumi.BoolPtrOutput)
+func (o LXCContainerFeatureOutput) Nesting() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LXCContainerFeature) *bool { return v.Nesting }).(pulumi.BoolPtrOutput)
 }
 
-type Lxc_containerFeatureArrayOutput struct{ *pulumi.OutputState }
+type LXCContainerFeatureArrayOutput struct{ *pulumi.OutputState }
 
-func (Lxc_containerFeatureArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]Lxc_containerFeature)(nil)).Elem()
+func (LXCContainerFeatureArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LXCContainerFeature)(nil)).Elem()
 }
 
-func (o Lxc_containerFeatureArrayOutput) ToLxc_containerFeatureArrayOutput() Lxc_containerFeatureArrayOutput {
+func (o LXCContainerFeatureArrayOutput) ToLXCContainerFeatureArrayOutput() LXCContainerFeatureArrayOutput {
 	return o
 }
 
-func (o Lxc_containerFeatureArrayOutput) ToLxc_containerFeatureArrayOutputWithContext(ctx context.Context) Lxc_containerFeatureArrayOutput {
+func (o LXCContainerFeatureArrayOutput) ToLXCContainerFeatureArrayOutputWithContext(ctx context.Context) LXCContainerFeatureArrayOutput {
 	return o
 }
 
-func (o Lxc_containerFeatureArrayOutput) Index(i pulumi.IntInput) Lxc_containerFeatureOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Lxc_containerFeature {
-		return vs[0].([]Lxc_containerFeature)[vs[1].(int)]
-	}).(Lxc_containerFeatureOutput)
+func (o LXCContainerFeatureArrayOutput) Index(i pulumi.IntInput) LXCContainerFeatureOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LXCContainerFeature {
+		return vs[0].([]LXCContainerFeature)[vs[1].(int)]
+	}).(LXCContainerFeatureOutput)
 }
 
-type Lxc_containerMountpoint struct {
+type LXCContainerMountpoint struct {
 	Acl       *bool  `pulumi:"acl"`
 	Backup    *bool  `pulumi:"backup"`
 	Mp        string `pulumi:"mp"`
@@ -133,18 +133,18 @@ type Lxc_containerMountpoint struct {
 	Volume    string `pulumi:"volume"`
 }
 
-// Lxc_containerMountpointInput is an input type that accepts Lxc_containerMountpointArgs and Lxc_containerMountpointOutput values.
-// You can construct a concrete instance of `Lxc_containerMountpointInput` via:
+// LXCContainerMountpointInput is an input type that accepts LXCContainerMountpointArgs and LXCContainerMountpointOutput values.
+// You can construct a concrete instance of `LXCContainerMountpointInput` via:
 //
-//          Lxc_containerMountpointArgs{...}
-type Lxc_containerMountpointInput interface {
+//          LXCContainerMountpointArgs{...}
+type LXCContainerMountpointInput interface {
 	pulumi.Input
 
-	ToLxc_containerMountpointOutput() Lxc_containerMountpointOutput
-	ToLxc_containerMountpointOutputWithContext(context.Context) Lxc_containerMountpointOutput
+	ToLXCContainerMountpointOutput() LXCContainerMountpointOutput
+	ToLXCContainerMountpointOutputWithContext(context.Context) LXCContainerMountpointOutput
 }
 
-type Lxc_containerMountpointArgs struct {
+type LXCContainerMountpointArgs struct {
 	Acl       pulumi.BoolPtrInput `pulumi:"acl"`
 	Backup    pulumi.BoolPtrInput `pulumi:"backup"`
 	Mp        pulumi.StringInput  `pulumi:"mp"`
@@ -155,110 +155,110 @@ type Lxc_containerMountpointArgs struct {
 	Volume    pulumi.StringInput  `pulumi:"volume"`
 }
 
-func (Lxc_containerMountpointArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*Lxc_containerMountpoint)(nil)).Elem()
+func (LXCContainerMountpointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LXCContainerMountpoint)(nil)).Elem()
 }
 
-func (i Lxc_containerMountpointArgs) ToLxc_containerMountpointOutput() Lxc_containerMountpointOutput {
-	return i.ToLxc_containerMountpointOutputWithContext(context.Background())
+func (i LXCContainerMountpointArgs) ToLXCContainerMountpointOutput() LXCContainerMountpointOutput {
+	return i.ToLXCContainerMountpointOutputWithContext(context.Background())
 }
 
-func (i Lxc_containerMountpointArgs) ToLxc_containerMountpointOutputWithContext(ctx context.Context) Lxc_containerMountpointOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(Lxc_containerMountpointOutput)
+func (i LXCContainerMountpointArgs) ToLXCContainerMountpointOutputWithContext(ctx context.Context) LXCContainerMountpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LXCContainerMountpointOutput)
 }
 
-// Lxc_containerMountpointArrayInput is an input type that accepts Lxc_containerMountpointArray and Lxc_containerMountpointArrayOutput values.
-// You can construct a concrete instance of `Lxc_containerMountpointArrayInput` via:
+// LXCContainerMountpointArrayInput is an input type that accepts LXCContainerMountpointArray and LXCContainerMountpointArrayOutput values.
+// You can construct a concrete instance of `LXCContainerMountpointArrayInput` via:
 //
-//          Lxc_containerMountpointArray{ Lxc_containerMountpointArgs{...} }
-type Lxc_containerMountpointArrayInput interface {
+//          LXCContainerMountpointArray{ LXCContainerMountpointArgs{...} }
+type LXCContainerMountpointArrayInput interface {
 	pulumi.Input
 
-	ToLxc_containerMountpointArrayOutput() Lxc_containerMountpointArrayOutput
-	ToLxc_containerMountpointArrayOutputWithContext(context.Context) Lxc_containerMountpointArrayOutput
+	ToLXCContainerMountpointArrayOutput() LXCContainerMountpointArrayOutput
+	ToLXCContainerMountpointArrayOutputWithContext(context.Context) LXCContainerMountpointArrayOutput
 }
 
-type Lxc_containerMountpointArray []Lxc_containerMountpointInput
+type LXCContainerMountpointArray []LXCContainerMountpointInput
 
-func (Lxc_containerMountpointArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]Lxc_containerMountpoint)(nil)).Elem()
+func (LXCContainerMountpointArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LXCContainerMountpoint)(nil)).Elem()
 }
 
-func (i Lxc_containerMountpointArray) ToLxc_containerMountpointArrayOutput() Lxc_containerMountpointArrayOutput {
-	return i.ToLxc_containerMountpointArrayOutputWithContext(context.Background())
+func (i LXCContainerMountpointArray) ToLXCContainerMountpointArrayOutput() LXCContainerMountpointArrayOutput {
+	return i.ToLXCContainerMountpointArrayOutputWithContext(context.Background())
 }
 
-func (i Lxc_containerMountpointArray) ToLxc_containerMountpointArrayOutputWithContext(ctx context.Context) Lxc_containerMountpointArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(Lxc_containerMountpointArrayOutput)
+func (i LXCContainerMountpointArray) ToLXCContainerMountpointArrayOutputWithContext(ctx context.Context) LXCContainerMountpointArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LXCContainerMountpointArrayOutput)
 }
 
-type Lxc_containerMountpointOutput struct{ *pulumi.OutputState }
+type LXCContainerMountpointOutput struct{ *pulumi.OutputState }
 
-func (Lxc_containerMountpointOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*Lxc_containerMountpoint)(nil)).Elem()
+func (LXCContainerMountpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LXCContainerMountpoint)(nil)).Elem()
 }
 
-func (o Lxc_containerMountpointOutput) ToLxc_containerMountpointOutput() Lxc_containerMountpointOutput {
+func (o LXCContainerMountpointOutput) ToLXCContainerMountpointOutput() LXCContainerMountpointOutput {
 	return o
 }
 
-func (o Lxc_containerMountpointOutput) ToLxc_containerMountpointOutputWithContext(ctx context.Context) Lxc_containerMountpointOutput {
+func (o LXCContainerMountpointOutput) ToLXCContainerMountpointOutputWithContext(ctx context.Context) LXCContainerMountpointOutput {
 	return o
 }
 
-func (o Lxc_containerMountpointOutput) Acl() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v Lxc_containerMountpoint) *bool { return v.Acl }).(pulumi.BoolPtrOutput)
+func (o LXCContainerMountpointOutput) Acl() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LXCContainerMountpoint) *bool { return v.Acl }).(pulumi.BoolPtrOutput)
 }
 
-func (o Lxc_containerMountpointOutput) Backup() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v Lxc_containerMountpoint) *bool { return v.Backup }).(pulumi.BoolPtrOutput)
+func (o LXCContainerMountpointOutput) Backup() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LXCContainerMountpoint) *bool { return v.Backup }).(pulumi.BoolPtrOutput)
 }
 
-func (o Lxc_containerMountpointOutput) Mp() pulumi.StringOutput {
-	return o.ApplyT(func(v Lxc_containerMountpoint) string { return v.Mp }).(pulumi.StringOutput)
+func (o LXCContainerMountpointOutput) Mp() pulumi.StringOutput {
+	return o.ApplyT(func(v LXCContainerMountpoint) string { return v.Mp }).(pulumi.StringOutput)
 }
 
-func (o Lxc_containerMountpointOutput) Quota() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v Lxc_containerMountpoint) *bool { return v.Quota }).(pulumi.BoolPtrOutput)
+func (o LXCContainerMountpointOutput) Quota() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LXCContainerMountpoint) *bool { return v.Quota }).(pulumi.BoolPtrOutput)
 }
 
-func (o Lxc_containerMountpointOutput) Replicate() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v Lxc_containerMountpoint) *bool { return v.Replicate }).(pulumi.BoolPtrOutput)
+func (o LXCContainerMountpointOutput) Replicate() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LXCContainerMountpoint) *bool { return v.Replicate }).(pulumi.BoolPtrOutput)
 }
 
-func (o Lxc_containerMountpointOutput) Shared() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v Lxc_containerMountpoint) *bool { return v.Shared }).(pulumi.BoolPtrOutput)
+func (o LXCContainerMountpointOutput) Shared() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LXCContainerMountpoint) *bool { return v.Shared }).(pulumi.BoolPtrOutput)
 }
 
-func (o Lxc_containerMountpointOutput) Size() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v Lxc_containerMountpoint) *int { return v.Size }).(pulumi.IntPtrOutput)
+func (o LXCContainerMountpointOutput) Size() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v LXCContainerMountpoint) *int { return v.Size }).(pulumi.IntPtrOutput)
 }
 
-func (o Lxc_containerMountpointOutput) Volume() pulumi.StringOutput {
-	return o.ApplyT(func(v Lxc_containerMountpoint) string { return v.Volume }).(pulumi.StringOutput)
+func (o LXCContainerMountpointOutput) Volume() pulumi.StringOutput {
+	return o.ApplyT(func(v LXCContainerMountpoint) string { return v.Volume }).(pulumi.StringOutput)
 }
 
-type Lxc_containerMountpointArrayOutput struct{ *pulumi.OutputState }
+type LXCContainerMountpointArrayOutput struct{ *pulumi.OutputState }
 
-func (Lxc_containerMountpointArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]Lxc_containerMountpoint)(nil)).Elem()
+func (LXCContainerMountpointArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LXCContainerMountpoint)(nil)).Elem()
 }
 
-func (o Lxc_containerMountpointArrayOutput) ToLxc_containerMountpointArrayOutput() Lxc_containerMountpointArrayOutput {
+func (o LXCContainerMountpointArrayOutput) ToLXCContainerMountpointArrayOutput() LXCContainerMountpointArrayOutput {
 	return o
 }
 
-func (o Lxc_containerMountpointArrayOutput) ToLxc_containerMountpointArrayOutputWithContext(ctx context.Context) Lxc_containerMountpointArrayOutput {
+func (o LXCContainerMountpointArrayOutput) ToLXCContainerMountpointArrayOutputWithContext(ctx context.Context) LXCContainerMountpointArrayOutput {
 	return o
 }
 
-func (o Lxc_containerMountpointArrayOutput) Index(i pulumi.IntInput) Lxc_containerMountpointOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Lxc_containerMountpoint {
-		return vs[0].([]Lxc_containerMountpoint)[vs[1].(int)]
-	}).(Lxc_containerMountpointOutput)
+func (o LXCContainerMountpointArrayOutput) Index(i pulumi.IntInput) LXCContainerMountpointOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LXCContainerMountpoint {
+		return vs[0].([]LXCContainerMountpoint)[vs[1].(int)]
+	}).(LXCContainerMountpointOutput)
 }
 
-type Lxc_containerNetwork struct {
+type LXCContainerNetwork struct {
 	Bridge   *string `pulumi:"bridge"`
 	Firewall *bool   `pulumi:"firewall"`
 	Gw       *string `pulumi:"gw"`
@@ -274,18 +274,18 @@ type Lxc_containerNetwork struct {
 	Type     *string `pulumi:"type"`
 }
 
-// Lxc_containerNetworkInput is an input type that accepts Lxc_containerNetworkArgs and Lxc_containerNetworkOutput values.
-// You can construct a concrete instance of `Lxc_containerNetworkInput` via:
+// LXCContainerNetworkInput is an input type that accepts LXCContainerNetworkArgs and LXCContainerNetworkOutput values.
+// You can construct a concrete instance of `LXCContainerNetworkInput` via:
 //
-//          Lxc_containerNetworkArgs{...}
-type Lxc_containerNetworkInput interface {
+//          LXCContainerNetworkArgs{...}
+type LXCContainerNetworkInput interface {
 	pulumi.Input
 
-	ToLxc_containerNetworkOutput() Lxc_containerNetworkOutput
-	ToLxc_containerNetworkOutputWithContext(context.Context) Lxc_containerNetworkOutput
+	ToLXCContainerNetworkOutput() LXCContainerNetworkOutput
+	ToLXCContainerNetworkOutputWithContext(context.Context) LXCContainerNetworkOutput
 }
 
-type Lxc_containerNetworkArgs struct {
+type LXCContainerNetworkArgs struct {
 	Bridge   pulumi.StringPtrInput `pulumi:"bridge"`
 	Firewall pulumi.BoolPtrInput   `pulumi:"firewall"`
 	Gw       pulumi.StringPtrInput `pulumi:"gw"`
@@ -301,130 +301,130 @@ type Lxc_containerNetworkArgs struct {
 	Type     pulumi.StringPtrInput `pulumi:"type"`
 }
 
-func (Lxc_containerNetworkArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*Lxc_containerNetwork)(nil)).Elem()
+func (LXCContainerNetworkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LXCContainerNetwork)(nil)).Elem()
 }
 
-func (i Lxc_containerNetworkArgs) ToLxc_containerNetworkOutput() Lxc_containerNetworkOutput {
-	return i.ToLxc_containerNetworkOutputWithContext(context.Background())
+func (i LXCContainerNetworkArgs) ToLXCContainerNetworkOutput() LXCContainerNetworkOutput {
+	return i.ToLXCContainerNetworkOutputWithContext(context.Background())
 }
 
-func (i Lxc_containerNetworkArgs) ToLxc_containerNetworkOutputWithContext(ctx context.Context) Lxc_containerNetworkOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(Lxc_containerNetworkOutput)
+func (i LXCContainerNetworkArgs) ToLXCContainerNetworkOutputWithContext(ctx context.Context) LXCContainerNetworkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LXCContainerNetworkOutput)
 }
 
-// Lxc_containerNetworkArrayInput is an input type that accepts Lxc_containerNetworkArray and Lxc_containerNetworkArrayOutput values.
-// You can construct a concrete instance of `Lxc_containerNetworkArrayInput` via:
+// LXCContainerNetworkArrayInput is an input type that accepts LXCContainerNetworkArray and LXCContainerNetworkArrayOutput values.
+// You can construct a concrete instance of `LXCContainerNetworkArrayInput` via:
 //
-//          Lxc_containerNetworkArray{ Lxc_containerNetworkArgs{...} }
-type Lxc_containerNetworkArrayInput interface {
+//          LXCContainerNetworkArray{ LXCContainerNetworkArgs{...} }
+type LXCContainerNetworkArrayInput interface {
 	pulumi.Input
 
-	ToLxc_containerNetworkArrayOutput() Lxc_containerNetworkArrayOutput
-	ToLxc_containerNetworkArrayOutputWithContext(context.Context) Lxc_containerNetworkArrayOutput
+	ToLXCContainerNetworkArrayOutput() LXCContainerNetworkArrayOutput
+	ToLXCContainerNetworkArrayOutputWithContext(context.Context) LXCContainerNetworkArrayOutput
 }
 
-type Lxc_containerNetworkArray []Lxc_containerNetworkInput
+type LXCContainerNetworkArray []LXCContainerNetworkInput
 
-func (Lxc_containerNetworkArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]Lxc_containerNetwork)(nil)).Elem()
+func (LXCContainerNetworkArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LXCContainerNetwork)(nil)).Elem()
 }
 
-func (i Lxc_containerNetworkArray) ToLxc_containerNetworkArrayOutput() Lxc_containerNetworkArrayOutput {
-	return i.ToLxc_containerNetworkArrayOutputWithContext(context.Background())
+func (i LXCContainerNetworkArray) ToLXCContainerNetworkArrayOutput() LXCContainerNetworkArrayOutput {
+	return i.ToLXCContainerNetworkArrayOutputWithContext(context.Background())
 }
 
-func (i Lxc_containerNetworkArray) ToLxc_containerNetworkArrayOutputWithContext(ctx context.Context) Lxc_containerNetworkArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(Lxc_containerNetworkArrayOutput)
+func (i LXCContainerNetworkArray) ToLXCContainerNetworkArrayOutputWithContext(ctx context.Context) LXCContainerNetworkArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LXCContainerNetworkArrayOutput)
 }
 
-type Lxc_containerNetworkOutput struct{ *pulumi.OutputState }
+type LXCContainerNetworkOutput struct{ *pulumi.OutputState }
 
-func (Lxc_containerNetworkOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*Lxc_containerNetwork)(nil)).Elem()
+func (LXCContainerNetworkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LXCContainerNetwork)(nil)).Elem()
 }
 
-func (o Lxc_containerNetworkOutput) ToLxc_containerNetworkOutput() Lxc_containerNetworkOutput {
+func (o LXCContainerNetworkOutput) ToLXCContainerNetworkOutput() LXCContainerNetworkOutput {
 	return o
 }
 
-func (o Lxc_containerNetworkOutput) ToLxc_containerNetworkOutputWithContext(ctx context.Context) Lxc_containerNetworkOutput {
+func (o LXCContainerNetworkOutput) ToLXCContainerNetworkOutputWithContext(ctx context.Context) LXCContainerNetworkOutput {
 	return o
 }
 
-func (o Lxc_containerNetworkOutput) Bridge() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v Lxc_containerNetwork) *string { return v.Bridge }).(pulumi.StringPtrOutput)
+func (o LXCContainerNetworkOutput) Bridge() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LXCContainerNetwork) *string { return v.Bridge }).(pulumi.StringPtrOutput)
 }
 
-func (o Lxc_containerNetworkOutput) Firewall() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v Lxc_containerNetwork) *bool { return v.Firewall }).(pulumi.BoolPtrOutput)
+func (o LXCContainerNetworkOutput) Firewall() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LXCContainerNetwork) *bool { return v.Firewall }).(pulumi.BoolPtrOutput)
 }
 
-func (o Lxc_containerNetworkOutput) Gw() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v Lxc_containerNetwork) *string { return v.Gw }).(pulumi.StringPtrOutput)
+func (o LXCContainerNetworkOutput) Gw() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LXCContainerNetwork) *string { return v.Gw }).(pulumi.StringPtrOutput)
 }
 
-func (o Lxc_containerNetworkOutput) Gw6() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v Lxc_containerNetwork) *string { return v.Gw6 }).(pulumi.StringPtrOutput)
+func (o LXCContainerNetworkOutput) Gw6() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LXCContainerNetwork) *string { return v.Gw6 }).(pulumi.StringPtrOutput)
 }
 
-func (o Lxc_containerNetworkOutput) Hwaddr() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v Lxc_containerNetwork) *string { return v.Hwaddr }).(pulumi.StringPtrOutput)
+func (o LXCContainerNetworkOutput) Hwaddr() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LXCContainerNetwork) *string { return v.Hwaddr }).(pulumi.StringPtrOutput)
 }
 
-func (o Lxc_containerNetworkOutput) Ip() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v Lxc_containerNetwork) *string { return v.Ip }).(pulumi.StringPtrOutput)
+func (o LXCContainerNetworkOutput) Ip() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LXCContainerNetwork) *string { return v.Ip }).(pulumi.StringPtrOutput)
 }
 
-func (o Lxc_containerNetworkOutput) Ip6() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v Lxc_containerNetwork) *string { return v.Ip6 }).(pulumi.StringPtrOutput)
+func (o LXCContainerNetworkOutput) Ip6() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LXCContainerNetwork) *string { return v.Ip6 }).(pulumi.StringPtrOutput)
 }
 
-func (o Lxc_containerNetworkOutput) Mtu() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v Lxc_containerNetwork) *string { return v.Mtu }).(pulumi.StringPtrOutput)
+func (o LXCContainerNetworkOutput) Mtu() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LXCContainerNetwork) *string { return v.Mtu }).(pulumi.StringPtrOutput)
 }
 
-func (o Lxc_containerNetworkOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v Lxc_containerNetwork) string { return v.Name }).(pulumi.StringOutput)
+func (o LXCContainerNetworkOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LXCContainerNetwork) string { return v.Name }).(pulumi.StringOutput)
 }
 
-func (o Lxc_containerNetworkOutput) Rate() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v Lxc_containerNetwork) *int { return v.Rate }).(pulumi.IntPtrOutput)
+func (o LXCContainerNetworkOutput) Rate() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v LXCContainerNetwork) *int { return v.Rate }).(pulumi.IntPtrOutput)
 }
 
-func (o Lxc_containerNetworkOutput) Tag() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v Lxc_containerNetwork) *int { return v.Tag }).(pulumi.IntPtrOutput)
+func (o LXCContainerNetworkOutput) Tag() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v LXCContainerNetwork) *int { return v.Tag }).(pulumi.IntPtrOutput)
 }
 
-func (o Lxc_containerNetworkOutput) Trunks() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v Lxc_containerNetwork) *string { return v.Trunks }).(pulumi.StringPtrOutput)
+func (o LXCContainerNetworkOutput) Trunks() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LXCContainerNetwork) *string { return v.Trunks }).(pulumi.StringPtrOutput)
 }
 
-func (o Lxc_containerNetworkOutput) Type() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v Lxc_containerNetwork) *string { return v.Type }).(pulumi.StringPtrOutput)
+func (o LXCContainerNetworkOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LXCContainerNetwork) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
 
-type Lxc_containerNetworkArrayOutput struct{ *pulumi.OutputState }
+type LXCContainerNetworkArrayOutput struct{ *pulumi.OutputState }
 
-func (Lxc_containerNetworkArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]Lxc_containerNetwork)(nil)).Elem()
+func (LXCContainerNetworkArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LXCContainerNetwork)(nil)).Elem()
 }
 
-func (o Lxc_containerNetworkArrayOutput) ToLxc_containerNetworkArrayOutput() Lxc_containerNetworkArrayOutput {
+func (o LXCContainerNetworkArrayOutput) ToLXCContainerNetworkArrayOutput() LXCContainerNetworkArrayOutput {
 	return o
 }
 
-func (o Lxc_containerNetworkArrayOutput) ToLxc_containerNetworkArrayOutputWithContext(ctx context.Context) Lxc_containerNetworkArrayOutput {
+func (o LXCContainerNetworkArrayOutput) ToLXCContainerNetworkArrayOutputWithContext(ctx context.Context) LXCContainerNetworkArrayOutput {
 	return o
 }
 
-func (o Lxc_containerNetworkArrayOutput) Index(i pulumi.IntInput) Lxc_containerNetworkOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Lxc_containerNetwork {
-		return vs[0].([]Lxc_containerNetwork)[vs[1].(int)]
-	}).(Lxc_containerNetworkOutput)
+func (o LXCContainerNetworkArrayOutput) Index(i pulumi.IntInput) LXCContainerNetworkOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LXCContainerNetwork {
+		return vs[0].([]LXCContainerNetwork)[vs[1].(int)]
+	}).(LXCContainerNetworkOutput)
 }
 
-type Qemu_vmDisk struct {
+type QemuVMDisk struct {
 	Backup      *bool   `pulumi:"backup"`
 	Cache       *string `pulumi:"cache"`
 	Discard     *string `pulumi:"discard"`
@@ -445,18 +445,18 @@ type Qemu_vmDisk struct {
 	Type        string  `pulumi:"type"`
 }
 
-// Qemu_vmDiskInput is an input type that accepts Qemu_vmDiskArgs and Qemu_vmDiskOutput values.
-// You can construct a concrete instance of `Qemu_vmDiskInput` via:
+// QemuVMDiskInput is an input type that accepts QemuVMDiskArgs and QemuVMDiskOutput values.
+// You can construct a concrete instance of `QemuVMDiskInput` via:
 //
-//          Qemu_vmDiskArgs{...}
-type Qemu_vmDiskInput interface {
+//          QemuVMDiskArgs{...}
+type QemuVMDiskInput interface {
 	pulumi.Input
 
-	ToQemu_vmDiskOutput() Qemu_vmDiskOutput
-	ToQemu_vmDiskOutputWithContext(context.Context) Qemu_vmDiskOutput
+	ToQemuVMDiskOutput() QemuVMDiskOutput
+	ToQemuVMDiskOutputWithContext(context.Context) QemuVMDiskOutput
 }
 
-type Qemu_vmDiskArgs struct {
+type QemuVMDiskArgs struct {
 	Backup      pulumi.BoolPtrInput   `pulumi:"backup"`
 	Cache       pulumi.StringPtrInput `pulumi:"cache"`
 	Discard     pulumi.StringPtrInput `pulumi:"discard"`
@@ -477,150 +477,150 @@ type Qemu_vmDiskArgs struct {
 	Type        pulumi.StringInput    `pulumi:"type"`
 }
 
-func (Qemu_vmDiskArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*Qemu_vmDisk)(nil)).Elem()
+func (QemuVMDiskArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*QemuVMDisk)(nil)).Elem()
 }
 
-func (i Qemu_vmDiskArgs) ToQemu_vmDiskOutput() Qemu_vmDiskOutput {
-	return i.ToQemu_vmDiskOutputWithContext(context.Background())
+func (i QemuVMDiskArgs) ToQemuVMDiskOutput() QemuVMDiskOutput {
+	return i.ToQemuVMDiskOutputWithContext(context.Background())
 }
 
-func (i Qemu_vmDiskArgs) ToQemu_vmDiskOutputWithContext(ctx context.Context) Qemu_vmDiskOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(Qemu_vmDiskOutput)
+func (i QemuVMDiskArgs) ToQemuVMDiskOutputWithContext(ctx context.Context) QemuVMDiskOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(QemuVMDiskOutput)
 }
 
-// Qemu_vmDiskArrayInput is an input type that accepts Qemu_vmDiskArray and Qemu_vmDiskArrayOutput values.
-// You can construct a concrete instance of `Qemu_vmDiskArrayInput` via:
+// QemuVMDiskArrayInput is an input type that accepts QemuVMDiskArray and QemuVMDiskArrayOutput values.
+// You can construct a concrete instance of `QemuVMDiskArrayInput` via:
 //
-//          Qemu_vmDiskArray{ Qemu_vmDiskArgs{...} }
-type Qemu_vmDiskArrayInput interface {
+//          QemuVMDiskArray{ QemuVMDiskArgs{...} }
+type QemuVMDiskArrayInput interface {
 	pulumi.Input
 
-	ToQemu_vmDiskArrayOutput() Qemu_vmDiskArrayOutput
-	ToQemu_vmDiskArrayOutputWithContext(context.Context) Qemu_vmDiskArrayOutput
+	ToQemuVMDiskArrayOutput() QemuVMDiskArrayOutput
+	ToQemuVMDiskArrayOutputWithContext(context.Context) QemuVMDiskArrayOutput
 }
 
-type Qemu_vmDiskArray []Qemu_vmDiskInput
+type QemuVMDiskArray []QemuVMDiskInput
 
-func (Qemu_vmDiskArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]Qemu_vmDisk)(nil)).Elem()
+func (QemuVMDiskArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]QemuVMDisk)(nil)).Elem()
 }
 
-func (i Qemu_vmDiskArray) ToQemu_vmDiskArrayOutput() Qemu_vmDiskArrayOutput {
-	return i.ToQemu_vmDiskArrayOutputWithContext(context.Background())
+func (i QemuVMDiskArray) ToQemuVMDiskArrayOutput() QemuVMDiskArrayOutput {
+	return i.ToQemuVMDiskArrayOutputWithContext(context.Background())
 }
 
-func (i Qemu_vmDiskArray) ToQemu_vmDiskArrayOutputWithContext(ctx context.Context) Qemu_vmDiskArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(Qemu_vmDiskArrayOutput)
+func (i QemuVMDiskArray) ToQemuVMDiskArrayOutputWithContext(ctx context.Context) QemuVMDiskArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(QemuVMDiskArrayOutput)
 }
 
-type Qemu_vmDiskOutput struct{ *pulumi.OutputState }
+type QemuVMDiskOutput struct{ *pulumi.OutputState }
 
-func (Qemu_vmDiskOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*Qemu_vmDisk)(nil)).Elem()
+func (QemuVMDiskOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*QemuVMDisk)(nil)).Elem()
 }
 
-func (o Qemu_vmDiskOutput) ToQemu_vmDiskOutput() Qemu_vmDiskOutput {
+func (o QemuVMDiskOutput) ToQemuVMDiskOutput() QemuVMDiskOutput {
 	return o
 }
 
-func (o Qemu_vmDiskOutput) ToQemu_vmDiskOutputWithContext(ctx context.Context) Qemu_vmDiskOutput {
+func (o QemuVMDiskOutput) ToQemuVMDiskOutputWithContext(ctx context.Context) QemuVMDiskOutput {
 	return o
 }
 
-func (o Qemu_vmDiskOutput) Backup() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v Qemu_vmDisk) *bool { return v.Backup }).(pulumi.BoolPtrOutput)
+func (o QemuVMDiskOutput) Backup() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v QemuVMDisk) *bool { return v.Backup }).(pulumi.BoolPtrOutput)
 }
 
-func (o Qemu_vmDiskOutput) Cache() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v Qemu_vmDisk) *string { return v.Cache }).(pulumi.StringPtrOutput)
+func (o QemuVMDiskOutput) Cache() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v QemuVMDisk) *string { return v.Cache }).(pulumi.StringPtrOutput)
 }
 
-func (o Qemu_vmDiskOutput) Discard() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v Qemu_vmDisk) *string { return v.Discard }).(pulumi.StringPtrOutput)
+func (o QemuVMDiskOutput) Discard() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v QemuVMDisk) *string { return v.Discard }).(pulumi.StringPtrOutput)
 }
 
-func (o Qemu_vmDiskOutput) File() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v Qemu_vmDisk) *string { return v.File }).(pulumi.StringPtrOutput)
+func (o QemuVMDiskOutput) File() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v QemuVMDisk) *string { return v.File }).(pulumi.StringPtrOutput)
 }
 
-func (o Qemu_vmDiskOutput) Format() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v Qemu_vmDisk) *string { return v.Format }).(pulumi.StringPtrOutput)
+func (o QemuVMDiskOutput) Format() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v QemuVMDisk) *string { return v.Format }).(pulumi.StringPtrOutput)
 }
 
-func (o Qemu_vmDiskOutput) Iothread() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v Qemu_vmDisk) *bool { return v.Iothread }).(pulumi.BoolPtrOutput)
+func (o QemuVMDiskOutput) Iothread() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v QemuVMDisk) *bool { return v.Iothread }).(pulumi.BoolPtrOutput)
 }
 
-func (o Qemu_vmDiskOutput) Mbps() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v Qemu_vmDisk) *int { return v.Mbps }).(pulumi.IntPtrOutput)
+func (o QemuVMDiskOutput) Mbps() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v QemuVMDisk) *int { return v.Mbps }).(pulumi.IntPtrOutput)
 }
 
-func (o Qemu_vmDiskOutput) MbpsRd() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v Qemu_vmDisk) *int { return v.MbpsRd }).(pulumi.IntPtrOutput)
+func (o QemuVMDiskOutput) MbpsRd() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v QemuVMDisk) *int { return v.MbpsRd }).(pulumi.IntPtrOutput)
 }
 
-func (o Qemu_vmDiskOutput) MbpsRdMax() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v Qemu_vmDisk) *int { return v.MbpsRdMax }).(pulumi.IntPtrOutput)
+func (o QemuVMDiskOutput) MbpsRdMax() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v QemuVMDisk) *int { return v.MbpsRdMax }).(pulumi.IntPtrOutput)
 }
 
-func (o Qemu_vmDiskOutput) MbpsWr() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v Qemu_vmDisk) *int { return v.MbpsWr }).(pulumi.IntPtrOutput)
+func (o QemuVMDiskOutput) MbpsWr() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v QemuVMDisk) *int { return v.MbpsWr }).(pulumi.IntPtrOutput)
 }
 
-func (o Qemu_vmDiskOutput) MbpsWrMax() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v Qemu_vmDisk) *int { return v.MbpsWrMax }).(pulumi.IntPtrOutput)
+func (o QemuVMDiskOutput) MbpsWrMax() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v QemuVMDisk) *int { return v.MbpsWrMax }).(pulumi.IntPtrOutput)
 }
 
-func (o Qemu_vmDiskOutput) Media() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v Qemu_vmDisk) *string { return v.Media }).(pulumi.StringPtrOutput)
+func (o QemuVMDiskOutput) Media() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v QemuVMDisk) *string { return v.Media }).(pulumi.StringPtrOutput)
 }
 
-func (o Qemu_vmDiskOutput) Replicate() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v Qemu_vmDisk) *bool { return v.Replicate }).(pulumi.BoolPtrOutput)
+func (o QemuVMDiskOutput) Replicate() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v QemuVMDisk) *bool { return v.Replicate }).(pulumi.BoolPtrOutput)
 }
 
-func (o Qemu_vmDiskOutput) Size() pulumi.StringOutput {
-	return o.ApplyT(func(v Qemu_vmDisk) string { return v.Size }).(pulumi.StringOutput)
+func (o QemuVMDiskOutput) Size() pulumi.StringOutput {
+	return o.ApplyT(func(v QemuVMDisk) string { return v.Size }).(pulumi.StringOutput)
 }
 
-func (o Qemu_vmDiskOutput) Ssd() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v Qemu_vmDisk) *bool { return v.Ssd }).(pulumi.BoolPtrOutput)
+func (o QemuVMDiskOutput) Ssd() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v QemuVMDisk) *bool { return v.Ssd }).(pulumi.BoolPtrOutput)
 }
 
-func (o Qemu_vmDiskOutput) Storage() pulumi.StringOutput {
-	return o.ApplyT(func(v Qemu_vmDisk) string { return v.Storage }).(pulumi.StringOutput)
+func (o QemuVMDiskOutput) Storage() pulumi.StringOutput {
+	return o.ApplyT(func(v QemuVMDisk) string { return v.Storage }).(pulumi.StringOutput)
 }
 
-func (o Qemu_vmDiskOutput) StorageType() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v Qemu_vmDisk) *string { return v.StorageType }).(pulumi.StringPtrOutput)
+func (o QemuVMDiskOutput) StorageType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v QemuVMDisk) *string { return v.StorageType }).(pulumi.StringPtrOutput)
 }
 
-func (o Qemu_vmDiskOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func(v Qemu_vmDisk) string { return v.Type }).(pulumi.StringOutput)
+func (o QemuVMDiskOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v QemuVMDisk) string { return v.Type }).(pulumi.StringOutput)
 }
 
-type Qemu_vmDiskArrayOutput struct{ *pulumi.OutputState }
+type QemuVMDiskArrayOutput struct{ *pulumi.OutputState }
 
-func (Qemu_vmDiskArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]Qemu_vmDisk)(nil)).Elem()
+func (QemuVMDiskArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]QemuVMDisk)(nil)).Elem()
 }
 
-func (o Qemu_vmDiskArrayOutput) ToQemu_vmDiskArrayOutput() Qemu_vmDiskArrayOutput {
+func (o QemuVMDiskArrayOutput) ToQemuVMDiskArrayOutput() QemuVMDiskArrayOutput {
 	return o
 }
 
-func (o Qemu_vmDiskArrayOutput) ToQemu_vmDiskArrayOutputWithContext(ctx context.Context) Qemu_vmDiskArrayOutput {
+func (o QemuVMDiskArrayOutput) ToQemuVMDiskArrayOutputWithContext(ctx context.Context) QemuVMDiskArrayOutput {
 	return o
 }
 
-func (o Qemu_vmDiskArrayOutput) Index(i pulumi.IntInput) Qemu_vmDiskOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Qemu_vmDisk {
-		return vs[0].([]Qemu_vmDisk)[vs[1].(int)]
-	}).(Qemu_vmDiskOutput)
+func (o QemuVMDiskArrayOutput) Index(i pulumi.IntInput) QemuVMDiskOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) QemuVMDisk {
+		return vs[0].([]QemuVMDisk)[vs[1].(int)]
+	}).(QemuVMDiskOutput)
 }
 
-type Qemu_vmNetwork struct {
+type QemuVMNetwork struct {
 	Bridge   *string `pulumi:"bridge"`
 	Firewall *bool   `pulumi:"firewall"`
 	LinkDown *bool   `pulumi:"linkDown"`
@@ -631,18 +631,18 @@ type Qemu_vmNetwork struct {
 	Tag      *int    `pulumi:"tag"`
 }
 
-// Qemu_vmNetworkInput is an input type that accepts Qemu_vmNetworkArgs and Qemu_vmNetworkOutput values.
-// You can construct a concrete instance of `Qemu_vmNetworkInput` via:
+// QemuVMNetworkInput is an input type that accepts QemuVMNetworkArgs and QemuVMNetworkOutput values.
+// You can construct a concrete instance of `QemuVMNetworkInput` via:
 //
-//          Qemu_vmNetworkArgs{...}
-type Qemu_vmNetworkInput interface {
+//          QemuVMNetworkArgs{...}
+type QemuVMNetworkInput interface {
 	pulumi.Input
 
-	ToQemu_vmNetworkOutput() Qemu_vmNetworkOutput
-	ToQemu_vmNetworkOutputWithContext(context.Context) Qemu_vmNetworkOutput
+	ToQemuVMNetworkOutput() QemuVMNetworkOutput
+	ToQemuVMNetworkOutputWithContext(context.Context) QemuVMNetworkOutput
 }
 
-type Qemu_vmNetworkArgs struct {
+type QemuVMNetworkArgs struct {
 	Bridge   pulumi.StringPtrInput `pulumi:"bridge"`
 	Firewall pulumi.BoolPtrInput   `pulumi:"firewall"`
 	LinkDown pulumi.BoolPtrInput   `pulumi:"linkDown"`
@@ -653,322 +653,322 @@ type Qemu_vmNetworkArgs struct {
 	Tag      pulumi.IntPtrInput    `pulumi:"tag"`
 }
 
-func (Qemu_vmNetworkArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*Qemu_vmNetwork)(nil)).Elem()
+func (QemuVMNetworkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*QemuVMNetwork)(nil)).Elem()
 }
 
-func (i Qemu_vmNetworkArgs) ToQemu_vmNetworkOutput() Qemu_vmNetworkOutput {
-	return i.ToQemu_vmNetworkOutputWithContext(context.Background())
+func (i QemuVMNetworkArgs) ToQemuVMNetworkOutput() QemuVMNetworkOutput {
+	return i.ToQemuVMNetworkOutputWithContext(context.Background())
 }
 
-func (i Qemu_vmNetworkArgs) ToQemu_vmNetworkOutputWithContext(ctx context.Context) Qemu_vmNetworkOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(Qemu_vmNetworkOutput)
+func (i QemuVMNetworkArgs) ToQemuVMNetworkOutputWithContext(ctx context.Context) QemuVMNetworkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(QemuVMNetworkOutput)
 }
 
-// Qemu_vmNetworkArrayInput is an input type that accepts Qemu_vmNetworkArray and Qemu_vmNetworkArrayOutput values.
-// You can construct a concrete instance of `Qemu_vmNetworkArrayInput` via:
+// QemuVMNetworkArrayInput is an input type that accepts QemuVMNetworkArray and QemuVMNetworkArrayOutput values.
+// You can construct a concrete instance of `QemuVMNetworkArrayInput` via:
 //
-//          Qemu_vmNetworkArray{ Qemu_vmNetworkArgs{...} }
-type Qemu_vmNetworkArrayInput interface {
+//          QemuVMNetworkArray{ QemuVMNetworkArgs{...} }
+type QemuVMNetworkArrayInput interface {
 	pulumi.Input
 
-	ToQemu_vmNetworkArrayOutput() Qemu_vmNetworkArrayOutput
-	ToQemu_vmNetworkArrayOutputWithContext(context.Context) Qemu_vmNetworkArrayOutput
+	ToQemuVMNetworkArrayOutput() QemuVMNetworkArrayOutput
+	ToQemuVMNetworkArrayOutputWithContext(context.Context) QemuVMNetworkArrayOutput
 }
 
-type Qemu_vmNetworkArray []Qemu_vmNetworkInput
+type QemuVMNetworkArray []QemuVMNetworkInput
 
-func (Qemu_vmNetworkArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]Qemu_vmNetwork)(nil)).Elem()
+func (QemuVMNetworkArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]QemuVMNetwork)(nil)).Elem()
 }
 
-func (i Qemu_vmNetworkArray) ToQemu_vmNetworkArrayOutput() Qemu_vmNetworkArrayOutput {
-	return i.ToQemu_vmNetworkArrayOutputWithContext(context.Background())
+func (i QemuVMNetworkArray) ToQemuVMNetworkArrayOutput() QemuVMNetworkArrayOutput {
+	return i.ToQemuVMNetworkArrayOutputWithContext(context.Background())
 }
 
-func (i Qemu_vmNetworkArray) ToQemu_vmNetworkArrayOutputWithContext(ctx context.Context) Qemu_vmNetworkArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(Qemu_vmNetworkArrayOutput)
+func (i QemuVMNetworkArray) ToQemuVMNetworkArrayOutputWithContext(ctx context.Context) QemuVMNetworkArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(QemuVMNetworkArrayOutput)
 }
 
-type Qemu_vmNetworkOutput struct{ *pulumi.OutputState }
+type QemuVMNetworkOutput struct{ *pulumi.OutputState }
 
-func (Qemu_vmNetworkOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*Qemu_vmNetwork)(nil)).Elem()
+func (QemuVMNetworkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*QemuVMNetwork)(nil)).Elem()
 }
 
-func (o Qemu_vmNetworkOutput) ToQemu_vmNetworkOutput() Qemu_vmNetworkOutput {
+func (o QemuVMNetworkOutput) ToQemuVMNetworkOutput() QemuVMNetworkOutput {
 	return o
 }
 
-func (o Qemu_vmNetworkOutput) ToQemu_vmNetworkOutputWithContext(ctx context.Context) Qemu_vmNetworkOutput {
+func (o QemuVMNetworkOutput) ToQemuVMNetworkOutputWithContext(ctx context.Context) QemuVMNetworkOutput {
 	return o
 }
 
-func (o Qemu_vmNetworkOutput) Bridge() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v Qemu_vmNetwork) *string { return v.Bridge }).(pulumi.StringPtrOutput)
+func (o QemuVMNetworkOutput) Bridge() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v QemuVMNetwork) *string { return v.Bridge }).(pulumi.StringPtrOutput)
 }
 
-func (o Qemu_vmNetworkOutput) Firewall() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v Qemu_vmNetwork) *bool { return v.Firewall }).(pulumi.BoolPtrOutput)
+func (o QemuVMNetworkOutput) Firewall() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v QemuVMNetwork) *bool { return v.Firewall }).(pulumi.BoolPtrOutput)
 }
 
-func (o Qemu_vmNetworkOutput) LinkDown() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v Qemu_vmNetwork) *bool { return v.LinkDown }).(pulumi.BoolPtrOutput)
+func (o QemuVMNetworkOutput) LinkDown() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v QemuVMNetwork) *bool { return v.LinkDown }).(pulumi.BoolPtrOutput)
 }
 
-func (o Qemu_vmNetworkOutput) Macaddr() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v Qemu_vmNetwork) *string { return v.Macaddr }).(pulumi.StringPtrOutput)
+func (o QemuVMNetworkOutput) Macaddr() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v QemuVMNetwork) *string { return v.Macaddr }).(pulumi.StringPtrOutput)
 }
 
-func (o Qemu_vmNetworkOutput) Model() pulumi.StringOutput {
-	return o.ApplyT(func(v Qemu_vmNetwork) string { return v.Model }).(pulumi.StringOutput)
+func (o QemuVMNetworkOutput) Model() pulumi.StringOutput {
+	return o.ApplyT(func(v QemuVMNetwork) string { return v.Model }).(pulumi.StringOutput)
 }
 
-func (o Qemu_vmNetworkOutput) Queues() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v Qemu_vmNetwork) *int { return v.Queues }).(pulumi.IntPtrOutput)
+func (o QemuVMNetworkOutput) Queues() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v QemuVMNetwork) *int { return v.Queues }).(pulumi.IntPtrOutput)
 }
 
-func (o Qemu_vmNetworkOutput) Rate() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v Qemu_vmNetwork) *int { return v.Rate }).(pulumi.IntPtrOutput)
+func (o QemuVMNetworkOutput) Rate() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v QemuVMNetwork) *int { return v.Rate }).(pulumi.IntPtrOutput)
 }
 
-func (o Qemu_vmNetworkOutput) Tag() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v Qemu_vmNetwork) *int { return v.Tag }).(pulumi.IntPtrOutput)
+func (o QemuVMNetworkOutput) Tag() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v QemuVMNetwork) *int { return v.Tag }).(pulumi.IntPtrOutput)
 }
 
-type Qemu_vmNetworkArrayOutput struct{ *pulumi.OutputState }
+type QemuVMNetworkArrayOutput struct{ *pulumi.OutputState }
 
-func (Qemu_vmNetworkArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]Qemu_vmNetwork)(nil)).Elem()
+func (QemuVMNetworkArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]QemuVMNetwork)(nil)).Elem()
 }
 
-func (o Qemu_vmNetworkArrayOutput) ToQemu_vmNetworkArrayOutput() Qemu_vmNetworkArrayOutput {
+func (o QemuVMNetworkArrayOutput) ToQemuVMNetworkArrayOutput() QemuVMNetworkArrayOutput {
 	return o
 }
 
-func (o Qemu_vmNetworkArrayOutput) ToQemu_vmNetworkArrayOutputWithContext(ctx context.Context) Qemu_vmNetworkArrayOutput {
+func (o QemuVMNetworkArrayOutput) ToQemuVMNetworkArrayOutputWithContext(ctx context.Context) QemuVMNetworkArrayOutput {
 	return o
 }
 
-func (o Qemu_vmNetworkArrayOutput) Index(i pulumi.IntInput) Qemu_vmNetworkOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Qemu_vmNetwork {
-		return vs[0].([]Qemu_vmNetwork)[vs[1].(int)]
-	}).(Qemu_vmNetworkOutput)
+func (o QemuVMNetworkArrayOutput) Index(i pulumi.IntInput) QemuVMNetworkOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) QemuVMNetwork {
+		return vs[0].([]QemuVMNetwork)[vs[1].(int)]
+	}).(QemuVMNetworkOutput)
 }
 
-type Qemu_vmSerial struct {
+type QemuVMSerial struct {
 	Id   int    `pulumi:"id"`
 	Type string `pulumi:"type"`
 }
 
-// Qemu_vmSerialInput is an input type that accepts Qemu_vmSerialArgs and Qemu_vmSerialOutput values.
-// You can construct a concrete instance of `Qemu_vmSerialInput` via:
+// QemuVMSerialInput is an input type that accepts QemuVMSerialArgs and QemuVMSerialOutput values.
+// You can construct a concrete instance of `QemuVMSerialInput` via:
 //
-//          Qemu_vmSerialArgs{...}
-type Qemu_vmSerialInput interface {
+//          QemuVMSerialArgs{...}
+type QemuVMSerialInput interface {
 	pulumi.Input
 
-	ToQemu_vmSerialOutput() Qemu_vmSerialOutput
-	ToQemu_vmSerialOutputWithContext(context.Context) Qemu_vmSerialOutput
+	ToQemuVMSerialOutput() QemuVMSerialOutput
+	ToQemuVMSerialOutputWithContext(context.Context) QemuVMSerialOutput
 }
 
-type Qemu_vmSerialArgs struct {
+type QemuVMSerialArgs struct {
 	Id   pulumi.IntInput    `pulumi:"id"`
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
-func (Qemu_vmSerialArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*Qemu_vmSerial)(nil)).Elem()
+func (QemuVMSerialArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*QemuVMSerial)(nil)).Elem()
 }
 
-func (i Qemu_vmSerialArgs) ToQemu_vmSerialOutput() Qemu_vmSerialOutput {
-	return i.ToQemu_vmSerialOutputWithContext(context.Background())
+func (i QemuVMSerialArgs) ToQemuVMSerialOutput() QemuVMSerialOutput {
+	return i.ToQemuVMSerialOutputWithContext(context.Background())
 }
 
-func (i Qemu_vmSerialArgs) ToQemu_vmSerialOutputWithContext(ctx context.Context) Qemu_vmSerialOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(Qemu_vmSerialOutput)
+func (i QemuVMSerialArgs) ToQemuVMSerialOutputWithContext(ctx context.Context) QemuVMSerialOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(QemuVMSerialOutput)
 }
 
-// Qemu_vmSerialArrayInput is an input type that accepts Qemu_vmSerialArray and Qemu_vmSerialArrayOutput values.
-// You can construct a concrete instance of `Qemu_vmSerialArrayInput` via:
+// QemuVMSerialArrayInput is an input type that accepts QemuVMSerialArray and QemuVMSerialArrayOutput values.
+// You can construct a concrete instance of `QemuVMSerialArrayInput` via:
 //
-//          Qemu_vmSerialArray{ Qemu_vmSerialArgs{...} }
-type Qemu_vmSerialArrayInput interface {
+//          QemuVMSerialArray{ QemuVMSerialArgs{...} }
+type QemuVMSerialArrayInput interface {
 	pulumi.Input
 
-	ToQemu_vmSerialArrayOutput() Qemu_vmSerialArrayOutput
-	ToQemu_vmSerialArrayOutputWithContext(context.Context) Qemu_vmSerialArrayOutput
+	ToQemuVMSerialArrayOutput() QemuVMSerialArrayOutput
+	ToQemuVMSerialArrayOutputWithContext(context.Context) QemuVMSerialArrayOutput
 }
 
-type Qemu_vmSerialArray []Qemu_vmSerialInput
+type QemuVMSerialArray []QemuVMSerialInput
 
-func (Qemu_vmSerialArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]Qemu_vmSerial)(nil)).Elem()
+func (QemuVMSerialArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]QemuVMSerial)(nil)).Elem()
 }
 
-func (i Qemu_vmSerialArray) ToQemu_vmSerialArrayOutput() Qemu_vmSerialArrayOutput {
-	return i.ToQemu_vmSerialArrayOutputWithContext(context.Background())
+func (i QemuVMSerialArray) ToQemuVMSerialArrayOutput() QemuVMSerialArrayOutput {
+	return i.ToQemuVMSerialArrayOutputWithContext(context.Background())
 }
 
-func (i Qemu_vmSerialArray) ToQemu_vmSerialArrayOutputWithContext(ctx context.Context) Qemu_vmSerialArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(Qemu_vmSerialArrayOutput)
+func (i QemuVMSerialArray) ToQemuVMSerialArrayOutputWithContext(ctx context.Context) QemuVMSerialArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(QemuVMSerialArrayOutput)
 }
 
-type Qemu_vmSerialOutput struct{ *pulumi.OutputState }
+type QemuVMSerialOutput struct{ *pulumi.OutputState }
 
-func (Qemu_vmSerialOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*Qemu_vmSerial)(nil)).Elem()
+func (QemuVMSerialOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*QemuVMSerial)(nil)).Elem()
 }
 
-func (o Qemu_vmSerialOutput) ToQemu_vmSerialOutput() Qemu_vmSerialOutput {
+func (o QemuVMSerialOutput) ToQemuVMSerialOutput() QemuVMSerialOutput {
 	return o
 }
 
-func (o Qemu_vmSerialOutput) ToQemu_vmSerialOutputWithContext(ctx context.Context) Qemu_vmSerialOutput {
+func (o QemuVMSerialOutput) ToQemuVMSerialOutputWithContext(ctx context.Context) QemuVMSerialOutput {
 	return o
 }
 
-func (o Qemu_vmSerialOutput) Id() pulumi.IntOutput {
-	return o.ApplyT(func(v Qemu_vmSerial) int { return v.Id }).(pulumi.IntOutput)
+func (o QemuVMSerialOutput) Id() pulumi.IntOutput {
+	return o.ApplyT(func(v QemuVMSerial) int { return v.Id }).(pulumi.IntOutput)
 }
 
-func (o Qemu_vmSerialOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func(v Qemu_vmSerial) string { return v.Type }).(pulumi.StringOutput)
+func (o QemuVMSerialOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v QemuVMSerial) string { return v.Type }).(pulumi.StringOutput)
 }
 
-type Qemu_vmSerialArrayOutput struct{ *pulumi.OutputState }
+type QemuVMSerialArrayOutput struct{ *pulumi.OutputState }
 
-func (Qemu_vmSerialArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]Qemu_vmSerial)(nil)).Elem()
+func (QemuVMSerialArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]QemuVMSerial)(nil)).Elem()
 }
 
-func (o Qemu_vmSerialArrayOutput) ToQemu_vmSerialArrayOutput() Qemu_vmSerialArrayOutput {
+func (o QemuVMSerialArrayOutput) ToQemuVMSerialArrayOutput() QemuVMSerialArrayOutput {
 	return o
 }
 
-func (o Qemu_vmSerialArrayOutput) ToQemu_vmSerialArrayOutputWithContext(ctx context.Context) Qemu_vmSerialArrayOutput {
+func (o QemuVMSerialArrayOutput) ToQemuVMSerialArrayOutputWithContext(ctx context.Context) QemuVMSerialArrayOutput {
 	return o
 }
 
-func (o Qemu_vmSerialArrayOutput) Index(i pulumi.IntInput) Qemu_vmSerialOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Qemu_vmSerial {
-		return vs[0].([]Qemu_vmSerial)[vs[1].(int)]
-	}).(Qemu_vmSerialOutput)
+func (o QemuVMSerialArrayOutput) Index(i pulumi.IntInput) QemuVMSerialOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) QemuVMSerial {
+		return vs[0].([]QemuVMSerial)[vs[1].(int)]
+	}).(QemuVMSerialOutput)
 }
 
-type Qemu_vmVga struct {
+type QemuVMVga struct {
 	Memory *int    `pulumi:"memory"`
 	Type   *string `pulumi:"type"`
 }
 
-// Qemu_vmVgaInput is an input type that accepts Qemu_vmVgaArgs and Qemu_vmVgaOutput values.
-// You can construct a concrete instance of `Qemu_vmVgaInput` via:
+// QemuVMVgaInput is an input type that accepts QemuVMVgaArgs and QemuVMVgaOutput values.
+// You can construct a concrete instance of `QemuVMVgaInput` via:
 //
-//          Qemu_vmVgaArgs{...}
-type Qemu_vmVgaInput interface {
+//          QemuVMVgaArgs{...}
+type QemuVMVgaInput interface {
 	pulumi.Input
 
-	ToQemu_vmVgaOutput() Qemu_vmVgaOutput
-	ToQemu_vmVgaOutputWithContext(context.Context) Qemu_vmVgaOutput
+	ToQemuVMVgaOutput() QemuVMVgaOutput
+	ToQemuVMVgaOutputWithContext(context.Context) QemuVMVgaOutput
 }
 
-type Qemu_vmVgaArgs struct {
+type QemuVMVgaArgs struct {
 	Memory pulumi.IntPtrInput    `pulumi:"memory"`
 	Type   pulumi.StringPtrInput `pulumi:"type"`
 }
 
-func (Qemu_vmVgaArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*Qemu_vmVga)(nil)).Elem()
+func (QemuVMVgaArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*QemuVMVga)(nil)).Elem()
 }
 
-func (i Qemu_vmVgaArgs) ToQemu_vmVgaOutput() Qemu_vmVgaOutput {
-	return i.ToQemu_vmVgaOutputWithContext(context.Background())
+func (i QemuVMVgaArgs) ToQemuVMVgaOutput() QemuVMVgaOutput {
+	return i.ToQemuVMVgaOutputWithContext(context.Background())
 }
 
-func (i Qemu_vmVgaArgs) ToQemu_vmVgaOutputWithContext(ctx context.Context) Qemu_vmVgaOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(Qemu_vmVgaOutput)
+func (i QemuVMVgaArgs) ToQemuVMVgaOutputWithContext(ctx context.Context) QemuVMVgaOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(QemuVMVgaOutput)
 }
 
-// Qemu_vmVgaArrayInput is an input type that accepts Qemu_vmVgaArray and Qemu_vmVgaArrayOutput values.
-// You can construct a concrete instance of `Qemu_vmVgaArrayInput` via:
+// QemuVMVgaArrayInput is an input type that accepts QemuVMVgaArray and QemuVMVgaArrayOutput values.
+// You can construct a concrete instance of `QemuVMVgaArrayInput` via:
 //
-//          Qemu_vmVgaArray{ Qemu_vmVgaArgs{...} }
-type Qemu_vmVgaArrayInput interface {
+//          QemuVMVgaArray{ QemuVMVgaArgs{...} }
+type QemuVMVgaArrayInput interface {
 	pulumi.Input
 
-	ToQemu_vmVgaArrayOutput() Qemu_vmVgaArrayOutput
-	ToQemu_vmVgaArrayOutputWithContext(context.Context) Qemu_vmVgaArrayOutput
+	ToQemuVMVgaArrayOutput() QemuVMVgaArrayOutput
+	ToQemuVMVgaArrayOutputWithContext(context.Context) QemuVMVgaArrayOutput
 }
 
-type Qemu_vmVgaArray []Qemu_vmVgaInput
+type QemuVMVgaArray []QemuVMVgaInput
 
-func (Qemu_vmVgaArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]Qemu_vmVga)(nil)).Elem()
+func (QemuVMVgaArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]QemuVMVga)(nil)).Elem()
 }
 
-func (i Qemu_vmVgaArray) ToQemu_vmVgaArrayOutput() Qemu_vmVgaArrayOutput {
-	return i.ToQemu_vmVgaArrayOutputWithContext(context.Background())
+func (i QemuVMVgaArray) ToQemuVMVgaArrayOutput() QemuVMVgaArrayOutput {
+	return i.ToQemuVMVgaArrayOutputWithContext(context.Background())
 }
 
-func (i Qemu_vmVgaArray) ToQemu_vmVgaArrayOutputWithContext(ctx context.Context) Qemu_vmVgaArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(Qemu_vmVgaArrayOutput)
+func (i QemuVMVgaArray) ToQemuVMVgaArrayOutputWithContext(ctx context.Context) QemuVMVgaArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(QemuVMVgaArrayOutput)
 }
 
-type Qemu_vmVgaOutput struct{ *pulumi.OutputState }
+type QemuVMVgaOutput struct{ *pulumi.OutputState }
 
-func (Qemu_vmVgaOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*Qemu_vmVga)(nil)).Elem()
+func (QemuVMVgaOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*QemuVMVga)(nil)).Elem()
 }
 
-func (o Qemu_vmVgaOutput) ToQemu_vmVgaOutput() Qemu_vmVgaOutput {
+func (o QemuVMVgaOutput) ToQemuVMVgaOutput() QemuVMVgaOutput {
 	return o
 }
 
-func (o Qemu_vmVgaOutput) ToQemu_vmVgaOutputWithContext(ctx context.Context) Qemu_vmVgaOutput {
+func (o QemuVMVgaOutput) ToQemuVMVgaOutputWithContext(ctx context.Context) QemuVMVgaOutput {
 	return o
 }
 
-func (o Qemu_vmVgaOutput) Memory() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v Qemu_vmVga) *int { return v.Memory }).(pulumi.IntPtrOutput)
+func (o QemuVMVgaOutput) Memory() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v QemuVMVga) *int { return v.Memory }).(pulumi.IntPtrOutput)
 }
 
-func (o Qemu_vmVgaOutput) Type() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v Qemu_vmVga) *string { return v.Type }).(pulumi.StringPtrOutput)
+func (o QemuVMVgaOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v QemuVMVga) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
 
-type Qemu_vmVgaArrayOutput struct{ *pulumi.OutputState }
+type QemuVMVgaArrayOutput struct{ *pulumi.OutputState }
 
-func (Qemu_vmVgaArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]Qemu_vmVga)(nil)).Elem()
+func (QemuVMVgaArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]QemuVMVga)(nil)).Elem()
 }
 
-func (o Qemu_vmVgaArrayOutput) ToQemu_vmVgaArrayOutput() Qemu_vmVgaArrayOutput {
+func (o QemuVMVgaArrayOutput) ToQemuVMVgaArrayOutput() QemuVMVgaArrayOutput {
 	return o
 }
 
-func (o Qemu_vmVgaArrayOutput) ToQemu_vmVgaArrayOutputWithContext(ctx context.Context) Qemu_vmVgaArrayOutput {
+func (o QemuVMVgaArrayOutput) ToQemuVMVgaArrayOutputWithContext(ctx context.Context) QemuVMVgaArrayOutput {
 	return o
 }
 
-func (o Qemu_vmVgaArrayOutput) Index(i pulumi.IntInput) Qemu_vmVgaOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Qemu_vmVga {
-		return vs[0].([]Qemu_vmVga)[vs[1].(int)]
-	}).(Qemu_vmVgaOutput)
+func (o QemuVMVgaArrayOutput) Index(i pulumi.IntInput) QemuVMVgaOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) QemuVMVga {
+		return vs[0].([]QemuVMVga)[vs[1].(int)]
+	}).(QemuVMVgaOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(Lxc_containerFeatureOutput{})
-	pulumi.RegisterOutputType(Lxc_containerFeatureArrayOutput{})
-	pulumi.RegisterOutputType(Lxc_containerMountpointOutput{})
-	pulumi.RegisterOutputType(Lxc_containerMountpointArrayOutput{})
-	pulumi.RegisterOutputType(Lxc_containerNetworkOutput{})
-	pulumi.RegisterOutputType(Lxc_containerNetworkArrayOutput{})
-	pulumi.RegisterOutputType(Qemu_vmDiskOutput{})
-	pulumi.RegisterOutputType(Qemu_vmDiskArrayOutput{})
-	pulumi.RegisterOutputType(Qemu_vmNetworkOutput{})
-	pulumi.RegisterOutputType(Qemu_vmNetworkArrayOutput{})
-	pulumi.RegisterOutputType(Qemu_vmSerialOutput{})
-	pulumi.RegisterOutputType(Qemu_vmSerialArrayOutput{})
-	pulumi.RegisterOutputType(Qemu_vmVgaOutput{})
-	pulumi.RegisterOutputType(Qemu_vmVgaArrayOutput{})
+	pulumi.RegisterOutputType(LXCContainerFeatureOutput{})
+	pulumi.RegisterOutputType(LXCContainerFeatureArrayOutput{})
+	pulumi.RegisterOutputType(LXCContainerMountpointOutput{})
+	pulumi.RegisterOutputType(LXCContainerMountpointArrayOutput{})
+	pulumi.RegisterOutputType(LXCContainerNetworkOutput{})
+	pulumi.RegisterOutputType(LXCContainerNetworkArrayOutput{})
+	pulumi.RegisterOutputType(QemuVMDiskOutput{})
+	pulumi.RegisterOutputType(QemuVMDiskArrayOutput{})
+	pulumi.RegisterOutputType(QemuVMNetworkOutput{})
+	pulumi.RegisterOutputType(QemuVMNetworkArrayOutput{})
+	pulumi.RegisterOutputType(QemuVMSerialOutput{})
+	pulumi.RegisterOutputType(QemuVMSerialArrayOutput{})
+	pulumi.RegisterOutputType(QemuVMVgaOutput{})
+	pulumi.RegisterOutputType(QemuVMVgaArrayOutput{})
 }

@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Proxmoxve.Inputs
 {
 
-    public sealed class Qemu_vmDiskArgs : Pulumi.ResourceArgs
+    public sealed class QemuVMDiskArgs : Pulumi.ResourceArgs
     {
         [Input("backup")]
         public Input<bool>? Backup { get; set; }
@@ -66,7 +66,7 @@ namespace Pulumi.Proxmoxve.Inputs
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
-        public Qemu_vmDiskArgs()
+        public QemuVMDiskArgs()
         {
         }
     }

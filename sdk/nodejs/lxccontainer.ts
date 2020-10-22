@@ -6,9 +6,9 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-export class Lxc_container extends pulumi.CustomResource {
+export class LXCContainer extends pulumi.CustomResource {
     /**
-     * Get an existing Lxc_container resource's state with the given name, ID, and optional extra
+     * Get an existing LXCContainer resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -16,22 +16,22 @@ export class Lxc_container extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: Lxc_containerState, opts?: pulumi.CustomResourceOptions): Lxc_container {
-        return new Lxc_container(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: LXCContainerState, opts?: pulumi.CustomResourceOptions): LXCContainer {
+        return new LXCContainer(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'proxmoxve:index/lxc_container:lxc_container';
+    public static readonly __pulumiType = 'proxmoxve:index/lXCContainer:LXCContainer';
 
     /**
-     * Returns true if the given object is an instance of Lxc_container.  This is designed to work even
+     * Returns true if the given object is an instance of LXCContainer.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is Lxc_container {
+    public static isInstance(obj: any): obj is LXCContainer {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === Lxc_container.__pulumiType;
+        return obj['__pulumiType'] === LXCContainer.__pulumiType;
     }
 
     public readonly arch!: pulumi.Output<string | undefined>;
@@ -42,16 +42,16 @@ export class Lxc_container extends pulumi.CustomResource {
     public readonly cpulimit!: pulumi.Output<number | undefined>;
     public readonly cpuunits!: pulumi.Output<number | undefined>;
     public readonly description!: pulumi.Output<string | undefined>;
-    public readonly features!: pulumi.Output<outputs.Lxc_containerFeature[] | undefined>;
+    public readonly features!: pulumi.Output<outputs.LXCContainerFeature[] | undefined>;
     public readonly force!: pulumi.Output<boolean | undefined>;
     public readonly hookscript!: pulumi.Output<string | undefined>;
     public readonly hostname!: pulumi.Output<string | undefined>;
     public readonly ignoreUnpackErrors!: pulumi.Output<boolean | undefined>;
     public readonly lock!: pulumi.Output<string | undefined>;
     public readonly memory!: pulumi.Output<number | undefined>;
-    public readonly mountpoints!: pulumi.Output<outputs.Lxc_containerMountpoint[] | undefined>;
+    public readonly mountpoints!: pulumi.Output<outputs.LXCContainerMountpoint[] | undefined>;
     public readonly nameserver!: pulumi.Output<string | undefined>;
-    public readonly networks!: pulumi.Output<outputs.Lxc_containerNetwork[] | undefined>;
+    public readonly networks!: pulumi.Output<outputs.LXCContainerNetwork[] | undefined>;
     public readonly onboot!: pulumi.Output<boolean | undefined>;
     public readonly ostemplate!: pulumi.Output<string | undefined>;
     public readonly ostype!: pulumi.Output<string | undefined>;
@@ -75,17 +75,17 @@ export class Lxc_container extends pulumi.CustomResource {
     public readonly vmid!: pulumi.Output<number | undefined>;
 
     /**
-     * Create a Lxc_container resource with the given unique name, arguments, and options.
+     * Create a LXCContainer resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: Lxc_containerArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: Lxc_containerArgs | Lxc_containerState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: LXCContainerArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: LXCContainerArgs | LXCContainerState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
-            const state = argsOrState as Lxc_containerState | undefined;
+            const state = argsOrState as LXCContainerState | undefined;
             inputs["arch"] = state ? state.arch : undefined;
             inputs["bwlimit"] = state ? state.bwlimit : undefined;
             inputs["cmode"] = state ? state.cmode : undefined;
@@ -126,7 +126,7 @@ export class Lxc_container extends pulumi.CustomResource {
             inputs["unuseds"] = state ? state.unuseds : undefined;
             inputs["vmid"] = state ? state.vmid : undefined;
         } else {
-            const args = argsOrState as Lxc_containerArgs | undefined;
+            const args = argsOrState as LXCContainerArgs | undefined;
             if (!args || args.targetNode === undefined) {
                 throw new Error("Missing required property 'targetNode'");
             }
@@ -177,14 +177,14 @@ export class Lxc_container extends pulumi.CustomResource {
         if (!opts.version) {
             opts.version = utilities.getVersion();
         }
-        super(Lxc_container.__pulumiType, name, inputs, opts);
+        super(LXCContainer.__pulumiType, name, inputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering lxc_container resources.
+ * Input properties used for looking up and filtering LXCContainer resources.
  */
-export interface Lxc_containerState {
+export interface LXCContainerState {
     readonly arch?: pulumi.Input<string>;
     readonly bwlimit?: pulumi.Input<number>;
     readonly cmode?: pulumi.Input<string>;
@@ -193,16 +193,16 @@ export interface Lxc_containerState {
     readonly cpulimit?: pulumi.Input<number>;
     readonly cpuunits?: pulumi.Input<number>;
     readonly description?: pulumi.Input<string>;
-    readonly features?: pulumi.Input<pulumi.Input<inputs.Lxc_containerFeature>[]>;
+    readonly features?: pulumi.Input<pulumi.Input<inputs.LXCContainerFeature>[]>;
     readonly force?: pulumi.Input<boolean>;
     readonly hookscript?: pulumi.Input<string>;
     readonly hostname?: pulumi.Input<string>;
     readonly ignoreUnpackErrors?: pulumi.Input<boolean>;
     readonly lock?: pulumi.Input<string>;
     readonly memory?: pulumi.Input<number>;
-    readonly mountpoints?: pulumi.Input<pulumi.Input<inputs.Lxc_containerMountpoint>[]>;
+    readonly mountpoints?: pulumi.Input<pulumi.Input<inputs.LXCContainerMountpoint>[]>;
     readonly nameserver?: pulumi.Input<string>;
-    readonly networks?: pulumi.Input<pulumi.Input<inputs.Lxc_containerNetwork>[]>;
+    readonly networks?: pulumi.Input<pulumi.Input<inputs.LXCContainerNetwork>[]>;
     readonly onboot?: pulumi.Input<boolean>;
     readonly ostemplate?: pulumi.Input<string>;
     readonly ostype?: pulumi.Input<string>;
@@ -227,9 +227,9 @@ export interface Lxc_containerState {
 }
 
 /**
- * The set of arguments for constructing a Lxc_container resource.
+ * The set of arguments for constructing a LXCContainer resource.
  */
-export interface Lxc_containerArgs {
+export interface LXCContainerArgs {
     readonly arch?: pulumi.Input<string>;
     readonly bwlimit?: pulumi.Input<number>;
     readonly cmode?: pulumi.Input<string>;
@@ -238,16 +238,16 @@ export interface Lxc_containerArgs {
     readonly cpulimit?: pulumi.Input<number>;
     readonly cpuunits?: pulumi.Input<number>;
     readonly description?: pulumi.Input<string>;
-    readonly features?: pulumi.Input<pulumi.Input<inputs.Lxc_containerFeature>[]>;
+    readonly features?: pulumi.Input<pulumi.Input<inputs.LXCContainerFeature>[]>;
     readonly force?: pulumi.Input<boolean>;
     readonly hookscript?: pulumi.Input<string>;
     readonly hostname?: pulumi.Input<string>;
     readonly ignoreUnpackErrors?: pulumi.Input<boolean>;
     readonly lock?: pulumi.Input<string>;
     readonly memory?: pulumi.Input<number>;
-    readonly mountpoints?: pulumi.Input<pulumi.Input<inputs.Lxc_containerMountpoint>[]>;
+    readonly mountpoints?: pulumi.Input<pulumi.Input<inputs.LXCContainerMountpoint>[]>;
     readonly nameserver?: pulumi.Input<string>;
-    readonly networks?: pulumi.Input<pulumi.Input<inputs.Lxc_containerNetwork>[]>;
+    readonly networks?: pulumi.Input<pulumi.Input<inputs.LXCContainerNetwork>[]>;
     readonly onboot?: pulumi.Input<boolean>;
     readonly ostemplate?: pulumi.Input<string>;
     readonly ostype?: pulumi.Input<string>;

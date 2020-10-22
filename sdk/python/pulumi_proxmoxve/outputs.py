@@ -9,17 +9,17 @@ from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = [
-    'Lxc_containerFeature',
-    'Lxc_containerMountpoint',
-    'Lxc_containerNetwork',
-    'Qemu_vmDisk',
-    'Qemu_vmNetwork',
-    'Qemu_vmSerial',
-    'Qemu_vmVga',
+    'LXCContainerFeature',
+    'LXCContainerMountpoint',
+    'LXCContainerNetwork',
+    'QemuVMDisk',
+    'QemuVMNetwork',
+    'QemuVMSerial',
+    'QemuVMVga',
 ]
 
 @pulumi.output_type
-class Lxc_containerFeature(dict):
+class LXCContainerFeature(dict):
     def __init__(__self__, *,
                  fuse: Optional[bool] = None,
                  keyctl: Optional[bool] = None,
@@ -59,7 +59,7 @@ class Lxc_containerFeature(dict):
 
 
 @pulumi.output_type
-class Lxc_containerMountpoint(dict):
+class LXCContainerMountpoint(dict):
     def __init__(__self__, *,
                  mp: str,
                  volume: str,
@@ -129,7 +129,7 @@ class Lxc_containerMountpoint(dict):
 
 
 @pulumi.output_type
-class Lxc_containerNetwork(dict):
+class LXCContainerNetwork(dict):
     def __init__(__self__, *,
                  name: str,
                  bridge: Optional[str] = None,
@@ -240,7 +240,7 @@ class Lxc_containerNetwork(dict):
 
 
 @pulumi.output_type
-class Qemu_vmDisk(dict):
+class QemuVMDisk(dict):
     def __init__(__self__, *,
                  size: str,
                  storage: str,
@@ -389,7 +389,7 @@ class Qemu_vmDisk(dict):
 
 
 @pulumi.output_type
-class Qemu_vmNetwork(dict):
+class QemuVMNetwork(dict):
     def __init__(__self__, *,
                  model: str,
                  bridge: Optional[str] = None,
@@ -460,7 +460,7 @@ class Qemu_vmNetwork(dict):
 
 
 @pulumi.output_type
-class Qemu_vmSerial(dict):
+class QemuVMSerial(dict):
     def __init__(__self__, *,
                  id: int,
                  type: str):
@@ -482,7 +482,7 @@ class Qemu_vmSerial(dict):
 
 
 @pulumi.output_type
-class Qemu_vmVga(dict):
+class QemuVMVga(dict):
     def __init__(__self__, *,
                  memory: Optional[int] = None,
                  type: Optional[str] = None):

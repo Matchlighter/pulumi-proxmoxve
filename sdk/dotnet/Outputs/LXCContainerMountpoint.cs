@@ -11,7 +11,7 @@ namespace Pulumi.Proxmoxve.Outputs
 {
 
     [OutputType]
-    public sealed class Lxc_containerMountpoint
+    public sealed class LXCContainerMountpoint
     {
         public readonly bool? Acl;
         public readonly bool? Backup;
@@ -23,7 +23,7 @@ namespace Pulumi.Proxmoxve.Outputs
         public readonly string Volume;
 
         [OutputConstructor]
-        private Lxc_containerMountpoint(
+        private LXCContainerMountpoint(
             bool? acl,
 
             bool? backup,

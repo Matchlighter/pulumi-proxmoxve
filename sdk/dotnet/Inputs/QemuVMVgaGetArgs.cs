@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Proxmoxve.Inputs
 {
 
-    public sealed class Qemu_vmVgaArgs : Pulumi.ResourceArgs
+    public sealed class QemuVMVgaGetArgs : Pulumi.ResourceArgs
     {
         [Input("memory")]
         public Input<int>? Memory { get; set; }
@@ -18,7 +18,7 @@ namespace Pulumi.Proxmoxve.Inputs
         [Input("type")]
         public Input<string>? Type { get; set; }
 
-        public Qemu_vmVgaArgs()
+        public QemuVMVgaGetArgs()
         {
         }
     }
