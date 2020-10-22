@@ -11,7 +11,7 @@ namespace Pulumi.Proxmoxve.Outputs
 {
 
     [OutputType]
-    public sealed class Lxc_containerFeature
+    public sealed class LXCContainerFeature
     {
         public readonly bool? Fuse;
         public readonly bool? Keyctl;
@@ -19,7 +19,7 @@ namespace Pulumi.Proxmoxve.Outputs
         public readonly bool? Nesting;
 
         [OutputConstructor]
-        private Lxc_containerFeature(
+        private LXCContainerFeature(
             bool? fuse,
 
             bool? keyctl,

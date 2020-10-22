@@ -9,7 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Proxmoxve
 {
-    public partial class Qemu_vm : Pulumi.CustomResource
+    public partial class QemuVM : Pulumi.CustomResource
     {
         [Output("agent")]
         public Output<int?> Agent { get; private set; } = null!;
@@ -63,7 +63,7 @@ namespace Pulumi.Proxmoxve
         public Output<double?> DiskGb { get; private set; } = null!;
 
         [Output("disks")]
-        public Output<ImmutableArray<Outputs.Qemu_vmDisk>> Disks { get; private set; } = null!;
+        public Output<ImmutableArray<Outputs.QemuVMDisk>> Disks { get; private set; } = null!;
 
         [Output("forceCreate")]
         public Output<bool?> ForceCreate { get; private set; } = null!;
@@ -108,7 +108,7 @@ namespace Pulumi.Proxmoxve
         public Output<string> Nameserver { get; private set; } = null!;
 
         [Output("networks")]
-        public Output<ImmutableArray<Outputs.Qemu_vmNetwork>> Networks { get; private set; } = null!;
+        public Output<ImmutableArray<Outputs.QemuVMNetwork>> Networks { get; private set; } = null!;
 
         [Output("nic")]
         public Output<string?> Nic { get; private set; } = null!;
@@ -141,7 +141,7 @@ namespace Pulumi.Proxmoxve
         public Output<string> Searchdomain { get; private set; } = null!;
 
         [Output("serials")]
-        public Output<ImmutableArray<Outputs.Qemu_vmSerial>> Serials { get; private set; } = null!;
+        public Output<ImmutableArray<Outputs.QemuVMSerial>> Serials { get; private set; } = null!;
 
         [Output("sockets")]
         public Output<int?> Sockets { get; private set; } = null!;
@@ -177,7 +177,7 @@ namespace Pulumi.Proxmoxve
         public Output<int?> Vcpus { get; private set; } = null!;
 
         [Output("vgas")]
-        public Output<ImmutableArray<Outputs.Qemu_vmVga>> Vgas { get; private set; } = null!;
+        public Output<ImmutableArray<Outputs.QemuVMVga>> Vgas { get; private set; } = null!;
 
         [Output("vlan")]
         public Output<int?> Vlan { get; private set; } = null!;
@@ -187,19 +187,19 @@ namespace Pulumi.Proxmoxve
 
 
         /// <summary>
-        /// Create a Qemu_vm resource with the given unique name, arguments, and options.
+        /// Create a QemuVM resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public Qemu_vm(string name, Qemu_vmArgs args, CustomResourceOptions? options = null)
-            : base("proxmoxve:index/qemu_vm:qemu_vm", name, args ?? new Qemu_vmArgs(), MakeResourceOptions(options, ""))
+        public QemuVM(string name, QemuVMArgs args, CustomResourceOptions? options = null)
+            : base("proxmoxve:index/qemuVM:QemuVM", name, args ?? new QemuVMArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private Qemu_vm(string name, Input<string> id, Qemu_vmState? state = null, CustomResourceOptions? options = null)
-            : base("proxmoxve:index/qemu_vm:qemu_vm", name, state, MakeResourceOptions(options, id))
+        private QemuVM(string name, Input<string> id, QemuVMState? state = null, CustomResourceOptions? options = null)
+            : base("proxmoxve:index/qemuVM:QemuVM", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -215,7 +215,7 @@ namespace Pulumi.Proxmoxve
             return merged;
         }
         /// <summary>
-        /// Get an existing Qemu_vm resource's state with the given name, ID, and optional extra
+        /// Get an existing QemuVM resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -223,13 +223,13 @@ namespace Pulumi.Proxmoxve
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static Qemu_vm Get(string name, Input<string> id, Qemu_vmState? state = null, CustomResourceOptions? options = null)
+        public static QemuVM Get(string name, Input<string> id, QemuVMState? state = null, CustomResourceOptions? options = null)
         {
-            return new Qemu_vm(name, id, state, options);
+            return new QemuVM(name, id, state, options);
         }
     }
 
-    public sealed class Qemu_vmArgs : Pulumi.ResourceArgs
+    public sealed class QemuVMArgs : Pulumi.ResourceArgs
     {
         [Input("agent")]
         public Input<int>? Agent { get; set; }
@@ -283,10 +283,10 @@ namespace Pulumi.Proxmoxve
         public Input<double>? DiskGb { get; set; }
 
         [Input("disks")]
-        private InputList<Inputs.Qemu_vmDiskArgs>? _disks;
-        public InputList<Inputs.Qemu_vmDiskArgs> Disks
+        private InputList<Inputs.QemuVMDiskArgs>? _disks;
+        public InputList<Inputs.QemuVMDiskArgs> Disks
         {
-            get => _disks ?? (_disks = new InputList<Inputs.Qemu_vmDiskArgs>());
+            get => _disks ?? (_disks = new InputList<Inputs.QemuVMDiskArgs>());
             set => _disks = value;
         }
 
@@ -333,10 +333,10 @@ namespace Pulumi.Proxmoxve
         public Input<string>? Nameserver { get; set; }
 
         [Input("networks")]
-        private InputList<Inputs.Qemu_vmNetworkArgs>? _networks;
-        public InputList<Inputs.Qemu_vmNetworkArgs> Networks
+        private InputList<Inputs.QemuVMNetworkArgs>? _networks;
+        public InputList<Inputs.QemuVMNetworkArgs> Networks
         {
-            get => _networks ?? (_networks = new InputList<Inputs.Qemu_vmNetworkArgs>());
+            get => _networks ?? (_networks = new InputList<Inputs.QemuVMNetworkArgs>());
             set => _networks = value;
         }
 
@@ -371,10 +371,10 @@ namespace Pulumi.Proxmoxve
         public Input<string>? Searchdomain { get; set; }
 
         [Input("serials")]
-        private InputList<Inputs.Qemu_vmSerialArgs>? _serials;
-        public InputList<Inputs.Qemu_vmSerialArgs> Serials
+        private InputList<Inputs.QemuVMSerialArgs>? _serials;
+        public InputList<Inputs.QemuVMSerialArgs> Serials
         {
-            get => _serials ?? (_serials = new InputList<Inputs.Qemu_vmSerialArgs>());
+            get => _serials ?? (_serials = new InputList<Inputs.QemuVMSerialArgs>());
             set => _serials = value;
         }
 
@@ -406,10 +406,10 @@ namespace Pulumi.Proxmoxve
         public Input<int>? Vcpus { get; set; }
 
         [Input("vgas")]
-        private InputList<Inputs.Qemu_vmVgaArgs>? _vgas;
-        public InputList<Inputs.Qemu_vmVgaArgs> Vgas
+        private InputList<Inputs.QemuVMVgaArgs>? _vgas;
+        public InputList<Inputs.QemuVMVgaArgs> Vgas
         {
-            get => _vgas ?? (_vgas = new InputList<Inputs.Qemu_vmVgaArgs>());
+            get => _vgas ?? (_vgas = new InputList<Inputs.QemuVMVgaArgs>());
             set => _vgas = value;
         }
 
@@ -419,12 +419,12 @@ namespace Pulumi.Proxmoxve
         [Input("vmid")]
         public Input<int>? Vmid { get; set; }
 
-        public Qemu_vmArgs()
+        public QemuVMArgs()
         {
         }
     }
 
-    public sealed class Qemu_vmState : Pulumi.ResourceArgs
+    public sealed class QemuVMState : Pulumi.ResourceArgs
     {
         [Input("agent")]
         public Input<int>? Agent { get; set; }
@@ -478,10 +478,10 @@ namespace Pulumi.Proxmoxve
         public Input<double>? DiskGb { get; set; }
 
         [Input("disks")]
-        private InputList<Inputs.Qemu_vmDiskGetArgs>? _disks;
-        public InputList<Inputs.Qemu_vmDiskGetArgs> Disks
+        private InputList<Inputs.QemuVMDiskGetArgs>? _disks;
+        public InputList<Inputs.QemuVMDiskGetArgs> Disks
         {
-            get => _disks ?? (_disks = new InputList<Inputs.Qemu_vmDiskGetArgs>());
+            get => _disks ?? (_disks = new InputList<Inputs.QemuVMDiskGetArgs>());
             set => _disks = value;
         }
 
@@ -528,10 +528,10 @@ namespace Pulumi.Proxmoxve
         public Input<string>? Nameserver { get; set; }
 
         [Input("networks")]
-        private InputList<Inputs.Qemu_vmNetworkGetArgs>? _networks;
-        public InputList<Inputs.Qemu_vmNetworkGetArgs> Networks
+        private InputList<Inputs.QemuVMNetworkGetArgs>? _networks;
+        public InputList<Inputs.QemuVMNetworkGetArgs> Networks
         {
-            get => _networks ?? (_networks = new InputList<Inputs.Qemu_vmNetworkGetArgs>());
+            get => _networks ?? (_networks = new InputList<Inputs.QemuVMNetworkGetArgs>());
             set => _networks = value;
         }
 
@@ -566,10 +566,10 @@ namespace Pulumi.Proxmoxve
         public Input<string>? Searchdomain { get; set; }
 
         [Input("serials")]
-        private InputList<Inputs.Qemu_vmSerialGetArgs>? _serials;
-        public InputList<Inputs.Qemu_vmSerialGetArgs> Serials
+        private InputList<Inputs.QemuVMSerialGetArgs>? _serials;
+        public InputList<Inputs.QemuVMSerialGetArgs> Serials
         {
-            get => _serials ?? (_serials = new InputList<Inputs.Qemu_vmSerialGetArgs>());
+            get => _serials ?? (_serials = new InputList<Inputs.QemuVMSerialGetArgs>());
             set => _serials = value;
         }
 
@@ -607,10 +607,10 @@ namespace Pulumi.Proxmoxve
         public Input<int>? Vcpus { get; set; }
 
         [Input("vgas")]
-        private InputList<Inputs.Qemu_vmVgaGetArgs>? _vgas;
-        public InputList<Inputs.Qemu_vmVgaGetArgs> Vgas
+        private InputList<Inputs.QemuVMVgaGetArgs>? _vgas;
+        public InputList<Inputs.QemuVMVgaGetArgs> Vgas
         {
-            get => _vgas ?? (_vgas = new InputList<Inputs.Qemu_vmVgaGetArgs>());
+            get => _vgas ?? (_vgas = new InputList<Inputs.QemuVMVgaGetArgs>());
             set => _vgas = value;
         }
 
@@ -620,7 +620,7 @@ namespace Pulumi.Proxmoxve
         [Input("vmid")]
         public Input<int>? Vmid { get; set; }
 
-        public Qemu_vmState()
+        public QemuVMState()
         {
         }
     }

@@ -5,14 +5,14 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
-export interface Lxc_containerFeature {
+export interface LXCContainerFeature {
     fuse?: boolean;
     keyctl?: boolean;
     mount?: string;
     nesting?: boolean;
 }
 
-export interface Lxc_containerMountpoint {
+export interface LXCContainerMountpoint {
     acl?: boolean;
     backup?: boolean;
     mp: string;
@@ -23,7 +23,7 @@ export interface Lxc_containerMountpoint {
     volume: string;
 }
 
-export interface Lxc_containerNetwork {
+export interface LXCContainerNetwork {
     bridge?: string;
     firewall?: boolean;
     gw?: string;
@@ -39,7 +39,7 @@ export interface Lxc_containerNetwork {
     type?: string;
 }
 
-export interface Qemu_vmDisk {
+export interface QemuVMDisk {
     backup?: boolean;
     cache?: string;
     discard?: string;
@@ -60,7 +60,7 @@ export interface Qemu_vmDisk {
     type: string;
 }
 
-export interface Qemu_vmNetwork {
+export interface QemuVMNetwork {
     bridge?: string;
     firewall?: boolean;
     linkDown?: boolean;
@@ -71,12 +71,12 @@ export interface Qemu_vmNetwork {
     tag?: number;
 }
 
-export interface Qemu_vmSerial {
+export interface QemuVMSerial {
     id: number;
     type: string;
 }
 
-export interface Qemu_vmVga {
+export interface QemuVMVga {
     memory?: number;
     type?: string;
 }

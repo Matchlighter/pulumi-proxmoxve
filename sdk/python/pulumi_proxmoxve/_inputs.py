@@ -9,17 +9,17 @@ from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = [
-    'Lxc_containerFeatureArgs',
-    'Lxc_containerMountpointArgs',
-    'Lxc_containerNetworkArgs',
-    'Qemu_vmDiskArgs',
-    'Qemu_vmNetworkArgs',
-    'Qemu_vmSerialArgs',
-    'Qemu_vmVgaArgs',
+    'LXCContainerFeatureArgs',
+    'LXCContainerMountpointArgs',
+    'LXCContainerNetworkArgs',
+    'QemuVMDiskArgs',
+    'QemuVMNetworkArgs',
+    'QemuVMSerialArgs',
+    'QemuVMVgaArgs',
 ]
 
 @pulumi.input_type
-class Lxc_containerFeatureArgs:
+class LXCContainerFeatureArgs:
     def __init__(__self__, *,
                  fuse: Optional[pulumi.Input[bool]] = None,
                  keyctl: Optional[pulumi.Input[bool]] = None,
@@ -72,7 +72,7 @@ class Lxc_containerFeatureArgs:
 
 
 @pulumi.input_type
-class Lxc_containerMountpointArgs:
+class LXCContainerMountpointArgs:
     def __init__(__self__, *,
                  mp: pulumi.Input[str],
                  volume: pulumi.Input[str],
@@ -171,7 +171,7 @@ class Lxc_containerMountpointArgs:
 
 
 @pulumi.input_type
-class Lxc_containerNetworkArgs:
+class LXCContainerNetworkArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str],
                  bridge: Optional[pulumi.Input[str]] = None,
@@ -331,7 +331,7 @@ class Lxc_containerNetworkArgs:
 
 
 @pulumi.input_type
-class Qemu_vmDiskArgs:
+class QemuVMDiskArgs:
     def __init__(__self__, *,
                  size: pulumi.Input[str],
                  storage: pulumi.Input[str],
@@ -549,7 +549,7 @@ class Qemu_vmDiskArgs:
 
 
 @pulumi.input_type
-class Qemu_vmNetworkArgs:
+class QemuVMNetworkArgs:
     def __init__(__self__, *,
                  model: pulumi.Input[str],
                  bridge: Optional[pulumi.Input[str]] = None,
@@ -649,7 +649,7 @@ class Qemu_vmNetworkArgs:
 
 
 @pulumi.input_type
-class Qemu_vmSerialArgs:
+class QemuVMSerialArgs:
     def __init__(__self__, *,
                  id: pulumi.Input[int],
                  type: pulumi.Input[str]):
@@ -676,7 +676,7 @@ class Qemu_vmSerialArgs:
 
 
 @pulumi.input_type
-class Qemu_vmVgaArgs:
+class QemuVMVgaArgs:
     def __init__(__self__, *,
                  memory: Optional[pulumi.Input[int]] = None,
                  type: Optional[pulumi.Input[str]] = None):

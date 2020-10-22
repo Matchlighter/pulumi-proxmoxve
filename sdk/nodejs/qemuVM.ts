@@ -6,9 +6,9 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-export class Qemu_vm extends pulumi.CustomResource {
+export class QemuVM extends pulumi.CustomResource {
     /**
-     * Get an existing Qemu_vm resource's state with the given name, ID, and optional extra
+     * Get an existing QemuVM resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -16,22 +16,22 @@ export class Qemu_vm extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: Qemu_vmState, opts?: pulumi.CustomResourceOptions): Qemu_vm {
-        return new Qemu_vm(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: QemuVMState, opts?: pulumi.CustomResourceOptions): QemuVM {
+        return new QemuVM(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'proxmoxve:index/qemu_vm:qemu_vm';
+    public static readonly __pulumiType = 'proxmoxve:index/qemuVM:QemuVM';
 
     /**
-     * Returns true if the given object is an instance of Qemu_vm.  This is designed to work even
+     * Returns true if the given object is an instance of QemuVM.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is Qemu_vm {
+    public static isInstance(obj: any): obj is QemuVM {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === Qemu_vm.__pulumiType;
+        return obj['__pulumiType'] === QemuVM.__pulumiType;
     }
 
     public readonly agent!: pulumi.Output<number | undefined>;
@@ -57,7 +57,7 @@ export class Qemu_vm extends pulumi.CustomResource {
      * @deprecated Use `disk.size` instead
      */
     public readonly diskGb!: pulumi.Output<number | undefined>;
-    public readonly disks!: pulumi.Output<outputs.Qemu_vmDisk[] | undefined>;
+    public readonly disks!: pulumi.Output<outputs.QemuVMDisk[] | undefined>;
     public readonly forceCreate!: pulumi.Output<boolean | undefined>;
     public readonly forceRecreateOnChangeOf!: pulumi.Output<string | undefined>;
     public readonly fullClone!: pulumi.Output<boolean | undefined>;
@@ -75,7 +75,7 @@ export class Qemu_vm extends pulumi.CustomResource {
     public readonly memory!: pulumi.Output<number | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly nameserver!: pulumi.Output<string>;
-    public readonly networks!: pulumi.Output<outputs.Qemu_vmNetwork[] | undefined>;
+    public readonly networks!: pulumi.Output<outputs.QemuVMNetwork[] | undefined>;
     /**
      * @deprecated Use `network` instead
      */
@@ -89,7 +89,7 @@ export class Qemu_vm extends pulumi.CustomResource {
     public readonly qemuOs!: pulumi.Output<string | undefined>;
     public readonly scsihw!: pulumi.Output<string>;
     public readonly searchdomain!: pulumi.Output<string>;
-    public readonly serials!: pulumi.Output<outputs.Qemu_vmSerial[] | undefined>;
+    public readonly serials!: pulumi.Output<outputs.QemuVMSerial[] | undefined>;
     public readonly sockets!: pulumi.Output<number | undefined>;
     public readonly sshForwardIp!: pulumi.Output<string | undefined>;
     public /*out*/ readonly sshHost!: pulumi.Output<string>;
@@ -107,7 +107,7 @@ export class Qemu_vm extends pulumi.CustomResource {
     public readonly storageType!: pulumi.Output<string | undefined>;
     public readonly targetNode!: pulumi.Output<string>;
     public readonly vcpus!: pulumi.Output<number | undefined>;
-    public readonly vgas!: pulumi.Output<outputs.Qemu_vmVga[] | undefined>;
+    public readonly vgas!: pulumi.Output<outputs.QemuVMVga[] | undefined>;
     /**
      * @deprecated Use `network.tag` instead
      */
@@ -115,17 +115,17 @@ export class Qemu_vm extends pulumi.CustomResource {
     public readonly vmid!: pulumi.Output<number>;
 
     /**
-     * Create a Qemu_vm resource with the given unique name, arguments, and options.
+     * Create a QemuVM resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: Qemu_vmArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: Qemu_vmArgs | Qemu_vmState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: QemuVMArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: QemuVMArgs | QemuVMState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
-            const state = argsOrState as Qemu_vmState | undefined;
+            const state = argsOrState as QemuVMState | undefined;
             inputs["agent"] = state ? state.agent : undefined;
             inputs["balloon"] = state ? state.balloon : undefined;
             inputs["bios"] = state ? state.bios : undefined;
@@ -185,7 +185,7 @@ export class Qemu_vm extends pulumi.CustomResource {
             inputs["vlan"] = state ? state.vlan : undefined;
             inputs["vmid"] = state ? state.vmid : undefined;
         } else {
-            const args = argsOrState as Qemu_vmArgs | undefined;
+            const args = argsOrState as QemuVMArgs | undefined;
             if (!args || args.targetNode === undefined) {
                 throw new Error("Missing required property 'targetNode'");
             }
@@ -255,14 +255,14 @@ export class Qemu_vm extends pulumi.CustomResource {
         if (!opts.version) {
             opts.version = utilities.getVersion();
         }
-        super(Qemu_vm.__pulumiType, name, inputs, opts);
+        super(QemuVM.__pulumiType, name, inputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering qemu_vm resources.
+ * Input properties used for looking up and filtering QemuVM resources.
  */
-export interface Qemu_vmState {
+export interface QemuVMState {
     readonly agent?: pulumi.Input<number>;
     readonly balloon?: pulumi.Input<number>;
     readonly bios?: pulumi.Input<string>;
@@ -286,7 +286,7 @@ export interface Qemu_vmState {
      * @deprecated Use `disk.size` instead
      */
     readonly diskGb?: pulumi.Input<number>;
-    readonly disks?: pulumi.Input<pulumi.Input<inputs.Qemu_vmDisk>[]>;
+    readonly disks?: pulumi.Input<pulumi.Input<inputs.QemuVMDisk>[]>;
     readonly forceCreate?: pulumi.Input<boolean>;
     readonly forceRecreateOnChangeOf?: pulumi.Input<string>;
     readonly fullClone?: pulumi.Input<boolean>;
@@ -304,7 +304,7 @@ export interface Qemu_vmState {
     readonly memory?: pulumi.Input<number>;
     readonly name?: pulumi.Input<string>;
     readonly nameserver?: pulumi.Input<string>;
-    readonly networks?: pulumi.Input<pulumi.Input<inputs.Qemu_vmNetwork>[]>;
+    readonly networks?: pulumi.Input<pulumi.Input<inputs.QemuVMNetwork>[]>;
     /**
      * @deprecated Use `network` instead
      */
@@ -318,7 +318,7 @@ export interface Qemu_vmState {
     readonly qemuOs?: pulumi.Input<string>;
     readonly scsihw?: pulumi.Input<string>;
     readonly searchdomain?: pulumi.Input<string>;
-    readonly serials?: pulumi.Input<pulumi.Input<inputs.Qemu_vmSerial>[]>;
+    readonly serials?: pulumi.Input<pulumi.Input<inputs.QemuVMSerial>[]>;
     readonly sockets?: pulumi.Input<number>;
     readonly sshForwardIp?: pulumi.Input<string>;
     readonly sshHost?: pulumi.Input<string>;
@@ -336,7 +336,7 @@ export interface Qemu_vmState {
     readonly storageType?: pulumi.Input<string>;
     readonly targetNode?: pulumi.Input<string>;
     readonly vcpus?: pulumi.Input<number>;
-    readonly vgas?: pulumi.Input<pulumi.Input<inputs.Qemu_vmVga>[]>;
+    readonly vgas?: pulumi.Input<pulumi.Input<inputs.QemuVMVga>[]>;
     /**
      * @deprecated Use `network.tag` instead
      */
@@ -345,9 +345,9 @@ export interface Qemu_vmState {
 }
 
 /**
- * The set of arguments for constructing a Qemu_vm resource.
+ * The set of arguments for constructing a QemuVM resource.
  */
-export interface Qemu_vmArgs {
+export interface QemuVMArgs {
     readonly agent?: pulumi.Input<number>;
     readonly balloon?: pulumi.Input<number>;
     readonly bios?: pulumi.Input<string>;
@@ -371,7 +371,7 @@ export interface Qemu_vmArgs {
      * @deprecated Use `disk.size` instead
      */
     readonly diskGb?: pulumi.Input<number>;
-    readonly disks?: pulumi.Input<pulumi.Input<inputs.Qemu_vmDisk>[]>;
+    readonly disks?: pulumi.Input<pulumi.Input<inputs.QemuVMDisk>[]>;
     readonly forceCreate?: pulumi.Input<boolean>;
     readonly forceRecreateOnChangeOf?: pulumi.Input<string>;
     readonly fullClone?: pulumi.Input<boolean>;
@@ -389,7 +389,7 @@ export interface Qemu_vmArgs {
     readonly memory?: pulumi.Input<number>;
     readonly name?: pulumi.Input<string>;
     readonly nameserver?: pulumi.Input<string>;
-    readonly networks?: pulumi.Input<pulumi.Input<inputs.Qemu_vmNetwork>[]>;
+    readonly networks?: pulumi.Input<pulumi.Input<inputs.QemuVMNetwork>[]>;
     /**
      * @deprecated Use `network` instead
      */
@@ -403,7 +403,7 @@ export interface Qemu_vmArgs {
     readonly qemuOs?: pulumi.Input<string>;
     readonly scsihw?: pulumi.Input<string>;
     readonly searchdomain?: pulumi.Input<string>;
-    readonly serials?: pulumi.Input<pulumi.Input<inputs.Qemu_vmSerial>[]>;
+    readonly serials?: pulumi.Input<pulumi.Input<inputs.QemuVMSerial>[]>;
     readonly sockets?: pulumi.Input<number>;
     readonly sshForwardIp?: pulumi.Input<string>;
     readonly sshPrivateKey?: pulumi.Input<string>;
@@ -419,7 +419,7 @@ export interface Qemu_vmArgs {
     readonly storageType?: pulumi.Input<string>;
     readonly targetNode: pulumi.Input<string>;
     readonly vcpus?: pulumi.Input<number>;
-    readonly vgas?: pulumi.Input<pulumi.Input<inputs.Qemu_vmVga>[]>;
+    readonly vgas?: pulumi.Input<pulumi.Input<inputs.QemuVMVga>[]>;
     /**
      * @deprecated Use `network.tag` instead
      */

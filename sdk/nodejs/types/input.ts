@@ -5,14 +5,14 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
-export interface Lxc_containerFeature {
+export interface LXCContainerFeature {
     fuse?: pulumi.Input<boolean>;
     keyctl?: pulumi.Input<boolean>;
     mount?: pulumi.Input<string>;
     nesting?: pulumi.Input<boolean>;
 }
 
-export interface Lxc_containerMountpoint {
+export interface LXCContainerMountpoint {
     acl?: pulumi.Input<boolean>;
     backup?: pulumi.Input<boolean>;
     mp: pulumi.Input<string>;
@@ -23,7 +23,7 @@ export interface Lxc_containerMountpoint {
     volume: pulumi.Input<string>;
 }
 
-export interface Lxc_containerNetwork {
+export interface LXCContainerNetwork {
     bridge?: pulumi.Input<string>;
     firewall?: pulumi.Input<boolean>;
     gw?: pulumi.Input<string>;
@@ -39,7 +39,7 @@ export interface Lxc_containerNetwork {
     type?: pulumi.Input<string>;
 }
 
-export interface Qemu_vmDisk {
+export interface QemuVMDisk {
     backup?: pulumi.Input<boolean>;
     cache?: pulumi.Input<string>;
     discard?: pulumi.Input<string>;
@@ -60,7 +60,7 @@ export interface Qemu_vmDisk {
     type: pulumi.Input<string>;
 }
 
-export interface Qemu_vmNetwork {
+export interface QemuVMNetwork {
     bridge?: pulumi.Input<string>;
     firewall?: pulumi.Input<boolean>;
     linkDown?: pulumi.Input<boolean>;
@@ -71,12 +71,12 @@ export interface Qemu_vmNetwork {
     tag?: pulumi.Input<number>;
 }
 
-export interface Qemu_vmSerial {
+export interface QemuVMSerial {
     id: pulumi.Input<number>;
     type: pulumi.Input<string>;
 }
 
-export interface Qemu_vmVga {
+export interface QemuVMVga {
     memory?: pulumi.Input<number>;
     type?: pulumi.Input<string>;
 }

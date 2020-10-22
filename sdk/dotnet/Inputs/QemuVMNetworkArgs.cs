@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Proxmoxve.Inputs
 {
 
-    public sealed class Qemu_vmNetworkGetArgs : Pulumi.ResourceArgs
+    public sealed class QemuVMNetworkArgs : Pulumi.ResourceArgs
     {
         [Input("bridge")]
         public Input<string>? Bridge { get; set; }
@@ -36,7 +36,7 @@ namespace Pulumi.Proxmoxve.Inputs
         [Input("tag")]
         public Input<int>? Tag { get; set; }
 
-        public Qemu_vmNetworkGetArgs()
+        public QemuVMNetworkArgs()
         {
         }
     }

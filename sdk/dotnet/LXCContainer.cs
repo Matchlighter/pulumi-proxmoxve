@@ -9,7 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Proxmoxve
 {
-    public partial class Lxc_container : Pulumi.CustomResource
+    public partial class LXCContainer : Pulumi.CustomResource
     {
         [Output("arch")]
         public Output<string?> Arch { get; private set; } = null!;
@@ -36,7 +36,7 @@ namespace Pulumi.Proxmoxve
         public Output<string?> Description { get; private set; } = null!;
 
         [Output("features")]
-        public Output<ImmutableArray<Outputs.Lxc_containerFeature>> Features { get; private set; } = null!;
+        public Output<ImmutableArray<Outputs.LXCContainerFeature>> Features { get; private set; } = null!;
 
         [Output("force")]
         public Output<bool?> Force { get; private set; } = null!;
@@ -57,13 +57,13 @@ namespace Pulumi.Proxmoxve
         public Output<int?> Memory { get; private set; } = null!;
 
         [Output("mountpoints")]
-        public Output<ImmutableArray<Outputs.Lxc_containerMountpoint>> Mountpoints { get; private set; } = null!;
+        public Output<ImmutableArray<Outputs.LXCContainerMountpoint>> Mountpoints { get; private set; } = null!;
 
         [Output("nameserver")]
         public Output<string?> Nameserver { get; private set; } = null!;
 
         [Output("networks")]
-        public Output<ImmutableArray<Outputs.Lxc_containerNetwork>> Networks { get; private set; } = null!;
+        public Output<ImmutableArray<Outputs.LXCContainerNetwork>> Networks { get; private set; } = null!;
 
         [Output("onboot")]
         public Output<bool?> Onboot { get; private set; } = null!;
@@ -130,19 +130,19 @@ namespace Pulumi.Proxmoxve
 
 
         /// <summary>
-        /// Create a Lxc_container resource with the given unique name, arguments, and options.
+        /// Create a LXCContainer resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public Lxc_container(string name, Lxc_containerArgs args, CustomResourceOptions? options = null)
-            : base("proxmoxve:index/lxc_container:lxc_container", name, args ?? new Lxc_containerArgs(), MakeResourceOptions(options, ""))
+        public LXCContainer(string name, LXCContainerArgs args, CustomResourceOptions? options = null)
+            : base("proxmoxve:index/lXCContainer:LXCContainer", name, args ?? new LXCContainerArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private Lxc_container(string name, Input<string> id, Lxc_containerState? state = null, CustomResourceOptions? options = null)
-            : base("proxmoxve:index/lxc_container:lxc_container", name, state, MakeResourceOptions(options, id))
+        private LXCContainer(string name, Input<string> id, LXCContainerState? state = null, CustomResourceOptions? options = null)
+            : base("proxmoxve:index/lXCContainer:LXCContainer", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -158,7 +158,7 @@ namespace Pulumi.Proxmoxve
             return merged;
         }
         /// <summary>
-        /// Get an existing Lxc_container resource's state with the given name, ID, and optional extra
+        /// Get an existing LXCContainer resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -166,13 +166,13 @@ namespace Pulumi.Proxmoxve
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static Lxc_container Get(string name, Input<string> id, Lxc_containerState? state = null, CustomResourceOptions? options = null)
+        public static LXCContainer Get(string name, Input<string> id, LXCContainerState? state = null, CustomResourceOptions? options = null)
         {
-            return new Lxc_container(name, id, state, options);
+            return new LXCContainer(name, id, state, options);
         }
     }
 
-    public sealed class Lxc_containerArgs : Pulumi.ResourceArgs
+    public sealed class LXCContainerArgs : Pulumi.ResourceArgs
     {
         [Input("arch")]
         public Input<string>? Arch { get; set; }
@@ -199,10 +199,10 @@ namespace Pulumi.Proxmoxve
         public Input<string>? Description { get; set; }
 
         [Input("features")]
-        private InputList<Inputs.Lxc_containerFeatureArgs>? _features;
-        public InputList<Inputs.Lxc_containerFeatureArgs> Features
+        private InputList<Inputs.LXCContainerFeatureArgs>? _features;
+        public InputList<Inputs.LXCContainerFeatureArgs> Features
         {
-            get => _features ?? (_features = new InputList<Inputs.Lxc_containerFeatureArgs>());
+            get => _features ?? (_features = new InputList<Inputs.LXCContainerFeatureArgs>());
             set => _features = value;
         }
 
@@ -225,10 +225,10 @@ namespace Pulumi.Proxmoxve
         public Input<int>? Memory { get; set; }
 
         [Input("mountpoints")]
-        private InputList<Inputs.Lxc_containerMountpointArgs>? _mountpoints;
-        public InputList<Inputs.Lxc_containerMountpointArgs> Mountpoints
+        private InputList<Inputs.LXCContainerMountpointArgs>? _mountpoints;
+        public InputList<Inputs.LXCContainerMountpointArgs> Mountpoints
         {
-            get => _mountpoints ?? (_mountpoints = new InputList<Inputs.Lxc_containerMountpointArgs>());
+            get => _mountpoints ?? (_mountpoints = new InputList<Inputs.LXCContainerMountpointArgs>());
             set => _mountpoints = value;
         }
 
@@ -236,10 +236,10 @@ namespace Pulumi.Proxmoxve
         public Input<string>? Nameserver { get; set; }
 
         [Input("networks")]
-        private InputList<Inputs.Lxc_containerNetworkArgs>? _networks;
-        public InputList<Inputs.Lxc_containerNetworkArgs> Networks
+        private InputList<Inputs.LXCContainerNetworkArgs>? _networks;
+        public InputList<Inputs.LXCContainerNetworkArgs> Networks
         {
-            get => _networks ?? (_networks = new InputList<Inputs.Lxc_containerNetworkArgs>());
+            get => _networks ?? (_networks = new InputList<Inputs.LXCContainerNetworkArgs>());
             set => _networks = value;
         }
 
@@ -311,12 +311,12 @@ namespace Pulumi.Proxmoxve
         [Input("vmid")]
         public Input<int>? Vmid { get; set; }
 
-        public Lxc_containerArgs()
+        public LXCContainerArgs()
         {
         }
     }
 
-    public sealed class Lxc_containerState : Pulumi.ResourceArgs
+    public sealed class LXCContainerState : Pulumi.ResourceArgs
     {
         [Input("arch")]
         public Input<string>? Arch { get; set; }
@@ -343,10 +343,10 @@ namespace Pulumi.Proxmoxve
         public Input<string>? Description { get; set; }
 
         [Input("features")]
-        private InputList<Inputs.Lxc_containerFeatureGetArgs>? _features;
-        public InputList<Inputs.Lxc_containerFeatureGetArgs> Features
+        private InputList<Inputs.LXCContainerFeatureGetArgs>? _features;
+        public InputList<Inputs.LXCContainerFeatureGetArgs> Features
         {
-            get => _features ?? (_features = new InputList<Inputs.Lxc_containerFeatureGetArgs>());
+            get => _features ?? (_features = new InputList<Inputs.LXCContainerFeatureGetArgs>());
             set => _features = value;
         }
 
@@ -369,10 +369,10 @@ namespace Pulumi.Proxmoxve
         public Input<int>? Memory { get; set; }
 
         [Input("mountpoints")]
-        private InputList<Inputs.Lxc_containerMountpointGetArgs>? _mountpoints;
-        public InputList<Inputs.Lxc_containerMountpointGetArgs> Mountpoints
+        private InputList<Inputs.LXCContainerMountpointGetArgs>? _mountpoints;
+        public InputList<Inputs.LXCContainerMountpointGetArgs> Mountpoints
         {
-            get => _mountpoints ?? (_mountpoints = new InputList<Inputs.Lxc_containerMountpointGetArgs>());
+            get => _mountpoints ?? (_mountpoints = new InputList<Inputs.LXCContainerMountpointGetArgs>());
             set => _mountpoints = value;
         }
 
@@ -380,10 +380,10 @@ namespace Pulumi.Proxmoxve
         public Input<string>? Nameserver { get; set; }
 
         [Input("networks")]
-        private InputList<Inputs.Lxc_containerNetworkGetArgs>? _networks;
-        public InputList<Inputs.Lxc_containerNetworkGetArgs> Networks
+        private InputList<Inputs.LXCContainerNetworkGetArgs>? _networks;
+        public InputList<Inputs.LXCContainerNetworkGetArgs> Networks
         {
-            get => _networks ?? (_networks = new InputList<Inputs.Lxc_containerNetworkGetArgs>());
+            get => _networks ?? (_networks = new InputList<Inputs.LXCContainerNetworkGetArgs>());
             set => _networks = value;
         }
 
@@ -455,7 +455,7 @@ namespace Pulumi.Proxmoxve
         [Input("vmid")]
         public Input<int>? Vmid { get; set; }
 
-        public Lxc_containerState()
+        public LXCContainerState()
         {
         }
     }

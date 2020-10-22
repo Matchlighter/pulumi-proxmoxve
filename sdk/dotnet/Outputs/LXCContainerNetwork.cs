@@ -11,7 +11,7 @@ namespace Pulumi.Proxmoxve.Outputs
 {
 
     [OutputType]
-    public sealed class Lxc_containerNetwork
+    public sealed class LXCContainerNetwork
     {
         public readonly string? Bridge;
         public readonly bool? Firewall;
@@ -28,7 +28,7 @@ namespace Pulumi.Proxmoxve.Outputs
         public readonly string? Type;
 
         [OutputConstructor]
-        private Lxc_containerNetwork(
+        private LXCContainerNetwork(
             string? bridge,
 
             bool? firewall,
