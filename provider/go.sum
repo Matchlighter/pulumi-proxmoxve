@@ -554,6 +554,8 @@ github.com/masterzen/winrm v0.0.0-20190223112901-5e5c9a7fe54b/go.mod h1:wr1VqkwW
 github.com/masterzen/winrm v0.0.0-20200615185753-c42b5136ff88/go.mod h1:a2HXwefeat3evJHxFXSayvRHpYEPJYtErl4uIzfaUqY=
 github.com/matchlighter/terraform-provider-proxmox v0.0.0-20201021192306-5a2ff738308d h1:OOrUg91ePUqxgMkbdj1CmIWb5WBsl8zYAY9du027FnU=
 github.com/matchlighter/terraform-provider-proxmox v0.0.0-20201021192306-5a2ff738308d/go.mod h1:wryAUZ0cVL+HITYmku7e2acI7JZ3ZlCDjZfp8nIibCM=
+github.com/matchlighter/terraform-provider-proxmox v0.0.0-20201022044959-84553b1dce1f h1:yw4GR0IQe+Ej/cXtaq8XIllLaQL1ucQ/z1L8M1zJA/s=
+github.com/matchlighter/terraform-provider-proxmox v0.0.0-20201022044959-84553b1dce1f/go.mod h1:wryAUZ0cVL+HITYmku7e2acI7JZ3ZlCDjZfp8nIibCM=
 github.com/mattn/go-colorable v0.0.9/go.mod h1:9vuHe8Xs5qXnSaW/c/ABM9alt+Vo+STaOChaDxuIBZU=
 github.com/mattn/go-colorable v0.1.1/go.mod h1:FuOcm+DKB9mbwrcAfNl7/TZVBZ6rcnceauSikq3lYCQ=
 github.com/mattn/go-colorable v0.1.2/go.mod h1:U0ppj6V5qS13XJ6of8GYAs25YV2eR4EVcfRqFIhoBtE=
