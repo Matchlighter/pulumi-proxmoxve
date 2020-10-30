@@ -29,8 +29,8 @@ namespace Pulumi.Proxmoxve.Outputs
         public readonly string Size;
         public readonly bool? Ssd;
         public readonly string Storage;
-        public readonly string? StorageType;
         public readonly string Type;
+        public readonly string? Volume;
 
         [OutputConstructor]
         private QemuVMDisk(
@@ -66,9 +66,9 @@ namespace Pulumi.Proxmoxve.Outputs
 
             string storage,
 
-            string? storageType,
+            string type,
 
-            string type)
+            string? volume)
         {
             Backup = backup;
             Cache = cache;
@@ -86,8 +86,8 @@ namespace Pulumi.Proxmoxve.Outputs
             Size = size;
             Ssd = ssd;
             Storage = storage;
-            StorageType = storageType;
             Type = type;
+            Volume = volume;
         }
     }
 }

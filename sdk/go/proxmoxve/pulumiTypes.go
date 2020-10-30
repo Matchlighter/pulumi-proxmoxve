@@ -10,127 +10,189 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-type LXCContainerFeature struct {
+type LXCContainerFeatures struct {
 	Fuse    *bool   `pulumi:"fuse"`
 	Keyctl  *bool   `pulumi:"keyctl"`
 	Mount   *string `pulumi:"mount"`
 	Nesting *bool   `pulumi:"nesting"`
 }
 
-// LXCContainerFeatureInput is an input type that accepts LXCContainerFeatureArgs and LXCContainerFeatureOutput values.
-// You can construct a concrete instance of `LXCContainerFeatureInput` via:
+// LXCContainerFeaturesInput is an input type that accepts LXCContainerFeaturesArgs and LXCContainerFeaturesOutput values.
+// You can construct a concrete instance of `LXCContainerFeaturesInput` via:
 //
-//          LXCContainerFeatureArgs{...}
-type LXCContainerFeatureInput interface {
+//          LXCContainerFeaturesArgs{...}
+type LXCContainerFeaturesInput interface {
 	pulumi.Input
 
-	ToLXCContainerFeatureOutput() LXCContainerFeatureOutput
-	ToLXCContainerFeatureOutputWithContext(context.Context) LXCContainerFeatureOutput
+	ToLXCContainerFeaturesOutput() LXCContainerFeaturesOutput
+	ToLXCContainerFeaturesOutputWithContext(context.Context) LXCContainerFeaturesOutput
 }
 
-type LXCContainerFeatureArgs struct {
+type LXCContainerFeaturesArgs struct {
 	Fuse    pulumi.BoolPtrInput   `pulumi:"fuse"`
 	Keyctl  pulumi.BoolPtrInput   `pulumi:"keyctl"`
 	Mount   pulumi.StringPtrInput `pulumi:"mount"`
 	Nesting pulumi.BoolPtrInput   `pulumi:"nesting"`
 }
 
-func (LXCContainerFeatureArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LXCContainerFeature)(nil)).Elem()
+func (LXCContainerFeaturesArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LXCContainerFeatures)(nil)).Elem()
 }
 
-func (i LXCContainerFeatureArgs) ToLXCContainerFeatureOutput() LXCContainerFeatureOutput {
-	return i.ToLXCContainerFeatureOutputWithContext(context.Background())
+func (i LXCContainerFeaturesArgs) ToLXCContainerFeaturesOutput() LXCContainerFeaturesOutput {
+	return i.ToLXCContainerFeaturesOutputWithContext(context.Background())
 }
 
-func (i LXCContainerFeatureArgs) ToLXCContainerFeatureOutputWithContext(ctx context.Context) LXCContainerFeatureOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LXCContainerFeatureOutput)
+func (i LXCContainerFeaturesArgs) ToLXCContainerFeaturesOutputWithContext(ctx context.Context) LXCContainerFeaturesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LXCContainerFeaturesOutput)
 }
 
-// LXCContainerFeatureArrayInput is an input type that accepts LXCContainerFeatureArray and LXCContainerFeatureArrayOutput values.
-// You can construct a concrete instance of `LXCContainerFeatureArrayInput` via:
+func (i LXCContainerFeaturesArgs) ToLXCContainerFeaturesPtrOutput() LXCContainerFeaturesPtrOutput {
+	return i.ToLXCContainerFeaturesPtrOutputWithContext(context.Background())
+}
+
+func (i LXCContainerFeaturesArgs) ToLXCContainerFeaturesPtrOutputWithContext(ctx context.Context) LXCContainerFeaturesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LXCContainerFeaturesOutput).ToLXCContainerFeaturesPtrOutputWithContext(ctx)
+}
+
+// LXCContainerFeaturesPtrInput is an input type that accepts LXCContainerFeaturesArgs, LXCContainerFeaturesPtr and LXCContainerFeaturesPtrOutput values.
+// You can construct a concrete instance of `LXCContainerFeaturesPtrInput` via:
 //
-//          LXCContainerFeatureArray{ LXCContainerFeatureArgs{...} }
-type LXCContainerFeatureArrayInput interface {
+//          LXCContainerFeaturesArgs{...}
+//
+//  or:
+//
+//          nil
+type LXCContainerFeaturesPtrInput interface {
 	pulumi.Input
 
-	ToLXCContainerFeatureArrayOutput() LXCContainerFeatureArrayOutput
-	ToLXCContainerFeatureArrayOutputWithContext(context.Context) LXCContainerFeatureArrayOutput
+	ToLXCContainerFeaturesPtrOutput() LXCContainerFeaturesPtrOutput
+	ToLXCContainerFeaturesPtrOutputWithContext(context.Context) LXCContainerFeaturesPtrOutput
 }
 
-type LXCContainerFeatureArray []LXCContainerFeatureInput
+type lxccontainerFeaturesPtrType LXCContainerFeaturesArgs
 
-func (LXCContainerFeatureArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]LXCContainerFeature)(nil)).Elem()
+func LXCContainerFeaturesPtr(v *LXCContainerFeaturesArgs) LXCContainerFeaturesPtrInput {
+	return (*lxccontainerFeaturesPtrType)(v)
 }
 
-func (i LXCContainerFeatureArray) ToLXCContainerFeatureArrayOutput() LXCContainerFeatureArrayOutput {
-	return i.ToLXCContainerFeatureArrayOutputWithContext(context.Background())
+func (*lxccontainerFeaturesPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LXCContainerFeatures)(nil)).Elem()
 }
 
-func (i LXCContainerFeatureArray) ToLXCContainerFeatureArrayOutputWithContext(ctx context.Context) LXCContainerFeatureArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LXCContainerFeatureArrayOutput)
+func (i *lxccontainerFeaturesPtrType) ToLXCContainerFeaturesPtrOutput() LXCContainerFeaturesPtrOutput {
+	return i.ToLXCContainerFeaturesPtrOutputWithContext(context.Background())
 }
 
-type LXCContainerFeatureOutput struct{ *pulumi.OutputState }
-
-func (LXCContainerFeatureOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LXCContainerFeature)(nil)).Elem()
+func (i *lxccontainerFeaturesPtrType) ToLXCContainerFeaturesPtrOutputWithContext(ctx context.Context) LXCContainerFeaturesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LXCContainerFeaturesPtrOutput)
 }
 
-func (o LXCContainerFeatureOutput) ToLXCContainerFeatureOutput() LXCContainerFeatureOutput {
+type LXCContainerFeaturesOutput struct{ *pulumi.OutputState }
+
+func (LXCContainerFeaturesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LXCContainerFeatures)(nil)).Elem()
+}
+
+func (o LXCContainerFeaturesOutput) ToLXCContainerFeaturesOutput() LXCContainerFeaturesOutput {
 	return o
 }
 
-func (o LXCContainerFeatureOutput) ToLXCContainerFeatureOutputWithContext(ctx context.Context) LXCContainerFeatureOutput {
+func (o LXCContainerFeaturesOutput) ToLXCContainerFeaturesOutputWithContext(ctx context.Context) LXCContainerFeaturesOutput {
 	return o
 }
 
-func (o LXCContainerFeatureOutput) Fuse() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v LXCContainerFeature) *bool { return v.Fuse }).(pulumi.BoolPtrOutput)
+func (o LXCContainerFeaturesOutput) ToLXCContainerFeaturesPtrOutput() LXCContainerFeaturesPtrOutput {
+	return o.ToLXCContainerFeaturesPtrOutputWithContext(context.Background())
 }
 
-func (o LXCContainerFeatureOutput) Keyctl() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v LXCContainerFeature) *bool { return v.Keyctl }).(pulumi.BoolPtrOutput)
+func (o LXCContainerFeaturesOutput) ToLXCContainerFeaturesPtrOutputWithContext(ctx context.Context) LXCContainerFeaturesPtrOutput {
+	return o.ApplyT(func(v LXCContainerFeatures) *LXCContainerFeatures {
+		return &v
+	}).(LXCContainerFeaturesPtrOutput)
+}
+func (o LXCContainerFeaturesOutput) Fuse() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LXCContainerFeatures) *bool { return v.Fuse }).(pulumi.BoolPtrOutput)
 }
 
-func (o LXCContainerFeatureOutput) Mount() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LXCContainerFeature) *string { return v.Mount }).(pulumi.StringPtrOutput)
+func (o LXCContainerFeaturesOutput) Keyctl() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LXCContainerFeatures) *bool { return v.Keyctl }).(pulumi.BoolPtrOutput)
 }
 
-func (o LXCContainerFeatureOutput) Nesting() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v LXCContainerFeature) *bool { return v.Nesting }).(pulumi.BoolPtrOutput)
+func (o LXCContainerFeaturesOutput) Mount() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LXCContainerFeatures) *string { return v.Mount }).(pulumi.StringPtrOutput)
 }
 
-type LXCContainerFeatureArrayOutput struct{ *pulumi.OutputState }
-
-func (LXCContainerFeatureArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]LXCContainerFeature)(nil)).Elem()
+func (o LXCContainerFeaturesOutput) Nesting() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LXCContainerFeatures) *bool { return v.Nesting }).(pulumi.BoolPtrOutput)
 }
 
-func (o LXCContainerFeatureArrayOutput) ToLXCContainerFeatureArrayOutput() LXCContainerFeatureArrayOutput {
+type LXCContainerFeaturesPtrOutput struct{ *pulumi.OutputState }
+
+func (LXCContainerFeaturesPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LXCContainerFeatures)(nil)).Elem()
+}
+
+func (o LXCContainerFeaturesPtrOutput) ToLXCContainerFeaturesPtrOutput() LXCContainerFeaturesPtrOutput {
 	return o
 }
 
-func (o LXCContainerFeatureArrayOutput) ToLXCContainerFeatureArrayOutputWithContext(ctx context.Context) LXCContainerFeatureArrayOutput {
+func (o LXCContainerFeaturesPtrOutput) ToLXCContainerFeaturesPtrOutputWithContext(ctx context.Context) LXCContainerFeaturesPtrOutput {
 	return o
 }
 
-func (o LXCContainerFeatureArrayOutput) Index(i pulumi.IntInput) LXCContainerFeatureOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LXCContainerFeature {
-		return vs[0].([]LXCContainerFeature)[vs[1].(int)]
-	}).(LXCContainerFeatureOutput)
+func (o LXCContainerFeaturesPtrOutput) Elem() LXCContainerFeaturesOutput {
+	return o.ApplyT(func(v *LXCContainerFeatures) LXCContainerFeatures { return *v }).(LXCContainerFeaturesOutput)
+}
+
+func (o LXCContainerFeaturesPtrOutput) Fuse() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *LXCContainerFeatures) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Fuse
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o LXCContainerFeaturesPtrOutput) Keyctl() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *LXCContainerFeatures) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Keyctl
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o LXCContainerFeaturesPtrOutput) Mount() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LXCContainerFeatures) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Mount
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o LXCContainerFeaturesPtrOutput) Nesting() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *LXCContainerFeatures) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Nesting
+	}).(pulumi.BoolPtrOutput)
 }
 
 type LXCContainerMountpoint struct {
-	Acl       *bool  `pulumi:"acl"`
-	Backup    *bool  `pulumi:"backup"`
-	Mp        string `pulumi:"mp"`
-	Quota     *bool  `pulumi:"quota"`
-	Replicate *bool  `pulumi:"replicate"`
-	Shared    *bool  `pulumi:"shared"`
-	Size      *int   `pulumi:"size"`
-	Volume    string `pulumi:"volume"`
+	Acl       *bool   `pulumi:"acl"`
+	Backup    *bool   `pulumi:"backup"`
+	Key       string  `pulumi:"key"`
+	Mp        string  `pulumi:"mp"`
+	Quota     *bool   `pulumi:"quota"`
+	Replicate *bool   `pulumi:"replicate"`
+	Shared    *bool   `pulumi:"shared"`
+	Size      string  `pulumi:"size"`
+	Slot      int     `pulumi:"slot"`
+	Storage   string  `pulumi:"storage"`
+	Volume    *string `pulumi:"volume"`
 }
 
 // LXCContainerMountpointInput is an input type that accepts LXCContainerMountpointArgs and LXCContainerMountpointOutput values.
@@ -145,14 +207,17 @@ type LXCContainerMountpointInput interface {
 }
 
 type LXCContainerMountpointArgs struct {
-	Acl       pulumi.BoolPtrInput `pulumi:"acl"`
-	Backup    pulumi.BoolPtrInput `pulumi:"backup"`
-	Mp        pulumi.StringInput  `pulumi:"mp"`
-	Quota     pulumi.BoolPtrInput `pulumi:"quota"`
-	Replicate pulumi.BoolPtrInput `pulumi:"replicate"`
-	Shared    pulumi.BoolPtrInput `pulumi:"shared"`
-	Size      pulumi.IntPtrInput  `pulumi:"size"`
-	Volume    pulumi.StringInput  `pulumi:"volume"`
+	Acl       pulumi.BoolPtrInput   `pulumi:"acl"`
+	Backup    pulumi.BoolPtrInput   `pulumi:"backup"`
+	Key       pulumi.StringInput    `pulumi:"key"`
+	Mp        pulumi.StringInput    `pulumi:"mp"`
+	Quota     pulumi.BoolPtrInput   `pulumi:"quota"`
+	Replicate pulumi.BoolPtrInput   `pulumi:"replicate"`
+	Shared    pulumi.BoolPtrInput   `pulumi:"shared"`
+	Size      pulumi.StringInput    `pulumi:"size"`
+	Slot      pulumi.IntInput       `pulumi:"slot"`
+	Storage   pulumi.StringInput    `pulumi:"storage"`
+	Volume    pulumi.StringPtrInput `pulumi:"volume"`
 }
 
 func (LXCContainerMountpointArgs) ElementType() reflect.Type {
@@ -214,6 +279,10 @@ func (o LXCContainerMountpointOutput) Backup() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LXCContainerMountpoint) *bool { return v.Backup }).(pulumi.BoolPtrOutput)
 }
 
+func (o LXCContainerMountpointOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v LXCContainerMountpoint) string { return v.Key }).(pulumi.StringOutput)
+}
+
 func (o LXCContainerMountpointOutput) Mp() pulumi.StringOutput {
 	return o.ApplyT(func(v LXCContainerMountpoint) string { return v.Mp }).(pulumi.StringOutput)
 }
@@ -230,12 +299,20 @@ func (o LXCContainerMountpointOutput) Shared() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LXCContainerMountpoint) *bool { return v.Shared }).(pulumi.BoolPtrOutput)
 }
 
-func (o LXCContainerMountpointOutput) Size() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v LXCContainerMountpoint) *int { return v.Size }).(pulumi.IntPtrOutput)
+func (o LXCContainerMountpointOutput) Size() pulumi.StringOutput {
+	return o.ApplyT(func(v LXCContainerMountpoint) string { return v.Size }).(pulumi.StringOutput)
 }
 
-func (o LXCContainerMountpointOutput) Volume() pulumi.StringOutput {
-	return o.ApplyT(func(v LXCContainerMountpoint) string { return v.Volume }).(pulumi.StringOutput)
+func (o LXCContainerMountpointOutput) Slot() pulumi.IntOutput {
+	return o.ApplyT(func(v LXCContainerMountpoint) int { return v.Slot }).(pulumi.IntOutput)
+}
+
+func (o LXCContainerMountpointOutput) Storage() pulumi.StringOutput {
+	return o.ApplyT(func(v LXCContainerMountpoint) string { return v.Storage }).(pulumi.StringOutput)
+}
+
+func (o LXCContainerMountpointOutput) Volume() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LXCContainerMountpoint) *string { return v.Volume }).(pulumi.StringPtrOutput)
 }
 
 type LXCContainerMountpointArrayOutput struct{ *pulumi.OutputState }
@@ -424,25 +501,352 @@ func (o LXCContainerNetworkArrayOutput) Index(i pulumi.IntInput) LXCContainerNet
 	}).(LXCContainerNetworkOutput)
 }
 
+type LXCContainerRootfs struct {
+	Size    string  `pulumi:"size"`
+	Storage string  `pulumi:"storage"`
+	Volume  *string `pulumi:"volume"`
+}
+
+// LXCContainerRootfsInput is an input type that accepts LXCContainerRootfsArgs and LXCContainerRootfsOutput values.
+// You can construct a concrete instance of `LXCContainerRootfsInput` via:
+//
+//          LXCContainerRootfsArgs{...}
+type LXCContainerRootfsInput interface {
+	pulumi.Input
+
+	ToLXCContainerRootfsOutput() LXCContainerRootfsOutput
+	ToLXCContainerRootfsOutputWithContext(context.Context) LXCContainerRootfsOutput
+}
+
+type LXCContainerRootfsArgs struct {
+	Size    pulumi.StringInput    `pulumi:"size"`
+	Storage pulumi.StringInput    `pulumi:"storage"`
+	Volume  pulumi.StringPtrInput `pulumi:"volume"`
+}
+
+func (LXCContainerRootfsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LXCContainerRootfs)(nil)).Elem()
+}
+
+func (i LXCContainerRootfsArgs) ToLXCContainerRootfsOutput() LXCContainerRootfsOutput {
+	return i.ToLXCContainerRootfsOutputWithContext(context.Background())
+}
+
+func (i LXCContainerRootfsArgs) ToLXCContainerRootfsOutputWithContext(ctx context.Context) LXCContainerRootfsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LXCContainerRootfsOutput)
+}
+
+func (i LXCContainerRootfsArgs) ToLXCContainerRootfsPtrOutput() LXCContainerRootfsPtrOutput {
+	return i.ToLXCContainerRootfsPtrOutputWithContext(context.Background())
+}
+
+func (i LXCContainerRootfsArgs) ToLXCContainerRootfsPtrOutputWithContext(ctx context.Context) LXCContainerRootfsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LXCContainerRootfsOutput).ToLXCContainerRootfsPtrOutputWithContext(ctx)
+}
+
+// LXCContainerRootfsPtrInput is an input type that accepts LXCContainerRootfsArgs, LXCContainerRootfsPtr and LXCContainerRootfsPtrOutput values.
+// You can construct a concrete instance of `LXCContainerRootfsPtrInput` via:
+//
+//          LXCContainerRootfsArgs{...}
+//
+//  or:
+//
+//          nil
+type LXCContainerRootfsPtrInput interface {
+	pulumi.Input
+
+	ToLXCContainerRootfsPtrOutput() LXCContainerRootfsPtrOutput
+	ToLXCContainerRootfsPtrOutputWithContext(context.Context) LXCContainerRootfsPtrOutput
+}
+
+type lxccontainerRootfsPtrType LXCContainerRootfsArgs
+
+func LXCContainerRootfsPtr(v *LXCContainerRootfsArgs) LXCContainerRootfsPtrInput {
+	return (*lxccontainerRootfsPtrType)(v)
+}
+
+func (*lxccontainerRootfsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LXCContainerRootfs)(nil)).Elem()
+}
+
+func (i *lxccontainerRootfsPtrType) ToLXCContainerRootfsPtrOutput() LXCContainerRootfsPtrOutput {
+	return i.ToLXCContainerRootfsPtrOutputWithContext(context.Background())
+}
+
+func (i *lxccontainerRootfsPtrType) ToLXCContainerRootfsPtrOutputWithContext(ctx context.Context) LXCContainerRootfsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LXCContainerRootfsPtrOutput)
+}
+
+type LXCContainerRootfsOutput struct{ *pulumi.OutputState }
+
+func (LXCContainerRootfsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LXCContainerRootfs)(nil)).Elem()
+}
+
+func (o LXCContainerRootfsOutput) ToLXCContainerRootfsOutput() LXCContainerRootfsOutput {
+	return o
+}
+
+func (o LXCContainerRootfsOutput) ToLXCContainerRootfsOutputWithContext(ctx context.Context) LXCContainerRootfsOutput {
+	return o
+}
+
+func (o LXCContainerRootfsOutput) ToLXCContainerRootfsPtrOutput() LXCContainerRootfsPtrOutput {
+	return o.ToLXCContainerRootfsPtrOutputWithContext(context.Background())
+}
+
+func (o LXCContainerRootfsOutput) ToLXCContainerRootfsPtrOutputWithContext(ctx context.Context) LXCContainerRootfsPtrOutput {
+	return o.ApplyT(func(v LXCContainerRootfs) *LXCContainerRootfs {
+		return &v
+	}).(LXCContainerRootfsPtrOutput)
+}
+func (o LXCContainerRootfsOutput) Size() pulumi.StringOutput {
+	return o.ApplyT(func(v LXCContainerRootfs) string { return v.Size }).(pulumi.StringOutput)
+}
+
+func (o LXCContainerRootfsOutput) Storage() pulumi.StringOutput {
+	return o.ApplyT(func(v LXCContainerRootfs) string { return v.Storage }).(pulumi.StringOutput)
+}
+
+func (o LXCContainerRootfsOutput) Volume() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LXCContainerRootfs) *string { return v.Volume }).(pulumi.StringPtrOutput)
+}
+
+type LXCContainerRootfsPtrOutput struct{ *pulumi.OutputState }
+
+func (LXCContainerRootfsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LXCContainerRootfs)(nil)).Elem()
+}
+
+func (o LXCContainerRootfsPtrOutput) ToLXCContainerRootfsPtrOutput() LXCContainerRootfsPtrOutput {
+	return o
+}
+
+func (o LXCContainerRootfsPtrOutput) ToLXCContainerRootfsPtrOutputWithContext(ctx context.Context) LXCContainerRootfsPtrOutput {
+	return o
+}
+
+func (o LXCContainerRootfsPtrOutput) Elem() LXCContainerRootfsOutput {
+	return o.ApplyT(func(v *LXCContainerRootfs) LXCContainerRootfs { return *v }).(LXCContainerRootfsOutput)
+}
+
+func (o LXCContainerRootfsPtrOutput) Size() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LXCContainerRootfs) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Size
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o LXCContainerRootfsPtrOutput) Storage() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LXCContainerRootfs) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Storage
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o LXCContainerRootfsPtrOutput) Volume() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LXCContainerRootfs) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Volume
+	}).(pulumi.StringPtrOutput)
+}
+
+type LXCDiskMountoptions struct {
+	Noatime *bool   `pulumi:"noatime"`
+	Nodev   *bool   `pulumi:"nodev"`
+	Noexec  *string `pulumi:"noexec"`
+	Nosuid  *bool   `pulumi:"nosuid"`
+}
+
+// LXCDiskMountoptionsInput is an input type that accepts LXCDiskMountoptionsArgs and LXCDiskMountoptionsOutput values.
+// You can construct a concrete instance of `LXCDiskMountoptionsInput` via:
+//
+//          LXCDiskMountoptionsArgs{...}
+type LXCDiskMountoptionsInput interface {
+	pulumi.Input
+
+	ToLXCDiskMountoptionsOutput() LXCDiskMountoptionsOutput
+	ToLXCDiskMountoptionsOutputWithContext(context.Context) LXCDiskMountoptionsOutput
+}
+
+type LXCDiskMountoptionsArgs struct {
+	Noatime pulumi.BoolPtrInput   `pulumi:"noatime"`
+	Nodev   pulumi.BoolPtrInput   `pulumi:"nodev"`
+	Noexec  pulumi.StringPtrInput `pulumi:"noexec"`
+	Nosuid  pulumi.BoolPtrInput   `pulumi:"nosuid"`
+}
+
+func (LXCDiskMountoptionsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LXCDiskMountoptions)(nil)).Elem()
+}
+
+func (i LXCDiskMountoptionsArgs) ToLXCDiskMountoptionsOutput() LXCDiskMountoptionsOutput {
+	return i.ToLXCDiskMountoptionsOutputWithContext(context.Background())
+}
+
+func (i LXCDiskMountoptionsArgs) ToLXCDiskMountoptionsOutputWithContext(ctx context.Context) LXCDiskMountoptionsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LXCDiskMountoptionsOutput)
+}
+
+func (i LXCDiskMountoptionsArgs) ToLXCDiskMountoptionsPtrOutput() LXCDiskMountoptionsPtrOutput {
+	return i.ToLXCDiskMountoptionsPtrOutputWithContext(context.Background())
+}
+
+func (i LXCDiskMountoptionsArgs) ToLXCDiskMountoptionsPtrOutputWithContext(ctx context.Context) LXCDiskMountoptionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LXCDiskMountoptionsOutput).ToLXCDiskMountoptionsPtrOutputWithContext(ctx)
+}
+
+// LXCDiskMountoptionsPtrInput is an input type that accepts LXCDiskMountoptionsArgs, LXCDiskMountoptionsPtr and LXCDiskMountoptionsPtrOutput values.
+// You can construct a concrete instance of `LXCDiskMountoptionsPtrInput` via:
+//
+//          LXCDiskMountoptionsArgs{...}
+//
+//  or:
+//
+//          nil
+type LXCDiskMountoptionsPtrInput interface {
+	pulumi.Input
+
+	ToLXCDiskMountoptionsPtrOutput() LXCDiskMountoptionsPtrOutput
+	ToLXCDiskMountoptionsPtrOutputWithContext(context.Context) LXCDiskMountoptionsPtrOutput
+}
+
+type lxcdiskMountoptionsPtrType LXCDiskMountoptionsArgs
+
+func LXCDiskMountoptionsPtr(v *LXCDiskMountoptionsArgs) LXCDiskMountoptionsPtrInput {
+	return (*lxcdiskMountoptionsPtrType)(v)
+}
+
+func (*lxcdiskMountoptionsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LXCDiskMountoptions)(nil)).Elem()
+}
+
+func (i *lxcdiskMountoptionsPtrType) ToLXCDiskMountoptionsPtrOutput() LXCDiskMountoptionsPtrOutput {
+	return i.ToLXCDiskMountoptionsPtrOutputWithContext(context.Background())
+}
+
+func (i *lxcdiskMountoptionsPtrType) ToLXCDiskMountoptionsPtrOutputWithContext(ctx context.Context) LXCDiskMountoptionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LXCDiskMountoptionsPtrOutput)
+}
+
+type LXCDiskMountoptionsOutput struct{ *pulumi.OutputState }
+
+func (LXCDiskMountoptionsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LXCDiskMountoptions)(nil)).Elem()
+}
+
+func (o LXCDiskMountoptionsOutput) ToLXCDiskMountoptionsOutput() LXCDiskMountoptionsOutput {
+	return o
+}
+
+func (o LXCDiskMountoptionsOutput) ToLXCDiskMountoptionsOutputWithContext(ctx context.Context) LXCDiskMountoptionsOutput {
+	return o
+}
+
+func (o LXCDiskMountoptionsOutput) ToLXCDiskMountoptionsPtrOutput() LXCDiskMountoptionsPtrOutput {
+	return o.ToLXCDiskMountoptionsPtrOutputWithContext(context.Background())
+}
+
+func (o LXCDiskMountoptionsOutput) ToLXCDiskMountoptionsPtrOutputWithContext(ctx context.Context) LXCDiskMountoptionsPtrOutput {
+	return o.ApplyT(func(v LXCDiskMountoptions) *LXCDiskMountoptions {
+		return &v
+	}).(LXCDiskMountoptionsPtrOutput)
+}
+func (o LXCDiskMountoptionsOutput) Noatime() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LXCDiskMountoptions) *bool { return v.Noatime }).(pulumi.BoolPtrOutput)
+}
+
+func (o LXCDiskMountoptionsOutput) Nodev() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LXCDiskMountoptions) *bool { return v.Nodev }).(pulumi.BoolPtrOutput)
+}
+
+func (o LXCDiskMountoptionsOutput) Noexec() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LXCDiskMountoptions) *string { return v.Noexec }).(pulumi.StringPtrOutput)
+}
+
+func (o LXCDiskMountoptionsOutput) Nosuid() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LXCDiskMountoptions) *bool { return v.Nosuid }).(pulumi.BoolPtrOutput)
+}
+
+type LXCDiskMountoptionsPtrOutput struct{ *pulumi.OutputState }
+
+func (LXCDiskMountoptionsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LXCDiskMountoptions)(nil)).Elem()
+}
+
+func (o LXCDiskMountoptionsPtrOutput) ToLXCDiskMountoptionsPtrOutput() LXCDiskMountoptionsPtrOutput {
+	return o
+}
+
+func (o LXCDiskMountoptionsPtrOutput) ToLXCDiskMountoptionsPtrOutputWithContext(ctx context.Context) LXCDiskMountoptionsPtrOutput {
+	return o
+}
+
+func (o LXCDiskMountoptionsPtrOutput) Elem() LXCDiskMountoptionsOutput {
+	return o.ApplyT(func(v *LXCDiskMountoptions) LXCDiskMountoptions { return *v }).(LXCDiskMountoptionsOutput)
+}
+
+func (o LXCDiskMountoptionsPtrOutput) Noatime() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *LXCDiskMountoptions) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Noatime
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o LXCDiskMountoptionsPtrOutput) Nodev() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *LXCDiskMountoptions) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Nodev
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o LXCDiskMountoptionsPtrOutput) Noexec() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LXCDiskMountoptions) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Noexec
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o LXCDiskMountoptionsPtrOutput) Nosuid() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *LXCDiskMountoptions) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Nosuid
+	}).(pulumi.BoolPtrOutput)
+}
+
 type QemuVMDisk struct {
-	Backup      *bool   `pulumi:"backup"`
-	Cache       *string `pulumi:"cache"`
-	Discard     *string `pulumi:"discard"`
-	File        *string `pulumi:"file"`
-	Format      *string `pulumi:"format"`
-	Iothread    *bool   `pulumi:"iothread"`
-	Mbps        *int    `pulumi:"mbps"`
-	MbpsRd      *int    `pulumi:"mbpsRd"`
-	MbpsRdMax   *int    `pulumi:"mbpsRdMax"`
-	MbpsWr      *int    `pulumi:"mbpsWr"`
-	MbpsWrMax   *int    `pulumi:"mbpsWrMax"`
-	Media       *string `pulumi:"media"`
-	Replicate   *bool   `pulumi:"replicate"`
-	Size        string  `pulumi:"size"`
-	Ssd         *bool   `pulumi:"ssd"`
-	Storage     string  `pulumi:"storage"`
-	StorageType *string `pulumi:"storageType"`
-	Type        string  `pulumi:"type"`
+	Backup    *bool   `pulumi:"backup"`
+	Cache     *string `pulumi:"cache"`
+	Discard   *string `pulumi:"discard"`
+	File      *string `pulumi:"file"`
+	Format    *string `pulumi:"format"`
+	Iothread  *bool   `pulumi:"iothread"`
+	Mbps      *int    `pulumi:"mbps"`
+	MbpsRd    *int    `pulumi:"mbpsRd"`
+	MbpsRdMax *int    `pulumi:"mbpsRdMax"`
+	MbpsWr    *int    `pulumi:"mbpsWr"`
+	MbpsWrMax *int    `pulumi:"mbpsWrMax"`
+	Media     *string `pulumi:"media"`
+	Replicate *bool   `pulumi:"replicate"`
+	Size      string  `pulumi:"size"`
+	Ssd       *bool   `pulumi:"ssd"`
+	Storage   string  `pulumi:"storage"`
+	Type      string  `pulumi:"type"`
+	Volume    *string `pulumi:"volume"`
 }
 
 // QemuVMDiskInput is an input type that accepts QemuVMDiskArgs and QemuVMDiskOutput values.
@@ -457,24 +861,24 @@ type QemuVMDiskInput interface {
 }
 
 type QemuVMDiskArgs struct {
-	Backup      pulumi.BoolPtrInput   `pulumi:"backup"`
-	Cache       pulumi.StringPtrInput `pulumi:"cache"`
-	Discard     pulumi.StringPtrInput `pulumi:"discard"`
-	File        pulumi.StringPtrInput `pulumi:"file"`
-	Format      pulumi.StringPtrInput `pulumi:"format"`
-	Iothread    pulumi.BoolPtrInput   `pulumi:"iothread"`
-	Mbps        pulumi.IntPtrInput    `pulumi:"mbps"`
-	MbpsRd      pulumi.IntPtrInput    `pulumi:"mbpsRd"`
-	MbpsRdMax   pulumi.IntPtrInput    `pulumi:"mbpsRdMax"`
-	MbpsWr      pulumi.IntPtrInput    `pulumi:"mbpsWr"`
-	MbpsWrMax   pulumi.IntPtrInput    `pulumi:"mbpsWrMax"`
-	Media       pulumi.StringPtrInput `pulumi:"media"`
-	Replicate   pulumi.BoolPtrInput   `pulumi:"replicate"`
-	Size        pulumi.StringInput    `pulumi:"size"`
-	Ssd         pulumi.BoolPtrInput   `pulumi:"ssd"`
-	Storage     pulumi.StringInput    `pulumi:"storage"`
-	StorageType pulumi.StringPtrInput `pulumi:"storageType"`
-	Type        pulumi.StringInput    `pulumi:"type"`
+	Backup    pulumi.BoolPtrInput   `pulumi:"backup"`
+	Cache     pulumi.StringPtrInput `pulumi:"cache"`
+	Discard   pulumi.StringPtrInput `pulumi:"discard"`
+	File      pulumi.StringPtrInput `pulumi:"file"`
+	Format    pulumi.StringPtrInput `pulumi:"format"`
+	Iothread  pulumi.BoolPtrInput   `pulumi:"iothread"`
+	Mbps      pulumi.IntPtrInput    `pulumi:"mbps"`
+	MbpsRd    pulumi.IntPtrInput    `pulumi:"mbpsRd"`
+	MbpsRdMax pulumi.IntPtrInput    `pulumi:"mbpsRdMax"`
+	MbpsWr    pulumi.IntPtrInput    `pulumi:"mbpsWr"`
+	MbpsWrMax pulumi.IntPtrInput    `pulumi:"mbpsWrMax"`
+	Media     pulumi.StringPtrInput `pulumi:"media"`
+	Replicate pulumi.BoolPtrInput   `pulumi:"replicate"`
+	Size      pulumi.StringInput    `pulumi:"size"`
+	Ssd       pulumi.BoolPtrInput   `pulumi:"ssd"`
+	Storage   pulumi.StringInput    `pulumi:"storage"`
+	Type      pulumi.StringInput    `pulumi:"type"`
+	Volume    pulumi.StringPtrInput `pulumi:"volume"`
 }
 
 func (QemuVMDiskArgs) ElementType() reflect.Type {
@@ -592,12 +996,12 @@ func (o QemuVMDiskOutput) Storage() pulumi.StringOutput {
 	return o.ApplyT(func(v QemuVMDisk) string { return v.Storage }).(pulumi.StringOutput)
 }
 
-func (o QemuVMDiskOutput) StorageType() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v QemuVMDisk) *string { return v.StorageType }).(pulumi.StringPtrOutput)
-}
-
 func (o QemuVMDiskOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v QemuVMDisk) string { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o QemuVMDiskOutput) Volume() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v QemuVMDisk) *string { return v.Volume }).(pulumi.StringPtrOutput)
 }
 
 type QemuVMDiskArrayOutput struct{ *pulumi.OutputState }
@@ -957,12 +1361,16 @@ func (o QemuVMVgaArrayOutput) Index(i pulumi.IntInput) QemuVMVgaOutput {
 }
 
 func init() {
-	pulumi.RegisterOutputType(LXCContainerFeatureOutput{})
-	pulumi.RegisterOutputType(LXCContainerFeatureArrayOutput{})
+	pulumi.RegisterOutputType(LXCContainerFeaturesOutput{})
+	pulumi.RegisterOutputType(LXCContainerFeaturesPtrOutput{})
 	pulumi.RegisterOutputType(LXCContainerMountpointOutput{})
 	pulumi.RegisterOutputType(LXCContainerMountpointArrayOutput{})
 	pulumi.RegisterOutputType(LXCContainerNetworkOutput{})
 	pulumi.RegisterOutputType(LXCContainerNetworkArrayOutput{})
+	pulumi.RegisterOutputType(LXCContainerRootfsOutput{})
+	pulumi.RegisterOutputType(LXCContainerRootfsPtrOutput{})
+	pulumi.RegisterOutputType(LXCDiskMountoptionsOutput{})
+	pulumi.RegisterOutputType(LXCDiskMountoptionsPtrOutput{})
 	pulumi.RegisterOutputType(QemuVMDiskOutput{})
 	pulumi.RegisterOutputType(QemuVMDiskArrayOutput{})
 	pulumi.RegisterOutputType(QemuVMNetworkOutput{})

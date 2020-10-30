@@ -59,7 +59,7 @@
         ]
     },
     "types": {
-        "proxmoxve:index/LXCContainerFeature:LXCContainerFeature": {
+        "proxmoxve:index/LXCContainerFeatures:LXCContainerFeatures": {
             "properties": {
                 "fuse": {
                     "type": "boolean",
@@ -114,6 +114,14 @@
                         }
                     }
                 },
+                "key": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "mp": {
                     "type": "string",
                     "language": {
@@ -147,7 +155,23 @@
                     }
                 },
                 "size": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "slot": {
                     "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "storage": {
+                    "type": "string",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -165,9 +189,24 @@
             },
             "type": "object",
             "required": [
+                "key",
                 "mp",
-                "volume"
-            ]
+                "size",
+                "slot",
+                "storage"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "key",
+                        "mp",
+                        "size",
+                        "slot",
+                        "storage",
+                        "volume"
+                    ]
+                }
+            }
         },
         "proxmoxve:index/LXCContainerNetwork:LXCContainerNetwork": {
             "properties": {
@@ -279,7 +318,97 @@
             "type": "object",
             "required": [
                 "name"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "hwaddr",
+                        "name",
+                        "tag",
+                        "trunks",
+                        "type"
+                    ]
+                }
+            }
+        },
+        "proxmoxve:index/LXCContainerRootfs:LXCContainerRootfs": {
+            "properties": {
+                "size": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "storage": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "volume": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "size",
+                "storage"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "size",
+                        "storage",
+                        "volume"
+                    ]
+                }
+            }
+        },
+        "proxmoxve:index/LXCDiskMountoptions:LXCDiskMountoptions": {
+            "properties": {
+                "noatime": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "nodev": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "noexec": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "nosuid": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
         },
         "proxmoxve:index/QemuVMDisk:QemuVMDisk": {
             "properties": {
@@ -411,7 +540,7 @@
                         }
                     }
                 },
-                "storageType": {
+                "type": {
                     "type": "string",
                     "language": {
                         "python": {
@@ -419,7 +548,7 @@
                         }
                     }
                 },
-                "type": {
+                "volume": {
                     "type": "string",
                     "language": {
                         "python": {
@@ -441,7 +570,8 @@
                         "media",
                         "size",
                         "storage",
-                        "type"
+                        "type",
+                        "volume"
                     ]
                 }
             }
@@ -650,10 +780,7 @@
                     "type": "string"
                 },
                 "features": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/proxmoxve:index/LXCContainerFeature:LXCContainerFeature"
-                    }
+                    "$ref": "#/types/proxmoxve:index/LXCContainerFeatures:LXCContainerFeatures"
                 },
                 "force": {
                     "type": "boolean"
@@ -710,7 +837,7 @@
                     "type": "boolean"
                 },
                 "rootfs": {
-                    "type": "string"
+                    "$ref": "#/types/proxmoxve:index/LXCContainerRootfs:LXCContainerRootfs"
                 },
                 "searchdomain": {
                     "type": "string"
@@ -722,9 +849,6 @@
                     "type": "boolean"
                 },
                 "startup": {
-                    "type": "string"
-                },
-                "storage": {
                     "type": "string"
                 },
                 "swap": {
@@ -756,6 +880,7 @@
                 }
             },
             "required": [
+                "ostype",
                 "targetNode"
             ],
             "inputProperties": {
@@ -784,10 +909,7 @@
                     "type": "string"
                 },
                 "features": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/proxmoxve:index/LXCContainerFeature:LXCContainerFeature"
-                    }
+                    "$ref": "#/types/proxmoxve:index/LXCContainerFeatures:LXCContainerFeatures"
                 },
                 "force": {
                     "type": "boolean"
@@ -844,7 +966,7 @@
                     "type": "boolean"
                 },
                 "rootfs": {
-                    "type": "string"
+                    "$ref": "#/types/proxmoxve:index/LXCContainerRootfs:LXCContainerRootfs"
                 },
                 "searchdomain": {
                     "type": "string"
@@ -856,9 +978,6 @@
                     "type": "boolean"
                 },
                 "startup": {
-                    "type": "string"
-                },
-                "storage": {
                     "type": "string"
                 },
                 "swap": {
@@ -920,10 +1039,7 @@
                         "type": "string"
                     },
                     "features": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/proxmoxve:index/LXCContainerFeature:LXCContainerFeature"
-                        }
+                        "$ref": "#/types/proxmoxve:index/LXCContainerFeatures:LXCContainerFeatures"
                     },
                     "force": {
                         "type": "boolean"
@@ -980,7 +1096,7 @@
                         "type": "boolean"
                     },
                     "rootfs": {
-                        "type": "string"
+                        "$ref": "#/types/proxmoxve:index/LXCContainerRootfs:LXCContainerRootfs"
                     },
                     "searchdomain": {
                         "type": "string"
@@ -992,9 +1108,6 @@
                         "type": "boolean"
                     },
                     "startup": {
-                        "type": "string"
-                    },
-                    "storage": {
                         "type": "string"
                     },
                     "swap": {
@@ -1023,6 +1136,141 @@
                     },
                     "vmid": {
                         "type": "integer"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "proxmoxve:index/lXCDisk:LXCDisk": {
+            "properties": {
+                "acl": {
+                    "type": "boolean"
+                },
+                "backup": {
+                    "type": "boolean"
+                },
+                "container": {
+                    "type": "string"
+                },
+                "mountoptions": {
+                    "$ref": "#/types/proxmoxve:index/LXCDiskMountoptions:LXCDiskMountoptions"
+                },
+                "mp": {
+                    "type": "string"
+                },
+                "quota": {
+                    "type": "boolean"
+                },
+                "replicate": {
+                    "type": "boolean"
+                },
+                "shared": {
+                    "type": "boolean"
+                },
+                "size": {
+                    "type": "string"
+                },
+                "slot": {
+                    "type": "integer"
+                },
+                "storage": {
+                    "type": "string"
+                },
+                "volume": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "container",
+                "mp",
+                "size",
+                "slot",
+                "storage",
+                "volume"
+            ],
+            "inputProperties": {
+                "acl": {
+                    "type": "boolean"
+                },
+                "backup": {
+                    "type": "boolean"
+                },
+                "container": {
+                    "type": "string"
+                },
+                "mountoptions": {
+                    "$ref": "#/types/proxmoxve:index/LXCDiskMountoptions:LXCDiskMountoptions"
+                },
+                "mp": {
+                    "type": "string"
+                },
+                "quota": {
+                    "type": "boolean"
+                },
+                "replicate": {
+                    "type": "boolean"
+                },
+                "shared": {
+                    "type": "boolean"
+                },
+                "size": {
+                    "type": "string"
+                },
+                "slot": {
+                    "type": "integer"
+                },
+                "storage": {
+                    "type": "string"
+                },
+                "volume": {
+                    "type": "string"
+                }
+            },
+            "requiredInputs": [
+                "container",
+                "mp",
+                "size",
+                "slot",
+                "storage"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering LXCDisk resources.\n",
+                "properties": {
+                    "acl": {
+                        "type": "boolean"
+                    },
+                    "backup": {
+                        "type": "boolean"
+                    },
+                    "container": {
+                        "type": "string"
+                    },
+                    "mountoptions": {
+                        "$ref": "#/types/proxmoxve:index/LXCDiskMountoptions:LXCDiskMountoptions"
+                    },
+                    "mp": {
+                        "type": "string"
+                    },
+                    "quota": {
+                        "type": "boolean"
+                    },
+                    "replicate": {
+                        "type": "boolean"
+                    },
+                    "shared": {
+                        "type": "boolean"
+                    },
+                    "size": {
+                        "type": "string"
+                    },
+                    "slot": {
+                        "type": "integer"
+                    },
+                    "storage": {
+                        "type": "string"
+                    },
+                    "volume": {
+                        "type": "string"
                     }
                 },
                 "type": "object"

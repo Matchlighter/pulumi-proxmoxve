@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
-export interface LXCContainerFeature {
+export interface LXCContainerFeatures {
     fuse?: boolean;
     keyctl?: boolean;
     mount?: string;
@@ -15,11 +15,14 @@ export interface LXCContainerFeature {
 export interface LXCContainerMountpoint {
     acl?: boolean;
     backup?: boolean;
+    key: string;
     mp: string;
     quota?: boolean;
     replicate?: boolean;
     shared?: boolean;
-    size?: number;
+    size: string;
+    slot: number;
+    storage: string;
     volume: string;
 }
 
@@ -28,15 +31,28 @@ export interface LXCContainerNetwork {
     firewall?: boolean;
     gw?: string;
     gw6?: string;
-    hwaddr?: string;
+    hwaddr: string;
     ip?: string;
     ip6?: string;
     mtu?: string;
     name: string;
     rate?: number;
-    tag?: number;
-    trunks?: string;
-    type?: string;
+    tag: number;
+    trunks: string;
+    type: string;
+}
+
+export interface LXCContainerRootfs {
+    size: string;
+    storage: string;
+    volume: string;
+}
+
+export interface LXCDiskMountoptions {
+    noatime?: boolean;
+    nodev?: boolean;
+    noexec?: string;
+    nosuid?: boolean;
 }
 
 export interface QemuVMDisk {
@@ -56,8 +72,8 @@ export interface QemuVMDisk {
     size: string;
     ssd?: boolean;
     storage: string;
-    storageType?: string;
     type: string;
+    volume: string;
 }
 
 export interface QemuVMNetwork {

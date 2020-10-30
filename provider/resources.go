@@ -110,7 +110,9 @@ func Provider() tfbridge.ProviderInfo {
 		PreConfigureCallback: preConfigureCallback,
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"proxmox_vm_qemu": {Tok: makeResource(mainMod, "QemuVM")},
-			"proxmox_lxc":     {Tok: makeResource(mainMod, "LXCContainer")},
+			// "proxmox_qemu_disk": {Tok: makeResource(mainMod, "QemuDisk")},
+			"proxmox_lxc":      {Tok: makeResource(mainMod, "LXCContainer")},
+			"proxmox_lxc_disk": {Tok: makeResource(mainMod, "LXCDisk")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			// Map each resource in the Terraform provider to a Pulumi function. An example

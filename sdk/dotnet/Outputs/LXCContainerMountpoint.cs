@@ -15,18 +15,23 @@ namespace Pulumi.Proxmoxve.Outputs
     {
         public readonly bool? Acl;
         public readonly bool? Backup;
+        public readonly string Key;
         public readonly string Mp;
         public readonly bool? Quota;
         public readonly bool? Replicate;
         public readonly bool? Shared;
-        public readonly int? Size;
-        public readonly string Volume;
+        public readonly string Size;
+        public readonly int Slot;
+        public readonly string Storage;
+        public readonly string? Volume;
 
         [OutputConstructor]
         private LXCContainerMountpoint(
             bool? acl,
 
             bool? backup,
+
+            string key,
 
             string mp,
 
@@ -36,17 +41,24 @@ namespace Pulumi.Proxmoxve.Outputs
 
             bool? shared,
 
-            int? size,
+            string size,
 
-            string volume)
+            int slot,
+
+            string storage,
+
+            string? volume)
         {
             Acl = acl;
             Backup = backup;
+            Key = key;
             Mp = mp;
             Quota = quota;
             Replicate = replicate;
             Shared = shared;
             Size = size;
+            Slot = slot;
+            Storage = storage;
             Volume = volume;
         }
     }

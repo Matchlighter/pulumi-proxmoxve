@@ -4,6 +4,7 @@
 
 # Export this package's modules as members:
 from .lxc_container import *
+from .lxc_disk import *
 from .provider import *
 from .qemu_vm import *
 from ._inputs import *

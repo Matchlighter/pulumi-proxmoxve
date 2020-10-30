@@ -36,7 +36,7 @@ namespace Pulumi.Proxmoxve
         public Output<string?> Description { get; private set; } = null!;
 
         [Output("features")]
-        public Output<ImmutableArray<Outputs.LXCContainerFeature>> Features { get; private set; } = null!;
+        public Output<Outputs.LXCContainerFeatures?> Features { get; private set; } = null!;
 
         [Output("force")]
         public Output<bool?> Force { get; private set; } = null!;
@@ -72,7 +72,7 @@ namespace Pulumi.Proxmoxve
         public Output<string?> Ostemplate { get; private set; } = null!;
 
         [Output("ostype")]
-        public Output<string?> Ostype { get; private set; } = null!;
+        public Output<string> Ostype { get; private set; } = null!;
 
         [Output("password")]
         public Output<string?> Password { get; private set; } = null!;
@@ -87,7 +87,7 @@ namespace Pulumi.Proxmoxve
         public Output<bool?> Restore { get; private set; } = null!;
 
         [Output("rootfs")]
-        public Output<string?> Rootfs { get; private set; } = null!;
+        public Output<Outputs.LXCContainerRootfs?> Rootfs { get; private set; } = null!;
 
         [Output("searchdomain")]
         public Output<string?> Searchdomain { get; private set; } = null!;
@@ -100,9 +100,6 @@ namespace Pulumi.Proxmoxve
 
         [Output("startup")]
         public Output<string?> Startup { get; private set; } = null!;
-
-        [Output("storage")]
-        public Output<string?> Storage { get; private set; } = null!;
 
         [Output("swap")]
         public Output<int?> Swap { get; private set; } = null!;
@@ -199,12 +196,7 @@ namespace Pulumi.Proxmoxve
         public Input<string>? Description { get; set; }
 
         [Input("features")]
-        private InputList<Inputs.LXCContainerFeatureArgs>? _features;
-        public InputList<Inputs.LXCContainerFeatureArgs> Features
-        {
-            get => _features ?? (_features = new InputList<Inputs.LXCContainerFeatureArgs>());
-            set => _features = value;
-        }
+        public Input<Inputs.LXCContainerFeaturesArgs>? Features { get; set; }
 
         [Input("force")]
         public Input<bool>? Force { get; set; }
@@ -265,7 +257,7 @@ namespace Pulumi.Proxmoxve
         public Input<bool>? Restore { get; set; }
 
         [Input("rootfs")]
-        public Input<string>? Rootfs { get; set; }
+        public Input<Inputs.LXCContainerRootfsArgs>? Rootfs { get; set; }
 
         [Input("searchdomain")]
         public Input<string>? Searchdomain { get; set; }
@@ -278,9 +270,6 @@ namespace Pulumi.Proxmoxve
 
         [Input("startup")]
         public Input<string>? Startup { get; set; }
-
-        [Input("storage")]
-        public Input<string>? Storage { get; set; }
 
         [Input("swap")]
         public Input<int>? Swap { get; set; }
@@ -343,12 +332,7 @@ namespace Pulumi.Proxmoxve
         public Input<string>? Description { get; set; }
 
         [Input("features")]
-        private InputList<Inputs.LXCContainerFeatureGetArgs>? _features;
-        public InputList<Inputs.LXCContainerFeatureGetArgs> Features
-        {
-            get => _features ?? (_features = new InputList<Inputs.LXCContainerFeatureGetArgs>());
-            set => _features = value;
-        }
+        public Input<Inputs.LXCContainerFeaturesGetArgs>? Features { get; set; }
 
         [Input("force")]
         public Input<bool>? Force { get; set; }
@@ -409,7 +393,7 @@ namespace Pulumi.Proxmoxve
         public Input<bool>? Restore { get; set; }
 
         [Input("rootfs")]
-        public Input<string>? Rootfs { get; set; }
+        public Input<Inputs.LXCContainerRootfsGetArgs>? Rootfs { get; set; }
 
         [Input("searchdomain")]
         public Input<string>? Searchdomain { get; set; }
@@ -422,9 +406,6 @@ namespace Pulumi.Proxmoxve
 
         [Input("startup")]
         public Input<string>? Startup { get; set; }
-
-        [Input("storage")]
-        public Input<string>? Storage { get; set; }
 
         [Input("swap")]
         public Input<int>? Swap { get; set; }

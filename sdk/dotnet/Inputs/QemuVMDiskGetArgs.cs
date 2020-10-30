@@ -60,11 +60,11 @@ namespace Pulumi.Proxmoxve.Inputs
         [Input("storage", required: true)]
         public Input<string> Storage { get; set; } = null!;
 
-        [Input("storageType")]
-        public Input<string>? StorageType { get; set; }
-
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
+
+        [Input("volume")]
+        public Input<string>? Volume { get; set; }
 
         public QemuVMDiskGetArgs()
         {

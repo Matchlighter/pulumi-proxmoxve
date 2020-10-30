@@ -25,7 +25,7 @@ class LXCContainer(pulumi.CustomResource):
                  cpulimit: Optional[pulumi.Input[int]] = None,
                  cpuunits: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
-                 features: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LXCContainerFeatureArgs']]]]] = None,
+                 features: Optional[pulumi.Input[pulumi.InputType['LXCContainerFeaturesArgs']]] = None,
                  force: Optional[pulumi.Input[bool]] = None,
                  hookscript: Optional[pulumi.Input[str]] = None,
                  hostname: Optional[pulumi.Input[str]] = None,
@@ -42,12 +42,11 @@ class LXCContainer(pulumi.CustomResource):
                  pool: Optional[pulumi.Input[str]] = None,
                  protection: Optional[pulumi.Input[bool]] = None,
                  restore: Optional[pulumi.Input[bool]] = None,
-                 rootfs: Optional[pulumi.Input[str]] = None,
+                 rootfs: Optional[pulumi.Input[pulumi.InputType['LXCContainerRootfsArgs']]] = None,
                  searchdomain: Optional[pulumi.Input[str]] = None,
                  ssh_public_keys: Optional[pulumi.Input[str]] = None,
                  start: Optional[pulumi.Input[bool]] = None,
                  startup: Optional[pulumi.Input[str]] = None,
-                 storage: Optional[pulumi.Input[str]] = None,
                  swap: Optional[pulumi.Input[int]] = None,
                  target_node: Optional[pulumi.Input[str]] = None,
                  template: Optional[pulumi.Input[bool]] = None,
@@ -111,7 +110,6 @@ class LXCContainer(pulumi.CustomResource):
             __props__['ssh_public_keys'] = ssh_public_keys
             __props__['start'] = start
             __props__['startup'] = startup
-            __props__['storage'] = storage
             __props__['swap'] = swap
             if target_node is None:
                 raise TypeError("Missing required property 'target_node'")
@@ -140,7 +138,7 @@ class LXCContainer(pulumi.CustomResource):
             cpulimit: Optional[pulumi.Input[int]] = None,
             cpuunits: Optional[pulumi.Input[int]] = None,
             description: Optional[pulumi.Input[str]] = None,
-            features: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LXCContainerFeatureArgs']]]]] = None,
+            features: Optional[pulumi.Input[pulumi.InputType['LXCContainerFeaturesArgs']]] = None,
             force: Optional[pulumi.Input[bool]] = None,
             hookscript: Optional[pulumi.Input[str]] = None,
             hostname: Optional[pulumi.Input[str]] = None,
@@ -157,12 +155,11 @@ class LXCContainer(pulumi.CustomResource):
             pool: Optional[pulumi.Input[str]] = None,
             protection: Optional[pulumi.Input[bool]] = None,
             restore: Optional[pulumi.Input[bool]] = None,
-            rootfs: Optional[pulumi.Input[str]] = None,
+            rootfs: Optional[pulumi.Input[pulumi.InputType['LXCContainerRootfsArgs']]] = None,
             searchdomain: Optional[pulumi.Input[str]] = None,
             ssh_public_keys: Optional[pulumi.Input[str]] = None,
             start: Optional[pulumi.Input[bool]] = None,
             startup: Optional[pulumi.Input[str]] = None,
-            storage: Optional[pulumi.Input[str]] = None,
             swap: Optional[pulumi.Input[int]] = None,
             target_node: Optional[pulumi.Input[str]] = None,
             template: Optional[pulumi.Input[bool]] = None,
@@ -213,7 +210,6 @@ class LXCContainer(pulumi.CustomResource):
         __props__["ssh_public_keys"] = ssh_public_keys
         __props__["start"] = start
         __props__["startup"] = startup
-        __props__["storage"] = storage
         __props__["swap"] = swap
         __props__["target_node"] = target_node
         __props__["template"] = template
@@ -266,7 +262,7 @@ class LXCContainer(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def features(self) -> pulumi.Output[Optional[Sequence['outputs.LXCContainerFeature']]]:
+    def features(self) -> pulumi.Output[Optional['outputs.LXCContainerFeatures']]:
         return pulumi.get(self, "features")
 
     @property
@@ -326,7 +322,7 @@ class LXCContainer(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def ostype(self) -> pulumi.Output[Optional[str]]:
+    def ostype(self) -> pulumi.Output[str]:
         return pulumi.get(self, "ostype")
 
     @property
@@ -351,7 +347,7 @@ class LXCContainer(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def rootfs(self) -> pulumi.Output[Optional[str]]:
+    def rootfs(self) -> pulumi.Output[Optional['outputs.LXCContainerRootfs']]:
         return pulumi.get(self, "rootfs")
 
     @property
@@ -373,11 +369,6 @@ class LXCContainer(pulumi.CustomResource):
     @pulumi.getter
     def startup(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "startup")
-
-    @property
-    @pulumi.getter
-    def storage(self) -> pulumi.Output[Optional[str]]:
-        return pulumi.get(self, "storage")
 
     @property
     @pulumi.getter

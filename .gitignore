@@ -6,6 +6,7 @@
 **/obj/
 Pulumi.*.yaml
 **/node_modules/
+/pulumi_plugin_bin/
 
 **/command-output/
 

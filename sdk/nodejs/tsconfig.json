@@ -17,6 +17,7 @@
         "config/vars.ts",
         "index.ts",
         "lxccontainer.ts",
+        "lxcdisk.ts",
         "provider.ts",
         "qemuVM.ts",
         "types/index.ts",

@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Proxmoxve.Inputs
 {
 
-    public sealed class LXCContainerFeatureArgs : Pulumi.ResourceArgs
+    public sealed class LXCContainerFeaturesGetArgs : Pulumi.ResourceArgs
     {
         [Input("fuse")]
         public Input<bool>? Fuse { get; set; }
@@ -24,7 +24,7 @@ namespace Pulumi.Proxmoxve.Inputs
         [Input("nesting")]
         public Input<bool>? Nesting { get; set; }
 
-        public LXCContainerFeatureArgs()
+        public LXCContainerFeaturesGetArgs()
         {
         }
     }

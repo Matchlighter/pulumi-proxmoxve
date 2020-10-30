@@ -3,6 +3,7 @@
 
 // Export members:
 export * from "./lxccontainer";
+export * from "./lxcdisk";
 export * from "./provider";
 export * from "./qemuVM";
 

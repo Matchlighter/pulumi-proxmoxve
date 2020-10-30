@@ -21,7 +21,7 @@ type LXCContainer struct {
 	Cpulimit           pulumi.IntPtrOutput               `pulumi:"cpulimit"`
 	Cpuunits           pulumi.IntPtrOutput               `pulumi:"cpuunits"`
 	Description        pulumi.StringPtrOutput            `pulumi:"description"`
-	Features           LXCContainerFeatureArrayOutput    `pulumi:"features"`
+	Features           LXCContainerFeaturesPtrOutput     `pulumi:"features"`
 	Force              pulumi.BoolPtrOutput              `pulumi:"force"`
 	Hookscript         pulumi.StringPtrOutput            `pulumi:"hookscript"`
 	Hostname           pulumi.StringPtrOutput            `pulumi:"hostname"`
@@ -33,17 +33,16 @@ type LXCContainer struct {
 	Networks           LXCContainerNetworkArrayOutput    `pulumi:"networks"`
 	Onboot             pulumi.BoolPtrOutput              `pulumi:"onboot"`
 	Ostemplate         pulumi.StringPtrOutput            `pulumi:"ostemplate"`
-	Ostype             pulumi.StringPtrOutput            `pulumi:"ostype"`
+	Ostype             pulumi.StringOutput               `pulumi:"ostype"`
 	Password           pulumi.StringPtrOutput            `pulumi:"password"`
 	Pool               pulumi.StringPtrOutput            `pulumi:"pool"`
 	Protection         pulumi.BoolPtrOutput              `pulumi:"protection"`
 	Restore            pulumi.BoolPtrOutput              `pulumi:"restore"`
-	Rootfs             pulumi.StringPtrOutput            `pulumi:"rootfs"`
+	Rootfs             LXCContainerRootfsPtrOutput       `pulumi:"rootfs"`
 	Searchdomain       pulumi.StringPtrOutput            `pulumi:"searchdomain"`
 	SshPublicKeys      pulumi.StringPtrOutput            `pulumi:"sshPublicKeys"`
 	Start              pulumi.BoolPtrOutput              `pulumi:"start"`
 	Startup            pulumi.StringPtrOutput            `pulumi:"startup"`
-	Storage            pulumi.StringPtrOutput            `pulumi:"storage"`
 	Swap               pulumi.IntPtrOutput               `pulumi:"swap"`
 	TargetNode         pulumi.StringOutput               `pulumi:"targetNode"`
 	Template           pulumi.BoolPtrOutput              `pulumi:"template"`
@@ -93,7 +92,7 @@ type lxccontainerState struct {
 	Cpulimit           *int                     `pulumi:"cpulimit"`
 	Cpuunits           *int                     `pulumi:"cpuunits"`
 	Description        *string                  `pulumi:"description"`
-	Features           []LXCContainerFeature    `pulumi:"features"`
+	Features           *LXCContainerFeatures    `pulumi:"features"`
 	Force              *bool                    `pulumi:"force"`
 	Hookscript         *string                  `pulumi:"hookscript"`
 	Hostname           *string                  `pulumi:"hostname"`
@@ -110,12 +109,11 @@ type lxccontainerState struct {
 	Pool               *string                  `pulumi:"pool"`
 	Protection         *bool                    `pulumi:"protection"`
 	Restore            *bool                    `pulumi:"restore"`
-	Rootfs             *string                  `pulumi:"rootfs"`
+	Rootfs             *LXCContainerRootfs      `pulumi:"rootfs"`
 	Searchdomain       *string                  `pulumi:"searchdomain"`
 	SshPublicKeys      *string                  `pulumi:"sshPublicKeys"`
 	Start              *bool                    `pulumi:"start"`
 	Startup            *string                  `pulumi:"startup"`
-	Storage            *string                  `pulumi:"storage"`
 	Swap               *int                     `pulumi:"swap"`
 	TargetNode         *string                  `pulumi:"targetNode"`
 	Template           *bool                    `pulumi:"template"`
@@ -135,7 +133,7 @@ type LXCContainerState struct {
 	Cpulimit           pulumi.IntPtrInput
 	Cpuunits           pulumi.IntPtrInput
 	Description        pulumi.StringPtrInput
-	Features           LXCContainerFeatureArrayInput
+	Features           LXCContainerFeaturesPtrInput
 	Force              pulumi.BoolPtrInput
 	Hookscript         pulumi.StringPtrInput
 	Hostname           pulumi.StringPtrInput
@@ -152,12 +150,11 @@ type LXCContainerState struct {
 	Pool               pulumi.StringPtrInput
 	Protection         pulumi.BoolPtrInput
 	Restore            pulumi.BoolPtrInput
-	Rootfs             pulumi.StringPtrInput
+	Rootfs             LXCContainerRootfsPtrInput
 	Searchdomain       pulumi.StringPtrInput
 	SshPublicKeys      pulumi.StringPtrInput
 	Start              pulumi.BoolPtrInput
 	Startup            pulumi.StringPtrInput
-	Storage            pulumi.StringPtrInput
 	Swap               pulumi.IntPtrInput
 	TargetNode         pulumi.StringPtrInput
 	Template           pulumi.BoolPtrInput
@@ -181,7 +178,7 @@ type lxccontainerArgs struct {
 	Cpulimit           *int                     `pulumi:"cpulimit"`
 	Cpuunits           *int                     `pulumi:"cpuunits"`
 	Description        *string                  `pulumi:"description"`
-	Features           []LXCContainerFeature    `pulumi:"features"`
+	Features           *LXCContainerFeatures    `pulumi:"features"`
 	Force              *bool                    `pulumi:"force"`
 	Hookscript         *string                  `pulumi:"hookscript"`
 	Hostname           *string                  `pulumi:"hostname"`
@@ -198,12 +195,11 @@ type lxccontainerArgs struct {
 	Pool               *string                  `pulumi:"pool"`
 	Protection         *bool                    `pulumi:"protection"`
 	Restore            *bool                    `pulumi:"restore"`
-	Rootfs             *string                  `pulumi:"rootfs"`
+	Rootfs             *LXCContainerRootfs      `pulumi:"rootfs"`
 	Searchdomain       *string                  `pulumi:"searchdomain"`
 	SshPublicKeys      *string                  `pulumi:"sshPublicKeys"`
 	Start              *bool                    `pulumi:"start"`
 	Startup            *string                  `pulumi:"startup"`
-	Storage            *string                  `pulumi:"storage"`
 	Swap               *int                     `pulumi:"swap"`
 	TargetNode         string                   `pulumi:"targetNode"`
 	Template           *bool                    `pulumi:"template"`
@@ -224,7 +220,7 @@ type LXCContainerArgs struct {
 	Cpulimit           pulumi.IntPtrInput
 	Cpuunits           pulumi.IntPtrInput
 	Description        pulumi.StringPtrInput
-	Features           LXCContainerFeatureArrayInput
+	Features           LXCContainerFeaturesPtrInput
 	Force              pulumi.BoolPtrInput
 	Hookscript         pulumi.StringPtrInput
 	Hostname           pulumi.StringPtrInput
@@ -241,12 +237,11 @@ type LXCContainerArgs struct {
 	Pool               pulumi.StringPtrInput
 	Protection         pulumi.BoolPtrInput
 	Restore            pulumi.BoolPtrInput
-	Rootfs             pulumi.StringPtrInput
+	Rootfs             LXCContainerRootfsPtrInput
 	Searchdomain       pulumi.StringPtrInput
 	SshPublicKeys      pulumi.StringPtrInput
 	Start              pulumi.BoolPtrInput
 	Startup            pulumi.StringPtrInput
-	Storage            pulumi.StringPtrInput
 	Swap               pulumi.IntPtrInput
 	TargetNode         pulumi.StringInput
 	Template           pulumi.BoolPtrInput

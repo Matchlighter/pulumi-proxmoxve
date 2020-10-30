@@ -18,6 +18,9 @@ namespace Pulumi.Proxmoxve.Inputs
         [Input("backup")]
         public Input<bool>? Backup { get; set; }
 
+        [Input("key", required: true)]
+        public Input<string> Key { get; set; } = null!;
+
         [Input("mp", required: true)]
         public Input<string> Mp { get; set; } = null!;
 
@@ -30,11 +33,17 @@ namespace Pulumi.Proxmoxve.Inputs
         [Input("shared")]
         public Input<bool>? Shared { get; set; }
 
-        [Input("size")]
-        public Input<int>? Size { get; set; }
+        [Input("size", required: true)]
+        public Input<string> Size { get; set; } = null!;
 
-        [Input("volume", required: true)]
-        public Input<string> Volume { get; set; } = null!;
+        [Input("slot", required: true)]
+        public Input<int> Slot { get; set; } = null!;
+
+        [Input("storage", required: true)]
+        public Input<string> Storage { get; set; } = null!;
+
+        [Input("volume")]
+        public Input<string>? Volume { get; set; }
 
         public LXCContainerMountpointGetArgs()
         {

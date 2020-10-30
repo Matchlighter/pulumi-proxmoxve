@@ -9,9 +9,11 @@ from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = [
-    'LXCContainerFeature',
+    'LXCContainerFeatures',
     'LXCContainerMountpoint',
     'LXCContainerNetwork',
+    'LXCContainerRootfs',
+    'LXCDiskMountoptions',
     'QemuVMDisk',
     'QemuVMNetwork',
     'QemuVMSerial',
@@ -19,7 +21,7 @@ __all__ = [
 ]
 
 @pulumi.output_type
-class LXCContainerFeature(dict):
+class LXCContainerFeatures(dict):
     def __init__(__self__, *,
                  fuse: Optional[bool] = None,
                  keyctl: Optional[bool] = None,
@@ -61,16 +63,22 @@ class LXCContainerFeature(dict):
 @pulumi.output_type
 class LXCContainerMountpoint(dict):
     def __init__(__self__, *,
+                 key: str,
                  mp: str,
-                 volume: str,
+                 size: str,
+                 slot: int,
+                 storage: str,
                  acl: Optional[bool] = None,
                  backup: Optional[bool] = None,
                  quota: Optional[bool] = None,
                  replicate: Optional[bool] = None,
                  shared: Optional[bool] = None,
-                 size: Optional[int] = None):
+                 volume: Optional[str] = None):
+        pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "mp", mp)
-        pulumi.set(__self__, "volume", volume)
+        pulumi.set(__self__, "size", size)
+        pulumi.set(__self__, "slot", slot)
+        pulumi.set(__self__, "storage", storage)
         if acl is not None:
             pulumi.set(__self__, "acl", acl)
         if backup is not None:
@@ -81,8 +89,13 @@ class LXCContainerMountpoint(dict):
             pulumi.set(__self__, "replicate", replicate)
         if shared is not None:
             pulumi.set(__self__, "shared", shared)
-        if size is not None:
-            pulumi.set(__self__, "size", size)
+        if volume is not None:
+            pulumi.set(__self__, "volume", volume)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
@@ -91,8 +104,18 @@ class LXCContainerMountpoint(dict):
 
     @property
     @pulumi.getter
-    def volume(self) -> str:
-        return pulumi.get(self, "volume")
+    def size(self) -> str:
+        return pulumi.get(self, "size")
+
+    @property
+    @pulumi.getter
+    def slot(self) -> int:
+        return pulumi.get(self, "slot")
+
+    @property
+    @pulumi.getter
+    def storage(self) -> str:
+        return pulumi.get(self, "storage")
 
     @property
     @pulumi.getter
@@ -121,8 +144,8 @@ class LXCContainerMountpoint(dict):
 
     @property
     @pulumi.getter
-    def size(self) -> Optional[int]:
-        return pulumi.get(self, "size")
+    def volume(self) -> Optional[str]:
+        return pulumi.get(self, "volume")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -240,6 +263,76 @@ class LXCContainerNetwork(dict):
 
 
 @pulumi.output_type
+class LXCContainerRootfs(dict):
+    def __init__(__self__, *,
+                 size: str,
+                 storage: str,
+                 volume: Optional[str] = None):
+        pulumi.set(__self__, "size", size)
+        pulumi.set(__self__, "storage", storage)
+        if volume is not None:
+            pulumi.set(__self__, "volume", volume)
+
+    @property
+    @pulumi.getter
+    def size(self) -> str:
+        return pulumi.get(self, "size")
+
+    @property
+    @pulumi.getter
+    def storage(self) -> str:
+        return pulumi.get(self, "storage")
+
+    @property
+    @pulumi.getter
+    def volume(self) -> Optional[str]:
+        return pulumi.get(self, "volume")
+
+    def _translate_property(self, prop):
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+
+@pulumi.output_type
+class LXCDiskMountoptions(dict):
+    def __init__(__self__, *,
+                 noatime: Optional[bool] = None,
+                 nodev: Optional[bool] = None,
+                 noexec: Optional[str] = None,
+                 nosuid: Optional[bool] = None):
+        if noatime is not None:
+            pulumi.set(__self__, "noatime", noatime)
+        if nodev is not None:
+            pulumi.set(__self__, "nodev", nodev)
+        if noexec is not None:
+            pulumi.set(__self__, "noexec", noexec)
+        if nosuid is not None:
+            pulumi.set(__self__, "nosuid", nosuid)
+
+    @property
+    @pulumi.getter
+    def noatime(self) -> Optional[bool]:
+        return pulumi.get(self, "noatime")
+
+    @property
+    @pulumi.getter
+    def nodev(self) -> Optional[bool]:
+        return pulumi.get(self, "nodev")
+
+    @property
+    @pulumi.getter
+    def noexec(self) -> Optional[str]:
+        return pulumi.get(self, "noexec")
+
+    @property
+    @pulumi.getter
+    def nosuid(self) -> Optional[bool]:
+        return pulumi.get(self, "nosuid")
+
+    def _translate_property(self, prop):
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+
+@pulumi.output_type
 class QemuVMDisk(dict):
     def __init__(__self__, *,
                  size: str,
@@ -259,7 +352,7 @@ class QemuVMDisk(dict):
                  media: Optional[str] = None,
                  replicate: Optional[bool] = None,
                  ssd: Optional[bool] = None,
-                 storage_type: Optional[str] = None):
+                 volume: Optional[str] = None):
         pulumi.set(__self__, "size", size)
         pulumi.set(__self__, "storage", storage)
         pulumi.set(__self__, "type", type)
@@ -291,8 +384,8 @@ class QemuVMDisk(dict):
             pulumi.set(__self__, "replicate", replicate)
         if ssd is not None:
             pulumi.set(__self__, "ssd", ssd)
-        if storage_type is not None:
-            pulumi.set(__self__, "storage_type", storage_type)
+        if volume is not None:
+            pulumi.set(__self__, "volume", volume)
 
     @property
     @pulumi.getter
@@ -380,9 +473,9 @@ class QemuVMDisk(dict):
         return pulumi.get(self, "ssd")
 
     @property
-    @pulumi.getter(name="storageType")
-    def storage_type(self) -> Optional[str]:
-        return pulumi.get(self, "storage_type")
+    @pulumi.getter
+    def volume(self) -> Optional[str]:
+        return pulumi.get(self, "volume")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

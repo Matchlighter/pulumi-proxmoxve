@@ -4,7 +4,8 @@ go 1.14
 
 replace github.com/Azure/go-autorest => github.com/Azure/go-autorest v12.4.3+incompatible
 
-replace github.com/Telmate/terraform-provider-proxmox => github.com/matchlighter/terraform-provider-proxmox v0.0.0-20201022044959-84553b1dce1f
+replace github.com/Telmate/terraform-provider-proxmox => github.com/matchlighter/terraform-provider-proxmox v0.0.0-20201030164329-e3d00f430647
+replace github.com/Telmate/proxmox-api-go => github.com/matchlighter/proxmox-api-go v0.0.0-20201030163738-121bf3e104b4
 
 require (
 	github.com/Telmate/terraform-provider-proxmox v0.0.0-20201016141324-4d4bf30a4b0d

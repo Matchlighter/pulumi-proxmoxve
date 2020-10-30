@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
-export interface LXCContainerFeature {
+export interface LXCContainerFeatures {
     fuse?: pulumi.Input<boolean>;
     keyctl?: pulumi.Input<boolean>;
     mount?: pulumi.Input<string>;
@@ -15,12 +15,15 @@ export interface LXCContainerFeature {
 export interface LXCContainerMountpoint {
     acl?: pulumi.Input<boolean>;
     backup?: pulumi.Input<boolean>;
+    key: pulumi.Input<string>;
     mp: pulumi.Input<string>;
     quota?: pulumi.Input<boolean>;
     replicate?: pulumi.Input<boolean>;
     shared?: pulumi.Input<boolean>;
-    size?: pulumi.Input<number>;
-    volume: pulumi.Input<string>;
+    size: pulumi.Input<string>;
+    slot: pulumi.Input<number>;
+    storage: pulumi.Input<string>;
+    volume?: pulumi.Input<string>;
 }
 
 export interface LXCContainerNetwork {
@@ -37,6 +40,19 @@ export interface LXCContainerNetwork {
     tag?: pulumi.Input<number>;
     trunks?: pulumi.Input<string>;
     type?: pulumi.Input<string>;
+}
+
+export interface LXCContainerRootfs {
+    size: pulumi.Input<string>;
+    storage: pulumi.Input<string>;
+    volume?: pulumi.Input<string>;
+}
+
+export interface LXCDiskMountoptions {
+    noatime?: pulumi.Input<boolean>;
+    nodev?: pulumi.Input<boolean>;
+    noexec?: pulumi.Input<string>;
+    nosuid?: pulumi.Input<boolean>;
 }
 
 export interface QemuVMDisk {
@@ -56,8 +72,8 @@ export interface QemuVMDisk {
     size: pulumi.Input<string>;
     ssd?: pulumi.Input<boolean>;
     storage: pulumi.Input<string>;
-    storageType?: pulumi.Input<string>;
     type: pulumi.Input<string>;
+    volume?: pulumi.Input<string>;
 }
 
 export interface QemuVMNetwork {

@@ -9,9 +9,11 @@ from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = [
-    'LXCContainerFeatureArgs',
+    'LXCContainerFeaturesArgs',
     'LXCContainerMountpointArgs',
     'LXCContainerNetworkArgs',
+    'LXCContainerRootfsArgs',
+    'LXCDiskMountoptionsArgs',
     'QemuVMDiskArgs',
     'QemuVMNetworkArgs',
     'QemuVMSerialArgs',
@@ -19,7 +21,7 @@ __all__ = [
 ]
 
 @pulumi.input_type
-class LXCContainerFeatureArgs:
+class LXCContainerFeaturesArgs:
     def __init__(__self__, *,
                  fuse: Optional[pulumi.Input[bool]] = None,
                  keyctl: Optional[pulumi.Input[bool]] = None,
@@ -74,16 +76,22 @@ class LXCContainerFeatureArgs:
 @pulumi.input_type
 class LXCContainerMountpointArgs:
     def __init__(__self__, *,
+                 key: pulumi.Input[str],
                  mp: pulumi.Input[str],
-                 volume: pulumi.Input[str],
+                 size: pulumi.Input[str],
+                 slot: pulumi.Input[int],
+                 storage: pulumi.Input[str],
                  acl: Optional[pulumi.Input[bool]] = None,
                  backup: Optional[pulumi.Input[bool]] = None,
                  quota: Optional[pulumi.Input[bool]] = None,
                  replicate: Optional[pulumi.Input[bool]] = None,
                  shared: Optional[pulumi.Input[bool]] = None,
-                 size: Optional[pulumi.Input[int]] = None):
+                 volume: Optional[pulumi.Input[str]] = None):
+        pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "mp", mp)
-        pulumi.set(__self__, "volume", volume)
+        pulumi.set(__self__, "size", size)
+        pulumi.set(__self__, "slot", slot)
+        pulumi.set(__self__, "storage", storage)
         if acl is not None:
             pulumi.set(__self__, "acl", acl)
         if backup is not None:
@@ -94,8 +102,17 @@ class LXCContainerMountpointArgs:
             pulumi.set(__self__, "replicate", replicate)
         if shared is not None:
             pulumi.set(__self__, "shared", shared)
-        if size is not None:
-            pulumi.set(__self__, "size", size)
+        if volume is not None:
+            pulumi.set(__self__, "volume", volume)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
 
     @property
     @pulumi.getter
@@ -108,12 +125,30 @@ class LXCContainerMountpointArgs:
 
     @property
     @pulumi.getter
-    def volume(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "volume")
+    def size(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "size")
 
-    @volume.setter
-    def volume(self, value: pulumi.Input[str]):
-        pulumi.set(self, "volume", value)
+    @size.setter
+    def size(self, value: pulumi.Input[str]):
+        pulumi.set(self, "size", value)
+
+    @property
+    @pulumi.getter
+    def slot(self) -> pulumi.Input[int]:
+        return pulumi.get(self, "slot")
+
+    @slot.setter
+    def slot(self, value: pulumi.Input[int]):
+        pulumi.set(self, "slot", value)
+
+    @property
+    @pulumi.getter
+    def storage(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "storage")
+
+    @storage.setter
+    def storage(self, value: pulumi.Input[str]):
+        pulumi.set(self, "storage", value)
 
     @property
     @pulumi.getter
@@ -162,12 +197,12 @@ class LXCContainerMountpointArgs:
 
     @property
     @pulumi.getter
-    def size(self) -> Optional[pulumi.Input[int]]:
-        return pulumi.get(self, "size")
+    def volume(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "volume")
 
-    @size.setter
-    def size(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "size", value)
+    @volume.setter
+    def volume(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "volume", value)
 
 
 @pulumi.input_type
@@ -331,6 +366,98 @@ class LXCContainerNetworkArgs:
 
 
 @pulumi.input_type
+class LXCContainerRootfsArgs:
+    def __init__(__self__, *,
+                 size: pulumi.Input[str],
+                 storage: pulumi.Input[str],
+                 volume: Optional[pulumi.Input[str]] = None):
+        pulumi.set(__self__, "size", size)
+        pulumi.set(__self__, "storage", storage)
+        if volume is not None:
+            pulumi.set(__self__, "volume", volume)
+
+    @property
+    @pulumi.getter
+    def size(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "size")
+
+    @size.setter
+    def size(self, value: pulumi.Input[str]):
+        pulumi.set(self, "size", value)
+
+    @property
+    @pulumi.getter
+    def storage(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "storage")
+
+    @storage.setter
+    def storage(self, value: pulumi.Input[str]):
+        pulumi.set(self, "storage", value)
+
+    @property
+    @pulumi.getter
+    def volume(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "volume")
+
+    @volume.setter
+    def volume(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "volume", value)
+
+
+@pulumi.input_type
+class LXCDiskMountoptionsArgs:
+    def __init__(__self__, *,
+                 noatime: Optional[pulumi.Input[bool]] = None,
+                 nodev: Optional[pulumi.Input[bool]] = None,
+                 noexec: Optional[pulumi.Input[str]] = None,
+                 nosuid: Optional[pulumi.Input[bool]] = None):
+        if noatime is not None:
+            pulumi.set(__self__, "noatime", noatime)
+        if nodev is not None:
+            pulumi.set(__self__, "nodev", nodev)
+        if noexec is not None:
+            pulumi.set(__self__, "noexec", noexec)
+        if nosuid is not None:
+            pulumi.set(__self__, "nosuid", nosuid)
+
+    @property
+    @pulumi.getter
+    def noatime(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "noatime")
+
+    @noatime.setter
+    def noatime(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "noatime", value)
+
+    @property
+    @pulumi.getter
+    def nodev(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "nodev")
+
+    @nodev.setter
+    def nodev(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "nodev", value)
+
+    @property
+    @pulumi.getter
+    def noexec(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "noexec")
+
+    @noexec.setter
+    def noexec(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "noexec", value)
+
+    @property
+    @pulumi.getter
+    def nosuid(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "nosuid")
+
+    @nosuid.setter
+    def nosuid(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "nosuid", value)
+
+
+@pulumi.input_type
 class QemuVMDiskArgs:
     def __init__(__self__, *,
                  size: pulumi.Input[str],
@@ -350,7 +477,7 @@ class QemuVMDiskArgs:
                  media: Optional[pulumi.Input[str]] = None,
                  replicate: Optional[pulumi.Input[bool]] = None,
                  ssd: Optional[pulumi.Input[bool]] = None,
-                 storage_type: Optional[pulumi.Input[str]] = None):
+                 volume: Optional[pulumi.Input[str]] = None):
         pulumi.set(__self__, "size", size)
         pulumi.set(__self__, "storage", storage)
         pulumi.set(__self__, "type", type)
@@ -382,8 +509,8 @@ class QemuVMDiskArgs:
             pulumi.set(__self__, "replicate", replicate)
         if ssd is not None:
             pulumi.set(__self__, "ssd", ssd)
-        if storage_type is not None:
-            pulumi.set(__self__, "storage_type", storage_type)
+        if volume is not None:
+            pulumi.set(__self__, "volume", volume)
 
     @property
     @pulumi.getter
@@ -539,13 +666,13 @@ class QemuVMDiskArgs:
         pulumi.set(self, "ssd", value)
 
     @property
-    @pulumi.getter(name="storageType")
-    def storage_type(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "storage_type")
+    @pulumi.getter
+    def volume(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "volume")
 
-    @storage_type.setter
-    def storage_type(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "storage_type", value)
+    @volume.setter
+    def volume(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "volume", value)
 
 
 @pulumi.input_type
