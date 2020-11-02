@@ -560,6 +560,8 @@ github.com/masterzen/winrm v0.0.0-20190223112901-5e5c9a7fe54b/go.mod h1:wr1VqkwW
 github.com/masterzen/winrm v0.0.0-20200615185753-c42b5136ff88/go.mod h1:a2HXwefeat3evJHxFXSayvRHpYEPJYtErl4uIzfaUqY=
 github.com/matchlighter/proxmox-api-go v0.0.0-20201030163738-121bf3e104b4 h1:78GpVX3JYrIV54TYO71h/+beeo3RJ+l2IP5F5iMgncs=
 github.com/matchlighter/proxmox-api-go v0.0.0-20201030163738-121bf3e104b4/go.mod h1:ayPkdmEKnlssqLQ9K1BE1jlsaYhXVwkoduXI30oQF0I=
+github.com/matchlighter/proxmox-api-go v0.0.0-20201102231845-1bf8a10baa24 h1:zq6U7Abq+jMxQGl2mMDtFGQ+Ldt/b8+GAe3CYY11fos=
+github.com/matchlighter/proxmox-api-go v0.0.0-20201102231845-1bf8a10baa24/go.mod h1:ayPkdmEKnlssqLQ9K1BE1jlsaYhXVwkoduXI30oQF0I=
 github.com/matchlighter/terraform-provider-proxmox v0.0.0-20201021192306-5a2ff738308d h1:OOrUg91ePUqxgMkbdj1CmIWb5WBsl8zYAY9du027FnU=
 github.com/matchlighter/terraform-provider-proxmox v0.0.0-20201021192306-5a2ff738308d/go.mod h1:wryAUZ0cVL+HITYmku7e2acI7JZ3ZlCDjZfp8nIibCM=
 github.com/matchlighter/terraform-provider-proxmox v0.0.0-20201022044959-84553b1dce1f h1:yw4GR0IQe+Ej/cXtaq8XIllLaQL1ucQ/z1L8M1zJA/s=
@@ -568,6 +570,8 @@ github.com/matchlighter/terraform-provider-proxmox v0.0.0-20201030163825-f8a5693
 github.com/matchlighter/terraform-provider-proxmox v0.0.0-20201030163825-f8a5693bb5a0/go.mod h1:qslFTH3wvotIVEWRgByZ+n+muUdZfg3VOzKtzC3YJxE=
 github.com/matchlighter/terraform-provider-proxmox v0.0.0-20201030164329-e3d00f430647 h1:gP1uLfxjw6I5iiW6xXfUIb2eYoEeEaka4uLQMv5B7c0=
 github.com/matchlighter/terraform-provider-proxmox v0.0.0-20201030164329-e3d00f430647/go.mod h1:qslFTH3wvotIVEWRgByZ+n+muUdZfg3VOzKtzC3YJxE=
+github.com/matchlighter/terraform-provider-proxmox v0.0.0-20201102232909-1711d91f1ff4 h1:LQpic2U7TcHVEOjUY3+Jo5RKe8tTK2gt2GNv0rdUe8M=
+github.com/matchlighter/terraform-provider-proxmox v0.0.0-20201102232909-1711d91f1ff4/go.mod h1:qslFTH3wvotIVEWRgByZ+n+muUdZfg3VOzKtzC3YJxE=
 github.com/mattn/go-colorable v0.0.9/go.mod h1:9vuHe8Xs5qXnSaW/c/ABM9alt+Vo+STaOChaDxuIBZU=
 github.com/mattn/go-colorable v0.1.1/go.mod h1:FuOcm+DKB9mbwrcAfNl7/TZVBZ6rcnceauSikq3lYCQ=
 github.com/mattn/go-colorable v0.1.2/go.mod h1:U0ppj6V5qS13XJ6of8GYAs25YV2eR4EVcfRqFIhoBtE=
