@@ -18,10 +18,9 @@ import (
 	"unicode"
 
 	proxmoxve "github.com/Telmate/terraform-provider-proxmox/proxmox"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfbridge"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfshim"
-	shimv1 "github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfshim/sdk-v1"
+	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v2/go/common/resource"
 	"github.com/pulumi/pulumi/sdk/v2/go/common/tokens"
 )
@@ -88,7 +87,7 @@ var managedByPulumi = &tfbridge.DefaultInfo{Value: "Managed by Pulumi"}
 // Provider returns additional overlaid schema and metadata associated with the provider..
 func Provider() tfbridge.ProviderInfo {
 	// Instantiate the Terraform provider
-	p := shimv1.NewProvider(proxmoxve.Provider().(*schema.Provider))
+	p := shimv2.NewProvider(proxmoxve.Provider())
 
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
@@ -111,8 +110,11 @@ func Provider() tfbridge.ProviderInfo {
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"proxmox_vm_qemu": {Tok: makeResource(mainMod, "QemuVM")},
 			// "proxmox_qemu_disk": {Tok: makeResource(mainMod, "QemuDisk")},
-			"proxmox_lxc":      {Tok: makeResource(mainMod, "LXCContainer")},
-			"proxmox_lxc_disk": {Tok: makeResource(mainMod, "LXCDisk")},
+			"proxmox_lxc": {Tok: makeResource(mainMod, "LXCContainer")},
+			"proxmox_lxc_disk": {
+				Tok:                 makeResource(mainMod, "LXCDisk"),
+				DeleteBeforeReplace: true,
+			},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			// Map each resource in the Terraform provider to a Pulumi function. An example
