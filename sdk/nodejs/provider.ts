@@ -46,6 +46,7 @@ export class Provider extends pulumi.ProviderResource {
                 throw new Error("Missing required property 'pmUser'");
             }
             inputs["pmApiUrl"] = args ? args.pmApiUrl : undefined;
+            inputs["pmDangerouslyIgnoreUnknownAttributes"] = pulumi.output(args ? args.pmDangerouslyIgnoreUnknownAttributes : undefined).apply(JSON.stringify);
             inputs["pmLogEnable"] = pulumi.output(args ? args.pmLogEnable : undefined).apply(JSON.stringify);
             inputs["pmLogFile"] = args ? args.pmLogFile : undefined;
             inputs["pmLogLevels"] = pulumi.output(args ? args.pmLogLevels : undefined).apply(JSON.stringify);
@@ -75,6 +76,13 @@ export interface ProviderArgs {
      * https://host.fqdn:8006/api2/json
      */
     readonly pmApiUrl: pulumi.Input<string>;
+    /**
+     * By default this provider will exit if an unknown attribute is found. This is to prevent the accidential destruction of
+     * VMs or Data when something in the proxmox API has changed/updated and is not confirmed to work with this provider. Set
+     * this to true at your own risk. It may allow you to proceed in cases when the provider refuses to work, but be aware of
+     * the danger in doing so.
+     */
+    readonly pmDangerouslyIgnoreUnknownAttributes?: pulumi.Input<boolean>;
     readonly pmLogEnable?: pulumi.Input<boolean>;
     readonly pmLogFile?: pulumi.Input<string>;
     readonly pmLogLevels?: pulumi.Input<{[key: string]: any}>;

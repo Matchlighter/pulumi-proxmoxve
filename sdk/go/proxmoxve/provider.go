@@ -43,10 +43,15 @@ func NewProvider(ctx *pulumi.Context,
 
 type providerArgs struct {
 	// https://host.fqdn:8006/api2/json
-	PmApiUrl    string                 `pulumi:"pmApiUrl"`
-	PmLogEnable *bool                  `pulumi:"pmLogEnable"`
-	PmLogFile   *string                `pulumi:"pmLogFile"`
-	PmLogLevels map[string]interface{} `pulumi:"pmLogLevels"`
+	PmApiUrl string `pulumi:"pmApiUrl"`
+	// By default this provider will exit if an unknown attribute is found. This is to prevent the accidential destruction of
+	// VMs or Data when something in the proxmox API has changed/updated and is not confirmed to work with this provider. Set
+	// this to true at your own risk. It may allow you to proceed in cases when the provider refuses to work, but be aware of
+	// the danger in doing so.
+	PmDangerouslyIgnoreUnknownAttributes *bool                  `pulumi:"pmDangerouslyIgnoreUnknownAttributes"`
+	PmLogEnable                          *bool                  `pulumi:"pmLogEnable"`
+	PmLogFile                            *string                `pulumi:"pmLogFile"`
+	PmLogLevels                          map[string]interface{} `pulumi:"pmLogLevels"`
 	// OTP 2FA code (if required)
 	PmOtp      *string `pulumi:"pmOtp"`
 	PmParallel *int    `pulumi:"pmParallel"`
@@ -61,10 +66,15 @@ type providerArgs struct {
 // The set of arguments for constructing a Provider resource.
 type ProviderArgs struct {
 	// https://host.fqdn:8006/api2/json
-	PmApiUrl    pulumi.StringInput
-	PmLogEnable pulumi.BoolPtrInput
-	PmLogFile   pulumi.StringPtrInput
-	PmLogLevels pulumi.MapInput
+	PmApiUrl pulumi.StringInput
+	// By default this provider will exit if an unknown attribute is found. This is to prevent the accidential destruction of
+	// VMs or Data when something in the proxmox API has changed/updated and is not confirmed to work with this provider. Set
+	// this to true at your own risk. It may allow you to proceed in cases when the provider refuses to work, but be aware of
+	// the danger in doing so.
+	PmDangerouslyIgnoreUnknownAttributes pulumi.BoolPtrInput
+	PmLogEnable                          pulumi.BoolPtrInput
+	PmLogFile                            pulumi.StringPtrInput
+	PmLogLevels                          pulumi.MapInput
 	// OTP 2FA code (if required)
 	PmOtp      pulumi.StringPtrInput
 	PmParallel pulumi.IntPtrInput

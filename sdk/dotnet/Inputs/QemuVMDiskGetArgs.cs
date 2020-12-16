@@ -54,11 +54,17 @@ namespace Pulumi.Proxmoxve.Inputs
         [Input("size", required: true)]
         public Input<string> Size { get; set; } = null!;
 
+        [Input("slot")]
+        public Input<int>? Slot { get; set; }
+
         [Input("ssd")]
         public Input<bool>? Ssd { get; set; }
 
         [Input("storage", required: true)]
         public Input<string> Storage { get; set; } = null!;
+
+        [Input("storageType")]
+        public Input<string>? StorageType { get; set; }
 
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;

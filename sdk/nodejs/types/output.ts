@@ -60,7 +60,7 @@ export interface QemuVMDisk {
     cache?: string;
     discard?: string;
     file: string;
-    format?: string;
+    format: string;
     iothread?: boolean;
     mbps?: number;
     mbpsRd?: number;
@@ -70,8 +70,10 @@ export interface QemuVMDisk {
     media: string;
     replicate?: boolean;
     size: string;
+    slot: number;
     ssd?: boolean;
     storage: string;
+    storageType: string;
     type: string;
     volume: string;
 }
@@ -90,6 +92,12 @@ export interface QemuVMNetwork {
 export interface QemuVMSerial {
     id: number;
     type: string;
+}
+
+export interface QemuVMUnusedDisk {
+    file: string;
+    slot: number;
+    storage: string;
 }
 
 export interface QemuVMVga {

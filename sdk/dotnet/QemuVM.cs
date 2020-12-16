@@ -173,6 +173,12 @@ namespace Pulumi.Proxmoxve
         [Output("targetNode")]
         public Output<string> TargetNode { get; private set; } = null!;
 
+        /// <summary>
+        /// Record unused disks in proxmox. This is intended to be read-only for now.
+        /// </summary>
+        [Output("unusedDisks")]
+        public Output<ImmutableArray<Outputs.QemuVMUnusedDisk>> UnusedDisks { get; private set; } = null!;
+
         [Output("vcpus")]
         public Output<int?> Vcpus { get; private set; } = null!;
 
@@ -602,6 +608,18 @@ namespace Pulumi.Proxmoxve
 
         [Input("targetNode")]
         public Input<string>? TargetNode { get; set; }
+
+        [Input("unusedDisks")]
+        private InputList<Inputs.QemuVMUnusedDiskGetArgs>? _unusedDisks;
+
+        /// <summary>
+        /// Record unused disks in proxmox. This is intended to be read-only for now.
+        /// </summary>
+        public InputList<Inputs.QemuVMUnusedDiskGetArgs> UnusedDisks
+        {
+            get => _unusedDisks ?? (_unusedDisks = new InputList<Inputs.QemuVMUnusedDiskGetArgs>());
+            set => _unusedDisks = value;
+        }
 
         [Input("vcpus")]
         public Input<int>? Vcpus { get; set; }

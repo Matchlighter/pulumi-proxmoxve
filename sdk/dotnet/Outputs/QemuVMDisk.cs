@@ -27,8 +27,10 @@ namespace Pulumi.Proxmoxve.Outputs
         public readonly string? Media;
         public readonly bool? Replicate;
         public readonly string Size;
+        public readonly int? Slot;
         public readonly bool? Ssd;
         public readonly string Storage;
+        public readonly string? StorageType;
         public readonly string Type;
         public readonly string? Volume;
 
@@ -62,9 +64,13 @@ namespace Pulumi.Proxmoxve.Outputs
 
             string size,
 
+            int? slot,
+
             bool? ssd,
 
             string storage,
+
+            string? storageType,
 
             string type,
 
@@ -84,8 +90,10 @@ namespace Pulumi.Proxmoxve.Outputs
             Media = media;
             Replicate = replicate;
             Size = size;
+            Slot = slot;
             Ssd = ssd;
             Storage = storage;
+            StorageType = storageType;
             Type = type;
             Volume = volume;
         }

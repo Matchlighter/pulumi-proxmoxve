@@ -9,8 +9,8 @@ replace (
 )
 
 replace (
-	github.com/Telmate/terraform-provider-proxmox => github.com/matchlighter/terraform-provider-proxmox v0.0.0-20201104210501-cef618d359b4
-	github.com/Telmate/proxmox-api-go => github.com/matchlighter/proxmox-api-go v0.0.0-20201102231845-1bf8a10baa24
+	github.com/Telmate/terraform-provider-proxmox => github.com/matchlighter/terraform-provider-proxmox v0.0.0-20201216064002-1547dfbe6e24
+	// github.com/Telmate/proxmox-api-go => github.com/matchlighter/proxmox-api-go v0.0.0-20201102231845-1bf8a10baa24
 )
 
 require (

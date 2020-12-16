@@ -18,6 +18,10 @@
                 "type": "string",
                 "description": "https://host.fqdn:8006/api2/json\n"
             },
+            "pmDangerouslyIgnoreUnknownAttributes": {
+                "type": "boolean",
+                "description": "By default this provider will exit if an unknown attribute is found. This is to prevent the accidential destruction of\nVMs or Data when something in the proxmox API has changed/updated and is not confirmed to work with this provider. Set\nthis to true at your own risk. It may allow you to proceed in cases when the provider refuses to work, but be aware of\nthe danger in doing so.\n"
+            },
             "pmLogEnable": {
                 "type": "boolean"
             },
@@ -524,6 +528,14 @@
                         }
                     }
                 },
+                "slot": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "ssd": {
                     "type": "boolean",
                     "language": {
@@ -533,6 +545,14 @@
                     }
                 },
                 "storage": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "storageType": {
                     "type": "string",
                     "language": {
                         "python": {
@@ -567,9 +587,12 @@
                 "nodejs": {
                     "requiredOutputs": [
                         "file",
+                        "format",
                         "media",
                         "size",
+                        "slot",
                         "storage",
+                        "storageType",
                         "type",
                         "volume"
                     ]
@@ -683,6 +706,44 @@
                 "type"
             ]
         },
+        "proxmoxve:index/QemuVMUnusedDisk:QemuVMUnusedDisk": {
+            "properties": {
+                "file": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "slot": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "storage": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "file",
+                        "slot",
+                        "storage"
+                    ]
+                }
+            }
+        },
         "proxmoxve:index/QemuVMVga:QemuVMVga": {
             "properties": {
                 "memory": {
@@ -711,6 +772,10 @@
             "pmApiUrl": {
                 "type": "string",
                 "description": "https://host.fqdn:8006/api2/json\n"
+            },
+            "pmDangerouslyIgnoreUnknownAttributes": {
+                "type": "boolean",
+                "description": "By default this provider will exit if an unknown attribute is found. This is to prevent the accidential destruction of\nVMs or Data when something in the proxmox API has changed/updated and is not confirmed to work with this provider. Set\nthis to true at your own risk. It may allow you to proceed in cases when the provider refuses to work, but be aware of\nthe danger in doing so.\n"
             },
             "pmLogEnable": {
                 "type": "boolean"
@@ -1455,6 +1520,13 @@
                 "targetNode": {
                     "type": "string"
                 },
+                "unusedDisks": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/proxmoxve:index/QemuVMUnusedDisk:QemuVMUnusedDisk"
+                    },
+                    "description": "Record unused disks in proxmox. This is intended to be read-only for now.\n"
+                },
                 "vcpus": {
                     "type": "integer"
                 },
@@ -1481,6 +1553,7 @@
                 "sshHost",
                 "sshPort",
                 "targetNode",
+                "unusedDisks",
                 "vmid"
             ],
             "inputProperties": {
@@ -1854,6 +1927,13 @@
                     },
                     "targetNode": {
                         "type": "string"
+                    },
+                    "unusedDisks": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/proxmoxve:index/QemuVMUnusedDisk:QemuVMUnusedDisk"
+                        },
+                        "description": "Record unused disks in proxmox. This is intended to be read-only for now.\n"
                     },
                     "vcpus": {
                         "type": "integer"

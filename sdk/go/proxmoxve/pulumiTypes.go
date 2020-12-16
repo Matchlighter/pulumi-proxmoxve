@@ -829,24 +829,26 @@ func (o LXCDiskMountoptionsPtrOutput) Nosuid() pulumi.BoolPtrOutput {
 }
 
 type QemuVMDisk struct {
-	Backup    *bool   `pulumi:"backup"`
-	Cache     *string `pulumi:"cache"`
-	Discard   *string `pulumi:"discard"`
-	File      *string `pulumi:"file"`
-	Format    *string `pulumi:"format"`
-	Iothread  *bool   `pulumi:"iothread"`
-	Mbps      *int    `pulumi:"mbps"`
-	MbpsRd    *int    `pulumi:"mbpsRd"`
-	MbpsRdMax *int    `pulumi:"mbpsRdMax"`
-	MbpsWr    *int    `pulumi:"mbpsWr"`
-	MbpsWrMax *int    `pulumi:"mbpsWrMax"`
-	Media     *string `pulumi:"media"`
-	Replicate *bool   `pulumi:"replicate"`
-	Size      string  `pulumi:"size"`
-	Ssd       *bool   `pulumi:"ssd"`
-	Storage   string  `pulumi:"storage"`
-	Type      string  `pulumi:"type"`
-	Volume    *string `pulumi:"volume"`
+	Backup      *bool   `pulumi:"backup"`
+	Cache       *string `pulumi:"cache"`
+	Discard     *string `pulumi:"discard"`
+	File        *string `pulumi:"file"`
+	Format      *string `pulumi:"format"`
+	Iothread    *bool   `pulumi:"iothread"`
+	Mbps        *int    `pulumi:"mbps"`
+	MbpsRd      *int    `pulumi:"mbpsRd"`
+	MbpsRdMax   *int    `pulumi:"mbpsRdMax"`
+	MbpsWr      *int    `pulumi:"mbpsWr"`
+	MbpsWrMax   *int    `pulumi:"mbpsWrMax"`
+	Media       *string `pulumi:"media"`
+	Replicate   *bool   `pulumi:"replicate"`
+	Size        string  `pulumi:"size"`
+	Slot        *int    `pulumi:"slot"`
+	Ssd         *bool   `pulumi:"ssd"`
+	Storage     string  `pulumi:"storage"`
+	StorageType *string `pulumi:"storageType"`
+	Type        string  `pulumi:"type"`
+	Volume      *string `pulumi:"volume"`
 }
 
 // QemuVMDiskInput is an input type that accepts QemuVMDiskArgs and QemuVMDiskOutput values.
@@ -861,24 +863,26 @@ type QemuVMDiskInput interface {
 }
 
 type QemuVMDiskArgs struct {
-	Backup    pulumi.BoolPtrInput   `pulumi:"backup"`
-	Cache     pulumi.StringPtrInput `pulumi:"cache"`
-	Discard   pulumi.StringPtrInput `pulumi:"discard"`
-	File      pulumi.StringPtrInput `pulumi:"file"`
-	Format    pulumi.StringPtrInput `pulumi:"format"`
-	Iothread  pulumi.BoolPtrInput   `pulumi:"iothread"`
-	Mbps      pulumi.IntPtrInput    `pulumi:"mbps"`
-	MbpsRd    pulumi.IntPtrInput    `pulumi:"mbpsRd"`
-	MbpsRdMax pulumi.IntPtrInput    `pulumi:"mbpsRdMax"`
-	MbpsWr    pulumi.IntPtrInput    `pulumi:"mbpsWr"`
-	MbpsWrMax pulumi.IntPtrInput    `pulumi:"mbpsWrMax"`
-	Media     pulumi.StringPtrInput `pulumi:"media"`
-	Replicate pulumi.BoolPtrInput   `pulumi:"replicate"`
-	Size      pulumi.StringInput    `pulumi:"size"`
-	Ssd       pulumi.BoolPtrInput   `pulumi:"ssd"`
-	Storage   pulumi.StringInput    `pulumi:"storage"`
-	Type      pulumi.StringInput    `pulumi:"type"`
-	Volume    pulumi.StringPtrInput `pulumi:"volume"`
+	Backup      pulumi.BoolPtrInput   `pulumi:"backup"`
+	Cache       pulumi.StringPtrInput `pulumi:"cache"`
+	Discard     pulumi.StringPtrInput `pulumi:"discard"`
+	File        pulumi.StringPtrInput `pulumi:"file"`
+	Format      pulumi.StringPtrInput `pulumi:"format"`
+	Iothread    pulumi.BoolPtrInput   `pulumi:"iothread"`
+	Mbps        pulumi.IntPtrInput    `pulumi:"mbps"`
+	MbpsRd      pulumi.IntPtrInput    `pulumi:"mbpsRd"`
+	MbpsRdMax   pulumi.IntPtrInput    `pulumi:"mbpsRdMax"`
+	MbpsWr      pulumi.IntPtrInput    `pulumi:"mbpsWr"`
+	MbpsWrMax   pulumi.IntPtrInput    `pulumi:"mbpsWrMax"`
+	Media       pulumi.StringPtrInput `pulumi:"media"`
+	Replicate   pulumi.BoolPtrInput   `pulumi:"replicate"`
+	Size        pulumi.StringInput    `pulumi:"size"`
+	Slot        pulumi.IntPtrInput    `pulumi:"slot"`
+	Ssd         pulumi.BoolPtrInput   `pulumi:"ssd"`
+	Storage     pulumi.StringInput    `pulumi:"storage"`
+	StorageType pulumi.StringPtrInput `pulumi:"storageType"`
+	Type        pulumi.StringInput    `pulumi:"type"`
+	Volume      pulumi.StringPtrInput `pulumi:"volume"`
 }
 
 func (QemuVMDiskArgs) ElementType() reflect.Type {
@@ -988,12 +992,20 @@ func (o QemuVMDiskOutput) Size() pulumi.StringOutput {
 	return o.ApplyT(func(v QemuVMDisk) string { return v.Size }).(pulumi.StringOutput)
 }
 
+func (o QemuVMDiskOutput) Slot() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v QemuVMDisk) *int { return v.Slot }).(pulumi.IntPtrOutput)
+}
+
 func (o QemuVMDiskOutput) Ssd() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v QemuVMDisk) *bool { return v.Ssd }).(pulumi.BoolPtrOutput)
 }
 
 func (o QemuVMDiskOutput) Storage() pulumi.StringOutput {
 	return o.ApplyT(func(v QemuVMDisk) string { return v.Storage }).(pulumi.StringOutput)
+}
+
+func (o QemuVMDiskOutput) StorageType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v QemuVMDisk) *string { return v.StorageType }).(pulumi.StringPtrOutput)
 }
 
 func (o QemuVMDiskOutput) Type() pulumi.StringOutput {
@@ -1260,6 +1272,112 @@ func (o QemuVMSerialArrayOutput) Index(i pulumi.IntInput) QemuVMSerialOutput {
 	}).(QemuVMSerialOutput)
 }
 
+type QemuVMUnusedDisk struct {
+	File    *string `pulumi:"file"`
+	Slot    *int    `pulumi:"slot"`
+	Storage *string `pulumi:"storage"`
+}
+
+// QemuVMUnusedDiskInput is an input type that accepts QemuVMUnusedDiskArgs and QemuVMUnusedDiskOutput values.
+// You can construct a concrete instance of `QemuVMUnusedDiskInput` via:
+//
+//          QemuVMUnusedDiskArgs{...}
+type QemuVMUnusedDiskInput interface {
+	pulumi.Input
+
+	ToQemuVMUnusedDiskOutput() QemuVMUnusedDiskOutput
+	ToQemuVMUnusedDiskOutputWithContext(context.Context) QemuVMUnusedDiskOutput
+}
+
+type QemuVMUnusedDiskArgs struct {
+	File    pulumi.StringPtrInput `pulumi:"file"`
+	Slot    pulumi.IntPtrInput    `pulumi:"slot"`
+	Storage pulumi.StringPtrInput `pulumi:"storage"`
+}
+
+func (QemuVMUnusedDiskArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*QemuVMUnusedDisk)(nil)).Elem()
+}
+
+func (i QemuVMUnusedDiskArgs) ToQemuVMUnusedDiskOutput() QemuVMUnusedDiskOutput {
+	return i.ToQemuVMUnusedDiskOutputWithContext(context.Background())
+}
+
+func (i QemuVMUnusedDiskArgs) ToQemuVMUnusedDiskOutputWithContext(ctx context.Context) QemuVMUnusedDiskOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(QemuVMUnusedDiskOutput)
+}
+
+// QemuVMUnusedDiskArrayInput is an input type that accepts QemuVMUnusedDiskArray and QemuVMUnusedDiskArrayOutput values.
+// You can construct a concrete instance of `QemuVMUnusedDiskArrayInput` via:
+//
+//          QemuVMUnusedDiskArray{ QemuVMUnusedDiskArgs{...} }
+type QemuVMUnusedDiskArrayInput interface {
+	pulumi.Input
+
+	ToQemuVMUnusedDiskArrayOutput() QemuVMUnusedDiskArrayOutput
+	ToQemuVMUnusedDiskArrayOutputWithContext(context.Context) QemuVMUnusedDiskArrayOutput
+}
+
+type QemuVMUnusedDiskArray []QemuVMUnusedDiskInput
+
+func (QemuVMUnusedDiskArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]QemuVMUnusedDisk)(nil)).Elem()
+}
+
+func (i QemuVMUnusedDiskArray) ToQemuVMUnusedDiskArrayOutput() QemuVMUnusedDiskArrayOutput {
+	return i.ToQemuVMUnusedDiskArrayOutputWithContext(context.Background())
+}
+
+func (i QemuVMUnusedDiskArray) ToQemuVMUnusedDiskArrayOutputWithContext(ctx context.Context) QemuVMUnusedDiskArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(QemuVMUnusedDiskArrayOutput)
+}
+
+type QemuVMUnusedDiskOutput struct{ *pulumi.OutputState }
+
+func (QemuVMUnusedDiskOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*QemuVMUnusedDisk)(nil)).Elem()
+}
+
+func (o QemuVMUnusedDiskOutput) ToQemuVMUnusedDiskOutput() QemuVMUnusedDiskOutput {
+	return o
+}
+
+func (o QemuVMUnusedDiskOutput) ToQemuVMUnusedDiskOutputWithContext(ctx context.Context) QemuVMUnusedDiskOutput {
+	return o
+}
+
+func (o QemuVMUnusedDiskOutput) File() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v QemuVMUnusedDisk) *string { return v.File }).(pulumi.StringPtrOutput)
+}
+
+func (o QemuVMUnusedDiskOutput) Slot() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v QemuVMUnusedDisk) *int { return v.Slot }).(pulumi.IntPtrOutput)
+}
+
+func (o QemuVMUnusedDiskOutput) Storage() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v QemuVMUnusedDisk) *string { return v.Storage }).(pulumi.StringPtrOutput)
+}
+
+type QemuVMUnusedDiskArrayOutput struct{ *pulumi.OutputState }
+
+func (QemuVMUnusedDiskArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]QemuVMUnusedDisk)(nil)).Elem()
+}
+
+func (o QemuVMUnusedDiskArrayOutput) ToQemuVMUnusedDiskArrayOutput() QemuVMUnusedDiskArrayOutput {
+	return o
+}
+
+func (o QemuVMUnusedDiskArrayOutput) ToQemuVMUnusedDiskArrayOutputWithContext(ctx context.Context) QemuVMUnusedDiskArrayOutput {
+	return o
+}
+
+func (o QemuVMUnusedDiskArrayOutput) Index(i pulumi.IntInput) QemuVMUnusedDiskOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) QemuVMUnusedDisk {
+		return vs[0].([]QemuVMUnusedDisk)[vs[1].(int)]
+	}).(QemuVMUnusedDiskOutput)
+}
+
 type QemuVMVga struct {
 	Memory *int    `pulumi:"memory"`
 	Type   *string `pulumi:"type"`
@@ -1377,6 +1495,8 @@ func init() {
 	pulumi.RegisterOutputType(QemuVMNetworkArrayOutput{})
 	pulumi.RegisterOutputType(QemuVMSerialOutput{})
 	pulumi.RegisterOutputType(QemuVMSerialArrayOutput{})
+	pulumi.RegisterOutputType(QemuVMUnusedDiskOutput{})
+	pulumi.RegisterOutputType(QemuVMUnusedDiskArrayOutput{})
 	pulumi.RegisterOutputType(QemuVMVgaOutput{})
 	pulumi.RegisterOutputType(QemuVMVgaArrayOutput{})
 }

@@ -123,6 +123,8 @@ github.com/Telmate/proxmox-api-go v0.0.0-20200728092759-59bf3b228a00 h1:7+727mBv
 github.com/Telmate/proxmox-api-go v0.0.0-20200728092759-59bf3b228a00/go.mod h1:ayPkdmEKnlssqLQ9K1BE1jlsaYhXVwkoduXI30oQF0I=
 github.com/Telmate/proxmox-api-go v0.0.0-20200729204648-0bb7d4b38186 h1:GUTVu1MMEUMvTVvLL0WsApAfnD/jrlRg4EcKAvbctp0=
 github.com/Telmate/proxmox-api-go v0.0.0-20200729204648-0bb7d4b38186/go.mod h1:ayPkdmEKnlssqLQ9K1BE1jlsaYhXVwkoduXI30oQF0I=
+github.com/Telmate/proxmox-api-go v0.0.0-20201119162508-829786e5b8df h1:ED8m/7BU/FEx2qa3L+HB08lSI3yWyJYuzwqcaeRzlLI=
+github.com/Telmate/proxmox-api-go v0.0.0-20201119162508-829786e5b8df/go.mod h1:ayPkdmEKnlssqLQ9K1BE1jlsaYhXVwkoduXI30oQF0I=
 github.com/Telmate/terraform-provider-proxmox v0.0.0-20201016141324-4d4bf30a4b0d h1:e/66M0kJzXY/xf0/tY2PLgMiX26DqQyqjjMu9sv+Ixk=
 github.com/Telmate/terraform-provider-proxmox v0.0.0-20201016141324-4d4bf30a4b0d/go.mod h1:Z/I25Nj4+COI9numI6xiR4P2NDF5s/mOR3V+Vp5/6Nk=
 github.com/Unknwon/com v0.0.0-20151008135407-28b053d5a292/go.mod h1:KYCjqMOeHpNuTOiFQU6WEcTG7poCJrUs0YgyHNtn1no=
@@ -712,6 +714,8 @@ github.com/matchlighter/terraform-provider-proxmox v0.0.0-20201102232909-1711d91
 github.com/matchlighter/terraform-provider-proxmox v0.0.0-20201102232909-1711d91f1ff4/go.mod h1:qslFTH3wvotIVEWRgByZ+n+muUdZfg3VOzKtzC3YJxE=
 github.com/matchlighter/terraform-provider-proxmox v0.0.0-20201104210501-cef618d359b4 h1:LlkvcvFYlZRHICHcjSvfUCwLF1wP6F8pZb4emQFSIKc=
 github.com/matchlighter/terraform-provider-proxmox v0.0.0-20201104210501-cef618d359b4/go.mod h1:SZzfKr+CA+nH46DD3tjiM8iHyTEg/dmIVQDCx8YwkqQ=
+github.com/matchlighter/terraform-provider-proxmox v0.0.0-20201216064002-1547dfbe6e24 h1:Y+ZoEbSd0k6tnURZrUYg3ahzm57XlMXBKf76GqxWSj4=
+github.com/matchlighter/terraform-provider-proxmox v0.0.0-20201216064002-1547dfbe6e24/go.mod h1:MOjI4Ivabu9jX45HzwQ3/OOFI0tijxw17oqMmjKkn4I=
 github.com/mattn/go-colorable v0.0.9/go.mod h1:9vuHe8Xs5qXnSaW/c/ABM9alt+Vo+STaOChaDxuIBZU=
 github.com/mattn/go-colorable v0.1.1/go.mod h1:FuOcm+DKB9mbwrcAfNl7/TZVBZ6rcnceauSikq3lYCQ=
 github.com/mattn/go-colorable v0.1.2/go.mod h1:U0ppj6V5qS13XJ6of8GYAs25YV2eR4EVcfRqFIhoBtE=

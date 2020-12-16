@@ -179,6 +179,7 @@ class QemuVM(pulumi.CustomResource):
             __props__['vmid'] = vmid
             __props__['ssh_host'] = None
             __props__['ssh_port'] = None
+            __props__['unused_disks'] = None
         super(QemuVM, __self__).__init__(
             'proxmoxve:index/qemuVM:QemuVM',
             resource_name,
@@ -243,6 +244,7 @@ class QemuVM(pulumi.CustomResource):
             storage: Optional[pulumi.Input[str]] = None,
             storage_type: Optional[pulumi.Input[str]] = None,
             target_node: Optional[pulumi.Input[str]] = None,
+            unused_disks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['QemuVMUnusedDiskArgs']]]]] = None,
             vcpus: Optional[pulumi.Input[int]] = None,
             vgas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['QemuVMVgaArgs']]]]] = None,
             vlan: Optional[pulumi.Input[int]] = None,
@@ -254,6 +256,7 @@ class QemuVM(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['QemuVMUnusedDiskArgs']]]] unused_disks: Record unused disks in proxmox. This is intended to be read-only for now.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -313,6 +316,7 @@ class QemuVM(pulumi.CustomResource):
         __props__["storage"] = storage
         __props__["storage_type"] = storage_type
         __props__["target_node"] = target_node
+        __props__["unused_disks"] = unused_disks
         __props__["vcpus"] = vcpus
         __props__["vgas"] = vgas
         __props__["vlan"] = vlan
@@ -588,6 +592,14 @@ class QemuVM(pulumi.CustomResource):
     @pulumi.getter(name="targetNode")
     def target_node(self) -> pulumi.Output[str]:
         return pulumi.get(self, "target_node")
+
+    @property
+    @pulumi.getter(name="unusedDisks")
+    def unused_disks(self) -> pulumi.Output[Sequence['outputs.QemuVMUnusedDisk']]:
+        """
+        Record unused disks in proxmox. This is intended to be read-only for now.
+        """
+        return pulumi.get(self, "unused_disks")
 
     @property
     @pulumi.getter

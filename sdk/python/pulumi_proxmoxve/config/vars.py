@@ -10,6 +10,7 @@ from .. import _utilities, _tables
 
 __all__ = [
     'pm_api_url',
+    'pm_dangerously_ignore_unknown_attributes',
     'pm_log_enable',
     'pm_log_file',
     'pm_log_levels',
@@ -26,6 +27,14 @@ __config__ = pulumi.Config('proxmoxve')
 pm_api_url = __config__.get('pmApiUrl')
 """
 https://host.fqdn:8006/api2/json
+"""
+
+pm_dangerously_ignore_unknown_attributes = __config__.get('pmDangerouslyIgnoreUnknownAttributes')
+"""
+By default this provider will exit if an unknown attribute is found. This is to prevent the accidential destruction of
+VMs or Data when something in the proxmox API has changed/updated and is not confirmed to work with this provider. Set
+this to true at your own risk. It may allow you to proceed in cases when the provider refuses to work, but be aware of
+the danger in doing so.
 """
 
 pm_log_enable = __config__.get('pmLogEnable')

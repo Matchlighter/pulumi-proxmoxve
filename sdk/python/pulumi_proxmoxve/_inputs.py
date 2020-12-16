@@ -17,6 +17,7 @@ __all__ = [
     'QemuVMDiskArgs',
     'QemuVMNetworkArgs',
     'QemuVMSerialArgs',
+    'QemuVMUnusedDiskArgs',
     'QemuVMVgaArgs',
 ]
 
@@ -476,7 +477,9 @@ class QemuVMDiskArgs:
                  mbps_wr_max: Optional[pulumi.Input[int]] = None,
                  media: Optional[pulumi.Input[str]] = None,
                  replicate: Optional[pulumi.Input[bool]] = None,
+                 slot: Optional[pulumi.Input[int]] = None,
                  ssd: Optional[pulumi.Input[bool]] = None,
+                 storage_type: Optional[pulumi.Input[str]] = None,
                  volume: Optional[pulumi.Input[str]] = None):
         pulumi.set(__self__, "size", size)
         pulumi.set(__self__, "storage", storage)
@@ -507,8 +510,12 @@ class QemuVMDiskArgs:
             pulumi.set(__self__, "media", media)
         if replicate is not None:
             pulumi.set(__self__, "replicate", replicate)
+        if slot is not None:
+            pulumi.set(__self__, "slot", slot)
         if ssd is not None:
             pulumi.set(__self__, "ssd", ssd)
+        if storage_type is not None:
+            pulumi.set(__self__, "storage_type", storage_type)
         if volume is not None:
             pulumi.set(__self__, "volume", volume)
 
@@ -658,12 +665,30 @@ class QemuVMDiskArgs:
 
     @property
     @pulumi.getter
+    def slot(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "slot")
+
+    @slot.setter
+    def slot(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "slot", value)
+
+    @property
+    @pulumi.getter
     def ssd(self) -> Optional[pulumi.Input[bool]]:
         return pulumi.get(self, "ssd")
 
     @ssd.setter
     def ssd(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "ssd", value)
+
+    @property
+    @pulumi.getter(name="storageType")
+    def storage_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "storage_type")
+
+    @storage_type.setter
+    def storage_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "storage_type", value)
 
     @property
     @pulumi.getter
@@ -800,6 +825,47 @@ class QemuVMSerialArgs:
     @type.setter
     def type(self, value: pulumi.Input[str]):
         pulumi.set(self, "type", value)
+
+
+@pulumi.input_type
+class QemuVMUnusedDiskArgs:
+    def __init__(__self__, *,
+                 file: Optional[pulumi.Input[str]] = None,
+                 slot: Optional[pulumi.Input[int]] = None,
+                 storage: Optional[pulumi.Input[str]] = None):
+        if file is not None:
+            pulumi.set(__self__, "file", file)
+        if slot is not None:
+            pulumi.set(__self__, "slot", slot)
+        if storage is not None:
+            pulumi.set(__self__, "storage", storage)
+
+    @property
+    @pulumi.getter
+    def file(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "file")
+
+    @file.setter
+    def file(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "file", value)
+
+    @property
+    @pulumi.getter
+    def slot(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "slot")
+
+    @slot.setter
+    def slot(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "slot", value)
+
+    @property
+    @pulumi.getter
+    def storage(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "storage")
+
+    @storage.setter
+    def storage(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "storage", value)
 
 
 @pulumi.input_type

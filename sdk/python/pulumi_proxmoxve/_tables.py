@@ -14,6 +14,7 @@ SNAKE_TO_CAMEL_CASE_TABLE = {
     "os_network_config": "osNetworkConfig",
     "os_type": "osType",
     "pm_api_url": "pmApiUrl",
+    "pm_dangerously_ignore_unknown_attributes": "pmDangerouslyIgnoreUnknownAttributes",
     "pm_log_enable": "pmLogEnable",
     "pm_log_file": "pmLogFile",
     "pm_log_levels": "pmLogLevels",
@@ -32,6 +33,7 @@ SNAKE_TO_CAMEL_CASE_TABLE = {
     "ssh_user": "sshUser",
     "storage_type": "storageType",
     "target_node": "targetNode",
+    "unused_disks": "unusedDisks",
 }
 
 CAMEL_TO_SNAKE_CASE_TABLE = {
@@ -46,6 +48,7 @@ CAMEL_TO_SNAKE_CASE_TABLE = {
     "osNetworkConfig": "os_network_config",
     "osType": "os_type",
     "pmApiUrl": "pm_api_url",
+    "pmDangerouslyIgnoreUnknownAttributes": "pm_dangerously_ignore_unknown_attributes",
     "pmLogEnable": "pm_log_enable",
     "pmLogFile": "pm_log_file",
     "pmLogLevels": "pm_log_levels",
@@ -64,4 +67,5 @@ CAMEL_TO_SNAKE_CASE_TABLE = {
     "sshUser": "ssh_user",
     "storageType": "storage_type",
     "targetNode": "target_node",
+    "unusedDisks": "unused_disks",
 }

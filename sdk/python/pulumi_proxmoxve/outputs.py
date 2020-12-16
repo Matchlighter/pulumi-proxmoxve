@@ -17,6 +17,7 @@ __all__ = [
     'QemuVMDisk',
     'QemuVMNetwork',
     'QemuVMSerial',
+    'QemuVMUnusedDisk',
     'QemuVMVga',
 ]
 
@@ -351,7 +352,9 @@ class QemuVMDisk(dict):
                  mbps_wr_max: Optional[int] = None,
                  media: Optional[str] = None,
                  replicate: Optional[bool] = None,
+                 slot: Optional[int] = None,
                  ssd: Optional[bool] = None,
+                 storage_type: Optional[str] = None,
                  volume: Optional[str] = None):
         pulumi.set(__self__, "size", size)
         pulumi.set(__self__, "storage", storage)
@@ -382,8 +385,12 @@ class QemuVMDisk(dict):
             pulumi.set(__self__, "media", media)
         if replicate is not None:
             pulumi.set(__self__, "replicate", replicate)
+        if slot is not None:
+            pulumi.set(__self__, "slot", slot)
         if ssd is not None:
             pulumi.set(__self__, "ssd", ssd)
+        if storage_type is not None:
+            pulumi.set(__self__, "storage_type", storage_type)
         if volume is not None:
             pulumi.set(__self__, "volume", volume)
 
@@ -469,8 +476,18 @@ class QemuVMDisk(dict):
 
     @property
     @pulumi.getter
+    def slot(self) -> Optional[int]:
+        return pulumi.get(self, "slot")
+
+    @property
+    @pulumi.getter
     def ssd(self) -> Optional[bool]:
         return pulumi.get(self, "ssd")
+
+    @property
+    @pulumi.getter(name="storageType")
+    def storage_type(self) -> Optional[str]:
+        return pulumi.get(self, "storage_type")
 
     @property
     @pulumi.getter
@@ -569,6 +586,38 @@ class QemuVMSerial(dict):
     @pulumi.getter
     def type(self) -> str:
         return pulumi.get(self, "type")
+
+    def _translate_property(self, prop):
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+
+@pulumi.output_type
+class QemuVMUnusedDisk(dict):
+    def __init__(__self__, *,
+                 file: Optional[str] = None,
+                 slot: Optional[int] = None,
+                 storage: Optional[str] = None):
+        if file is not None:
+            pulumi.set(__self__, "file", file)
+        if slot is not None:
+            pulumi.set(__self__, "slot", slot)
+        if storage is not None:
+            pulumi.set(__self__, "storage", storage)
+
+    @property
+    @pulumi.getter
+    def file(self) -> Optional[str]:
+        return pulumi.get(self, "file")
+
+    @property
+    @pulumi.getter
+    def slot(self) -> Optional[int]:
+        return pulumi.get(self, "slot")
+
+    @property
+    @pulumi.getter
+    def storage(self) -> Optional[str]:
+        return pulumi.get(self, "storage")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

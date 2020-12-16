@@ -16,6 +16,7 @@ class Provider(pulumi.ProviderResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  pm_api_url: Optional[pulumi.Input[str]] = None,
+                 pm_dangerously_ignore_unknown_attributes: Optional[pulumi.Input[bool]] = None,
                  pm_log_enable: Optional[pulumi.Input[bool]] = None,
                  pm_log_file: Optional[pulumi.Input[str]] = None,
                  pm_log_levels: Optional[pulumi.Input[Mapping[str, Any]]] = None,
@@ -37,6 +38,10 @@ class Provider(pulumi.ProviderResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] pm_api_url: https://host.fqdn:8006/api2/json
+        :param pulumi.Input[bool] pm_dangerously_ignore_unknown_attributes: By default this provider will exit if an unknown attribute is found. This is to prevent the accidential destruction of
+               VMs or Data when something in the proxmox API has changed/updated and is not confirmed to work with this provider. Set
+               this to true at your own risk. It may allow you to proceed in cases when the provider refuses to work, but be aware of
+               the danger in doing so.
         :param pulumi.Input[str] pm_otp: OTP 2FA code (if required)
         :param pulumi.Input[str] pm_password: secret
         :param pulumi.Input[str] pm_user: username, maywith with @pam
@@ -61,6 +66,7 @@ class Provider(pulumi.ProviderResource):
             if pm_api_url is None:
                 raise TypeError("Missing required property 'pm_api_url'")
             __props__['pm_api_url'] = pm_api_url
+            __props__['pm_dangerously_ignore_unknown_attributes'] = pulumi.Output.from_input(pm_dangerously_ignore_unknown_attributes).apply(pulumi.runtime.to_json) if pm_dangerously_ignore_unknown_attributes is not None else None
             __props__['pm_log_enable'] = pulumi.Output.from_input(pm_log_enable).apply(pulumi.runtime.to_json) if pm_log_enable is not None else None
             __props__['pm_log_file'] = pm_log_file
             __props__['pm_log_levels'] = pulumi.Output.from_input(pm_log_levels).apply(pulumi.runtime.to_json) if pm_log_levels is not None else None

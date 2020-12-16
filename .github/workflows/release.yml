@@ -9,6 +9,7 @@ env:
   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
   GO111MODULE: "on"
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: true # TODO FIX
 
 jobs:
   build_sdk:

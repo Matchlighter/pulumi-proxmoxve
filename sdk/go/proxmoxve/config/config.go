@@ -12,6 +12,14 @@ import (
 func GetPmApiUrl(ctx *pulumi.Context) string {
 	return config.Get(ctx, "proxmoxve:pmApiUrl")
 }
+
+// By default this provider will exit if an unknown attribute is found. This is to prevent the accidential destruction of
+// VMs or Data when something in the proxmox API has changed/updated and is not confirmed to work with this provider. Set
+// this to true at your own risk. It may allow you to proceed in cases when the provider refuses to work, but be aware of
+// the danger in doing so.
+func GetPmDangerouslyIgnoreUnknownAttributes(ctx *pulumi.Context) bool {
+	return config.GetBool(ctx, "proxmoxve:pmDangerouslyIgnoreUnknownAttributes")
+}
 func GetPmLogEnable(ctx *pulumi.Context) bool {
 	return config.GetBool(ctx, "proxmoxve:pmLogEnable")
 }

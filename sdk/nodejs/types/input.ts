@@ -70,8 +70,10 @@ export interface QemuVMDisk {
     media?: pulumi.Input<string>;
     replicate?: pulumi.Input<boolean>;
     size: pulumi.Input<string>;
+    slot?: pulumi.Input<number>;
     ssd?: pulumi.Input<boolean>;
     storage: pulumi.Input<string>;
+    storageType?: pulumi.Input<string>;
     type: pulumi.Input<string>;
     volume?: pulumi.Input<string>;
 }
@@ -90,6 +92,12 @@ export interface QemuVMNetwork {
 export interface QemuVMSerial {
     id: pulumi.Input<number>;
     type: pulumi.Input<string>;
+}
+
+export interface QemuVMUnusedDisk {
+    file?: pulumi.Input<string>;
+    slot?: pulumi.Input<number>;
+    storage?: pulumi.Input<string>;
 }
 
 export interface QemuVMVga {

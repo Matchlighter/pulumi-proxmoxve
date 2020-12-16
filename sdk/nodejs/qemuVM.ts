@@ -106,6 +106,10 @@ export class QemuVM extends pulumi.CustomResource {
      */
     public readonly storageType!: pulumi.Output<string | undefined>;
     public readonly targetNode!: pulumi.Output<string>;
+    /**
+     * Record unused disks in proxmox. This is intended to be read-only for now.
+     */
+    public /*out*/ readonly unusedDisks!: pulumi.Output<outputs.QemuVMUnusedDisk[]>;
     public readonly vcpus!: pulumi.Output<number | undefined>;
     public readonly vgas!: pulumi.Output<outputs.QemuVMVga[] | undefined>;
     /**
@@ -180,6 +184,7 @@ export class QemuVM extends pulumi.CustomResource {
             inputs["storage"] = state ? state.storage : undefined;
             inputs["storageType"] = state ? state.storageType : undefined;
             inputs["targetNode"] = state ? state.targetNode : undefined;
+            inputs["unusedDisks"] = state ? state.unusedDisks : undefined;
             inputs["vcpus"] = state ? state.vcpus : undefined;
             inputs["vgas"] = state ? state.vgas : undefined;
             inputs["vlan"] = state ? state.vlan : undefined;
@@ -247,6 +252,7 @@ export class QemuVM extends pulumi.CustomResource {
             inputs["vmid"] = args ? args.vmid : undefined;
             inputs["sshHost"] = undefined /*out*/;
             inputs["sshPort"] = undefined /*out*/;
+            inputs["unusedDisks"] = undefined /*out*/;
         }
         if (!opts) {
             opts = {}
@@ -335,6 +341,10 @@ export interface QemuVMState {
      */
     readonly storageType?: pulumi.Input<string>;
     readonly targetNode?: pulumi.Input<string>;
+    /**
+     * Record unused disks in proxmox. This is intended to be read-only for now.
+     */
+    readonly unusedDisks?: pulumi.Input<pulumi.Input<inputs.QemuVMUnusedDisk>[]>;
     readonly vcpus?: pulumi.Input<number>;
     readonly vgas?: pulumi.Input<pulumi.Input<inputs.QemuVMVga>[]>;
     /**

@@ -73,8 +73,10 @@ type QemuVM struct {
 	// Deprecated: Use `disk.type` instead
 	StorageType pulumi.StringPtrOutput `pulumi:"storageType"`
 	TargetNode  pulumi.StringOutput    `pulumi:"targetNode"`
-	Vcpus       pulumi.IntPtrOutput    `pulumi:"vcpus"`
-	Vgas        QemuVMVgaArrayOutput   `pulumi:"vgas"`
+	// Record unused disks in proxmox. This is intended to be read-only for now.
+	UnusedDisks QemuVMUnusedDiskArrayOutput `pulumi:"unusedDisks"`
+	Vcpus       pulumi.IntPtrOutput         `pulumi:"vcpus"`
+	Vgas        QemuVMVgaArrayOutput        `pulumi:"vgas"`
 	// Deprecated: Use `network.tag` instead
 	Vlan pulumi.IntPtrOutput `pulumi:"vlan"`
 	Vmid pulumi.IntOutput    `pulumi:"vmid"`
@@ -169,10 +171,12 @@ type qemuVMState struct {
 	// Deprecated: Use `disk.storage` instead
 	Storage *string `pulumi:"storage"`
 	// Deprecated: Use `disk.type` instead
-	StorageType *string     `pulumi:"storageType"`
-	TargetNode  *string     `pulumi:"targetNode"`
-	Vcpus       *int        `pulumi:"vcpus"`
-	Vgas        []QemuVMVga `pulumi:"vgas"`
+	StorageType *string `pulumi:"storageType"`
+	TargetNode  *string `pulumi:"targetNode"`
+	// Record unused disks in proxmox. This is intended to be read-only for now.
+	UnusedDisks []QemuVMUnusedDisk `pulumi:"unusedDisks"`
+	Vcpus       *int               `pulumi:"vcpus"`
+	Vgas        []QemuVMVga        `pulumi:"vgas"`
 	// Deprecated: Use `network.tag` instead
 	Vlan *int `pulumi:"vlan"`
 	Vmid *int `pulumi:"vmid"`
@@ -239,6 +243,8 @@ type QemuVMState struct {
 	// Deprecated: Use `disk.type` instead
 	StorageType pulumi.StringPtrInput
 	TargetNode  pulumi.StringPtrInput
+	// Record unused disks in proxmox. This is intended to be read-only for now.
+	UnusedDisks QemuVMUnusedDiskArrayInput
 	Vcpus       pulumi.IntPtrInput
 	Vgas        QemuVMVgaArrayInput
 	// Deprecated: Use `network.tag` instead
