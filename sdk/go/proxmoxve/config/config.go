@@ -8,6 +8,16 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi/config"
 )
 
+// API TokenID e.g. root@pam!mytesttoken
+func GetPmApiTokenId(ctx *pulumi.Context) string {
+	return config.Get(ctx, "proxmoxve:pmApiTokenId")
+}
+
+// The secret uuid corresponding to a TokenID
+func GetPmApiTokenSecret(ctx *pulumi.Context) string {
+	return config.Get(ctx, "proxmoxve:pmApiTokenSecret")
+}
+
 // https://host.fqdn:8006/api2/json
 func GetPmApiUrl(ctx *pulumi.Context) string {
 	return config.Get(ctx, "proxmoxve:pmApiUrl")
@@ -20,12 +30,18 @@ func GetPmApiUrl(ctx *pulumi.Context) string {
 func GetPmDangerouslyIgnoreUnknownAttributes(ctx *pulumi.Context) bool {
 	return config.GetBool(ctx, "proxmoxve:pmDangerouslyIgnoreUnknownAttributes")
 }
+
+// Enable provider logging to get proxmox API logs
 func GetPmLogEnable(ctx *pulumi.Context) bool {
 	return config.GetBool(ctx, "proxmoxve:pmLogEnable")
 }
+
+// Write logs to this specific file
 func GetPmLogFile(ctx *pulumi.Context) string {
 	return config.Get(ctx, "proxmoxve:pmLogFile")
 }
+
+// Configure the logging level to display; trace, debug, info, warn, etc
 func GetPmLogLevels(ctx *pulumi.Context) string {
 	return config.Get(ctx, "proxmoxve:pmLogLevels")
 }
@@ -38,18 +54,22 @@ func GetPmParallel(ctx *pulumi.Context) int {
 	return config.GetInt(ctx, "proxmoxve:pmParallel")
 }
 
-// secret
+// Password to authenticate into proxmox
 func GetPmPassword(ctx *pulumi.Context) string {
 	return config.Get(ctx, "proxmoxve:pmPassword")
 }
 func GetPmTimeout(ctx *pulumi.Context) int {
 	return config.GetInt(ctx, "proxmoxve:pmTimeout")
 }
+
+// By default, every TLS connection is verified to be secure. This option allows terraform to proceed and operate on
+// servers considered insecure. For example if you're connecting to a remote host and you do not have the CA cert that
+// issued the proxmox api url's certificate.
 func GetPmTlsInsecure(ctx *pulumi.Context) bool {
 	return config.GetBool(ctx, "proxmoxve:pmTlsInsecure")
 }
 
-// username, maywith with @pam
+// Username e.g. myuser or myuser@pam
 func GetPmUser(ctx *pulumi.Context) string {
 	return config.Get(ctx, "proxmoxve:pmUser")
 }

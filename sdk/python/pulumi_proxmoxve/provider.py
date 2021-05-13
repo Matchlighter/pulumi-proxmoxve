@@ -15,6 +15,8 @@ class Provider(pulumi.ProviderResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 pm_api_token_id: Optional[pulumi.Input[str]] = None,
+                 pm_api_token_secret: Optional[pulumi.Input[str]] = None,
                  pm_api_url: Optional[pulumi.Input[str]] = None,
                  pm_dangerously_ignore_unknown_attributes: Optional[pulumi.Input[bool]] = None,
                  pm_log_enable: Optional[pulumi.Input[bool]] = None,
@@ -37,14 +39,22 @@ class Provider(pulumi.ProviderResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] pm_api_token_id: API TokenID e.g. root@pam!mytesttoken
+        :param pulumi.Input[str] pm_api_token_secret: The secret uuid corresponding to a TokenID
         :param pulumi.Input[str] pm_api_url: https://host.fqdn:8006/api2/json
         :param pulumi.Input[bool] pm_dangerously_ignore_unknown_attributes: By default this provider will exit if an unknown attribute is found. This is to prevent the accidential destruction of
                VMs or Data when something in the proxmox API has changed/updated and is not confirmed to work with this provider. Set
                this to true at your own risk. It may allow you to proceed in cases when the provider refuses to work, but be aware of
                the danger in doing so.
+        :param pulumi.Input[bool] pm_log_enable: Enable provider logging to get proxmox API logs
+        :param pulumi.Input[str] pm_log_file: Write logs to this specific file
+        :param pulumi.Input[Mapping[str, Any]] pm_log_levels: Configure the logging level to display; trace, debug, info, warn, etc
         :param pulumi.Input[str] pm_otp: OTP 2FA code (if required)
-        :param pulumi.Input[str] pm_password: secret
-        :param pulumi.Input[str] pm_user: username, maywith with @pam
+        :param pulumi.Input[str] pm_password: Password to authenticate into proxmox
+        :param pulumi.Input[bool] pm_tls_insecure: By default, every TLS connection is verified to be secure. This option allows terraform to proceed and operate on
+               servers considered insecure. For example if you're connecting to a remote host and you do not have the CA cert that
+               issued the proxmox api url's certificate.
+        :param pulumi.Input[str] pm_user: Username e.g. myuser or myuser@pam
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -63,6 +73,8 @@ class Provider(pulumi.ProviderResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
+            __props__['pm_api_token_id'] = pm_api_token_id
+            __props__['pm_api_token_secret'] = pm_api_token_secret
             if pm_api_url is None:
                 raise TypeError("Missing required property 'pm_api_url'")
             __props__['pm_api_url'] = pm_api_url
@@ -72,13 +84,9 @@ class Provider(pulumi.ProviderResource):
             __props__['pm_log_levels'] = pulumi.Output.from_input(pm_log_levels).apply(pulumi.runtime.to_json) if pm_log_levels is not None else None
             __props__['pm_otp'] = pm_otp
             __props__['pm_parallel'] = pulumi.Output.from_input(pm_parallel).apply(pulumi.runtime.to_json) if pm_parallel is not None else None
-            if pm_password is None:
-                raise TypeError("Missing required property 'pm_password'")
             __props__['pm_password'] = pm_password
             __props__['pm_timeout'] = pulumi.Output.from_input(pm_timeout).apply(pulumi.runtime.to_json) if pm_timeout is not None else None
             __props__['pm_tls_insecure'] = pulumi.Output.from_input(pm_tls_insecure).apply(pulumi.runtime.to_json) if pm_tls_insecure is not None else None
-            if pm_user is None:
-                raise TypeError("Missing required property 'pm_user'")
             __props__['pm_user'] = pm_user
         super(Provider, __self__).__init__(
             'proxmoxve',

@@ -14,6 +14,14 @@
     },
     "config": {
         "variables": {
+            "pmApiTokenId": {
+                "type": "string",
+                "description": "API TokenID e.g. root@pam!mytesttoken\n"
+            },
+            "pmApiTokenSecret": {
+                "type": "string",
+                "description": "The secret uuid corresponding to a TokenID\n"
+            },
             "pmApiUrl": {
                 "type": "string",
                 "description": "https://host.fqdn:8006/api2/json\n"
@@ -23,16 +31,19 @@
                 "description": "By default this provider will exit if an unknown attribute is found. This is to prevent the accidential destruction of\nVMs or Data when something in the proxmox API has changed/updated and is not confirmed to work with this provider. Set\nthis to true at your own risk. It may allow you to proceed in cases when the provider refuses to work, but be aware of\nthe danger in doing so.\n"
             },
             "pmLogEnable": {
-                "type": "boolean"
+                "type": "boolean",
+                "description": "Enable provider logging to get proxmox API logs\n"
             },
             "pmLogFile": {
-                "type": "string"
+                "type": "string",
+                "description": "Write logs to this specific file\n"
             },
             "pmLogLevels": {
                 "type": "object",
                 "additionalProperties": {
                     "$ref": "pulumi.json#/Any"
-                }
+                },
+                "description": "Configure the logging level to display; trace, debug, info, warn, etc\n"
             },
             "pmOtp": {
                 "type": "string",
@@ -43,23 +54,22 @@
             },
             "pmPassword": {
                 "type": "string",
-                "description": "secret\n"
+                "description": "Password to authenticate into proxmox\n"
             },
             "pmTimeout": {
                 "type": "integer"
             },
             "pmTlsInsecure": {
-                "type": "boolean"
+                "type": "boolean",
+                "description": "By default, every TLS connection is verified to be secure. This option allows terraform to proceed and operate on\nservers considered insecure. For example if you're connecting to a remote host and you do not have the CA cert that\nissued the proxmox api url's certificate.\n"
             },
             "pmUser": {
                 "type": "string",
-                "description": "username, maywith with @pam\n"
+                "description": "Username e.g. myuser or myuser@pam\n"
             }
         },
         "defaults": [
-            "pmApiUrl",
-            "pmPassword",
-            "pmUser"
+            "pmApiUrl"
         ]
     },
     "types": {
@@ -112,6 +122,14 @@
                 },
                 "backup": {
                     "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "file": {
+                    "type": "string",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -202,6 +220,7 @@
             "language": {
                 "nodejs": {
                     "requiredOutputs": [
+                        "file",
                         "key",
                         "mp",
                         "size",
@@ -417,7 +436,7 @@
         "proxmoxve:index/QemuVMDisk:QemuVMDisk": {
             "properties": {
                 "backup": {
-                    "type": "boolean",
+                    "type": "integer",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -457,7 +476,7 @@
                     }
                 },
                 "iothread": {
-                    "type": "boolean",
+                    "type": "integer",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -513,7 +532,7 @@
                     }
                 },
                 "replicate": {
-                    "type": "boolean",
+                    "type": "integer",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -537,7 +556,7 @@
                     }
                 },
                 "ssd": {
-                    "type": "boolean",
+                    "type": "integer",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -769,6 +788,14 @@
     "provider": {
         "description": "The provider type for the proxmoxve package. By default, resources use package-wide configuration\nsettings, however an explicit `Provider` instance may be created and passed during resource\nconstruction to achieve fine-grained programmatic control over provider settings. See the\n[documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.\n",
         "inputProperties": {
+            "pmApiTokenId": {
+                "type": "string",
+                "description": "API TokenID e.g. root@pam!mytesttoken\n"
+            },
+            "pmApiTokenSecret": {
+                "type": "string",
+                "description": "The secret uuid corresponding to a TokenID\n"
+            },
             "pmApiUrl": {
                 "type": "string",
                 "description": "https://host.fqdn:8006/api2/json\n"
@@ -778,16 +805,19 @@
                 "description": "By default this provider will exit if an unknown attribute is found. This is to prevent the accidential destruction of\nVMs or Data when something in the proxmox API has changed/updated and is not confirmed to work with this provider. Set\nthis to true at your own risk. It may allow you to proceed in cases when the provider refuses to work, but be aware of\nthe danger in doing so.\n"
             },
             "pmLogEnable": {
-                "type": "boolean"
+                "type": "boolean",
+                "description": "Enable provider logging to get proxmox API logs\n"
             },
             "pmLogFile": {
-                "type": "string"
+                "type": "string",
+                "description": "Write logs to this specific file\n"
             },
             "pmLogLevels": {
                 "type": "object",
                 "additionalProperties": {
                     "$ref": "pulumi.json#/Any"
-                }
+                },
+                "description": "Configure the logging level to display; trace, debug, info, warn, etc\n"
             },
             "pmOtp": {
                 "type": "string",
@@ -798,23 +828,22 @@
             },
             "pmPassword": {
                 "type": "string",
-                "description": "secret\n"
+                "description": "Password to authenticate into proxmox\n"
             },
             "pmTimeout": {
                 "type": "integer"
             },
             "pmTlsInsecure": {
-                "type": "boolean"
+                "type": "boolean",
+                "description": "By default, every TLS connection is verified to be secure. This option allows terraform to proceed and operate on\nservers considered insecure. For example if you're connecting to a remote host and you do not have the CA cert that\nissued the proxmox api url's certificate.\n"
             },
             "pmUser": {
                 "type": "string",
-                "description": "username, maywith with @pam\n"
+                "description": "Username e.g. myuser or myuser@pam\n"
             }
         },
         "requiredInputs": [
-            "pmApiUrl",
-            "pmPassword",
-            "pmUser"
+            "pmApiUrl"
         ]
     },
     "resources": {
@@ -918,6 +947,9 @@
                 },
                 "swap": {
                     "type": "integer"
+                },
+                "tags": {
+                    "type": "string"
                 },
                 "targetNode": {
                     "type": "string"
@@ -1048,6 +1080,9 @@
                 "swap": {
                     "type": "integer"
                 },
+                "tags": {
+                    "type": "string"
+                },
                 "targetNode": {
                     "type": "string"
                 },
@@ -1177,6 +1212,9 @@
                     },
                     "swap": {
                         "type": "integer"
+                    },
+                    "tags": {
+                        "type": "string"
                     },
                     "targetNode": {
                         "type": "string"
@@ -1343,8 +1381,14 @@
         },
         "proxmoxve:index/qemuVM:QemuVM": {
             "properties": {
+                "additionalWait": {
+                    "type": "integer"
+                },
                 "agent": {
                     "type": "integer"
+                },
+                "args": {
+                    "type": "string"
                 },
                 "balloon": {
                     "type": "integer"
@@ -1380,10 +1424,16 @@
                 "cloneWait": {
                     "type": "integer"
                 },
+                "cloudinitCdromStorage": {
+                    "type": "string"
+                },
                 "cores": {
                     "type": "integer"
                 },
                 "cpu": {
+                    "type": "string"
+                },
+                "defaultIpv4Address": {
                     "type": "string"
                 },
                 "defineConnectionInfo": {
@@ -1410,6 +1460,9 @@
                 },
                 "fullClone": {
                     "type": "boolean"
+                },
+                "guestAgentReadyTimeout": {
+                    "type": "integer"
                 },
                 "hastate": {
                     "type": "string"
@@ -1475,6 +1528,10 @@
                 },
                 "qemuOs": {
                     "type": "string"
+                },
+                "rebootRequired": {
+                    "type": "boolean",
+                    "description": "Internal variable, true if any of the modified parameters require a reboot to take effect.\n"
                 },
                 "scsihw": {
                     "type": "string"
@@ -1517,6 +1574,9 @@
                     "type": "string",
                     "deprecationMessage": "Use `disk.type` instead"
                 },
+                "tags": {
+                    "type": "string"
+                },
                 "targetNode": {
                     "type": "string"
                 },
@@ -1546,8 +1606,10 @@
             },
             "required": [
                 "bootdisk",
+                "defaultIpv4Address",
                 "name",
                 "nameserver",
+                "rebootRequired",
                 "scsihw",
                 "searchdomain",
                 "sshHost",
@@ -1557,8 +1619,14 @@
                 "vmid"
             ],
             "inputProperties": {
+                "additionalWait": {
+                    "type": "integer"
+                },
                 "agent": {
                     "type": "integer"
+                },
+                "args": {
+                    "type": "string"
                 },
                 "balloon": {
                     "type": "integer"
@@ -1594,6 +1662,9 @@
                 "cloneWait": {
                     "type": "integer"
                 },
+                "cloudinitCdromStorage": {
+                    "type": "string"
+                },
                 "cores": {
                     "type": "integer"
                 },
@@ -1624,6 +1695,9 @@
                 },
                 "fullClone": {
                     "type": "boolean"
+                },
+                "guestAgentReadyTimeout": {
+                    "type": "integer"
                 },
                 "hastate": {
                     "type": "string"
@@ -1725,6 +1799,9 @@
                     "type": "string",
                     "deprecationMessage": "Use `disk.type` instead"
                 },
+                "tags": {
+                    "type": "string"
+                },
                 "targetNode": {
                     "type": "string"
                 },
@@ -1751,8 +1828,14 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering QemuVM resources.\n",
                 "properties": {
+                    "additionalWait": {
+                        "type": "integer"
+                    },
                     "agent": {
                         "type": "integer"
+                    },
+                    "args": {
+                        "type": "string"
                     },
                     "balloon": {
                         "type": "integer"
@@ -1788,10 +1871,16 @@
                     "cloneWait": {
                         "type": "integer"
                     },
+                    "cloudinitCdromStorage": {
+                        "type": "string"
+                    },
                     "cores": {
                         "type": "integer"
                     },
                     "cpu": {
+                        "type": "string"
+                    },
+                    "defaultIpv4Address": {
                         "type": "string"
                     },
                     "defineConnectionInfo": {
@@ -1818,6 +1907,9 @@
                     },
                     "fullClone": {
                         "type": "boolean"
+                    },
+                    "guestAgentReadyTimeout": {
+                        "type": "integer"
                     },
                     "hastate": {
                         "type": "string"
@@ -1884,6 +1976,10 @@
                     "qemuOs": {
                         "type": "string"
                     },
+                    "rebootRequired": {
+                        "type": "boolean",
+                        "description": "Internal variable, true if any of the modified parameters require a reboot to take effect.\n"
+                    },
                     "scsihw": {
                         "type": "string"
                     },
@@ -1924,6 +2020,9 @@
                     "storageType": {
                         "type": "string",
                         "deprecationMessage": "Use `disk.type` instead"
+                    },
+                    "tags": {
+                        "type": "string"
                     },
                     "targetNode": {
                         "type": "string"

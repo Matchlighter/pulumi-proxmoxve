@@ -184,6 +184,7 @@ func (o LXCContainerFeaturesPtrOutput) Nesting() pulumi.BoolPtrOutput {
 type LXCContainerMountpoint struct {
 	Acl       *bool   `pulumi:"acl"`
 	Backup    *bool   `pulumi:"backup"`
+	File      *string `pulumi:"file"`
 	Key       string  `pulumi:"key"`
 	Mp        string  `pulumi:"mp"`
 	Quota     *bool   `pulumi:"quota"`
@@ -209,6 +210,7 @@ type LXCContainerMountpointInput interface {
 type LXCContainerMountpointArgs struct {
 	Acl       pulumi.BoolPtrInput   `pulumi:"acl"`
 	Backup    pulumi.BoolPtrInput   `pulumi:"backup"`
+	File      pulumi.StringPtrInput `pulumi:"file"`
 	Key       pulumi.StringInput    `pulumi:"key"`
 	Mp        pulumi.StringInput    `pulumi:"mp"`
 	Quota     pulumi.BoolPtrInput   `pulumi:"quota"`
@@ -277,6 +279,10 @@ func (o LXCContainerMountpointOutput) Acl() pulumi.BoolPtrOutput {
 
 func (o LXCContainerMountpointOutput) Backup() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LXCContainerMountpoint) *bool { return v.Backup }).(pulumi.BoolPtrOutput)
+}
+
+func (o LXCContainerMountpointOutput) File() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LXCContainerMountpoint) *string { return v.File }).(pulumi.StringPtrOutput)
 }
 
 func (o LXCContainerMountpointOutput) Key() pulumi.StringOutput {
@@ -829,22 +835,22 @@ func (o LXCDiskMountoptionsPtrOutput) Nosuid() pulumi.BoolPtrOutput {
 }
 
 type QemuVMDisk struct {
-	Backup      *bool   `pulumi:"backup"`
+	Backup      *int    `pulumi:"backup"`
 	Cache       *string `pulumi:"cache"`
 	Discard     *string `pulumi:"discard"`
 	File        *string `pulumi:"file"`
 	Format      *string `pulumi:"format"`
-	Iothread    *bool   `pulumi:"iothread"`
+	Iothread    *int    `pulumi:"iothread"`
 	Mbps        *int    `pulumi:"mbps"`
 	MbpsRd      *int    `pulumi:"mbpsRd"`
 	MbpsRdMax   *int    `pulumi:"mbpsRdMax"`
 	MbpsWr      *int    `pulumi:"mbpsWr"`
 	MbpsWrMax   *int    `pulumi:"mbpsWrMax"`
 	Media       *string `pulumi:"media"`
-	Replicate   *bool   `pulumi:"replicate"`
+	Replicate   *int    `pulumi:"replicate"`
 	Size        string  `pulumi:"size"`
 	Slot        *int    `pulumi:"slot"`
-	Ssd         *bool   `pulumi:"ssd"`
+	Ssd         *int    `pulumi:"ssd"`
 	Storage     string  `pulumi:"storage"`
 	StorageType *string `pulumi:"storageType"`
 	Type        string  `pulumi:"type"`
@@ -863,22 +869,22 @@ type QemuVMDiskInput interface {
 }
 
 type QemuVMDiskArgs struct {
-	Backup      pulumi.BoolPtrInput   `pulumi:"backup"`
+	Backup      pulumi.IntPtrInput    `pulumi:"backup"`
 	Cache       pulumi.StringPtrInput `pulumi:"cache"`
 	Discard     pulumi.StringPtrInput `pulumi:"discard"`
 	File        pulumi.StringPtrInput `pulumi:"file"`
 	Format      pulumi.StringPtrInput `pulumi:"format"`
-	Iothread    pulumi.BoolPtrInput   `pulumi:"iothread"`
+	Iothread    pulumi.IntPtrInput    `pulumi:"iothread"`
 	Mbps        pulumi.IntPtrInput    `pulumi:"mbps"`
 	MbpsRd      pulumi.IntPtrInput    `pulumi:"mbpsRd"`
 	MbpsRdMax   pulumi.IntPtrInput    `pulumi:"mbpsRdMax"`
 	MbpsWr      pulumi.IntPtrInput    `pulumi:"mbpsWr"`
 	MbpsWrMax   pulumi.IntPtrInput    `pulumi:"mbpsWrMax"`
 	Media       pulumi.StringPtrInput `pulumi:"media"`
-	Replicate   pulumi.BoolPtrInput   `pulumi:"replicate"`
+	Replicate   pulumi.IntPtrInput    `pulumi:"replicate"`
 	Size        pulumi.StringInput    `pulumi:"size"`
 	Slot        pulumi.IntPtrInput    `pulumi:"slot"`
-	Ssd         pulumi.BoolPtrInput   `pulumi:"ssd"`
+	Ssd         pulumi.IntPtrInput    `pulumi:"ssd"`
 	Storage     pulumi.StringInput    `pulumi:"storage"`
 	StorageType pulumi.StringPtrInput `pulumi:"storageType"`
 	Type        pulumi.StringInput    `pulumi:"type"`
@@ -936,8 +942,8 @@ func (o QemuVMDiskOutput) ToQemuVMDiskOutputWithContext(ctx context.Context) Qem
 	return o
 }
 
-func (o QemuVMDiskOutput) Backup() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v QemuVMDisk) *bool { return v.Backup }).(pulumi.BoolPtrOutput)
+func (o QemuVMDiskOutput) Backup() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v QemuVMDisk) *int { return v.Backup }).(pulumi.IntPtrOutput)
 }
 
 func (o QemuVMDiskOutput) Cache() pulumi.StringPtrOutput {
@@ -956,8 +962,8 @@ func (o QemuVMDiskOutput) Format() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v QemuVMDisk) *string { return v.Format }).(pulumi.StringPtrOutput)
 }
 
-func (o QemuVMDiskOutput) Iothread() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v QemuVMDisk) *bool { return v.Iothread }).(pulumi.BoolPtrOutput)
+func (o QemuVMDiskOutput) Iothread() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v QemuVMDisk) *int { return v.Iothread }).(pulumi.IntPtrOutput)
 }
 
 func (o QemuVMDiskOutput) Mbps() pulumi.IntPtrOutput {
@@ -984,8 +990,8 @@ func (o QemuVMDiskOutput) Media() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v QemuVMDisk) *string { return v.Media }).(pulumi.StringPtrOutput)
 }
 
-func (o QemuVMDiskOutput) Replicate() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v QemuVMDisk) *bool { return v.Replicate }).(pulumi.BoolPtrOutput)
+func (o QemuVMDiskOutput) Replicate() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v QemuVMDisk) *int { return v.Replicate }).(pulumi.IntPtrOutput)
 }
 
 func (o QemuVMDiskOutput) Size() pulumi.StringOutput {
@@ -996,8 +1002,8 @@ func (o QemuVMDiskOutput) Slot() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v QemuVMDisk) *int { return v.Slot }).(pulumi.IntPtrOutput)
 }
 
-func (o QemuVMDiskOutput) Ssd() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v QemuVMDisk) *bool { return v.Ssd }).(pulumi.BoolPtrOutput)
+func (o QemuVMDiskOutput) Ssd() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v QemuVMDisk) *int { return v.Ssd }).(pulumi.IntPtrOutput)
 }
 
 func (o QemuVMDiskOutput) Storage() pulumi.StringOutput {

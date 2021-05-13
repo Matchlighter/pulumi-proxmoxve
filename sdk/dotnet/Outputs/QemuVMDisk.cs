@@ -13,22 +13,22 @@ namespace Pulumi.Proxmoxve.Outputs
     [OutputType]
     public sealed class QemuVMDisk
     {
-        public readonly bool? Backup;
+        public readonly int? Backup;
         public readonly string? Cache;
         public readonly string? Discard;
         public readonly string? File;
         public readonly string? Format;
-        public readonly bool? Iothread;
+        public readonly int? Iothread;
         public readonly int? Mbps;
         public readonly int? MbpsRd;
         public readonly int? MbpsRdMax;
         public readonly int? MbpsWr;
         public readonly int? MbpsWrMax;
         public readonly string? Media;
-        public readonly bool? Replicate;
+        public readonly int? Replicate;
         public readonly string Size;
         public readonly int? Slot;
-        public readonly bool? Ssd;
+        public readonly int? Ssd;
         public readonly string Storage;
         public readonly string? StorageType;
         public readonly string Type;
@@ -36,7 +36,7 @@ namespace Pulumi.Proxmoxve.Outputs
 
         [OutputConstructor]
         private QemuVMDisk(
-            bool? backup,
+            int? backup,
 
             string? cache,
 
@@ -46,7 +46,7 @@ namespace Pulumi.Proxmoxve.Outputs
 
             string? format,
 
-            bool? iothread,
+            int? iothread,
 
             int? mbps,
 
@@ -60,13 +60,13 @@ namespace Pulumi.Proxmoxve.Outputs
 
             string? media,
 
-            bool? replicate,
+            int? replicate,
 
             string size,
 
             int? slot,
 
-            bool? ssd,
+            int? ssd,
 
             string storage,
 

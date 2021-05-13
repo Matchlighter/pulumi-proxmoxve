@@ -65,6 +65,7 @@ export class LXCContainer extends pulumi.CustomResource {
     public readonly start!: pulumi.Output<boolean | undefined>;
     public readonly startup!: pulumi.Output<string | undefined>;
     public readonly swap!: pulumi.Output<number | undefined>;
+    public readonly tags!: pulumi.Output<string | undefined>;
     public readonly targetNode!: pulumi.Output<string>;
     public readonly template!: pulumi.Output<boolean | undefined>;
     public readonly tty!: pulumi.Output<number | undefined>;
@@ -116,6 +117,7 @@ export class LXCContainer extends pulumi.CustomResource {
             inputs["start"] = state ? state.start : undefined;
             inputs["startup"] = state ? state.startup : undefined;
             inputs["swap"] = state ? state.swap : undefined;
+            inputs["tags"] = state ? state.tags : undefined;
             inputs["targetNode"] = state ? state.targetNode : undefined;
             inputs["template"] = state ? state.template : undefined;
             inputs["tty"] = state ? state.tty : undefined;
@@ -159,6 +161,7 @@ export class LXCContainer extends pulumi.CustomResource {
             inputs["start"] = args ? args.start : undefined;
             inputs["startup"] = args ? args.startup : undefined;
             inputs["swap"] = args ? args.swap : undefined;
+            inputs["tags"] = args ? args.tags : undefined;
             inputs["targetNode"] = args ? args.targetNode : undefined;
             inputs["template"] = args ? args.template : undefined;
             inputs["tty"] = args ? args.tty : undefined;
@@ -213,6 +216,7 @@ export interface LXCContainerState {
     readonly start?: pulumi.Input<boolean>;
     readonly startup?: pulumi.Input<string>;
     readonly swap?: pulumi.Input<number>;
+    readonly tags?: pulumi.Input<string>;
     readonly targetNode?: pulumi.Input<string>;
     readonly template?: pulumi.Input<boolean>;
     readonly tty?: pulumi.Input<number>;
@@ -257,6 +261,7 @@ export interface LXCContainerArgs {
     readonly start?: pulumi.Input<boolean>;
     readonly startup?: pulumi.Input<string>;
     readonly swap?: pulumi.Input<number>;
+    readonly tags?: pulumi.Input<string>;
     readonly targetNode: pulumi.Input<string>;
     readonly template?: pulumi.Input<boolean>;
     readonly tty?: pulumi.Input<number>;

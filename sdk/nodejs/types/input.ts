@@ -15,6 +15,7 @@ export interface LXCContainerFeatures {
 export interface LXCContainerMountpoint {
     acl?: pulumi.Input<boolean>;
     backup?: pulumi.Input<boolean>;
+    file?: pulumi.Input<string>;
     key: pulumi.Input<string>;
     mp: pulumi.Input<string>;
     quota?: pulumi.Input<boolean>;
@@ -56,22 +57,22 @@ export interface LXCDiskMountoptions {
 }
 
 export interface QemuVMDisk {
-    backup?: pulumi.Input<boolean>;
+    backup?: pulumi.Input<number>;
     cache?: pulumi.Input<string>;
     discard?: pulumi.Input<string>;
     file?: pulumi.Input<string>;
     format?: pulumi.Input<string>;
-    iothread?: pulumi.Input<boolean>;
+    iothread?: pulumi.Input<number>;
     mbps?: pulumi.Input<number>;
     mbpsRd?: pulumi.Input<number>;
     mbpsRdMax?: pulumi.Input<number>;
     mbpsWr?: pulumi.Input<number>;
     mbpsWrMax?: pulumi.Input<number>;
     media?: pulumi.Input<string>;
-    replicate?: pulumi.Input<boolean>;
+    replicate?: pulumi.Input<number>;
     size: pulumi.Input<string>;
     slot?: pulumi.Input<number>;
-    ssd?: pulumi.Input<boolean>;
+    ssd?: pulumi.Input<number>;
     storage: pulumi.Input<string>;
     storageType?: pulumi.Input<string>;
     type: pulumi.Input<string>;

@@ -11,8 +11,14 @@ namespace Pulumi.Proxmoxve
 {
     public partial class QemuVM : Pulumi.CustomResource
     {
+        [Output("additionalWait")]
+        public Output<int?> AdditionalWait { get; private set; } = null!;
+
         [Output("agent")]
         public Output<int?> Agent { get; private set; } = null!;
+
+        [Output("args")]
+        public Output<string?> Args { get; private set; } = null!;
 
         [Output("balloon")]
         public Output<int?> Balloon { get; private set; } = null!;
@@ -47,11 +53,17 @@ namespace Pulumi.Proxmoxve
         [Output("cloneWait")]
         public Output<int?> CloneWait { get; private set; } = null!;
 
+        [Output("cloudinitCdromStorage")]
+        public Output<string?> CloudinitCdromStorage { get; private set; } = null!;
+
         [Output("cores")]
         public Output<int?> Cores { get; private set; } = null!;
 
         [Output("cpu")]
         public Output<string?> Cpu { get; private set; } = null!;
+
+        [Output("defaultIpv4Address")]
+        public Output<string> DefaultIpv4Address { get; private set; } = null!;
 
         [Output("defineConnectionInfo")]
         public Output<bool?> DefineConnectionInfo { get; private set; } = null!;
@@ -73,6 +85,9 @@ namespace Pulumi.Proxmoxve
 
         [Output("fullClone")]
         public Output<bool?> FullClone { get; private set; } = null!;
+
+        [Output("guestAgentReadyTimeout")]
+        public Output<int?> GuestAgentReadyTimeout { get; private set; } = null!;
 
         [Output("hastate")]
         public Output<string?> Hastate { get; private set; } = null!;
@@ -134,6 +149,12 @@ namespace Pulumi.Proxmoxve
         [Output("qemuOs")]
         public Output<string?> QemuOs { get; private set; } = null!;
 
+        /// <summary>
+        /// Internal variable, true if any of the modified parameters require a reboot to take effect.
+        /// </summary>
+        [Output("rebootRequired")]
+        public Output<bool> RebootRequired { get; private set; } = null!;
+
         [Output("scsihw")]
         public Output<string> Scsihw { get; private set; } = null!;
 
@@ -169,6 +190,9 @@ namespace Pulumi.Proxmoxve
 
         [Output("storageType")]
         public Output<string?> StorageType { get; private set; } = null!;
+
+        [Output("tags")]
+        public Output<string?> Tags { get; private set; } = null!;
 
         [Output("targetNode")]
         public Output<string> TargetNode { get; private set; } = null!;
@@ -237,8 +261,14 @@ namespace Pulumi.Proxmoxve
 
     public sealed class QemuVMArgs : Pulumi.ResourceArgs
     {
+        [Input("additionalWait")]
+        public Input<int>? AdditionalWait { get; set; }
+
         [Input("agent")]
         public Input<int>? Agent { get; set; }
+
+        [Input("args")]
+        public Input<string>? Args { get; set; }
 
         [Input("balloon")]
         public Input<int>? Balloon { get; set; }
@@ -273,6 +303,9 @@ namespace Pulumi.Proxmoxve
         [Input("cloneWait")]
         public Input<int>? CloneWait { get; set; }
 
+        [Input("cloudinitCdromStorage")]
+        public Input<string>? CloudinitCdromStorage { get; set; }
+
         [Input("cores")]
         public Input<int>? Cores { get; set; }
 
@@ -304,6 +337,9 @@ namespace Pulumi.Proxmoxve
 
         [Input("fullClone")]
         public Input<bool>? FullClone { get; set; }
+
+        [Input("guestAgentReadyTimeout")]
+        public Input<int>? GuestAgentReadyTimeout { get; set; }
 
         [Input("hastate")]
         public Input<string>? Hastate { get; set; }
@@ -405,6 +441,9 @@ namespace Pulumi.Proxmoxve
         [Input("storageType")]
         public Input<string>? StorageType { get; set; }
 
+        [Input("tags")]
+        public Input<string>? Tags { get; set; }
+
         [Input("targetNode", required: true)]
         public Input<string> TargetNode { get; set; } = null!;
 
@@ -432,8 +471,14 @@ namespace Pulumi.Proxmoxve
 
     public sealed class QemuVMState : Pulumi.ResourceArgs
     {
+        [Input("additionalWait")]
+        public Input<int>? AdditionalWait { get; set; }
+
         [Input("agent")]
         public Input<int>? Agent { get; set; }
+
+        [Input("args")]
+        public Input<string>? Args { get; set; }
 
         [Input("balloon")]
         public Input<int>? Balloon { get; set; }
@@ -468,11 +513,17 @@ namespace Pulumi.Proxmoxve
         [Input("cloneWait")]
         public Input<int>? CloneWait { get; set; }
 
+        [Input("cloudinitCdromStorage")]
+        public Input<string>? CloudinitCdromStorage { get; set; }
+
         [Input("cores")]
         public Input<int>? Cores { get; set; }
 
         [Input("cpu")]
         public Input<string>? Cpu { get; set; }
+
+        [Input("defaultIpv4Address")]
+        public Input<string>? DefaultIpv4Address { get; set; }
 
         [Input("defineConnectionInfo")]
         public Input<bool>? DefineConnectionInfo { get; set; }
@@ -499,6 +550,9 @@ namespace Pulumi.Proxmoxve
 
         [Input("fullClone")]
         public Input<bool>? FullClone { get; set; }
+
+        [Input("guestAgentReadyTimeout")]
+        public Input<int>? GuestAgentReadyTimeout { get; set; }
 
         [Input("hastate")]
         public Input<string>? Hastate { get; set; }
@@ -565,6 +619,12 @@ namespace Pulumi.Proxmoxve
         [Input("qemuOs")]
         public Input<string>? QemuOs { get; set; }
 
+        /// <summary>
+        /// Internal variable, true if any of the modified parameters require a reboot to take effect.
+        /// </summary>
+        [Input("rebootRequired")]
+        public Input<bool>? RebootRequired { get; set; }
+
         [Input("scsihw")]
         public Input<string>? Scsihw { get; set; }
 
@@ -605,6 +665,9 @@ namespace Pulumi.Proxmoxve
 
         [Input("storageType")]
         public Input<string>? StorageType { get; set; }
+
+        [Input("tags")]
+        public Input<string>? Tags { get; set; }
 
         [Input("targetNode")]
         public Input<string>? TargetNode { get; set; }

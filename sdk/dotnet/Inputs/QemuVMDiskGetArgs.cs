@@ -13,7 +13,7 @@ namespace Pulumi.Proxmoxve.Inputs
     public sealed class QemuVMDiskGetArgs : Pulumi.ResourceArgs
     {
         [Input("backup")]
-        public Input<bool>? Backup { get; set; }
+        public Input<int>? Backup { get; set; }
 
         [Input("cache")]
         public Input<string>? Cache { get; set; }
@@ -28,7 +28,7 @@ namespace Pulumi.Proxmoxve.Inputs
         public Input<string>? Format { get; set; }
 
         [Input("iothread")]
-        public Input<bool>? Iothread { get; set; }
+        public Input<int>? Iothread { get; set; }
 
         [Input("mbps")]
         public Input<int>? Mbps { get; set; }
@@ -49,7 +49,7 @@ namespace Pulumi.Proxmoxve.Inputs
         public Input<string>? Media { get; set; }
 
         [Input("replicate")]
-        public Input<bool>? Replicate { get; set; }
+        public Input<int>? Replicate { get; set; }
 
         [Input("size", required: true)]
         public Input<string> Size { get; set; } = null!;
@@ -58,7 +58,7 @@ namespace Pulumi.Proxmoxve.Inputs
         public Input<int>? Slot { get; set; }
 
         [Input("ssd")]
-        public Input<bool>? Ssd { get; set; }
+        public Input<int>? Ssd { get; set; }
 
         [Input("storage", required: true)]
         public Input<string> Storage { get; set; } = null!;

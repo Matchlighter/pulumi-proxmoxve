@@ -104,6 +104,9 @@ namespace Pulumi.Proxmoxve
         [Output("swap")]
         public Output<int?> Swap { get; private set; } = null!;
 
+        [Output("tags")]
+        public Output<string?> Tags { get; private set; } = null!;
+
         [Output("targetNode")]
         public Output<string> TargetNode { get; private set; } = null!;
 
@@ -274,6 +277,9 @@ namespace Pulumi.Proxmoxve
         [Input("swap")]
         public Input<int>? Swap { get; set; }
 
+        [Input("tags")]
+        public Input<string>? Tags { get; set; }
+
         [Input("targetNode", required: true)]
         public Input<string> TargetNode { get; set; } = null!;
 
@@ -409,6 +415,9 @@ namespace Pulumi.Proxmoxve
 
         [Input("swap")]
         public Input<int>? Swap { get; set; }
+
+        [Input("tags")]
+        public Input<string>? Tags { get; set; }
 
         [Input("targetNode")]
         public Input<string>? TargetNode { get; set; }

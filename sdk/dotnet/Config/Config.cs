@@ -9,6 +9,16 @@ namespace Pulumi.Proxmoxve
     {
         private static readonly Pulumi.Config __config = new Pulumi.Config("proxmoxve");
         /// <summary>
+        /// API TokenID e.g. root@pam!mytesttoken
+        /// </summary>
+        public static string? PmApiTokenId { get; set; } = __config.Get("pmApiTokenId");
+
+        /// <summary>
+        /// The secret uuid corresponding to a TokenID
+        /// </summary>
+        public static string? PmApiTokenSecret { get; set; } = __config.Get("pmApiTokenSecret");
+
+        /// <summary>
         /// https://host.fqdn:8006/api2/json
         /// </summary>
         public static string? PmApiUrl { get; set; } = __config.Get("pmApiUrl");
@@ -21,10 +31,19 @@ namespace Pulumi.Proxmoxve
         /// </summary>
         public static bool? PmDangerouslyIgnoreUnknownAttributes { get; set; } = __config.GetBoolean("pmDangerouslyIgnoreUnknownAttributes");
 
+        /// <summary>
+        /// Enable provider logging to get proxmox API logs
+        /// </summary>
         public static bool? PmLogEnable { get; set; } = __config.GetBoolean("pmLogEnable");
 
+        /// <summary>
+        /// Write logs to this specific file
+        /// </summary>
         public static string? PmLogFile { get; set; } = __config.Get("pmLogFile");
 
+        /// <summary>
+        /// Configure the logging level to display; trace, debug, info, warn, etc
+        /// </summary>
         public static ImmutableDictionary<string, object>? PmLogLevels { get; set; } = __config.GetObject<ImmutableDictionary<string, object>>("pmLogLevels");
 
         /// <summary>
@@ -35,16 +54,21 @@ namespace Pulumi.Proxmoxve
         public static int? PmParallel { get; set; } = __config.GetInt32("pmParallel");
 
         /// <summary>
-        /// secret
+        /// Password to authenticate into proxmox
         /// </summary>
         public static string? PmPassword { get; set; } = __config.Get("pmPassword");
 
         public static int? PmTimeout { get; set; } = __config.GetInt32("pmTimeout");
 
+        /// <summary>
+        /// By default, every TLS connection is verified to be secure. This option allows terraform to proceed and operate on
+        /// servers considered insecure. For example if you're connecting to a remote host and you do not have the CA cert that
+        /// issued the proxmox api url's certificate.
+        /// </summary>
         public static bool? PmTlsInsecure { get; set; } = __config.GetBoolean("pmTlsInsecure");
 
         /// <summary>
-        /// username, maywith with @pam
+        /// Username e.g. myuser or myuser@pam
         /// </summary>
         public static string? PmUser { get; set; } = __config.Get("pmUser");
 

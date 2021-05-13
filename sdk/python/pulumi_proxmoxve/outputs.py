@@ -71,6 +71,7 @@ class LXCContainerMountpoint(dict):
                  storage: str,
                  acl: Optional[bool] = None,
                  backup: Optional[bool] = None,
+                 file: Optional[str] = None,
                  quota: Optional[bool] = None,
                  replicate: Optional[bool] = None,
                  shared: Optional[bool] = None,
@@ -84,6 +85,8 @@ class LXCContainerMountpoint(dict):
             pulumi.set(__self__, "acl", acl)
         if backup is not None:
             pulumi.set(__self__, "backup", backup)
+        if file is not None:
+            pulumi.set(__self__, "file", file)
         if quota is not None:
             pulumi.set(__self__, "quota", quota)
         if replicate is not None:
@@ -127,6 +130,11 @@ class LXCContainerMountpoint(dict):
     @pulumi.getter
     def backup(self) -> Optional[bool]:
         return pulumi.get(self, "backup")
+
+    @property
+    @pulumi.getter
+    def file(self) -> Optional[str]:
+        return pulumi.get(self, "file")
 
     @property
     @pulumi.getter
@@ -339,21 +347,21 @@ class QemuVMDisk(dict):
                  size: str,
                  storage: str,
                  type: str,
-                 backup: Optional[bool] = None,
+                 backup: Optional[int] = None,
                  cache: Optional[str] = None,
                  discard: Optional[str] = None,
                  file: Optional[str] = None,
                  format: Optional[str] = None,
-                 iothread: Optional[bool] = None,
+                 iothread: Optional[int] = None,
                  mbps: Optional[int] = None,
                  mbps_rd: Optional[int] = None,
                  mbps_rd_max: Optional[int] = None,
                  mbps_wr: Optional[int] = None,
                  mbps_wr_max: Optional[int] = None,
                  media: Optional[str] = None,
-                 replicate: Optional[bool] = None,
+                 replicate: Optional[int] = None,
                  slot: Optional[int] = None,
-                 ssd: Optional[bool] = None,
+                 ssd: Optional[int] = None,
                  storage_type: Optional[str] = None,
                  volume: Optional[str] = None):
         pulumi.set(__self__, "size", size)
@@ -411,7 +419,7 @@ class QemuVMDisk(dict):
 
     @property
     @pulumi.getter
-    def backup(self) -> Optional[bool]:
+    def backup(self) -> Optional[int]:
         return pulumi.get(self, "backup")
 
     @property
@@ -436,7 +444,7 @@ class QemuVMDisk(dict):
 
     @property
     @pulumi.getter
-    def iothread(self) -> Optional[bool]:
+    def iothread(self) -> Optional[int]:
         return pulumi.get(self, "iothread")
 
     @property
@@ -471,7 +479,7 @@ class QemuVMDisk(dict):
 
     @property
     @pulumi.getter
-    def replicate(self) -> Optional[bool]:
+    def replicate(self) -> Optional[int]:
         return pulumi.get(self, "replicate")
 
     @property
@@ -481,7 +489,7 @@ class QemuVMDisk(dict):
 
     @property
     @pulumi.getter
-    def ssd(self) -> Optional[bool]:
+    def ssd(self) -> Optional[int]:
         return pulumi.get(self, "ssd")
 
     @property

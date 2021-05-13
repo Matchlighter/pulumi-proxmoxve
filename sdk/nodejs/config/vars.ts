@@ -7,6 +7,14 @@ import * as utilities from "../utilities";
 let __config = new pulumi.Config("proxmoxve");
 
 /**
+ * API TokenID e.g. root@pam!mytesttoken
+ */
+export let pmApiTokenId: string | undefined = __config.get("pmApiTokenId");
+/**
+ * The secret uuid corresponding to a TokenID
+ */
+export let pmApiTokenSecret: string | undefined = __config.get("pmApiTokenSecret");
+/**
  * https://host.fqdn:8006/api2/json
  */
 export let pmApiUrl: string | undefined = __config.get("pmApiUrl");
@@ -17,8 +25,17 @@ export let pmApiUrl: string | undefined = __config.get("pmApiUrl");
  * the danger in doing so.
  */
 export let pmDangerouslyIgnoreUnknownAttributes: boolean | undefined = __config.getObject<boolean>("pmDangerouslyIgnoreUnknownAttributes");
+/**
+ * Enable provider logging to get proxmox API logs
+ */
 export let pmLogEnable: boolean | undefined = __config.getObject<boolean>("pmLogEnable");
+/**
+ * Write logs to this specific file
+ */
 export let pmLogFile: string | undefined = __config.get("pmLogFile");
+/**
+ * Configure the logging level to display; trace, debug, info, warn, etc
+ */
 export let pmLogLevels: {[key: string]: any} | undefined = __config.getObject<{[key: string]: any}>("pmLogLevels");
 /**
  * OTP 2FA code (if required)
@@ -26,12 +43,17 @@ export let pmLogLevels: {[key: string]: any} | undefined = __config.getObject<{[
 export let pmOtp: string | undefined = __config.get("pmOtp");
 export let pmParallel: number | undefined = __config.getObject<number>("pmParallel");
 /**
- * secret
+ * Password to authenticate into proxmox
  */
 export let pmPassword: string | undefined = __config.get("pmPassword");
 export let pmTimeout: number | undefined = __config.getObject<number>("pmTimeout");
+/**
+ * By default, every TLS connection is verified to be secure. This option allows terraform to proceed and operate on
+ * servers considered insecure. For example if you're connecting to a remote host and you do not have the CA cert that
+ * issued the proxmox api url's certificate.
+ */
 export let pmTlsInsecure: boolean | undefined = __config.getObject<boolean>("pmTlsInsecure");
 /**
- * username, maywith with @pam
+ * Username e.g. myuser or myuser@pam
  */
 export let pmUser: string | undefined = __config.get("pmUser");

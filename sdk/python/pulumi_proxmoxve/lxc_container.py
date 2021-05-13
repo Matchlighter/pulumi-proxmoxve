@@ -48,6 +48,7 @@ class LXCContainer(pulumi.CustomResource):
                  start: Optional[pulumi.Input[bool]] = None,
                  startup: Optional[pulumi.Input[str]] = None,
                  swap: Optional[pulumi.Input[int]] = None,
+                 tags: Optional[pulumi.Input[str]] = None,
                  target_node: Optional[pulumi.Input[str]] = None,
                  template: Optional[pulumi.Input[bool]] = None,
                  tty: Optional[pulumi.Input[int]] = None,
@@ -111,6 +112,7 @@ class LXCContainer(pulumi.CustomResource):
             __props__['start'] = start
             __props__['startup'] = startup
             __props__['swap'] = swap
+            __props__['tags'] = tags
             if target_node is None:
                 raise TypeError("Missing required property 'target_node'")
             __props__['target_node'] = target_node
@@ -161,6 +163,7 @@ class LXCContainer(pulumi.CustomResource):
             start: Optional[pulumi.Input[bool]] = None,
             startup: Optional[pulumi.Input[str]] = None,
             swap: Optional[pulumi.Input[int]] = None,
+            tags: Optional[pulumi.Input[str]] = None,
             target_node: Optional[pulumi.Input[str]] = None,
             template: Optional[pulumi.Input[bool]] = None,
             tty: Optional[pulumi.Input[int]] = None,
@@ -211,6 +214,7 @@ class LXCContainer(pulumi.CustomResource):
         __props__["start"] = start
         __props__["startup"] = startup
         __props__["swap"] = swap
+        __props__["tags"] = tags
         __props__["target_node"] = target_node
         __props__["template"] = template
         __props__["tty"] = tty
@@ -374,6 +378,11 @@ class LXCContainer(pulumi.CustomResource):
     @pulumi.getter
     def swap(self) -> pulumi.Output[Optional[int]]:
         return pulumi.get(self, "swap")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="targetNode")

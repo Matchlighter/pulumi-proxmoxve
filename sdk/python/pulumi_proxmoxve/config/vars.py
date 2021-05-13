@@ -9,6 +9,8 @@ from typing import Any, Mapping, Optional, Sequence, Union
 from .. import _utilities, _tables
 
 __all__ = [
+    'pm_api_token_id',
+    'pm_api_token_secret',
     'pm_api_url',
     'pm_dangerously_ignore_unknown_attributes',
     'pm_log_enable',
@@ -24,6 +26,16 @@ __all__ = [
 
 __config__ = pulumi.Config('proxmoxve')
 
+pm_api_token_id = __config__.get('pmApiTokenId')
+"""
+API TokenID e.g. root@pam!mytesttoken
+"""
+
+pm_api_token_secret = __config__.get('pmApiTokenSecret')
+"""
+The secret uuid corresponding to a TokenID
+"""
+
 pm_api_url = __config__.get('pmApiUrl')
 """
 https://host.fqdn:8006/api2/json
@@ -38,10 +50,19 @@ the danger in doing so.
 """
 
 pm_log_enable = __config__.get('pmLogEnable')
+"""
+Enable provider logging to get proxmox API logs
+"""
 
 pm_log_file = __config__.get('pmLogFile')
+"""
+Write logs to this specific file
+"""
 
 pm_log_levels = __config__.get('pmLogLevels')
+"""
+Configure the logging level to display; trace, debug, info, warn, etc
+"""
 
 pm_otp = __config__.get('pmOtp')
 """
@@ -52,15 +73,20 @@ pm_parallel = __config__.get('pmParallel')
 
 pm_password = __config__.get('pmPassword')
 """
-secret
+Password to authenticate into proxmox
 """
 
 pm_timeout = __config__.get('pmTimeout')
 
 pm_tls_insecure = __config__.get('pmTlsInsecure')
+"""
+By default, every TLS connection is verified to be secure. This option allows terraform to proceed and operate on
+servers considered insecure. For example if you're connecting to a remote host and you do not have the CA cert that
+issued the proxmox api url's certificate.
+"""
 
 pm_user = __config__.get('pmUser')
 """
-username, maywith with @pam
+Username e.g. myuser or myuser@pam
 """
 

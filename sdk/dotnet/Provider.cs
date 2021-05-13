@@ -45,6 +45,18 @@ namespace Pulumi.Proxmoxve
     public sealed class ProviderArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// API TokenID e.g. root@pam!mytesttoken
+        /// </summary>
+        [Input("pmApiTokenId")]
+        public Input<string>? PmApiTokenId { get; set; }
+
+        /// <summary>
+        /// The secret uuid corresponding to a TokenID
+        /// </summary>
+        [Input("pmApiTokenSecret")]
+        public Input<string>? PmApiTokenSecret { get; set; }
+
+        /// <summary>
         /// https://host.fqdn:8006/api2/json
         /// </summary>
         [Input("pmApiUrl", required: true)]
@@ -59,14 +71,24 @@ namespace Pulumi.Proxmoxve
         [Input("pmDangerouslyIgnoreUnknownAttributes", json: true)]
         public Input<bool>? PmDangerouslyIgnoreUnknownAttributes { get; set; }
 
+        /// <summary>
+        /// Enable provider logging to get proxmox API logs
+        /// </summary>
         [Input("pmLogEnable", json: true)]
         public Input<bool>? PmLogEnable { get; set; }
 
+        /// <summary>
+        /// Write logs to this specific file
+        /// </summary>
         [Input("pmLogFile")]
         public Input<string>? PmLogFile { get; set; }
 
         [Input("pmLogLevels", json: true)]
         private InputMap<object>? _pmLogLevels;
+
+        /// <summary>
+        /// Configure the logging level to display; trace, debug, info, warn, etc
+        /// </summary>
         public InputMap<object> PmLogLevels
         {
             get => _pmLogLevels ?? (_pmLogLevels = new InputMap<object>());
@@ -83,22 +105,27 @@ namespace Pulumi.Proxmoxve
         public Input<int>? PmParallel { get; set; }
 
         /// <summary>
-        /// secret
+        /// Password to authenticate into proxmox
         /// </summary>
-        [Input("pmPassword", required: true)]
-        public Input<string> PmPassword { get; set; } = null!;
+        [Input("pmPassword")]
+        public Input<string>? PmPassword { get; set; }
 
         [Input("pmTimeout", json: true)]
         public Input<int>? PmTimeout { get; set; }
 
+        /// <summary>
+        /// By default, every TLS connection is verified to be secure. This option allows terraform to proceed and operate on
+        /// servers considered insecure. For example if you're connecting to a remote host and you do not have the CA cert that
+        /// issued the proxmox api url's certificate.
+        /// </summary>
         [Input("pmTlsInsecure", json: true)]
         public Input<bool>? PmTlsInsecure { get; set; }
 
         /// <summary>
-        /// username, maywith with @pam
+        /// Username e.g. myuser or myuser@pam
         /// </summary>
-        [Input("pmUser", required: true)]
-        public Input<string> PmUser { get; set; } = null!;
+        [Input("pmUser")]
+        public Input<string>? PmUser { get; set; }
 
         public ProviderArgs()
         {

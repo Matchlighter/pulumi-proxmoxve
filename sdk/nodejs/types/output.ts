@@ -15,6 +15,7 @@ export interface LXCContainerFeatures {
 export interface LXCContainerMountpoint {
     acl?: boolean;
     backup?: boolean;
+    file: string;
     key: string;
     mp: string;
     quota?: boolean;
@@ -56,22 +57,22 @@ export interface LXCDiskMountoptions {
 }
 
 export interface QemuVMDisk {
-    backup?: boolean;
+    backup?: number;
     cache?: string;
     discard?: string;
     file: string;
     format: string;
-    iothread?: boolean;
+    iothread?: number;
     mbps?: number;
     mbpsRd?: number;
     mbpsRdMax?: number;
     mbpsWr?: number;
     mbpsWrMax?: number;
     media: string;
-    replicate?: boolean;
+    replicate?: number;
     size: string;
     slot: number;
-    ssd?: boolean;
+    ssd?: number;
     storage: string;
     storageType: string;
     type: string;

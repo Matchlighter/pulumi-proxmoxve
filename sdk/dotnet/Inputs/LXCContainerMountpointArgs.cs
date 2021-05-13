@@ -18,6 +18,9 @@ namespace Pulumi.Proxmoxve.Inputs
         [Input("backup")]
         public Input<bool>? Backup { get; set; }
 
+        [Input("file")]
+        public Input<string>? File { get; set; }
+
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;
 

@@ -15,6 +15,7 @@ namespace Pulumi.Proxmoxve.Outputs
     {
         public readonly bool? Acl;
         public readonly bool? Backup;
+        public readonly string? File;
         public readonly string Key;
         public readonly string Mp;
         public readonly bool? Quota;
@@ -30,6 +31,8 @@ namespace Pulumi.Proxmoxve.Outputs
             bool? acl,
 
             bool? backup,
+
+            string? file,
 
             string key,
 
@@ -51,6 +54,7 @@ namespace Pulumi.Proxmoxve.Outputs
         {
             Acl = acl;
             Backup = backup;
+            File = file;
             Key = key;
             Mp = mp;
             Quota = quota;

@@ -44,6 +44,7 @@ type LXCContainer struct {
 	Start              pulumi.BoolPtrOutput              `pulumi:"start"`
 	Startup            pulumi.StringPtrOutput            `pulumi:"startup"`
 	Swap               pulumi.IntPtrOutput               `pulumi:"swap"`
+	Tags               pulumi.StringPtrOutput            `pulumi:"tags"`
 	TargetNode         pulumi.StringOutput               `pulumi:"targetNode"`
 	Template           pulumi.BoolPtrOutput              `pulumi:"template"`
 	Tty                pulumi.IntPtrOutput               `pulumi:"tty"`
@@ -115,6 +116,7 @@ type lxccontainerState struct {
 	Start              *bool                    `pulumi:"start"`
 	Startup            *string                  `pulumi:"startup"`
 	Swap               *int                     `pulumi:"swap"`
+	Tags               *string                  `pulumi:"tags"`
 	TargetNode         *string                  `pulumi:"targetNode"`
 	Template           *bool                    `pulumi:"template"`
 	Tty                *int                     `pulumi:"tty"`
@@ -156,6 +158,7 @@ type LXCContainerState struct {
 	Start              pulumi.BoolPtrInput
 	Startup            pulumi.StringPtrInput
 	Swap               pulumi.IntPtrInput
+	Tags               pulumi.StringPtrInput
 	TargetNode         pulumi.StringPtrInput
 	Template           pulumi.BoolPtrInput
 	Tty                pulumi.IntPtrInput
@@ -201,6 +204,7 @@ type lxccontainerArgs struct {
 	Start              *bool                    `pulumi:"start"`
 	Startup            *string                  `pulumi:"startup"`
 	Swap               *int                     `pulumi:"swap"`
+	Tags               *string                  `pulumi:"tags"`
 	TargetNode         string                   `pulumi:"targetNode"`
 	Template           *bool                    `pulumi:"template"`
 	Tty                *int                     `pulumi:"tty"`
@@ -243,6 +247,7 @@ type LXCContainerArgs struct {
 	Start              pulumi.BoolPtrInput
 	Startup            pulumi.StringPtrInput
 	Swap               pulumi.IntPtrInput
+	Tags               pulumi.StringPtrInput
 	TargetNode         pulumi.StringInput
 	Template           pulumi.BoolPtrInput
 	Tty                pulumi.IntPtrInput

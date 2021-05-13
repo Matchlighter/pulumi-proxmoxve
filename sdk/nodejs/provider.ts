@@ -39,12 +39,8 @@ export class Provider extends pulumi.ProviderResource {
             if (!args || args.pmApiUrl === undefined) {
                 throw new Error("Missing required property 'pmApiUrl'");
             }
-            if (!args || args.pmPassword === undefined) {
-                throw new Error("Missing required property 'pmPassword'");
-            }
-            if (!args || args.pmUser === undefined) {
-                throw new Error("Missing required property 'pmUser'");
-            }
+            inputs["pmApiTokenId"] = args ? args.pmApiTokenId : undefined;
+            inputs["pmApiTokenSecret"] = args ? args.pmApiTokenSecret : undefined;
             inputs["pmApiUrl"] = args ? args.pmApiUrl : undefined;
             inputs["pmDangerouslyIgnoreUnknownAttributes"] = pulumi.output(args ? args.pmDangerouslyIgnoreUnknownAttributes : undefined).apply(JSON.stringify);
             inputs["pmLogEnable"] = pulumi.output(args ? args.pmLogEnable : undefined).apply(JSON.stringify);
@@ -73,6 +69,14 @@ export class Provider extends pulumi.ProviderResource {
  */
 export interface ProviderArgs {
     /**
+     * API TokenID e.g. root@pam!mytesttoken
+     */
+    readonly pmApiTokenId?: pulumi.Input<string>;
+    /**
+     * The secret uuid corresponding to a TokenID
+     */
+    readonly pmApiTokenSecret?: pulumi.Input<string>;
+    /**
      * https://host.fqdn:8006/api2/json
      */
     readonly pmApiUrl: pulumi.Input<string>;
@@ -83,8 +87,17 @@ export interface ProviderArgs {
      * the danger in doing so.
      */
     readonly pmDangerouslyIgnoreUnknownAttributes?: pulumi.Input<boolean>;
+    /**
+     * Enable provider logging to get proxmox API logs
+     */
     readonly pmLogEnable?: pulumi.Input<boolean>;
+    /**
+     * Write logs to this specific file
+     */
     readonly pmLogFile?: pulumi.Input<string>;
+    /**
+     * Configure the logging level to display; trace, debug, info, warn, etc
+     */
     readonly pmLogLevels?: pulumi.Input<{[key: string]: any}>;
     /**
      * OTP 2FA code (if required)
@@ -92,13 +105,18 @@ export interface ProviderArgs {
     readonly pmOtp?: pulumi.Input<string>;
     readonly pmParallel?: pulumi.Input<number>;
     /**
-     * secret
+     * Password to authenticate into proxmox
      */
-    readonly pmPassword: pulumi.Input<string>;
+    readonly pmPassword?: pulumi.Input<string>;
     readonly pmTimeout?: pulumi.Input<number>;
+    /**
+     * By default, every TLS connection is verified to be secure. This option allows terraform to proceed and operate on
+     * servers considered insecure. For example if you're connecting to a remote host and you do not have the CA cert that
+     * issued the proxmox api url's certificate.
+     */
     readonly pmTlsInsecure?: pulumi.Input<boolean>;
     /**
-     * username, maywith with @pam
+     * Username e.g. myuser or myuser@pam
      */
-    readonly pmUser: pulumi.Input<string>;
+    readonly pmUser?: pulumi.Input<string>;
 }

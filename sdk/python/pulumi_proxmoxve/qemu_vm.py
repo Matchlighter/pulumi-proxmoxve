@@ -17,7 +17,9 @@ class QemuVM(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 additional_wait: Optional[pulumi.Input[int]] = None,
                  agent: Optional[pulumi.Input[int]] = None,
+                 args: Optional[pulumi.Input[str]] = None,
                  balloon: Optional[pulumi.Input[int]] = None,
                  bios: Optional[pulumi.Input[str]] = None,
                  boot: Optional[pulumi.Input[str]] = None,
@@ -29,6 +31,7 @@ class QemuVM(pulumi.CustomResource):
                  ciuser: Optional[pulumi.Input[str]] = None,
                  clone: Optional[pulumi.Input[str]] = None,
                  clone_wait: Optional[pulumi.Input[int]] = None,
+                 cloudinit_cdrom_storage: Optional[pulumi.Input[str]] = None,
                  cores: Optional[pulumi.Input[int]] = None,
                  cpu: Optional[pulumi.Input[str]] = None,
                  define_connection_info: Optional[pulumi.Input[bool]] = None,
@@ -38,6 +41,7 @@ class QemuVM(pulumi.CustomResource):
                  force_create: Optional[pulumi.Input[bool]] = None,
                  force_recreate_on_change_of: Optional[pulumi.Input[str]] = None,
                  full_clone: Optional[pulumi.Input[bool]] = None,
+                 guest_agent_ready_timeout: Optional[pulumi.Input[int]] = None,
                  hastate: Optional[pulumi.Input[str]] = None,
                  hotplug: Optional[pulumi.Input[str]] = None,
                  ipconfig0: Optional[pulumi.Input[str]] = None,
@@ -68,6 +72,7 @@ class QemuVM(pulumi.CustomResource):
                  sshkeys: Optional[pulumi.Input[str]] = None,
                  storage: Optional[pulumi.Input[str]] = None,
                  storage_type: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[str]] = None,
                  target_node: Optional[pulumi.Input[str]] = None,
                  vcpus: Optional[pulumi.Input[int]] = None,
                  vgas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['QemuVMVgaArgs']]]]] = None,
@@ -98,7 +103,9 @@ class QemuVM(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
+            __props__['additional_wait'] = additional_wait
             __props__['agent'] = agent
+            __props__['args'] = args
             __props__['balloon'] = balloon
             __props__['bios'] = bios
             __props__['boot'] = boot
@@ -113,6 +120,7 @@ class QemuVM(pulumi.CustomResource):
             __props__['ciuser'] = ciuser
             __props__['clone'] = clone
             __props__['clone_wait'] = clone_wait
+            __props__['cloudinit_cdrom_storage'] = cloudinit_cdrom_storage
             __props__['cores'] = cores
             __props__['cpu'] = cpu
             __props__['define_connection_info'] = define_connection_info
@@ -125,6 +133,7 @@ class QemuVM(pulumi.CustomResource):
             __props__['force_create'] = force_create
             __props__['force_recreate_on_change_of'] = force_recreate_on_change_of
             __props__['full_clone'] = full_clone
+            __props__['guest_agent_ready_timeout'] = guest_agent_ready_timeout
             __props__['hastate'] = hastate
             __props__['hotplug'] = hotplug
             __props__['ipconfig0'] = ipconfig0
@@ -167,6 +176,7 @@ class QemuVM(pulumi.CustomResource):
                 warnings.warn("Use `disk.type` instead", DeprecationWarning)
                 pulumi.log.warn("storage_type is deprecated: Use `disk.type` instead")
             __props__['storage_type'] = storage_type
+            __props__['tags'] = tags
             if target_node is None:
                 raise TypeError("Missing required property 'target_node'")
             __props__['target_node'] = target_node
@@ -177,6 +187,8 @@ class QemuVM(pulumi.CustomResource):
                 pulumi.log.warn("vlan is deprecated: Use `network.tag` instead")
             __props__['vlan'] = vlan
             __props__['vmid'] = vmid
+            __props__['default_ipv4_address'] = None
+            __props__['reboot_required'] = None
             __props__['ssh_host'] = None
             __props__['ssh_port'] = None
             __props__['unused_disks'] = None
@@ -190,7 +202,9 @@ class QemuVM(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            additional_wait: Optional[pulumi.Input[int]] = None,
             agent: Optional[pulumi.Input[int]] = None,
+            args: Optional[pulumi.Input[str]] = None,
             balloon: Optional[pulumi.Input[int]] = None,
             bios: Optional[pulumi.Input[str]] = None,
             boot: Optional[pulumi.Input[str]] = None,
@@ -202,8 +216,10 @@ class QemuVM(pulumi.CustomResource):
             ciuser: Optional[pulumi.Input[str]] = None,
             clone: Optional[pulumi.Input[str]] = None,
             clone_wait: Optional[pulumi.Input[int]] = None,
+            cloudinit_cdrom_storage: Optional[pulumi.Input[str]] = None,
             cores: Optional[pulumi.Input[int]] = None,
             cpu: Optional[pulumi.Input[str]] = None,
+            default_ipv4_address: Optional[pulumi.Input[str]] = None,
             define_connection_info: Optional[pulumi.Input[bool]] = None,
             desc: Optional[pulumi.Input[str]] = None,
             disk_gb: Optional[pulumi.Input[float]] = None,
@@ -211,6 +227,7 @@ class QemuVM(pulumi.CustomResource):
             force_create: Optional[pulumi.Input[bool]] = None,
             force_recreate_on_change_of: Optional[pulumi.Input[str]] = None,
             full_clone: Optional[pulumi.Input[bool]] = None,
+            guest_agent_ready_timeout: Optional[pulumi.Input[int]] = None,
             hastate: Optional[pulumi.Input[str]] = None,
             hotplug: Optional[pulumi.Input[str]] = None,
             ipconfig0: Optional[pulumi.Input[str]] = None,
@@ -231,6 +248,7 @@ class QemuVM(pulumi.CustomResource):
             pool: Optional[pulumi.Input[str]] = None,
             preprovision: Optional[pulumi.Input[bool]] = None,
             qemu_os: Optional[pulumi.Input[str]] = None,
+            reboot_required: Optional[pulumi.Input[bool]] = None,
             scsihw: Optional[pulumi.Input[str]] = None,
             searchdomain: Optional[pulumi.Input[str]] = None,
             serials: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['QemuVMSerialArgs']]]]] = None,
@@ -243,6 +261,7 @@ class QemuVM(pulumi.CustomResource):
             sshkeys: Optional[pulumi.Input[str]] = None,
             storage: Optional[pulumi.Input[str]] = None,
             storage_type: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[str]] = None,
             target_node: Optional[pulumi.Input[str]] = None,
             unused_disks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['QemuVMUnusedDiskArgs']]]]] = None,
             vcpus: Optional[pulumi.Input[int]] = None,
@@ -256,13 +275,16 @@ class QemuVM(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] reboot_required: Internal variable, true if any of the modified parameters require a reboot to take effect.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['QemuVMUnusedDiskArgs']]]] unused_disks: Record unused disks in proxmox. This is intended to be read-only for now.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
 
+        __props__["additional_wait"] = additional_wait
         __props__["agent"] = agent
+        __props__["args"] = args
         __props__["balloon"] = balloon
         __props__["bios"] = bios
         __props__["boot"] = boot
@@ -274,8 +296,10 @@ class QemuVM(pulumi.CustomResource):
         __props__["ciuser"] = ciuser
         __props__["clone"] = clone
         __props__["clone_wait"] = clone_wait
+        __props__["cloudinit_cdrom_storage"] = cloudinit_cdrom_storage
         __props__["cores"] = cores
         __props__["cpu"] = cpu
+        __props__["default_ipv4_address"] = default_ipv4_address
         __props__["define_connection_info"] = define_connection_info
         __props__["desc"] = desc
         __props__["disk_gb"] = disk_gb
@@ -283,6 +307,7 @@ class QemuVM(pulumi.CustomResource):
         __props__["force_create"] = force_create
         __props__["force_recreate_on_change_of"] = force_recreate_on_change_of
         __props__["full_clone"] = full_clone
+        __props__["guest_agent_ready_timeout"] = guest_agent_ready_timeout
         __props__["hastate"] = hastate
         __props__["hotplug"] = hotplug
         __props__["ipconfig0"] = ipconfig0
@@ -303,6 +328,7 @@ class QemuVM(pulumi.CustomResource):
         __props__["pool"] = pool
         __props__["preprovision"] = preprovision
         __props__["qemu_os"] = qemu_os
+        __props__["reboot_required"] = reboot_required
         __props__["scsihw"] = scsihw
         __props__["searchdomain"] = searchdomain
         __props__["serials"] = serials
@@ -315,6 +341,7 @@ class QemuVM(pulumi.CustomResource):
         __props__["sshkeys"] = sshkeys
         __props__["storage"] = storage
         __props__["storage_type"] = storage_type
+        __props__["tags"] = tags
         __props__["target_node"] = target_node
         __props__["unused_disks"] = unused_disks
         __props__["vcpus"] = vcpus
@@ -324,9 +351,19 @@ class QemuVM(pulumi.CustomResource):
         return QemuVM(resource_name, opts=opts, __props__=__props__)
 
     @property
+    @pulumi.getter(name="additionalWait")
+    def additional_wait(self) -> pulumi.Output[Optional[int]]:
+        return pulumi.get(self, "additional_wait")
+
+    @property
     @pulumi.getter
     def agent(self) -> pulumi.Output[Optional[int]]:
         return pulumi.get(self, "agent")
+
+    @property
+    @pulumi.getter
+    def args(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "args")
 
     @property
     @pulumi.getter
@@ -384,6 +421,11 @@ class QemuVM(pulumi.CustomResource):
         return pulumi.get(self, "clone_wait")
 
     @property
+    @pulumi.getter(name="cloudinitCdromStorage")
+    def cloudinit_cdrom_storage(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "cloudinit_cdrom_storage")
+
+    @property
     @pulumi.getter
     def cores(self) -> pulumi.Output[Optional[int]]:
         return pulumi.get(self, "cores")
@@ -392,6 +434,11 @@ class QemuVM(pulumi.CustomResource):
     @pulumi.getter
     def cpu(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "cpu")
+
+    @property
+    @pulumi.getter(name="defaultIpv4Address")
+    def default_ipv4_address(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "default_ipv4_address")
 
     @property
     @pulumi.getter(name="defineConnectionInfo")
@@ -427,6 +474,11 @@ class QemuVM(pulumi.CustomResource):
     @pulumi.getter(name="fullClone")
     def full_clone(self) -> pulumi.Output[Optional[bool]]:
         return pulumi.get(self, "full_clone")
+
+    @property
+    @pulumi.getter(name="guestAgentReadyTimeout")
+    def guest_agent_ready_timeout(self) -> pulumi.Output[Optional[int]]:
+        return pulumi.get(self, "guest_agent_ready_timeout")
 
     @property
     @pulumi.getter
@@ -529,6 +581,14 @@ class QemuVM(pulumi.CustomResource):
         return pulumi.get(self, "qemu_os")
 
     @property
+    @pulumi.getter(name="rebootRequired")
+    def reboot_required(self) -> pulumi.Output[bool]:
+        """
+        Internal variable, true if any of the modified parameters require a reboot to take effect.
+        """
+        return pulumi.get(self, "reboot_required")
+
+    @property
     @pulumi.getter
     def scsihw(self) -> pulumi.Output[str]:
         return pulumi.get(self, "scsihw")
@@ -587,6 +647,11 @@ class QemuVM(pulumi.CustomResource):
     @pulumi.getter(name="storageType")
     def storage_type(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "storage_type")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="targetNode")

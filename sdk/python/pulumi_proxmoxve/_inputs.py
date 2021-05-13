@@ -84,6 +84,7 @@ class LXCContainerMountpointArgs:
                  storage: pulumi.Input[str],
                  acl: Optional[pulumi.Input[bool]] = None,
                  backup: Optional[pulumi.Input[bool]] = None,
+                 file: Optional[pulumi.Input[str]] = None,
                  quota: Optional[pulumi.Input[bool]] = None,
                  replicate: Optional[pulumi.Input[bool]] = None,
                  shared: Optional[pulumi.Input[bool]] = None,
@@ -97,6 +98,8 @@ class LXCContainerMountpointArgs:
             pulumi.set(__self__, "acl", acl)
         if backup is not None:
             pulumi.set(__self__, "backup", backup)
+        if file is not None:
+            pulumi.set(__self__, "file", file)
         if quota is not None:
             pulumi.set(__self__, "quota", quota)
         if replicate is not None:
@@ -168,6 +171,15 @@ class LXCContainerMountpointArgs:
     @backup.setter
     def backup(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "backup", value)
+
+    @property
+    @pulumi.getter
+    def file(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "file")
+
+    @file.setter
+    def file(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "file", value)
 
     @property
     @pulumi.getter
@@ -464,21 +476,21 @@ class QemuVMDiskArgs:
                  size: pulumi.Input[str],
                  storage: pulumi.Input[str],
                  type: pulumi.Input[str],
-                 backup: Optional[pulumi.Input[bool]] = None,
+                 backup: Optional[pulumi.Input[int]] = None,
                  cache: Optional[pulumi.Input[str]] = None,
                  discard: Optional[pulumi.Input[str]] = None,
                  file: Optional[pulumi.Input[str]] = None,
                  format: Optional[pulumi.Input[str]] = None,
-                 iothread: Optional[pulumi.Input[bool]] = None,
+                 iothread: Optional[pulumi.Input[int]] = None,
                  mbps: Optional[pulumi.Input[int]] = None,
                  mbps_rd: Optional[pulumi.Input[int]] = None,
                  mbps_rd_max: Optional[pulumi.Input[int]] = None,
                  mbps_wr: Optional[pulumi.Input[int]] = None,
                  mbps_wr_max: Optional[pulumi.Input[int]] = None,
                  media: Optional[pulumi.Input[str]] = None,
-                 replicate: Optional[pulumi.Input[bool]] = None,
+                 replicate: Optional[pulumi.Input[int]] = None,
                  slot: Optional[pulumi.Input[int]] = None,
-                 ssd: Optional[pulumi.Input[bool]] = None,
+                 ssd: Optional[pulumi.Input[int]] = None,
                  storage_type: Optional[pulumi.Input[str]] = None,
                  volume: Optional[pulumi.Input[str]] = None):
         pulumi.set(__self__, "size", size)
@@ -548,11 +560,11 @@ class QemuVMDiskArgs:
 
     @property
     @pulumi.getter
-    def backup(self) -> Optional[pulumi.Input[bool]]:
+    def backup(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "backup")
 
     @backup.setter
-    def backup(self, value: Optional[pulumi.Input[bool]]):
+    def backup(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "backup", value)
 
     @property
@@ -593,11 +605,11 @@ class QemuVMDiskArgs:
 
     @property
     @pulumi.getter
-    def iothread(self) -> Optional[pulumi.Input[bool]]:
+    def iothread(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "iothread")
 
     @iothread.setter
-    def iothread(self, value: Optional[pulumi.Input[bool]]):
+    def iothread(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "iothread", value)
 
     @property
@@ -656,11 +668,11 @@ class QemuVMDiskArgs:
 
     @property
     @pulumi.getter
-    def replicate(self) -> Optional[pulumi.Input[bool]]:
+    def replicate(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "replicate")
 
     @replicate.setter
-    def replicate(self, value: Optional[pulumi.Input[bool]]):
+    def replicate(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "replicate", value)
 
     @property
@@ -674,11 +686,11 @@ class QemuVMDiskArgs:
 
     @property
     @pulumi.getter
-    def ssd(self) -> Optional[pulumi.Input[bool]]:
+    def ssd(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "ssd")
 
     @ssd.setter
-    def ssd(self, value: Optional[pulumi.Input[bool]]):
+    def ssd(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "ssd", value)
 
     @property

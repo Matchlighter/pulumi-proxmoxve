@@ -34,7 +34,9 @@ export class QemuVM extends pulumi.CustomResource {
         return obj['__pulumiType'] === QemuVM.__pulumiType;
     }
 
+    public readonly additionalWait!: pulumi.Output<number | undefined>;
     public readonly agent!: pulumi.Output<number | undefined>;
+    public readonly args!: pulumi.Output<string | undefined>;
     public readonly balloon!: pulumi.Output<number | undefined>;
     public readonly bios!: pulumi.Output<string | undefined>;
     public readonly boot!: pulumi.Output<string | undefined>;
@@ -49,8 +51,10 @@ export class QemuVM extends pulumi.CustomResource {
     public readonly ciuser!: pulumi.Output<string | undefined>;
     public readonly clone!: pulumi.Output<string | undefined>;
     public readonly cloneWait!: pulumi.Output<number | undefined>;
+    public readonly cloudinitCdromStorage!: pulumi.Output<string | undefined>;
     public readonly cores!: pulumi.Output<number | undefined>;
     public readonly cpu!: pulumi.Output<string | undefined>;
+    public /*out*/ readonly defaultIpv4Address!: pulumi.Output<string>;
     public readonly defineConnectionInfo!: pulumi.Output<boolean | undefined>;
     public readonly desc!: pulumi.Output<string | undefined>;
     /**
@@ -61,6 +65,7 @@ export class QemuVM extends pulumi.CustomResource {
     public readonly forceCreate!: pulumi.Output<boolean | undefined>;
     public readonly forceRecreateOnChangeOf!: pulumi.Output<string | undefined>;
     public readonly fullClone!: pulumi.Output<boolean | undefined>;
+    public readonly guestAgentReadyTimeout!: pulumi.Output<number | undefined>;
     public readonly hastate!: pulumi.Output<string | undefined>;
     public readonly hotplug!: pulumi.Output<string | undefined>;
     public readonly ipconfig0!: pulumi.Output<string | undefined>;
@@ -87,6 +92,10 @@ export class QemuVM extends pulumi.CustomResource {
     public readonly pool!: pulumi.Output<string | undefined>;
     public readonly preprovision!: pulumi.Output<boolean | undefined>;
     public readonly qemuOs!: pulumi.Output<string | undefined>;
+    /**
+     * Internal variable, true if any of the modified parameters require a reboot to take effect.
+     */
+    public /*out*/ readonly rebootRequired!: pulumi.Output<boolean>;
     public readonly scsihw!: pulumi.Output<string>;
     public readonly searchdomain!: pulumi.Output<string>;
     public readonly serials!: pulumi.Output<outputs.QemuVMSerial[] | undefined>;
@@ -105,6 +114,7 @@ export class QemuVM extends pulumi.CustomResource {
      * @deprecated Use `disk.type` instead
      */
     public readonly storageType!: pulumi.Output<string | undefined>;
+    public readonly tags!: pulumi.Output<string | undefined>;
     public readonly targetNode!: pulumi.Output<string>;
     /**
      * Record unused disks in proxmox. This is intended to be read-only for now.
@@ -130,7 +140,9 @@ export class QemuVM extends pulumi.CustomResource {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
             const state = argsOrState as QemuVMState | undefined;
+            inputs["additionalWait"] = state ? state.additionalWait : undefined;
             inputs["agent"] = state ? state.agent : undefined;
+            inputs["args"] = state ? state.args : undefined;
             inputs["balloon"] = state ? state.balloon : undefined;
             inputs["bios"] = state ? state.bios : undefined;
             inputs["boot"] = state ? state.boot : undefined;
@@ -142,8 +154,10 @@ export class QemuVM extends pulumi.CustomResource {
             inputs["ciuser"] = state ? state.ciuser : undefined;
             inputs["clone"] = state ? state.clone : undefined;
             inputs["cloneWait"] = state ? state.cloneWait : undefined;
+            inputs["cloudinitCdromStorage"] = state ? state.cloudinitCdromStorage : undefined;
             inputs["cores"] = state ? state.cores : undefined;
             inputs["cpu"] = state ? state.cpu : undefined;
+            inputs["defaultIpv4Address"] = state ? state.defaultIpv4Address : undefined;
             inputs["defineConnectionInfo"] = state ? state.defineConnectionInfo : undefined;
             inputs["desc"] = state ? state.desc : undefined;
             inputs["diskGb"] = state ? state.diskGb : undefined;
@@ -151,6 +165,7 @@ export class QemuVM extends pulumi.CustomResource {
             inputs["forceCreate"] = state ? state.forceCreate : undefined;
             inputs["forceRecreateOnChangeOf"] = state ? state.forceRecreateOnChangeOf : undefined;
             inputs["fullClone"] = state ? state.fullClone : undefined;
+            inputs["guestAgentReadyTimeout"] = state ? state.guestAgentReadyTimeout : undefined;
             inputs["hastate"] = state ? state.hastate : undefined;
             inputs["hotplug"] = state ? state.hotplug : undefined;
             inputs["ipconfig0"] = state ? state.ipconfig0 : undefined;
@@ -171,6 +186,7 @@ export class QemuVM extends pulumi.CustomResource {
             inputs["pool"] = state ? state.pool : undefined;
             inputs["preprovision"] = state ? state.preprovision : undefined;
             inputs["qemuOs"] = state ? state.qemuOs : undefined;
+            inputs["rebootRequired"] = state ? state.rebootRequired : undefined;
             inputs["scsihw"] = state ? state.scsihw : undefined;
             inputs["searchdomain"] = state ? state.searchdomain : undefined;
             inputs["serials"] = state ? state.serials : undefined;
@@ -183,6 +199,7 @@ export class QemuVM extends pulumi.CustomResource {
             inputs["sshkeys"] = state ? state.sshkeys : undefined;
             inputs["storage"] = state ? state.storage : undefined;
             inputs["storageType"] = state ? state.storageType : undefined;
+            inputs["tags"] = state ? state.tags : undefined;
             inputs["targetNode"] = state ? state.targetNode : undefined;
             inputs["unusedDisks"] = state ? state.unusedDisks : undefined;
             inputs["vcpus"] = state ? state.vcpus : undefined;
@@ -194,7 +211,9 @@ export class QemuVM extends pulumi.CustomResource {
             if (!args || args.targetNode === undefined) {
                 throw new Error("Missing required property 'targetNode'");
             }
+            inputs["additionalWait"] = args ? args.additionalWait : undefined;
             inputs["agent"] = args ? args.agent : undefined;
+            inputs["args"] = args ? args.args : undefined;
             inputs["balloon"] = args ? args.balloon : undefined;
             inputs["bios"] = args ? args.bios : undefined;
             inputs["boot"] = args ? args.boot : undefined;
@@ -206,6 +225,7 @@ export class QemuVM extends pulumi.CustomResource {
             inputs["ciuser"] = args ? args.ciuser : undefined;
             inputs["clone"] = args ? args.clone : undefined;
             inputs["cloneWait"] = args ? args.cloneWait : undefined;
+            inputs["cloudinitCdromStorage"] = args ? args.cloudinitCdromStorage : undefined;
             inputs["cores"] = args ? args.cores : undefined;
             inputs["cpu"] = args ? args.cpu : undefined;
             inputs["defineConnectionInfo"] = args ? args.defineConnectionInfo : undefined;
@@ -215,6 +235,7 @@ export class QemuVM extends pulumi.CustomResource {
             inputs["forceCreate"] = args ? args.forceCreate : undefined;
             inputs["forceRecreateOnChangeOf"] = args ? args.forceRecreateOnChangeOf : undefined;
             inputs["fullClone"] = args ? args.fullClone : undefined;
+            inputs["guestAgentReadyTimeout"] = args ? args.guestAgentReadyTimeout : undefined;
             inputs["hastate"] = args ? args.hastate : undefined;
             inputs["hotplug"] = args ? args.hotplug : undefined;
             inputs["ipconfig0"] = args ? args.ipconfig0 : undefined;
@@ -245,11 +266,14 @@ export class QemuVM extends pulumi.CustomResource {
             inputs["sshkeys"] = args ? args.sshkeys : undefined;
             inputs["storage"] = args ? args.storage : undefined;
             inputs["storageType"] = args ? args.storageType : undefined;
+            inputs["tags"] = args ? args.tags : undefined;
             inputs["targetNode"] = args ? args.targetNode : undefined;
             inputs["vcpus"] = args ? args.vcpus : undefined;
             inputs["vgas"] = args ? args.vgas : undefined;
             inputs["vlan"] = args ? args.vlan : undefined;
             inputs["vmid"] = args ? args.vmid : undefined;
+            inputs["defaultIpv4Address"] = undefined /*out*/;
+            inputs["rebootRequired"] = undefined /*out*/;
             inputs["sshHost"] = undefined /*out*/;
             inputs["sshPort"] = undefined /*out*/;
             inputs["unusedDisks"] = undefined /*out*/;
@@ -269,7 +293,9 @@ export class QemuVM extends pulumi.CustomResource {
  * Input properties used for looking up and filtering QemuVM resources.
  */
 export interface QemuVMState {
+    readonly additionalWait?: pulumi.Input<number>;
     readonly agent?: pulumi.Input<number>;
+    readonly args?: pulumi.Input<string>;
     readonly balloon?: pulumi.Input<number>;
     readonly bios?: pulumi.Input<string>;
     readonly boot?: pulumi.Input<string>;
@@ -284,8 +310,10 @@ export interface QemuVMState {
     readonly ciuser?: pulumi.Input<string>;
     readonly clone?: pulumi.Input<string>;
     readonly cloneWait?: pulumi.Input<number>;
+    readonly cloudinitCdromStorage?: pulumi.Input<string>;
     readonly cores?: pulumi.Input<number>;
     readonly cpu?: pulumi.Input<string>;
+    readonly defaultIpv4Address?: pulumi.Input<string>;
     readonly defineConnectionInfo?: pulumi.Input<boolean>;
     readonly desc?: pulumi.Input<string>;
     /**
@@ -296,6 +324,7 @@ export interface QemuVMState {
     readonly forceCreate?: pulumi.Input<boolean>;
     readonly forceRecreateOnChangeOf?: pulumi.Input<string>;
     readonly fullClone?: pulumi.Input<boolean>;
+    readonly guestAgentReadyTimeout?: pulumi.Input<number>;
     readonly hastate?: pulumi.Input<string>;
     readonly hotplug?: pulumi.Input<string>;
     readonly ipconfig0?: pulumi.Input<string>;
@@ -322,6 +351,10 @@ export interface QemuVMState {
     readonly pool?: pulumi.Input<string>;
     readonly preprovision?: pulumi.Input<boolean>;
     readonly qemuOs?: pulumi.Input<string>;
+    /**
+     * Internal variable, true if any of the modified parameters require a reboot to take effect.
+     */
+    readonly rebootRequired?: pulumi.Input<boolean>;
     readonly scsihw?: pulumi.Input<string>;
     readonly searchdomain?: pulumi.Input<string>;
     readonly serials?: pulumi.Input<pulumi.Input<inputs.QemuVMSerial>[]>;
@@ -340,6 +373,7 @@ export interface QemuVMState {
      * @deprecated Use `disk.type` instead
      */
     readonly storageType?: pulumi.Input<string>;
+    readonly tags?: pulumi.Input<string>;
     readonly targetNode?: pulumi.Input<string>;
     /**
      * Record unused disks in proxmox. This is intended to be read-only for now.
@@ -358,7 +392,9 @@ export interface QemuVMState {
  * The set of arguments for constructing a QemuVM resource.
  */
 export interface QemuVMArgs {
+    readonly additionalWait?: pulumi.Input<number>;
     readonly agent?: pulumi.Input<number>;
+    readonly args?: pulumi.Input<string>;
     readonly balloon?: pulumi.Input<number>;
     readonly bios?: pulumi.Input<string>;
     readonly boot?: pulumi.Input<string>;
@@ -373,6 +409,7 @@ export interface QemuVMArgs {
     readonly ciuser?: pulumi.Input<string>;
     readonly clone?: pulumi.Input<string>;
     readonly cloneWait?: pulumi.Input<number>;
+    readonly cloudinitCdromStorage?: pulumi.Input<string>;
     readonly cores?: pulumi.Input<number>;
     readonly cpu?: pulumi.Input<string>;
     readonly defineConnectionInfo?: pulumi.Input<boolean>;
@@ -385,6 +422,7 @@ export interface QemuVMArgs {
     readonly forceCreate?: pulumi.Input<boolean>;
     readonly forceRecreateOnChangeOf?: pulumi.Input<string>;
     readonly fullClone?: pulumi.Input<boolean>;
+    readonly guestAgentReadyTimeout?: pulumi.Input<number>;
     readonly hastate?: pulumi.Input<string>;
     readonly hotplug?: pulumi.Input<string>;
     readonly ipconfig0?: pulumi.Input<string>;
@@ -427,6 +465,7 @@ export interface QemuVMArgs {
      * @deprecated Use `disk.type` instead
      */
     readonly storageType?: pulumi.Input<string>;
+    readonly tags?: pulumi.Input<string>;
     readonly targetNode: pulumi.Input<string>;
     readonly vcpus?: pulumi.Input<number>;
     readonly vgas?: pulumi.Input<pulumi.Input<inputs.QemuVMVga>[]>;
