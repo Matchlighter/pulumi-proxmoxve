@@ -5,15 +5,1604 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
-from . import _utilities, _tables
+from typing import Any, Mapping, Optional, Sequence, Union, overload
+from . import _utilities
 from . import outputs
 from ._inputs import *
 
-__all__ = ['QemuVM']
+__all__ = ['QemuVMArgs', 'QemuVM']
+
+@pulumi.input_type
+class QemuVMArgs:
+    def __init__(__self__, *,
+                 target_node: pulumi.Input[str],
+                 additional_wait: Optional[pulumi.Input[int]] = None,
+                 agent: Optional[pulumi.Input[int]] = None,
+                 args: Optional[pulumi.Input[str]] = None,
+                 balloon: Optional[pulumi.Input[int]] = None,
+                 bios: Optional[pulumi.Input[str]] = None,
+                 boot: Optional[pulumi.Input[str]] = None,
+                 bootdisk: Optional[pulumi.Input[str]] = None,
+                 bridge: Optional[pulumi.Input[str]] = None,
+                 ci_wait: Optional[pulumi.Input[int]] = None,
+                 cicustom: Optional[pulumi.Input[str]] = None,
+                 cipassword: Optional[pulumi.Input[str]] = None,
+                 ciuser: Optional[pulumi.Input[str]] = None,
+                 clone: Optional[pulumi.Input[str]] = None,
+                 clone_wait: Optional[pulumi.Input[int]] = None,
+                 cloudinit_cdrom_storage: Optional[pulumi.Input[str]] = None,
+                 cores: Optional[pulumi.Input[int]] = None,
+                 cpu: Optional[pulumi.Input[str]] = None,
+                 define_connection_info: Optional[pulumi.Input[bool]] = None,
+                 desc: Optional[pulumi.Input[str]] = None,
+                 disk_gb: Optional[pulumi.Input[float]] = None,
+                 disks: Optional[pulumi.Input[Sequence[pulumi.Input['QemuVMDiskArgs']]]] = None,
+                 force_create: Optional[pulumi.Input[bool]] = None,
+                 force_recreate_on_change_of: Optional[pulumi.Input[str]] = None,
+                 full_clone: Optional[pulumi.Input[bool]] = None,
+                 guest_agent_ready_timeout: Optional[pulumi.Input[int]] = None,
+                 hastate: Optional[pulumi.Input[str]] = None,
+                 hotplug: Optional[pulumi.Input[str]] = None,
+                 ipconfig0: Optional[pulumi.Input[str]] = None,
+                 ipconfig1: Optional[pulumi.Input[str]] = None,
+                 ipconfig2: Optional[pulumi.Input[str]] = None,
+                 iso: Optional[pulumi.Input[str]] = None,
+                 kvm: Optional[pulumi.Input[bool]] = None,
+                 mac: Optional[pulumi.Input[str]] = None,
+                 memory: Optional[pulumi.Input[int]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 nameserver: Optional[pulumi.Input[str]] = None,
+                 networks: Optional[pulumi.Input[Sequence[pulumi.Input['QemuVMNetworkArgs']]]] = None,
+                 nic: Optional[pulumi.Input[str]] = None,
+                 numa: Optional[pulumi.Input[bool]] = None,
+                 onboot: Optional[pulumi.Input[bool]] = None,
+                 os_network_config: Optional[pulumi.Input[str]] = None,
+                 os_type: Optional[pulumi.Input[str]] = None,
+                 pool: Optional[pulumi.Input[str]] = None,
+                 preprovision: Optional[pulumi.Input[bool]] = None,
+                 qemu_os: Optional[pulumi.Input[str]] = None,
+                 scsihw: Optional[pulumi.Input[str]] = None,
+                 searchdomain: Optional[pulumi.Input[str]] = None,
+                 serials: Optional[pulumi.Input[Sequence[pulumi.Input['QemuVMSerialArgs']]]] = None,
+                 sockets: Optional[pulumi.Input[int]] = None,
+                 ssh_forward_ip: Optional[pulumi.Input[str]] = None,
+                 ssh_private_key: Optional[pulumi.Input[str]] = None,
+                 ssh_user: Optional[pulumi.Input[str]] = None,
+                 sshkeys: Optional[pulumi.Input[str]] = None,
+                 storage: Optional[pulumi.Input[str]] = None,
+                 storage_type: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[str]] = None,
+                 vcpus: Optional[pulumi.Input[int]] = None,
+                 vgas: Optional[pulumi.Input[Sequence[pulumi.Input['QemuVMVgaArgs']]]] = None,
+                 vlan: Optional[pulumi.Input[int]] = None,
+                 vmid: Optional[pulumi.Input[int]] = None):
+        """
+        The set of arguments for constructing a QemuVM resource.
+        """
+        pulumi.set(__self__, "target_node", target_node)
+        if additional_wait is not None:
+            pulumi.set(__self__, "additional_wait", additional_wait)
+        if agent is not None:
+            pulumi.set(__self__, "agent", agent)
+        if args is not None:
+            pulumi.set(__self__, "args", args)
+        if balloon is not None:
+            pulumi.set(__self__, "balloon", balloon)
+        if bios is not None:
+            pulumi.set(__self__, "bios", bios)
+        if boot is not None:
+            pulumi.set(__self__, "boot", boot)
+        if bootdisk is not None:
+            pulumi.set(__self__, "bootdisk", bootdisk)
+        if bridge is not None:
+            warnings.warn("""Use `network.bridge` instead""", DeprecationWarning)
+            pulumi.log.warn("""bridge is deprecated: Use `network.bridge` instead""")
+        if bridge is not None:
+            pulumi.set(__self__, "bridge", bridge)
+        if ci_wait is not None:
+            pulumi.set(__self__, "ci_wait", ci_wait)
+        if cicustom is not None:
+            pulumi.set(__self__, "cicustom", cicustom)
+        if cipassword is not None:
+            pulumi.set(__self__, "cipassword", cipassword)
+        if ciuser is not None:
+            pulumi.set(__self__, "ciuser", ciuser)
+        if clone is not None:
+            pulumi.set(__self__, "clone", clone)
+        if clone_wait is not None:
+            pulumi.set(__self__, "clone_wait", clone_wait)
+        if cloudinit_cdrom_storage is not None:
+            pulumi.set(__self__, "cloudinit_cdrom_storage", cloudinit_cdrom_storage)
+        if cores is not None:
+            pulumi.set(__self__, "cores", cores)
+        if cpu is not None:
+            pulumi.set(__self__, "cpu", cpu)
+        if define_connection_info is not None:
+            pulumi.set(__self__, "define_connection_info", define_connection_info)
+        if desc is not None:
+            pulumi.set(__self__, "desc", desc)
+        if disk_gb is not None:
+            warnings.warn("""Use `disk.size` instead""", DeprecationWarning)
+            pulumi.log.warn("""disk_gb is deprecated: Use `disk.size` instead""")
+        if disk_gb is not None:
+            pulumi.set(__self__, "disk_gb", disk_gb)
+        if disks is not None:
+            pulumi.set(__self__, "disks", disks)
+        if force_create is not None:
+            pulumi.set(__self__, "force_create", force_create)
+        if force_recreate_on_change_of is not None:
+            pulumi.set(__self__, "force_recreate_on_change_of", force_recreate_on_change_of)
+        if full_clone is not None:
+            pulumi.set(__self__, "full_clone", full_clone)
+        if guest_agent_ready_timeout is not None:
+            pulumi.set(__self__, "guest_agent_ready_timeout", guest_agent_ready_timeout)
+        if hastate is not None:
+            pulumi.set(__self__, "hastate", hastate)
+        if hotplug is not None:
+            pulumi.set(__self__, "hotplug", hotplug)
+        if ipconfig0 is not None:
+            pulumi.set(__self__, "ipconfig0", ipconfig0)
+        if ipconfig1 is not None:
+            pulumi.set(__self__, "ipconfig1", ipconfig1)
+        if ipconfig2 is not None:
+            pulumi.set(__self__, "ipconfig2", ipconfig2)
+        if iso is not None:
+            pulumi.set(__self__, "iso", iso)
+        if kvm is not None:
+            pulumi.set(__self__, "kvm", kvm)
+        if mac is not None:
+            warnings.warn("""Use `network.macaddr` to access the auto generated MAC address""", DeprecationWarning)
+            pulumi.log.warn("""mac is deprecated: Use `network.macaddr` to access the auto generated MAC address""")
+        if mac is not None:
+            pulumi.set(__self__, "mac", mac)
+        if memory is not None:
+            pulumi.set(__self__, "memory", memory)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if nameserver is not None:
+            pulumi.set(__self__, "nameserver", nameserver)
+        if networks is not None:
+            pulumi.set(__self__, "networks", networks)
+        if nic is not None:
+            warnings.warn("""Use `network` instead""", DeprecationWarning)
+            pulumi.log.warn("""nic is deprecated: Use `network` instead""")
+        if nic is not None:
+            pulumi.set(__self__, "nic", nic)
+        if numa is not None:
+            pulumi.set(__self__, "numa", numa)
+        if onboot is not None:
+            pulumi.set(__self__, "onboot", onboot)
+        if os_network_config is not None:
+            pulumi.set(__self__, "os_network_config", os_network_config)
+        if os_type is not None:
+            pulumi.set(__self__, "os_type", os_type)
+        if pool is not None:
+            pulumi.set(__self__, "pool", pool)
+        if preprovision is not None:
+            pulumi.set(__self__, "preprovision", preprovision)
+        if qemu_os is not None:
+            pulumi.set(__self__, "qemu_os", qemu_os)
+        if scsihw is not None:
+            pulumi.set(__self__, "scsihw", scsihw)
+        if searchdomain is not None:
+            pulumi.set(__self__, "searchdomain", searchdomain)
+        if serials is not None:
+            pulumi.set(__self__, "serials", serials)
+        if sockets is not None:
+            pulumi.set(__self__, "sockets", sockets)
+        if ssh_forward_ip is not None:
+            pulumi.set(__self__, "ssh_forward_ip", ssh_forward_ip)
+        if ssh_private_key is not None:
+            pulumi.set(__self__, "ssh_private_key", ssh_private_key)
+        if ssh_user is not None:
+            pulumi.set(__self__, "ssh_user", ssh_user)
+        if sshkeys is not None:
+            pulumi.set(__self__, "sshkeys", sshkeys)
+        if storage is not None:
+            warnings.warn("""Use `disk.storage` instead""", DeprecationWarning)
+            pulumi.log.warn("""storage is deprecated: Use `disk.storage` instead""")
+        if storage is not None:
+            pulumi.set(__self__, "storage", storage)
+        if storage_type is not None:
+            warnings.warn("""Use `disk.type` instead""", DeprecationWarning)
+            pulumi.log.warn("""storage_type is deprecated: Use `disk.type` instead""")
+        if storage_type is not None:
+            pulumi.set(__self__, "storage_type", storage_type)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+        if vcpus is not None:
+            pulumi.set(__self__, "vcpus", vcpus)
+        if vgas is not None:
+            pulumi.set(__self__, "vgas", vgas)
+        if vlan is not None:
+            warnings.warn("""Use `network.tag` instead""", DeprecationWarning)
+            pulumi.log.warn("""vlan is deprecated: Use `network.tag` instead""")
+        if vlan is not None:
+            pulumi.set(__self__, "vlan", vlan)
+        if vmid is not None:
+            pulumi.set(__self__, "vmid", vmid)
+
+    @property
+    @pulumi.getter(name="targetNode")
+    def target_node(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "target_node")
+
+    @target_node.setter
+    def target_node(self, value: pulumi.Input[str]):
+        pulumi.set(self, "target_node", value)
+
+    @property
+    @pulumi.getter(name="additionalWait")
+    def additional_wait(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "additional_wait")
+
+    @additional_wait.setter
+    def additional_wait(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "additional_wait", value)
+
+    @property
+    @pulumi.getter
+    def agent(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "agent")
+
+    @agent.setter
+    def agent(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "agent", value)
+
+    @property
+    @pulumi.getter
+    def args(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "args")
+
+    @args.setter
+    def args(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "args", value)
+
+    @property
+    @pulumi.getter
+    def balloon(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "balloon")
+
+    @balloon.setter
+    def balloon(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "balloon", value)
+
+    @property
+    @pulumi.getter
+    def bios(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "bios")
+
+    @bios.setter
+    def bios(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "bios", value)
+
+    @property
+    @pulumi.getter
+    def boot(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "boot")
+
+    @boot.setter
+    def boot(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "boot", value)
+
+    @property
+    @pulumi.getter
+    def bootdisk(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "bootdisk")
+
+    @bootdisk.setter
+    def bootdisk(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "bootdisk", value)
+
+    @property
+    @pulumi.getter
+    def bridge(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "bridge")
+
+    @bridge.setter
+    def bridge(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "bridge", value)
+
+    @property
+    @pulumi.getter(name="ciWait")
+    def ci_wait(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "ci_wait")
+
+    @ci_wait.setter
+    def ci_wait(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ci_wait", value)
+
+    @property
+    @pulumi.getter
+    def cicustom(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "cicustom")
+
+    @cicustom.setter
+    def cicustom(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cicustom", value)
+
+    @property
+    @pulumi.getter
+    def cipassword(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "cipassword")
+
+    @cipassword.setter
+    def cipassword(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cipassword", value)
+
+    @property
+    @pulumi.getter
+    def ciuser(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ciuser")
+
+    @ciuser.setter
+    def ciuser(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ciuser", value)
+
+    @property
+    @pulumi.getter
+    def clone(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "clone")
+
+    @clone.setter
+    def clone(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "clone", value)
+
+    @property
+    @pulumi.getter(name="cloneWait")
+    def clone_wait(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "clone_wait")
+
+    @clone_wait.setter
+    def clone_wait(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "clone_wait", value)
+
+    @property
+    @pulumi.getter(name="cloudinitCdromStorage")
+    def cloudinit_cdrom_storage(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "cloudinit_cdrom_storage")
+
+    @cloudinit_cdrom_storage.setter
+    def cloudinit_cdrom_storage(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cloudinit_cdrom_storage", value)
+
+    @property
+    @pulumi.getter
+    def cores(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "cores")
+
+    @cores.setter
+    def cores(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "cores", value)
+
+    @property
+    @pulumi.getter
+    def cpu(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "cpu")
+
+    @cpu.setter
+    def cpu(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cpu", value)
+
+    @property
+    @pulumi.getter(name="defineConnectionInfo")
+    def define_connection_info(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "define_connection_info")
+
+    @define_connection_info.setter
+    def define_connection_info(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "define_connection_info", value)
+
+    @property
+    @pulumi.getter
+    def desc(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "desc")
+
+    @desc.setter
+    def desc(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "desc", value)
+
+    @property
+    @pulumi.getter(name="diskGb")
+    def disk_gb(self) -> Optional[pulumi.Input[float]]:
+        return pulumi.get(self, "disk_gb")
+
+    @disk_gb.setter
+    def disk_gb(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "disk_gb", value)
+
+    @property
+    @pulumi.getter
+    def disks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['QemuVMDiskArgs']]]]:
+        return pulumi.get(self, "disks")
+
+    @disks.setter
+    def disks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['QemuVMDiskArgs']]]]):
+        pulumi.set(self, "disks", value)
+
+    @property
+    @pulumi.getter(name="forceCreate")
+    def force_create(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "force_create")
+
+    @force_create.setter
+    def force_create(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "force_create", value)
+
+    @property
+    @pulumi.getter(name="forceRecreateOnChangeOf")
+    def force_recreate_on_change_of(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "force_recreate_on_change_of")
+
+    @force_recreate_on_change_of.setter
+    def force_recreate_on_change_of(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "force_recreate_on_change_of", value)
+
+    @property
+    @pulumi.getter(name="fullClone")
+    def full_clone(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "full_clone")
+
+    @full_clone.setter
+    def full_clone(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "full_clone", value)
+
+    @property
+    @pulumi.getter(name="guestAgentReadyTimeout")
+    def guest_agent_ready_timeout(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "guest_agent_ready_timeout")
+
+    @guest_agent_ready_timeout.setter
+    def guest_agent_ready_timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "guest_agent_ready_timeout", value)
+
+    @property
+    @pulumi.getter
+    def hastate(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "hastate")
+
+    @hastate.setter
+    def hastate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "hastate", value)
+
+    @property
+    @pulumi.getter
+    def hotplug(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "hotplug")
+
+    @hotplug.setter
+    def hotplug(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "hotplug", value)
+
+    @property
+    @pulumi.getter
+    def ipconfig0(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ipconfig0")
+
+    @ipconfig0.setter
+    def ipconfig0(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ipconfig0", value)
+
+    @property
+    @pulumi.getter
+    def ipconfig1(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ipconfig1")
+
+    @ipconfig1.setter
+    def ipconfig1(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ipconfig1", value)
+
+    @property
+    @pulumi.getter
+    def ipconfig2(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ipconfig2")
+
+    @ipconfig2.setter
+    def ipconfig2(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ipconfig2", value)
+
+    @property
+    @pulumi.getter
+    def iso(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "iso")
+
+    @iso.setter
+    def iso(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "iso", value)
+
+    @property
+    @pulumi.getter
+    def kvm(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "kvm")
+
+    @kvm.setter
+    def kvm(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "kvm", value)
+
+    @property
+    @pulumi.getter
+    def mac(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "mac")
+
+    @mac.setter
+    def mac(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mac", value)
+
+    @property
+    @pulumi.getter
+    def memory(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "memory")
+
+    @memory.setter
+    def memory(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "memory", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def nameserver(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "nameserver")
+
+    @nameserver.setter
+    def nameserver(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "nameserver", value)
+
+    @property
+    @pulumi.getter
+    def networks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['QemuVMNetworkArgs']]]]:
+        return pulumi.get(self, "networks")
+
+    @networks.setter
+    def networks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['QemuVMNetworkArgs']]]]):
+        pulumi.set(self, "networks", value)
+
+    @property
+    @pulumi.getter
+    def nic(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "nic")
+
+    @nic.setter
+    def nic(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "nic", value)
+
+    @property
+    @pulumi.getter
+    def numa(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "numa")
+
+    @numa.setter
+    def numa(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "numa", value)
+
+    @property
+    @pulumi.getter
+    def onboot(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "onboot")
+
+    @onboot.setter
+    def onboot(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "onboot", value)
+
+    @property
+    @pulumi.getter(name="osNetworkConfig")
+    def os_network_config(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "os_network_config")
+
+    @os_network_config.setter
+    def os_network_config(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "os_network_config", value)
+
+    @property
+    @pulumi.getter(name="osType")
+    def os_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "os_type")
+
+    @os_type.setter
+    def os_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "os_type", value)
+
+    @property
+    @pulumi.getter
+    def pool(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "pool")
+
+    @pool.setter
+    def pool(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pool", value)
+
+    @property
+    @pulumi.getter
+    def preprovision(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "preprovision")
+
+    @preprovision.setter
+    def preprovision(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "preprovision", value)
+
+    @property
+    @pulumi.getter(name="qemuOs")
+    def qemu_os(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "qemu_os")
+
+    @qemu_os.setter
+    def qemu_os(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "qemu_os", value)
+
+    @property
+    @pulumi.getter
+    def scsihw(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "scsihw")
+
+    @scsihw.setter
+    def scsihw(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "scsihw", value)
+
+    @property
+    @pulumi.getter
+    def searchdomain(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "searchdomain")
+
+    @searchdomain.setter
+    def searchdomain(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "searchdomain", value)
+
+    @property
+    @pulumi.getter
+    def serials(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['QemuVMSerialArgs']]]]:
+        return pulumi.get(self, "serials")
+
+    @serials.setter
+    def serials(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['QemuVMSerialArgs']]]]):
+        pulumi.set(self, "serials", value)
+
+    @property
+    @pulumi.getter
+    def sockets(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "sockets")
+
+    @sockets.setter
+    def sockets(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "sockets", value)
+
+    @property
+    @pulumi.getter(name="sshForwardIp")
+    def ssh_forward_ip(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ssh_forward_ip")
+
+    @ssh_forward_ip.setter
+    def ssh_forward_ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ssh_forward_ip", value)
+
+    @property
+    @pulumi.getter(name="sshPrivateKey")
+    def ssh_private_key(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ssh_private_key")
+
+    @ssh_private_key.setter
+    def ssh_private_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ssh_private_key", value)
+
+    @property
+    @pulumi.getter(name="sshUser")
+    def ssh_user(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ssh_user")
+
+    @ssh_user.setter
+    def ssh_user(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ssh_user", value)
+
+    @property
+    @pulumi.getter
+    def sshkeys(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "sshkeys")
+
+    @sshkeys.setter
+    def sshkeys(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sshkeys", value)
+
+    @property
+    @pulumi.getter
+    def storage(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "storage")
+
+    @storage.setter
+    def storage(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "storage", value)
+
+    @property
+    @pulumi.getter(name="storageType")
+    def storage_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "storage_type")
+
+    @storage_type.setter
+    def storage_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "storage_type", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tags", value)
+
+    @property
+    @pulumi.getter
+    def vcpus(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "vcpus")
+
+    @vcpus.setter
+    def vcpus(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "vcpus", value)
+
+    @property
+    @pulumi.getter
+    def vgas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['QemuVMVgaArgs']]]]:
+        return pulumi.get(self, "vgas")
+
+    @vgas.setter
+    def vgas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['QemuVMVgaArgs']]]]):
+        pulumi.set(self, "vgas", value)
+
+    @property
+    @pulumi.getter
+    def vlan(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "vlan")
+
+    @vlan.setter
+    def vlan(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "vlan", value)
+
+    @property
+    @pulumi.getter
+    def vmid(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "vmid")
+
+    @vmid.setter
+    def vmid(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "vmid", value)
+
+
+@pulumi.input_type
+class _QemuVMState:
+    def __init__(__self__, *,
+                 additional_wait: Optional[pulumi.Input[int]] = None,
+                 agent: Optional[pulumi.Input[int]] = None,
+                 args: Optional[pulumi.Input[str]] = None,
+                 balloon: Optional[pulumi.Input[int]] = None,
+                 bios: Optional[pulumi.Input[str]] = None,
+                 boot: Optional[pulumi.Input[str]] = None,
+                 bootdisk: Optional[pulumi.Input[str]] = None,
+                 bridge: Optional[pulumi.Input[str]] = None,
+                 ci_wait: Optional[pulumi.Input[int]] = None,
+                 cicustom: Optional[pulumi.Input[str]] = None,
+                 cipassword: Optional[pulumi.Input[str]] = None,
+                 ciuser: Optional[pulumi.Input[str]] = None,
+                 clone: Optional[pulumi.Input[str]] = None,
+                 clone_wait: Optional[pulumi.Input[int]] = None,
+                 cloudinit_cdrom_storage: Optional[pulumi.Input[str]] = None,
+                 cores: Optional[pulumi.Input[int]] = None,
+                 cpu: Optional[pulumi.Input[str]] = None,
+                 default_ipv4_address: Optional[pulumi.Input[str]] = None,
+                 define_connection_info: Optional[pulumi.Input[bool]] = None,
+                 desc: Optional[pulumi.Input[str]] = None,
+                 disk_gb: Optional[pulumi.Input[float]] = None,
+                 disks: Optional[pulumi.Input[Sequence[pulumi.Input['QemuVMDiskArgs']]]] = None,
+                 force_create: Optional[pulumi.Input[bool]] = None,
+                 force_recreate_on_change_of: Optional[pulumi.Input[str]] = None,
+                 full_clone: Optional[pulumi.Input[bool]] = None,
+                 guest_agent_ready_timeout: Optional[pulumi.Input[int]] = None,
+                 hastate: Optional[pulumi.Input[str]] = None,
+                 hotplug: Optional[pulumi.Input[str]] = None,
+                 ipconfig0: Optional[pulumi.Input[str]] = None,
+                 ipconfig1: Optional[pulumi.Input[str]] = None,
+                 ipconfig2: Optional[pulumi.Input[str]] = None,
+                 iso: Optional[pulumi.Input[str]] = None,
+                 kvm: Optional[pulumi.Input[bool]] = None,
+                 mac: Optional[pulumi.Input[str]] = None,
+                 memory: Optional[pulumi.Input[int]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 nameserver: Optional[pulumi.Input[str]] = None,
+                 networks: Optional[pulumi.Input[Sequence[pulumi.Input['QemuVMNetworkArgs']]]] = None,
+                 nic: Optional[pulumi.Input[str]] = None,
+                 numa: Optional[pulumi.Input[bool]] = None,
+                 onboot: Optional[pulumi.Input[bool]] = None,
+                 os_network_config: Optional[pulumi.Input[str]] = None,
+                 os_type: Optional[pulumi.Input[str]] = None,
+                 pool: Optional[pulumi.Input[str]] = None,
+                 preprovision: Optional[pulumi.Input[bool]] = None,
+                 qemu_os: Optional[pulumi.Input[str]] = None,
+                 reboot_required: Optional[pulumi.Input[bool]] = None,
+                 scsihw: Optional[pulumi.Input[str]] = None,
+                 searchdomain: Optional[pulumi.Input[str]] = None,
+                 serials: Optional[pulumi.Input[Sequence[pulumi.Input['QemuVMSerialArgs']]]] = None,
+                 sockets: Optional[pulumi.Input[int]] = None,
+                 ssh_forward_ip: Optional[pulumi.Input[str]] = None,
+                 ssh_host: Optional[pulumi.Input[str]] = None,
+                 ssh_port: Optional[pulumi.Input[str]] = None,
+                 ssh_private_key: Optional[pulumi.Input[str]] = None,
+                 ssh_user: Optional[pulumi.Input[str]] = None,
+                 sshkeys: Optional[pulumi.Input[str]] = None,
+                 storage: Optional[pulumi.Input[str]] = None,
+                 storage_type: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[str]] = None,
+                 target_node: Optional[pulumi.Input[str]] = None,
+                 unused_disks: Optional[pulumi.Input[Sequence[pulumi.Input['QemuVMUnusedDiskArgs']]]] = None,
+                 vcpus: Optional[pulumi.Input[int]] = None,
+                 vgas: Optional[pulumi.Input[Sequence[pulumi.Input['QemuVMVgaArgs']]]] = None,
+                 vlan: Optional[pulumi.Input[int]] = None,
+                 vmid: Optional[pulumi.Input[int]] = None):
+        """
+        Input properties used for looking up and filtering QemuVM resources.
+        :param pulumi.Input[bool] reboot_required: Internal variable, true if any of the modified parameters require a reboot to take effect.
+        :param pulumi.Input[Sequence[pulumi.Input['QemuVMUnusedDiskArgs']]] unused_disks: Record unused disks in proxmox. This is intended to be read-only for now.
+        """
+        if additional_wait is not None:
+            pulumi.set(__self__, "additional_wait", additional_wait)
+        if agent is not None:
+            pulumi.set(__self__, "agent", agent)
+        if args is not None:
+            pulumi.set(__self__, "args", args)
+        if balloon is not None:
+            pulumi.set(__self__, "balloon", balloon)
+        if bios is not None:
+            pulumi.set(__self__, "bios", bios)
+        if boot is not None:
+            pulumi.set(__self__, "boot", boot)
+        if bootdisk is not None:
+            pulumi.set(__self__, "bootdisk", bootdisk)
+        if bridge is not None:
+            warnings.warn("""Use `network.bridge` instead""", DeprecationWarning)
+            pulumi.log.warn("""bridge is deprecated: Use `network.bridge` instead""")
+        if bridge is not None:
+            pulumi.set(__self__, "bridge", bridge)
+        if ci_wait is not None:
+            pulumi.set(__self__, "ci_wait", ci_wait)
+        if cicustom is not None:
+            pulumi.set(__self__, "cicustom", cicustom)
+        if cipassword is not None:
+            pulumi.set(__self__, "cipassword", cipassword)
+        if ciuser is not None:
+            pulumi.set(__self__, "ciuser", ciuser)
+        if clone is not None:
+            pulumi.set(__self__, "clone", clone)
+        if clone_wait is not None:
+            pulumi.set(__self__, "clone_wait", clone_wait)
+        if cloudinit_cdrom_storage is not None:
+            pulumi.set(__self__, "cloudinit_cdrom_storage", cloudinit_cdrom_storage)
+        if cores is not None:
+            pulumi.set(__self__, "cores", cores)
+        if cpu is not None:
+            pulumi.set(__self__, "cpu", cpu)
+        if default_ipv4_address is not None:
+            pulumi.set(__self__, "default_ipv4_address", default_ipv4_address)
+        if define_connection_info is not None:
+            pulumi.set(__self__, "define_connection_info", define_connection_info)
+        if desc is not None:
+            pulumi.set(__self__, "desc", desc)
+        if disk_gb is not None:
+            warnings.warn("""Use `disk.size` instead""", DeprecationWarning)
+            pulumi.log.warn("""disk_gb is deprecated: Use `disk.size` instead""")
+        if disk_gb is not None:
+            pulumi.set(__self__, "disk_gb", disk_gb)
+        if disks is not None:
+            pulumi.set(__self__, "disks", disks)
+        if force_create is not None:
+            pulumi.set(__self__, "force_create", force_create)
+        if force_recreate_on_change_of is not None:
+            pulumi.set(__self__, "force_recreate_on_change_of", force_recreate_on_change_of)
+        if full_clone is not None:
+            pulumi.set(__self__, "full_clone", full_clone)
+        if guest_agent_ready_timeout is not None:
+            pulumi.set(__self__, "guest_agent_ready_timeout", guest_agent_ready_timeout)
+        if hastate is not None:
+            pulumi.set(__self__, "hastate", hastate)
+        if hotplug is not None:
+            pulumi.set(__self__, "hotplug", hotplug)
+        if ipconfig0 is not None:
+            pulumi.set(__self__, "ipconfig0", ipconfig0)
+        if ipconfig1 is not None:
+            pulumi.set(__self__, "ipconfig1", ipconfig1)
+        if ipconfig2 is not None:
+            pulumi.set(__self__, "ipconfig2", ipconfig2)
+        if iso is not None:
+            pulumi.set(__self__, "iso", iso)
+        if kvm is not None:
+            pulumi.set(__self__, "kvm", kvm)
+        if mac is not None:
+            warnings.warn("""Use `network.macaddr` to access the auto generated MAC address""", DeprecationWarning)
+            pulumi.log.warn("""mac is deprecated: Use `network.macaddr` to access the auto generated MAC address""")
+        if mac is not None:
+            pulumi.set(__self__, "mac", mac)
+        if memory is not None:
+            pulumi.set(__self__, "memory", memory)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if nameserver is not None:
+            pulumi.set(__self__, "nameserver", nameserver)
+        if networks is not None:
+            pulumi.set(__self__, "networks", networks)
+        if nic is not None:
+            warnings.warn("""Use `network` instead""", DeprecationWarning)
+            pulumi.log.warn("""nic is deprecated: Use `network` instead""")
+        if nic is not None:
+            pulumi.set(__self__, "nic", nic)
+        if numa is not None:
+            pulumi.set(__self__, "numa", numa)
+        if onboot is not None:
+            pulumi.set(__self__, "onboot", onboot)
+        if os_network_config is not None:
+            pulumi.set(__self__, "os_network_config", os_network_config)
+        if os_type is not None:
+            pulumi.set(__self__, "os_type", os_type)
+        if pool is not None:
+            pulumi.set(__self__, "pool", pool)
+        if preprovision is not None:
+            pulumi.set(__self__, "preprovision", preprovision)
+        if qemu_os is not None:
+            pulumi.set(__self__, "qemu_os", qemu_os)
+        if reboot_required is not None:
+            pulumi.set(__self__, "reboot_required", reboot_required)
+        if scsihw is not None:
+            pulumi.set(__self__, "scsihw", scsihw)
+        if searchdomain is not None:
+            pulumi.set(__self__, "searchdomain", searchdomain)
+        if serials is not None:
+            pulumi.set(__self__, "serials", serials)
+        if sockets is not None:
+            pulumi.set(__self__, "sockets", sockets)
+        if ssh_forward_ip is not None:
+            pulumi.set(__self__, "ssh_forward_ip", ssh_forward_ip)
+        if ssh_host is not None:
+            pulumi.set(__self__, "ssh_host", ssh_host)
+        if ssh_port is not None:
+            pulumi.set(__self__, "ssh_port", ssh_port)
+        if ssh_private_key is not None:
+            pulumi.set(__self__, "ssh_private_key", ssh_private_key)
+        if ssh_user is not None:
+            pulumi.set(__self__, "ssh_user", ssh_user)
+        if sshkeys is not None:
+            pulumi.set(__self__, "sshkeys", sshkeys)
+        if storage is not None:
+            warnings.warn("""Use `disk.storage` instead""", DeprecationWarning)
+            pulumi.log.warn("""storage is deprecated: Use `disk.storage` instead""")
+        if storage is not None:
+            pulumi.set(__self__, "storage", storage)
+        if storage_type is not None:
+            warnings.warn("""Use `disk.type` instead""", DeprecationWarning)
+            pulumi.log.warn("""storage_type is deprecated: Use `disk.type` instead""")
+        if storage_type is not None:
+            pulumi.set(__self__, "storage_type", storage_type)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+        if target_node is not None:
+            pulumi.set(__self__, "target_node", target_node)
+        if unused_disks is not None:
+            pulumi.set(__self__, "unused_disks", unused_disks)
+        if vcpus is not None:
+            pulumi.set(__self__, "vcpus", vcpus)
+        if vgas is not None:
+            pulumi.set(__self__, "vgas", vgas)
+        if vlan is not None:
+            warnings.warn("""Use `network.tag` instead""", DeprecationWarning)
+            pulumi.log.warn("""vlan is deprecated: Use `network.tag` instead""")
+        if vlan is not None:
+            pulumi.set(__self__, "vlan", vlan)
+        if vmid is not None:
+            pulumi.set(__self__, "vmid", vmid)
+
+    @property
+    @pulumi.getter(name="additionalWait")
+    def additional_wait(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "additional_wait")
+
+    @additional_wait.setter
+    def additional_wait(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "additional_wait", value)
+
+    @property
+    @pulumi.getter
+    def agent(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "agent")
+
+    @agent.setter
+    def agent(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "agent", value)
+
+    @property
+    @pulumi.getter
+    def args(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "args")
+
+    @args.setter
+    def args(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "args", value)
+
+    @property
+    @pulumi.getter
+    def balloon(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "balloon")
+
+    @balloon.setter
+    def balloon(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "balloon", value)
+
+    @property
+    @pulumi.getter
+    def bios(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "bios")
+
+    @bios.setter
+    def bios(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "bios", value)
+
+    @property
+    @pulumi.getter
+    def boot(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "boot")
+
+    @boot.setter
+    def boot(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "boot", value)
+
+    @property
+    @pulumi.getter
+    def bootdisk(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "bootdisk")
+
+    @bootdisk.setter
+    def bootdisk(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "bootdisk", value)
+
+    @property
+    @pulumi.getter
+    def bridge(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "bridge")
+
+    @bridge.setter
+    def bridge(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "bridge", value)
+
+    @property
+    @pulumi.getter(name="ciWait")
+    def ci_wait(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "ci_wait")
+
+    @ci_wait.setter
+    def ci_wait(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ci_wait", value)
+
+    @property
+    @pulumi.getter
+    def cicustom(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "cicustom")
+
+    @cicustom.setter
+    def cicustom(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cicustom", value)
+
+    @property
+    @pulumi.getter
+    def cipassword(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "cipassword")
+
+    @cipassword.setter
+    def cipassword(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cipassword", value)
+
+    @property
+    @pulumi.getter
+    def ciuser(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ciuser")
+
+    @ciuser.setter
+    def ciuser(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ciuser", value)
+
+    @property
+    @pulumi.getter
+    def clone(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "clone")
+
+    @clone.setter
+    def clone(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "clone", value)
+
+    @property
+    @pulumi.getter(name="cloneWait")
+    def clone_wait(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "clone_wait")
+
+    @clone_wait.setter
+    def clone_wait(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "clone_wait", value)
+
+    @property
+    @pulumi.getter(name="cloudinitCdromStorage")
+    def cloudinit_cdrom_storage(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "cloudinit_cdrom_storage")
+
+    @cloudinit_cdrom_storage.setter
+    def cloudinit_cdrom_storage(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cloudinit_cdrom_storage", value)
+
+    @property
+    @pulumi.getter
+    def cores(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "cores")
+
+    @cores.setter
+    def cores(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "cores", value)
+
+    @property
+    @pulumi.getter
+    def cpu(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "cpu")
+
+    @cpu.setter
+    def cpu(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cpu", value)
+
+    @property
+    @pulumi.getter(name="defaultIpv4Address")
+    def default_ipv4_address(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "default_ipv4_address")
+
+    @default_ipv4_address.setter
+    def default_ipv4_address(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "default_ipv4_address", value)
+
+    @property
+    @pulumi.getter(name="defineConnectionInfo")
+    def define_connection_info(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "define_connection_info")
+
+    @define_connection_info.setter
+    def define_connection_info(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "define_connection_info", value)
+
+    @property
+    @pulumi.getter
+    def desc(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "desc")
+
+    @desc.setter
+    def desc(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "desc", value)
+
+    @property
+    @pulumi.getter(name="diskGb")
+    def disk_gb(self) -> Optional[pulumi.Input[float]]:
+        return pulumi.get(self, "disk_gb")
+
+    @disk_gb.setter
+    def disk_gb(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "disk_gb", value)
+
+    @property
+    @pulumi.getter
+    def disks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['QemuVMDiskArgs']]]]:
+        return pulumi.get(self, "disks")
+
+    @disks.setter
+    def disks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['QemuVMDiskArgs']]]]):
+        pulumi.set(self, "disks", value)
+
+    @property
+    @pulumi.getter(name="forceCreate")
+    def force_create(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "force_create")
+
+    @force_create.setter
+    def force_create(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "force_create", value)
+
+    @property
+    @pulumi.getter(name="forceRecreateOnChangeOf")
+    def force_recreate_on_change_of(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "force_recreate_on_change_of")
+
+    @force_recreate_on_change_of.setter
+    def force_recreate_on_change_of(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "force_recreate_on_change_of", value)
+
+    @property
+    @pulumi.getter(name="fullClone")
+    def full_clone(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "full_clone")
+
+    @full_clone.setter
+    def full_clone(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "full_clone", value)
+
+    @property
+    @pulumi.getter(name="guestAgentReadyTimeout")
+    def guest_agent_ready_timeout(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "guest_agent_ready_timeout")
+
+    @guest_agent_ready_timeout.setter
+    def guest_agent_ready_timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "guest_agent_ready_timeout", value)
+
+    @property
+    @pulumi.getter
+    def hastate(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "hastate")
+
+    @hastate.setter
+    def hastate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "hastate", value)
+
+    @property
+    @pulumi.getter
+    def hotplug(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "hotplug")
+
+    @hotplug.setter
+    def hotplug(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "hotplug", value)
+
+    @property
+    @pulumi.getter
+    def ipconfig0(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ipconfig0")
+
+    @ipconfig0.setter
+    def ipconfig0(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ipconfig0", value)
+
+    @property
+    @pulumi.getter
+    def ipconfig1(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ipconfig1")
+
+    @ipconfig1.setter
+    def ipconfig1(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ipconfig1", value)
+
+    @property
+    @pulumi.getter
+    def ipconfig2(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ipconfig2")
+
+    @ipconfig2.setter
+    def ipconfig2(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ipconfig2", value)
+
+    @property
+    @pulumi.getter
+    def iso(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "iso")
+
+    @iso.setter
+    def iso(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "iso", value)
+
+    @property
+    @pulumi.getter
+    def kvm(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "kvm")
+
+    @kvm.setter
+    def kvm(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "kvm", value)
+
+    @property
+    @pulumi.getter
+    def mac(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "mac")
+
+    @mac.setter
+    def mac(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mac", value)
+
+    @property
+    @pulumi.getter
+    def memory(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "memory")
+
+    @memory.setter
+    def memory(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "memory", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def nameserver(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "nameserver")
+
+    @nameserver.setter
+    def nameserver(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "nameserver", value)
+
+    @property
+    @pulumi.getter
+    def networks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['QemuVMNetworkArgs']]]]:
+        return pulumi.get(self, "networks")
+
+    @networks.setter
+    def networks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['QemuVMNetworkArgs']]]]):
+        pulumi.set(self, "networks", value)
+
+    @property
+    @pulumi.getter
+    def nic(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "nic")
+
+    @nic.setter
+    def nic(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "nic", value)
+
+    @property
+    @pulumi.getter
+    def numa(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "numa")
+
+    @numa.setter
+    def numa(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "numa", value)
+
+    @property
+    @pulumi.getter
+    def onboot(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "onboot")
+
+    @onboot.setter
+    def onboot(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "onboot", value)
+
+    @property
+    @pulumi.getter(name="osNetworkConfig")
+    def os_network_config(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "os_network_config")
+
+    @os_network_config.setter
+    def os_network_config(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "os_network_config", value)
+
+    @property
+    @pulumi.getter(name="osType")
+    def os_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "os_type")
+
+    @os_type.setter
+    def os_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "os_type", value)
+
+    @property
+    @pulumi.getter
+    def pool(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "pool")
+
+    @pool.setter
+    def pool(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pool", value)
+
+    @property
+    @pulumi.getter
+    def preprovision(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "preprovision")
+
+    @preprovision.setter
+    def preprovision(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "preprovision", value)
+
+    @property
+    @pulumi.getter(name="qemuOs")
+    def qemu_os(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "qemu_os")
+
+    @qemu_os.setter
+    def qemu_os(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "qemu_os", value)
+
+    @property
+    @pulumi.getter(name="rebootRequired")
+    def reboot_required(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Internal variable, true if any of the modified parameters require a reboot to take effect.
+        """
+        return pulumi.get(self, "reboot_required")
+
+    @reboot_required.setter
+    def reboot_required(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "reboot_required", value)
+
+    @property
+    @pulumi.getter
+    def scsihw(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "scsihw")
+
+    @scsihw.setter
+    def scsihw(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "scsihw", value)
+
+    @property
+    @pulumi.getter
+    def searchdomain(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "searchdomain")
+
+    @searchdomain.setter
+    def searchdomain(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "searchdomain", value)
+
+    @property
+    @pulumi.getter
+    def serials(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['QemuVMSerialArgs']]]]:
+        return pulumi.get(self, "serials")
+
+    @serials.setter
+    def serials(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['QemuVMSerialArgs']]]]):
+        pulumi.set(self, "serials", value)
+
+    @property
+    @pulumi.getter
+    def sockets(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "sockets")
+
+    @sockets.setter
+    def sockets(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "sockets", value)
+
+    @property
+    @pulumi.getter(name="sshForwardIp")
+    def ssh_forward_ip(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ssh_forward_ip")
+
+    @ssh_forward_ip.setter
+    def ssh_forward_ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ssh_forward_ip", value)
+
+    @property
+    @pulumi.getter(name="sshHost")
+    def ssh_host(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ssh_host")
+
+    @ssh_host.setter
+    def ssh_host(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ssh_host", value)
+
+    @property
+    @pulumi.getter(name="sshPort")
+    def ssh_port(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ssh_port")
+
+    @ssh_port.setter
+    def ssh_port(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ssh_port", value)
+
+    @property
+    @pulumi.getter(name="sshPrivateKey")
+    def ssh_private_key(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ssh_private_key")
+
+    @ssh_private_key.setter
+    def ssh_private_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ssh_private_key", value)
+
+    @property
+    @pulumi.getter(name="sshUser")
+    def ssh_user(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ssh_user")
+
+    @ssh_user.setter
+    def ssh_user(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ssh_user", value)
+
+    @property
+    @pulumi.getter
+    def sshkeys(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "sshkeys")
+
+    @sshkeys.setter
+    def sshkeys(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sshkeys", value)
+
+    @property
+    @pulumi.getter
+    def storage(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "storage")
+
+    @storage.setter
+    def storage(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "storage", value)
+
+    @property
+    @pulumi.getter(name="storageType")
+    def storage_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "storage_type")
+
+    @storage_type.setter
+    def storage_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "storage_type", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tags", value)
+
+    @property
+    @pulumi.getter(name="targetNode")
+    def target_node(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "target_node")
+
+    @target_node.setter
+    def target_node(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "target_node", value)
+
+    @property
+    @pulumi.getter(name="unusedDisks")
+    def unused_disks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['QemuVMUnusedDiskArgs']]]]:
+        """
+        Record unused disks in proxmox. This is intended to be read-only for now.
+        """
+        return pulumi.get(self, "unused_disks")
+
+    @unused_disks.setter
+    def unused_disks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['QemuVMUnusedDiskArgs']]]]):
+        pulumi.set(self, "unused_disks", value)
+
+    @property
+    @pulumi.getter
+    def vcpus(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "vcpus")
+
+    @vcpus.setter
+    def vcpus(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "vcpus", value)
+
+    @property
+    @pulumi.getter
+    def vgas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['QemuVMVgaArgs']]]]:
+        return pulumi.get(self, "vgas")
+
+    @vgas.setter
+    def vgas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['QemuVMVgaArgs']]]]):
+        pulumi.set(self, "vgas", value)
+
+    @property
+    @pulumi.getter
+    def vlan(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "vlan")
+
+    @vlan.setter
+    def vlan(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "vlan", value)
+
+    @property
+    @pulumi.getter
+    def vmid(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "vmid")
+
+    @vmid.setter
+    def vmid(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "vmid", value)
 
 
 class QemuVM(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -78,20 +1667,97 @@ class QemuVM(pulumi.CustomResource):
                  vgas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['QemuVMVgaArgs']]]]] = None,
                  vlan: Optional[pulumi.Input[int]] = None,
                  vmid: Optional[pulumi.Input[int]] = None,
-                 __props__=None,
-                 __name__=None,
-                 __opts__=None):
+                 __props__=None):
         """
         Create a QemuVM resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
-        if __name__ is not None:
-            warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
-            resource_name = __name__
-        if __opts__ is not None:
-            warnings.warn("explicit use of __opts__ is deprecated, use 'opts' instead", DeprecationWarning)
-            opts = __opts__
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: QemuVMArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Create a QemuVM resource with the given unique name, props, and options.
+        :param str resource_name: The name of the resource.
+        :param QemuVMArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(QemuVMArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 additional_wait: Optional[pulumi.Input[int]] = None,
+                 agent: Optional[pulumi.Input[int]] = None,
+                 args: Optional[pulumi.Input[str]] = None,
+                 balloon: Optional[pulumi.Input[int]] = None,
+                 bios: Optional[pulumi.Input[str]] = None,
+                 boot: Optional[pulumi.Input[str]] = None,
+                 bootdisk: Optional[pulumi.Input[str]] = None,
+                 bridge: Optional[pulumi.Input[str]] = None,
+                 ci_wait: Optional[pulumi.Input[int]] = None,
+                 cicustom: Optional[pulumi.Input[str]] = None,
+                 cipassword: Optional[pulumi.Input[str]] = None,
+                 ciuser: Optional[pulumi.Input[str]] = None,
+                 clone: Optional[pulumi.Input[str]] = None,
+                 clone_wait: Optional[pulumi.Input[int]] = None,
+                 cloudinit_cdrom_storage: Optional[pulumi.Input[str]] = None,
+                 cores: Optional[pulumi.Input[int]] = None,
+                 cpu: Optional[pulumi.Input[str]] = None,
+                 define_connection_info: Optional[pulumi.Input[bool]] = None,
+                 desc: Optional[pulumi.Input[str]] = None,
+                 disk_gb: Optional[pulumi.Input[float]] = None,
+                 disks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['QemuVMDiskArgs']]]]] = None,
+                 force_create: Optional[pulumi.Input[bool]] = None,
+                 force_recreate_on_change_of: Optional[pulumi.Input[str]] = None,
+                 full_clone: Optional[pulumi.Input[bool]] = None,
+                 guest_agent_ready_timeout: Optional[pulumi.Input[int]] = None,
+                 hastate: Optional[pulumi.Input[str]] = None,
+                 hotplug: Optional[pulumi.Input[str]] = None,
+                 ipconfig0: Optional[pulumi.Input[str]] = None,
+                 ipconfig1: Optional[pulumi.Input[str]] = None,
+                 ipconfig2: Optional[pulumi.Input[str]] = None,
+                 iso: Optional[pulumi.Input[str]] = None,
+                 kvm: Optional[pulumi.Input[bool]] = None,
+                 mac: Optional[pulumi.Input[str]] = None,
+                 memory: Optional[pulumi.Input[int]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 nameserver: Optional[pulumi.Input[str]] = None,
+                 networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['QemuVMNetworkArgs']]]]] = None,
+                 nic: Optional[pulumi.Input[str]] = None,
+                 numa: Optional[pulumi.Input[bool]] = None,
+                 onboot: Optional[pulumi.Input[bool]] = None,
+                 os_network_config: Optional[pulumi.Input[str]] = None,
+                 os_type: Optional[pulumi.Input[str]] = None,
+                 pool: Optional[pulumi.Input[str]] = None,
+                 preprovision: Optional[pulumi.Input[bool]] = None,
+                 qemu_os: Optional[pulumi.Input[str]] = None,
+                 scsihw: Optional[pulumi.Input[str]] = None,
+                 searchdomain: Optional[pulumi.Input[str]] = None,
+                 serials: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['QemuVMSerialArgs']]]]] = None,
+                 sockets: Optional[pulumi.Input[int]] = None,
+                 ssh_forward_ip: Optional[pulumi.Input[str]] = None,
+                 ssh_private_key: Optional[pulumi.Input[str]] = None,
+                 ssh_user: Optional[pulumi.Input[str]] = None,
+                 sshkeys: Optional[pulumi.Input[str]] = None,
+                 storage: Optional[pulumi.Input[str]] = None,
+                 storage_type: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[str]] = None,
+                 target_node: Optional[pulumi.Input[str]] = None,
+                 vcpus: Optional[pulumi.Input[int]] = None,
+                 vgas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['QemuVMVgaArgs']]]]] = None,
+                 vlan: Optional[pulumi.Input[int]] = None,
+                 vmid: Optional[pulumi.Input[int]] = None,
+                 __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -101,97 +1767,97 @@ class QemuVM(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = QemuVMArgs.__new__(QemuVMArgs)
 
-            __props__['additional_wait'] = additional_wait
-            __props__['agent'] = agent
-            __props__['args'] = args
-            __props__['balloon'] = balloon
-            __props__['bios'] = bios
-            __props__['boot'] = boot
-            __props__['bootdisk'] = bootdisk
-            if bridge is not None:
-                warnings.warn("Use `network.bridge` instead", DeprecationWarning)
-                pulumi.log.warn("bridge is deprecated: Use `network.bridge` instead")
-            __props__['bridge'] = bridge
-            __props__['ci_wait'] = ci_wait
-            __props__['cicustom'] = cicustom
-            __props__['cipassword'] = cipassword
-            __props__['ciuser'] = ciuser
-            __props__['clone'] = clone
-            __props__['clone_wait'] = clone_wait
-            __props__['cloudinit_cdrom_storage'] = cloudinit_cdrom_storage
-            __props__['cores'] = cores
-            __props__['cpu'] = cpu
-            __props__['define_connection_info'] = define_connection_info
-            __props__['desc'] = desc
-            if disk_gb is not None:
-                warnings.warn("Use `disk.size` instead", DeprecationWarning)
-                pulumi.log.warn("disk_gb is deprecated: Use `disk.size` instead")
-            __props__['disk_gb'] = disk_gb
-            __props__['disks'] = disks
-            __props__['force_create'] = force_create
-            __props__['force_recreate_on_change_of'] = force_recreate_on_change_of
-            __props__['full_clone'] = full_clone
-            __props__['guest_agent_ready_timeout'] = guest_agent_ready_timeout
-            __props__['hastate'] = hastate
-            __props__['hotplug'] = hotplug
-            __props__['ipconfig0'] = ipconfig0
-            __props__['ipconfig1'] = ipconfig1
-            __props__['ipconfig2'] = ipconfig2
-            __props__['iso'] = iso
-            __props__['kvm'] = kvm
-            if mac is not None:
-                warnings.warn("Use `network.macaddr` to access the auto generated MAC address", DeprecationWarning)
-                pulumi.log.warn("mac is deprecated: Use `network.macaddr` to access the auto generated MAC address")
-            __props__['mac'] = mac
-            __props__['memory'] = memory
-            __props__['name'] = name
-            __props__['nameserver'] = nameserver
-            __props__['networks'] = networks
-            if nic is not None:
-                warnings.warn("Use `network` instead", DeprecationWarning)
-                pulumi.log.warn("nic is deprecated: Use `network` instead")
-            __props__['nic'] = nic
-            __props__['numa'] = numa
-            __props__['onboot'] = onboot
-            __props__['os_network_config'] = os_network_config
-            __props__['os_type'] = os_type
-            __props__['pool'] = pool
-            __props__['preprovision'] = preprovision
-            __props__['qemu_os'] = qemu_os
-            __props__['scsihw'] = scsihw
-            __props__['searchdomain'] = searchdomain
-            __props__['serials'] = serials
-            __props__['sockets'] = sockets
-            __props__['ssh_forward_ip'] = ssh_forward_ip
-            __props__['ssh_private_key'] = ssh_private_key
-            __props__['ssh_user'] = ssh_user
-            __props__['sshkeys'] = sshkeys
-            if storage is not None:
-                warnings.warn("Use `disk.storage` instead", DeprecationWarning)
-                pulumi.log.warn("storage is deprecated: Use `disk.storage` instead")
-            __props__['storage'] = storage
-            if storage_type is not None:
-                warnings.warn("Use `disk.type` instead", DeprecationWarning)
-                pulumi.log.warn("storage_type is deprecated: Use `disk.type` instead")
-            __props__['storage_type'] = storage_type
-            __props__['tags'] = tags
-            if target_node is None:
+            __props__.__dict__["additional_wait"] = additional_wait
+            __props__.__dict__["agent"] = agent
+            __props__.__dict__["args"] = args
+            __props__.__dict__["balloon"] = balloon
+            __props__.__dict__["bios"] = bios
+            __props__.__dict__["boot"] = boot
+            __props__.__dict__["bootdisk"] = bootdisk
+            if bridge is not None and not opts.urn:
+                warnings.warn("""Use `network.bridge` instead""", DeprecationWarning)
+                pulumi.log.warn("""bridge is deprecated: Use `network.bridge` instead""")
+            __props__.__dict__["bridge"] = bridge
+            __props__.__dict__["ci_wait"] = ci_wait
+            __props__.__dict__["cicustom"] = cicustom
+            __props__.__dict__["cipassword"] = cipassword
+            __props__.__dict__["ciuser"] = ciuser
+            __props__.__dict__["clone"] = clone
+            __props__.__dict__["clone_wait"] = clone_wait
+            __props__.__dict__["cloudinit_cdrom_storage"] = cloudinit_cdrom_storage
+            __props__.__dict__["cores"] = cores
+            __props__.__dict__["cpu"] = cpu
+            __props__.__dict__["define_connection_info"] = define_connection_info
+            __props__.__dict__["desc"] = desc
+            if disk_gb is not None and not opts.urn:
+                warnings.warn("""Use `disk.size` instead""", DeprecationWarning)
+                pulumi.log.warn("""disk_gb is deprecated: Use `disk.size` instead""")
+            __props__.__dict__["disk_gb"] = disk_gb
+            __props__.__dict__["disks"] = disks
+            __props__.__dict__["force_create"] = force_create
+            __props__.__dict__["force_recreate_on_change_of"] = force_recreate_on_change_of
+            __props__.__dict__["full_clone"] = full_clone
+            __props__.__dict__["guest_agent_ready_timeout"] = guest_agent_ready_timeout
+            __props__.__dict__["hastate"] = hastate
+            __props__.__dict__["hotplug"] = hotplug
+            __props__.__dict__["ipconfig0"] = ipconfig0
+            __props__.__dict__["ipconfig1"] = ipconfig1
+            __props__.__dict__["ipconfig2"] = ipconfig2
+            __props__.__dict__["iso"] = iso
+            __props__.__dict__["kvm"] = kvm
+            if mac is not None and not opts.urn:
+                warnings.warn("""Use `network.macaddr` to access the auto generated MAC address""", DeprecationWarning)
+                pulumi.log.warn("""mac is deprecated: Use `network.macaddr` to access the auto generated MAC address""")
+            __props__.__dict__["mac"] = mac
+            __props__.__dict__["memory"] = memory
+            __props__.__dict__["name"] = name
+            __props__.__dict__["nameserver"] = nameserver
+            __props__.__dict__["networks"] = networks
+            if nic is not None and not opts.urn:
+                warnings.warn("""Use `network` instead""", DeprecationWarning)
+                pulumi.log.warn("""nic is deprecated: Use `network` instead""")
+            __props__.__dict__["nic"] = nic
+            __props__.__dict__["numa"] = numa
+            __props__.__dict__["onboot"] = onboot
+            __props__.__dict__["os_network_config"] = os_network_config
+            __props__.__dict__["os_type"] = os_type
+            __props__.__dict__["pool"] = pool
+            __props__.__dict__["preprovision"] = preprovision
+            __props__.__dict__["qemu_os"] = qemu_os
+            __props__.__dict__["scsihw"] = scsihw
+            __props__.__dict__["searchdomain"] = searchdomain
+            __props__.__dict__["serials"] = serials
+            __props__.__dict__["sockets"] = sockets
+            __props__.__dict__["ssh_forward_ip"] = ssh_forward_ip
+            __props__.__dict__["ssh_private_key"] = ssh_private_key
+            __props__.__dict__["ssh_user"] = ssh_user
+            __props__.__dict__["sshkeys"] = sshkeys
+            if storage is not None and not opts.urn:
+                warnings.warn("""Use `disk.storage` instead""", DeprecationWarning)
+                pulumi.log.warn("""storage is deprecated: Use `disk.storage` instead""")
+            __props__.__dict__["storage"] = storage
+            if storage_type is not None and not opts.urn:
+                warnings.warn("""Use `disk.type` instead""", DeprecationWarning)
+                pulumi.log.warn("""storage_type is deprecated: Use `disk.type` instead""")
+            __props__.__dict__["storage_type"] = storage_type
+            __props__.__dict__["tags"] = tags
+            if target_node is None and not opts.urn:
                 raise TypeError("Missing required property 'target_node'")
-            __props__['target_node'] = target_node
-            __props__['vcpus'] = vcpus
-            __props__['vgas'] = vgas
-            if vlan is not None:
-                warnings.warn("Use `network.tag` instead", DeprecationWarning)
-                pulumi.log.warn("vlan is deprecated: Use `network.tag` instead")
-            __props__['vlan'] = vlan
-            __props__['vmid'] = vmid
-            __props__['default_ipv4_address'] = None
-            __props__['reboot_required'] = None
-            __props__['ssh_host'] = None
-            __props__['ssh_port'] = None
-            __props__['unused_disks'] = None
+            __props__.__dict__["target_node"] = target_node
+            __props__.__dict__["vcpus"] = vcpus
+            __props__.__dict__["vgas"] = vgas
+            if vlan is not None and not opts.urn:
+                warnings.warn("""Use `network.tag` instead""", DeprecationWarning)
+                pulumi.log.warn("""vlan is deprecated: Use `network.tag` instead""")
+            __props__.__dict__["vlan"] = vlan
+            __props__.__dict__["vmid"] = vmid
+            __props__.__dict__["default_ipv4_address"] = None
+            __props__.__dict__["reboot_required"] = None
+            __props__.__dict__["ssh_host"] = None
+            __props__.__dict__["ssh_port"] = None
+            __props__.__dict__["unused_disks"] = None
         super(QemuVM, __self__).__init__(
             'proxmoxve:index/qemuVM:QemuVM',
             resource_name,
@@ -280,74 +1946,74 @@ class QemuVM(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _QemuVMState.__new__(_QemuVMState)
 
-        __props__["additional_wait"] = additional_wait
-        __props__["agent"] = agent
-        __props__["args"] = args
-        __props__["balloon"] = balloon
-        __props__["bios"] = bios
-        __props__["boot"] = boot
-        __props__["bootdisk"] = bootdisk
-        __props__["bridge"] = bridge
-        __props__["ci_wait"] = ci_wait
-        __props__["cicustom"] = cicustom
-        __props__["cipassword"] = cipassword
-        __props__["ciuser"] = ciuser
-        __props__["clone"] = clone
-        __props__["clone_wait"] = clone_wait
-        __props__["cloudinit_cdrom_storage"] = cloudinit_cdrom_storage
-        __props__["cores"] = cores
-        __props__["cpu"] = cpu
-        __props__["default_ipv4_address"] = default_ipv4_address
-        __props__["define_connection_info"] = define_connection_info
-        __props__["desc"] = desc
-        __props__["disk_gb"] = disk_gb
-        __props__["disks"] = disks
-        __props__["force_create"] = force_create
-        __props__["force_recreate_on_change_of"] = force_recreate_on_change_of
-        __props__["full_clone"] = full_clone
-        __props__["guest_agent_ready_timeout"] = guest_agent_ready_timeout
-        __props__["hastate"] = hastate
-        __props__["hotplug"] = hotplug
-        __props__["ipconfig0"] = ipconfig0
-        __props__["ipconfig1"] = ipconfig1
-        __props__["ipconfig2"] = ipconfig2
-        __props__["iso"] = iso
-        __props__["kvm"] = kvm
-        __props__["mac"] = mac
-        __props__["memory"] = memory
-        __props__["name"] = name
-        __props__["nameserver"] = nameserver
-        __props__["networks"] = networks
-        __props__["nic"] = nic
-        __props__["numa"] = numa
-        __props__["onboot"] = onboot
-        __props__["os_network_config"] = os_network_config
-        __props__["os_type"] = os_type
-        __props__["pool"] = pool
-        __props__["preprovision"] = preprovision
-        __props__["qemu_os"] = qemu_os
-        __props__["reboot_required"] = reboot_required
-        __props__["scsihw"] = scsihw
-        __props__["searchdomain"] = searchdomain
-        __props__["serials"] = serials
-        __props__["sockets"] = sockets
-        __props__["ssh_forward_ip"] = ssh_forward_ip
-        __props__["ssh_host"] = ssh_host
-        __props__["ssh_port"] = ssh_port
-        __props__["ssh_private_key"] = ssh_private_key
-        __props__["ssh_user"] = ssh_user
-        __props__["sshkeys"] = sshkeys
-        __props__["storage"] = storage
-        __props__["storage_type"] = storage_type
-        __props__["tags"] = tags
-        __props__["target_node"] = target_node
-        __props__["unused_disks"] = unused_disks
-        __props__["vcpus"] = vcpus
-        __props__["vgas"] = vgas
-        __props__["vlan"] = vlan
-        __props__["vmid"] = vmid
+        __props__.__dict__["additional_wait"] = additional_wait
+        __props__.__dict__["agent"] = agent
+        __props__.__dict__["args"] = args
+        __props__.__dict__["balloon"] = balloon
+        __props__.__dict__["bios"] = bios
+        __props__.__dict__["boot"] = boot
+        __props__.__dict__["bootdisk"] = bootdisk
+        __props__.__dict__["bridge"] = bridge
+        __props__.__dict__["ci_wait"] = ci_wait
+        __props__.__dict__["cicustom"] = cicustom
+        __props__.__dict__["cipassword"] = cipassword
+        __props__.__dict__["ciuser"] = ciuser
+        __props__.__dict__["clone"] = clone
+        __props__.__dict__["clone_wait"] = clone_wait
+        __props__.__dict__["cloudinit_cdrom_storage"] = cloudinit_cdrom_storage
+        __props__.__dict__["cores"] = cores
+        __props__.__dict__["cpu"] = cpu
+        __props__.__dict__["default_ipv4_address"] = default_ipv4_address
+        __props__.__dict__["define_connection_info"] = define_connection_info
+        __props__.__dict__["desc"] = desc
+        __props__.__dict__["disk_gb"] = disk_gb
+        __props__.__dict__["disks"] = disks
+        __props__.__dict__["force_create"] = force_create
+        __props__.__dict__["force_recreate_on_change_of"] = force_recreate_on_change_of
+        __props__.__dict__["full_clone"] = full_clone
+        __props__.__dict__["guest_agent_ready_timeout"] = guest_agent_ready_timeout
+        __props__.__dict__["hastate"] = hastate
+        __props__.__dict__["hotplug"] = hotplug
+        __props__.__dict__["ipconfig0"] = ipconfig0
+        __props__.__dict__["ipconfig1"] = ipconfig1
+        __props__.__dict__["ipconfig2"] = ipconfig2
+        __props__.__dict__["iso"] = iso
+        __props__.__dict__["kvm"] = kvm
+        __props__.__dict__["mac"] = mac
+        __props__.__dict__["memory"] = memory
+        __props__.__dict__["name"] = name
+        __props__.__dict__["nameserver"] = nameserver
+        __props__.__dict__["networks"] = networks
+        __props__.__dict__["nic"] = nic
+        __props__.__dict__["numa"] = numa
+        __props__.__dict__["onboot"] = onboot
+        __props__.__dict__["os_network_config"] = os_network_config
+        __props__.__dict__["os_type"] = os_type
+        __props__.__dict__["pool"] = pool
+        __props__.__dict__["preprovision"] = preprovision
+        __props__.__dict__["qemu_os"] = qemu_os
+        __props__.__dict__["reboot_required"] = reboot_required
+        __props__.__dict__["scsihw"] = scsihw
+        __props__.__dict__["searchdomain"] = searchdomain
+        __props__.__dict__["serials"] = serials
+        __props__.__dict__["sockets"] = sockets
+        __props__.__dict__["ssh_forward_ip"] = ssh_forward_ip
+        __props__.__dict__["ssh_host"] = ssh_host
+        __props__.__dict__["ssh_port"] = ssh_port
+        __props__.__dict__["ssh_private_key"] = ssh_private_key
+        __props__.__dict__["ssh_user"] = ssh_user
+        __props__.__dict__["sshkeys"] = sshkeys
+        __props__.__dict__["storage"] = storage
+        __props__.__dict__["storage_type"] = storage_type
+        __props__.__dict__["tags"] = tags
+        __props__.__dict__["target_node"] = target_node
+        __props__.__dict__["unused_disks"] = unused_disks
+        __props__.__dict__["vcpus"] = vcpus
+        __props__.__dict__["vgas"] = vgas
+        __props__.__dict__["vlan"] = vlan
+        __props__.__dict__["vmid"] = vmid
         return QemuVM(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -685,10 +2351,4 @@ class QemuVM(pulumi.CustomResource):
     @pulumi.getter
     def vmid(self) -> pulumi.Output[int]:
         return pulumi.get(self, "vmid")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

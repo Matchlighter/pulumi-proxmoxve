@@ -15,8 +15,52 @@ namespace Pulumi.Proxmoxve
     /// construction to achieve fine-grained programmatic control over provider settings. See the
     /// [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
     /// </summary>
+    [ProxmoxveResourceType("pulumi:providers:proxmoxve")]
     public partial class Provider : Pulumi.ProviderResource
     {
+        /// <summary>
+        /// API TokenID e.g. root@pam!mytesttoken
+        /// </summary>
+        [Output("pmApiTokenId")]
+        public Output<string?> PmApiTokenId { get; private set; } = null!;
+
+        /// <summary>
+        /// The secret uuid corresponding to a TokenID
+        /// </summary>
+        [Output("pmApiTokenSecret")]
+        public Output<string?> PmApiTokenSecret { get; private set; } = null!;
+
+        /// <summary>
+        /// https://host.fqdn:8006/api2/json
+        /// </summary>
+        [Output("pmApiUrl")]
+        public Output<string> PmApiUrl { get; private set; } = null!;
+
+        /// <summary>
+        /// Write logs to this specific file
+        /// </summary>
+        [Output("pmLogFile")]
+        public Output<string?> PmLogFile { get; private set; } = null!;
+
+        /// <summary>
+        /// OTP 2FA code (if required)
+        /// </summary>
+        [Output("pmOtp")]
+        public Output<string?> PmOtp { get; private set; } = null!;
+
+        /// <summary>
+        /// Password to authenticate into proxmox
+        /// </summary>
+        [Output("pmPassword")]
+        public Output<string?> PmPassword { get; private set; } = null!;
+
+        /// <summary>
+        /// Username e.g. myuser or myuser@pam
+        /// </summary>
+        [Output("pmUser")]
+        public Output<string?> PmUser { get; private set; } = null!;
+
+
         /// <summary>
         /// Create a Provider resource with the given unique name, arguments, and options.
         /// </summary>

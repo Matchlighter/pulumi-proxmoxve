@@ -5,8 +5,8 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
-from . import _utilities, _tables
+from typing import Any, Mapping, Optional, Sequence, Union, overload
+from . import _utilities
 
 __all__ = [
     'LXCContainerFeatures',
@@ -56,9 +56,6 @@ class LXCContainerFeatures(dict):
     @pulumi.getter
     def nesting(self) -> Optional[bool]:
         return pulumi.get(self, "nesting")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
@@ -155,9 +152,6 @@ class LXCContainerMountpoint(dict):
     @pulumi.getter
     def volume(self) -> Optional[str]:
         return pulumi.get(self, "volume")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
@@ -267,9 +261,6 @@ class LXCContainerNetwork(dict):
     def type(self) -> Optional[str]:
         return pulumi.get(self, "type")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class LXCContainerRootfs(dict):
@@ -296,9 +287,6 @@ class LXCContainerRootfs(dict):
     @pulumi.getter
     def volume(self) -> Optional[str]:
         return pulumi.get(self, "volume")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
@@ -337,12 +325,34 @@ class LXCDiskMountoptions(dict):
     def nosuid(self) -> Optional[bool]:
         return pulumi.get(self, "nosuid")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class QemuVMDisk(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "mbpsRd":
+            suggest = "mbps_rd"
+        elif key == "mbpsRdMax":
+            suggest = "mbps_rd_max"
+        elif key == "mbpsWr":
+            suggest = "mbps_wr"
+        elif key == "mbpsWrMax":
+            suggest = "mbps_wr_max"
+        elif key == "storageType":
+            suggest = "storage_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in QemuVMDisk. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        QemuVMDisk.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        QemuVMDisk.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  size: str,
                  storage: str,
@@ -502,12 +512,26 @@ class QemuVMDisk(dict):
     def volume(self) -> Optional[str]:
         return pulumi.get(self, "volume")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class QemuVMNetwork(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "linkDown":
+            suggest = "link_down"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in QemuVMNetwork. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        QemuVMNetwork.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        QemuVMNetwork.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  model: str,
                  bridge: Optional[str] = None,
@@ -573,9 +597,6 @@ class QemuVMNetwork(dict):
     def tag(self) -> Optional[int]:
         return pulumi.get(self, "tag")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class QemuVMSerial(dict):
@@ -594,9 +615,6 @@ class QemuVMSerial(dict):
     @pulumi.getter
     def type(self) -> str:
         return pulumi.get(self, "type")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
@@ -627,9 +645,6 @@ class QemuVMUnusedDisk(dict):
     def storage(self) -> Optional[str]:
         return pulumi.get(self, "storage")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class QemuVMVga(dict):
@@ -650,8 +665,5 @@ class QemuVMVga(dict):
     @pulumi.getter
     def type(self) -> Optional[str]:
         return pulumi.get(self, "type")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 

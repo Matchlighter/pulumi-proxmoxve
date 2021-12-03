@@ -5,15 +5,966 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
-from . import _utilities, _tables
+from typing import Any, Mapping, Optional, Sequence, Union, overload
+from . import _utilities
 from . import outputs
 from ._inputs import *
 
-__all__ = ['LXCContainer']
+__all__ = ['LXCContainerArgs', 'LXCContainer']
+
+@pulumi.input_type
+class LXCContainerArgs:
+    def __init__(__self__, *,
+                 target_node: pulumi.Input[str],
+                 arch: Optional[pulumi.Input[str]] = None,
+                 bwlimit: Optional[pulumi.Input[int]] = None,
+                 cmode: Optional[pulumi.Input[str]] = None,
+                 console: Optional[pulumi.Input[bool]] = None,
+                 cores: Optional[pulumi.Input[int]] = None,
+                 cpulimit: Optional[pulumi.Input[int]] = None,
+                 cpuunits: Optional[pulumi.Input[int]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 features: Optional[pulumi.Input['LXCContainerFeaturesArgs']] = None,
+                 force: Optional[pulumi.Input[bool]] = None,
+                 hookscript: Optional[pulumi.Input[str]] = None,
+                 hostname: Optional[pulumi.Input[str]] = None,
+                 ignore_unpack_errors: Optional[pulumi.Input[bool]] = None,
+                 lock: Optional[pulumi.Input[str]] = None,
+                 memory: Optional[pulumi.Input[int]] = None,
+                 mountpoints: Optional[pulumi.Input[Sequence[pulumi.Input['LXCContainerMountpointArgs']]]] = None,
+                 nameserver: Optional[pulumi.Input[str]] = None,
+                 networks: Optional[pulumi.Input[Sequence[pulumi.Input['LXCContainerNetworkArgs']]]] = None,
+                 onboot: Optional[pulumi.Input[bool]] = None,
+                 ostemplate: Optional[pulumi.Input[str]] = None,
+                 ostype: Optional[pulumi.Input[str]] = None,
+                 password: Optional[pulumi.Input[str]] = None,
+                 pool: Optional[pulumi.Input[str]] = None,
+                 protection: Optional[pulumi.Input[bool]] = None,
+                 restore: Optional[pulumi.Input[bool]] = None,
+                 rootfs: Optional[pulumi.Input['LXCContainerRootfsArgs']] = None,
+                 searchdomain: Optional[pulumi.Input[str]] = None,
+                 ssh_public_keys: Optional[pulumi.Input[str]] = None,
+                 start: Optional[pulumi.Input[bool]] = None,
+                 startup: Optional[pulumi.Input[str]] = None,
+                 swap: Optional[pulumi.Input[int]] = None,
+                 tags: Optional[pulumi.Input[str]] = None,
+                 template: Optional[pulumi.Input[bool]] = None,
+                 tty: Optional[pulumi.Input[int]] = None,
+                 unique: Optional[pulumi.Input[bool]] = None,
+                 unprivileged: Optional[pulumi.Input[bool]] = None,
+                 unuseds: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 vmid: Optional[pulumi.Input[int]] = None):
+        """
+        The set of arguments for constructing a LXCContainer resource.
+        """
+        pulumi.set(__self__, "target_node", target_node)
+        if arch is not None:
+            pulumi.set(__self__, "arch", arch)
+        if bwlimit is not None:
+            pulumi.set(__self__, "bwlimit", bwlimit)
+        if cmode is not None:
+            pulumi.set(__self__, "cmode", cmode)
+        if console is not None:
+            pulumi.set(__self__, "console", console)
+        if cores is not None:
+            pulumi.set(__self__, "cores", cores)
+        if cpulimit is not None:
+            pulumi.set(__self__, "cpulimit", cpulimit)
+        if cpuunits is not None:
+            pulumi.set(__self__, "cpuunits", cpuunits)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if features is not None:
+            pulumi.set(__self__, "features", features)
+        if force is not None:
+            pulumi.set(__self__, "force", force)
+        if hookscript is not None:
+            pulumi.set(__self__, "hookscript", hookscript)
+        if hostname is not None:
+            pulumi.set(__self__, "hostname", hostname)
+        if ignore_unpack_errors is not None:
+            pulumi.set(__self__, "ignore_unpack_errors", ignore_unpack_errors)
+        if lock is not None:
+            pulumi.set(__self__, "lock", lock)
+        if memory is not None:
+            pulumi.set(__self__, "memory", memory)
+        if mountpoints is not None:
+            pulumi.set(__self__, "mountpoints", mountpoints)
+        if nameserver is not None:
+            pulumi.set(__self__, "nameserver", nameserver)
+        if networks is not None:
+            pulumi.set(__self__, "networks", networks)
+        if onboot is not None:
+            pulumi.set(__self__, "onboot", onboot)
+        if ostemplate is not None:
+            pulumi.set(__self__, "ostemplate", ostemplate)
+        if ostype is not None:
+            pulumi.set(__self__, "ostype", ostype)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if pool is not None:
+            pulumi.set(__self__, "pool", pool)
+        if protection is not None:
+            pulumi.set(__self__, "protection", protection)
+        if restore is not None:
+            pulumi.set(__self__, "restore", restore)
+        if rootfs is not None:
+            pulumi.set(__self__, "rootfs", rootfs)
+        if searchdomain is not None:
+            pulumi.set(__self__, "searchdomain", searchdomain)
+        if ssh_public_keys is not None:
+            pulumi.set(__self__, "ssh_public_keys", ssh_public_keys)
+        if start is not None:
+            pulumi.set(__self__, "start", start)
+        if startup is not None:
+            pulumi.set(__self__, "startup", startup)
+        if swap is not None:
+            pulumi.set(__self__, "swap", swap)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+        if template is not None:
+            pulumi.set(__self__, "template", template)
+        if tty is not None:
+            pulumi.set(__self__, "tty", tty)
+        if unique is not None:
+            pulumi.set(__self__, "unique", unique)
+        if unprivileged is not None:
+            pulumi.set(__self__, "unprivileged", unprivileged)
+        if unuseds is not None:
+            pulumi.set(__self__, "unuseds", unuseds)
+        if vmid is not None:
+            pulumi.set(__self__, "vmid", vmid)
+
+    @property
+    @pulumi.getter(name="targetNode")
+    def target_node(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "target_node")
+
+    @target_node.setter
+    def target_node(self, value: pulumi.Input[str]):
+        pulumi.set(self, "target_node", value)
+
+    @property
+    @pulumi.getter
+    def arch(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "arch")
+
+    @arch.setter
+    def arch(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "arch", value)
+
+    @property
+    @pulumi.getter
+    def bwlimit(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "bwlimit")
+
+    @bwlimit.setter
+    def bwlimit(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "bwlimit", value)
+
+    @property
+    @pulumi.getter
+    def cmode(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "cmode")
+
+    @cmode.setter
+    def cmode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cmode", value)
+
+    @property
+    @pulumi.getter
+    def console(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "console")
+
+    @console.setter
+    def console(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "console", value)
+
+    @property
+    @pulumi.getter
+    def cores(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "cores")
+
+    @cores.setter
+    def cores(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "cores", value)
+
+    @property
+    @pulumi.getter
+    def cpulimit(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "cpulimit")
+
+    @cpulimit.setter
+    def cpulimit(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "cpulimit", value)
+
+    @property
+    @pulumi.getter
+    def cpuunits(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "cpuunits")
+
+    @cpuunits.setter
+    def cpuunits(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "cpuunits", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter
+    def features(self) -> Optional[pulumi.Input['LXCContainerFeaturesArgs']]:
+        return pulumi.get(self, "features")
+
+    @features.setter
+    def features(self, value: Optional[pulumi.Input['LXCContainerFeaturesArgs']]):
+        pulumi.set(self, "features", value)
+
+    @property
+    @pulumi.getter
+    def force(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "force")
+
+    @force.setter
+    def force(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "force", value)
+
+    @property
+    @pulumi.getter
+    def hookscript(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "hookscript")
+
+    @hookscript.setter
+    def hookscript(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "hookscript", value)
+
+    @property
+    @pulumi.getter
+    def hostname(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "hostname")
+
+    @hostname.setter
+    def hostname(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "hostname", value)
+
+    @property
+    @pulumi.getter(name="ignoreUnpackErrors")
+    def ignore_unpack_errors(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "ignore_unpack_errors")
+
+    @ignore_unpack_errors.setter
+    def ignore_unpack_errors(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "ignore_unpack_errors", value)
+
+    @property
+    @pulumi.getter
+    def lock(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "lock")
+
+    @lock.setter
+    def lock(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "lock", value)
+
+    @property
+    @pulumi.getter
+    def memory(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "memory")
+
+    @memory.setter
+    def memory(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "memory", value)
+
+    @property
+    @pulumi.getter
+    def mountpoints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LXCContainerMountpointArgs']]]]:
+        return pulumi.get(self, "mountpoints")
+
+    @mountpoints.setter
+    def mountpoints(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LXCContainerMountpointArgs']]]]):
+        pulumi.set(self, "mountpoints", value)
+
+    @property
+    @pulumi.getter
+    def nameserver(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "nameserver")
+
+    @nameserver.setter
+    def nameserver(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "nameserver", value)
+
+    @property
+    @pulumi.getter
+    def networks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LXCContainerNetworkArgs']]]]:
+        return pulumi.get(self, "networks")
+
+    @networks.setter
+    def networks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LXCContainerNetworkArgs']]]]):
+        pulumi.set(self, "networks", value)
+
+    @property
+    @pulumi.getter
+    def onboot(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "onboot")
+
+    @onboot.setter
+    def onboot(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "onboot", value)
+
+    @property
+    @pulumi.getter
+    def ostemplate(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ostemplate")
+
+    @ostemplate.setter
+    def ostemplate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ostemplate", value)
+
+    @property
+    @pulumi.getter
+    def ostype(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ostype")
+
+    @ostype.setter
+    def ostype(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ostype", value)
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "password", value)
+
+    @property
+    @pulumi.getter
+    def pool(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "pool")
+
+    @pool.setter
+    def pool(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pool", value)
+
+    @property
+    @pulumi.getter
+    def protection(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "protection")
+
+    @protection.setter
+    def protection(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "protection", value)
+
+    @property
+    @pulumi.getter
+    def restore(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "restore")
+
+    @restore.setter
+    def restore(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "restore", value)
+
+    @property
+    @pulumi.getter
+    def rootfs(self) -> Optional[pulumi.Input['LXCContainerRootfsArgs']]:
+        return pulumi.get(self, "rootfs")
+
+    @rootfs.setter
+    def rootfs(self, value: Optional[pulumi.Input['LXCContainerRootfsArgs']]):
+        pulumi.set(self, "rootfs", value)
+
+    @property
+    @pulumi.getter
+    def searchdomain(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "searchdomain")
+
+    @searchdomain.setter
+    def searchdomain(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "searchdomain", value)
+
+    @property
+    @pulumi.getter(name="sshPublicKeys")
+    def ssh_public_keys(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ssh_public_keys")
+
+    @ssh_public_keys.setter
+    def ssh_public_keys(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ssh_public_keys", value)
+
+    @property
+    @pulumi.getter
+    def start(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "start")
+
+    @start.setter
+    def start(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "start", value)
+
+    @property
+    @pulumi.getter
+    def startup(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "startup")
+
+    @startup.setter
+    def startup(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "startup", value)
+
+    @property
+    @pulumi.getter
+    def swap(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "swap")
+
+    @swap.setter
+    def swap(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "swap", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tags", value)
+
+    @property
+    @pulumi.getter
+    def template(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "template")
+
+    @template.setter
+    def template(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "template", value)
+
+    @property
+    @pulumi.getter
+    def tty(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "tty")
+
+    @tty.setter
+    def tty(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "tty", value)
+
+    @property
+    @pulumi.getter
+    def unique(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "unique")
+
+    @unique.setter
+    def unique(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "unique", value)
+
+    @property
+    @pulumi.getter
+    def unprivileged(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "unprivileged")
+
+    @unprivileged.setter
+    def unprivileged(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "unprivileged", value)
+
+    @property
+    @pulumi.getter
+    def unuseds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "unuseds")
+
+    @unuseds.setter
+    def unuseds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "unuseds", value)
+
+    @property
+    @pulumi.getter
+    def vmid(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "vmid")
+
+    @vmid.setter
+    def vmid(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "vmid", value)
+
+
+@pulumi.input_type
+class _LXCContainerState:
+    def __init__(__self__, *,
+                 arch: Optional[pulumi.Input[str]] = None,
+                 bwlimit: Optional[pulumi.Input[int]] = None,
+                 cmode: Optional[pulumi.Input[str]] = None,
+                 console: Optional[pulumi.Input[bool]] = None,
+                 cores: Optional[pulumi.Input[int]] = None,
+                 cpulimit: Optional[pulumi.Input[int]] = None,
+                 cpuunits: Optional[pulumi.Input[int]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 features: Optional[pulumi.Input['LXCContainerFeaturesArgs']] = None,
+                 force: Optional[pulumi.Input[bool]] = None,
+                 hookscript: Optional[pulumi.Input[str]] = None,
+                 hostname: Optional[pulumi.Input[str]] = None,
+                 ignore_unpack_errors: Optional[pulumi.Input[bool]] = None,
+                 lock: Optional[pulumi.Input[str]] = None,
+                 memory: Optional[pulumi.Input[int]] = None,
+                 mountpoints: Optional[pulumi.Input[Sequence[pulumi.Input['LXCContainerMountpointArgs']]]] = None,
+                 nameserver: Optional[pulumi.Input[str]] = None,
+                 networks: Optional[pulumi.Input[Sequence[pulumi.Input['LXCContainerNetworkArgs']]]] = None,
+                 onboot: Optional[pulumi.Input[bool]] = None,
+                 ostemplate: Optional[pulumi.Input[str]] = None,
+                 ostype: Optional[pulumi.Input[str]] = None,
+                 password: Optional[pulumi.Input[str]] = None,
+                 pool: Optional[pulumi.Input[str]] = None,
+                 protection: Optional[pulumi.Input[bool]] = None,
+                 restore: Optional[pulumi.Input[bool]] = None,
+                 rootfs: Optional[pulumi.Input['LXCContainerRootfsArgs']] = None,
+                 searchdomain: Optional[pulumi.Input[str]] = None,
+                 ssh_public_keys: Optional[pulumi.Input[str]] = None,
+                 start: Optional[pulumi.Input[bool]] = None,
+                 startup: Optional[pulumi.Input[str]] = None,
+                 swap: Optional[pulumi.Input[int]] = None,
+                 tags: Optional[pulumi.Input[str]] = None,
+                 target_node: Optional[pulumi.Input[str]] = None,
+                 template: Optional[pulumi.Input[bool]] = None,
+                 tty: Optional[pulumi.Input[int]] = None,
+                 unique: Optional[pulumi.Input[bool]] = None,
+                 unprivileged: Optional[pulumi.Input[bool]] = None,
+                 unuseds: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 vmid: Optional[pulumi.Input[int]] = None):
+        """
+        Input properties used for looking up and filtering LXCContainer resources.
+        """
+        if arch is not None:
+            pulumi.set(__self__, "arch", arch)
+        if bwlimit is not None:
+            pulumi.set(__self__, "bwlimit", bwlimit)
+        if cmode is not None:
+            pulumi.set(__self__, "cmode", cmode)
+        if console is not None:
+            pulumi.set(__self__, "console", console)
+        if cores is not None:
+            pulumi.set(__self__, "cores", cores)
+        if cpulimit is not None:
+            pulumi.set(__self__, "cpulimit", cpulimit)
+        if cpuunits is not None:
+            pulumi.set(__self__, "cpuunits", cpuunits)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if features is not None:
+            pulumi.set(__self__, "features", features)
+        if force is not None:
+            pulumi.set(__self__, "force", force)
+        if hookscript is not None:
+            pulumi.set(__self__, "hookscript", hookscript)
+        if hostname is not None:
+            pulumi.set(__self__, "hostname", hostname)
+        if ignore_unpack_errors is not None:
+            pulumi.set(__self__, "ignore_unpack_errors", ignore_unpack_errors)
+        if lock is not None:
+            pulumi.set(__self__, "lock", lock)
+        if memory is not None:
+            pulumi.set(__self__, "memory", memory)
+        if mountpoints is not None:
+            pulumi.set(__self__, "mountpoints", mountpoints)
+        if nameserver is not None:
+            pulumi.set(__self__, "nameserver", nameserver)
+        if networks is not None:
+            pulumi.set(__self__, "networks", networks)
+        if onboot is not None:
+            pulumi.set(__self__, "onboot", onboot)
+        if ostemplate is not None:
+            pulumi.set(__self__, "ostemplate", ostemplate)
+        if ostype is not None:
+            pulumi.set(__self__, "ostype", ostype)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if pool is not None:
+            pulumi.set(__self__, "pool", pool)
+        if protection is not None:
+            pulumi.set(__self__, "protection", protection)
+        if restore is not None:
+            pulumi.set(__self__, "restore", restore)
+        if rootfs is not None:
+            pulumi.set(__self__, "rootfs", rootfs)
+        if searchdomain is not None:
+            pulumi.set(__self__, "searchdomain", searchdomain)
+        if ssh_public_keys is not None:
+            pulumi.set(__self__, "ssh_public_keys", ssh_public_keys)
+        if start is not None:
+            pulumi.set(__self__, "start", start)
+        if startup is not None:
+            pulumi.set(__self__, "startup", startup)
+        if swap is not None:
+            pulumi.set(__self__, "swap", swap)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+        if target_node is not None:
+            pulumi.set(__self__, "target_node", target_node)
+        if template is not None:
+            pulumi.set(__self__, "template", template)
+        if tty is not None:
+            pulumi.set(__self__, "tty", tty)
+        if unique is not None:
+            pulumi.set(__self__, "unique", unique)
+        if unprivileged is not None:
+            pulumi.set(__self__, "unprivileged", unprivileged)
+        if unuseds is not None:
+            pulumi.set(__self__, "unuseds", unuseds)
+        if vmid is not None:
+            pulumi.set(__self__, "vmid", vmid)
+
+    @property
+    @pulumi.getter
+    def arch(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "arch")
+
+    @arch.setter
+    def arch(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "arch", value)
+
+    @property
+    @pulumi.getter
+    def bwlimit(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "bwlimit")
+
+    @bwlimit.setter
+    def bwlimit(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "bwlimit", value)
+
+    @property
+    @pulumi.getter
+    def cmode(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "cmode")
+
+    @cmode.setter
+    def cmode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cmode", value)
+
+    @property
+    @pulumi.getter
+    def console(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "console")
+
+    @console.setter
+    def console(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "console", value)
+
+    @property
+    @pulumi.getter
+    def cores(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "cores")
+
+    @cores.setter
+    def cores(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "cores", value)
+
+    @property
+    @pulumi.getter
+    def cpulimit(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "cpulimit")
+
+    @cpulimit.setter
+    def cpulimit(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "cpulimit", value)
+
+    @property
+    @pulumi.getter
+    def cpuunits(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "cpuunits")
+
+    @cpuunits.setter
+    def cpuunits(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "cpuunits", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter
+    def features(self) -> Optional[pulumi.Input['LXCContainerFeaturesArgs']]:
+        return pulumi.get(self, "features")
+
+    @features.setter
+    def features(self, value: Optional[pulumi.Input['LXCContainerFeaturesArgs']]):
+        pulumi.set(self, "features", value)
+
+    @property
+    @pulumi.getter
+    def force(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "force")
+
+    @force.setter
+    def force(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "force", value)
+
+    @property
+    @pulumi.getter
+    def hookscript(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "hookscript")
+
+    @hookscript.setter
+    def hookscript(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "hookscript", value)
+
+    @property
+    @pulumi.getter
+    def hostname(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "hostname")
+
+    @hostname.setter
+    def hostname(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "hostname", value)
+
+    @property
+    @pulumi.getter(name="ignoreUnpackErrors")
+    def ignore_unpack_errors(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "ignore_unpack_errors")
+
+    @ignore_unpack_errors.setter
+    def ignore_unpack_errors(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "ignore_unpack_errors", value)
+
+    @property
+    @pulumi.getter
+    def lock(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "lock")
+
+    @lock.setter
+    def lock(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "lock", value)
+
+    @property
+    @pulumi.getter
+    def memory(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "memory")
+
+    @memory.setter
+    def memory(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "memory", value)
+
+    @property
+    @pulumi.getter
+    def mountpoints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LXCContainerMountpointArgs']]]]:
+        return pulumi.get(self, "mountpoints")
+
+    @mountpoints.setter
+    def mountpoints(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LXCContainerMountpointArgs']]]]):
+        pulumi.set(self, "mountpoints", value)
+
+    @property
+    @pulumi.getter
+    def nameserver(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "nameserver")
+
+    @nameserver.setter
+    def nameserver(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "nameserver", value)
+
+    @property
+    @pulumi.getter
+    def networks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LXCContainerNetworkArgs']]]]:
+        return pulumi.get(self, "networks")
+
+    @networks.setter
+    def networks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LXCContainerNetworkArgs']]]]):
+        pulumi.set(self, "networks", value)
+
+    @property
+    @pulumi.getter
+    def onboot(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "onboot")
+
+    @onboot.setter
+    def onboot(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "onboot", value)
+
+    @property
+    @pulumi.getter
+    def ostemplate(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ostemplate")
+
+    @ostemplate.setter
+    def ostemplate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ostemplate", value)
+
+    @property
+    @pulumi.getter
+    def ostype(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ostype")
+
+    @ostype.setter
+    def ostype(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ostype", value)
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "password", value)
+
+    @property
+    @pulumi.getter
+    def pool(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "pool")
+
+    @pool.setter
+    def pool(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pool", value)
+
+    @property
+    @pulumi.getter
+    def protection(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "protection")
+
+    @protection.setter
+    def protection(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "protection", value)
+
+    @property
+    @pulumi.getter
+    def restore(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "restore")
+
+    @restore.setter
+    def restore(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "restore", value)
+
+    @property
+    @pulumi.getter
+    def rootfs(self) -> Optional[pulumi.Input['LXCContainerRootfsArgs']]:
+        return pulumi.get(self, "rootfs")
+
+    @rootfs.setter
+    def rootfs(self, value: Optional[pulumi.Input['LXCContainerRootfsArgs']]):
+        pulumi.set(self, "rootfs", value)
+
+    @property
+    @pulumi.getter
+    def searchdomain(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "searchdomain")
+
+    @searchdomain.setter
+    def searchdomain(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "searchdomain", value)
+
+    @property
+    @pulumi.getter(name="sshPublicKeys")
+    def ssh_public_keys(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ssh_public_keys")
+
+    @ssh_public_keys.setter
+    def ssh_public_keys(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ssh_public_keys", value)
+
+    @property
+    @pulumi.getter
+    def start(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "start")
+
+    @start.setter
+    def start(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "start", value)
+
+    @property
+    @pulumi.getter
+    def startup(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "startup")
+
+    @startup.setter
+    def startup(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "startup", value)
+
+    @property
+    @pulumi.getter
+    def swap(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "swap")
+
+    @swap.setter
+    def swap(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "swap", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tags", value)
+
+    @property
+    @pulumi.getter(name="targetNode")
+    def target_node(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "target_node")
+
+    @target_node.setter
+    def target_node(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "target_node", value)
+
+    @property
+    @pulumi.getter
+    def template(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "template")
+
+    @template.setter
+    def template(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "template", value)
+
+    @property
+    @pulumi.getter
+    def tty(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "tty")
+
+    @tty.setter
+    def tty(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "tty", value)
+
+    @property
+    @pulumi.getter
+    def unique(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "unique")
+
+    @unique.setter
+    def unique(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "unique", value)
+
+    @property
+    @pulumi.getter
+    def unprivileged(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "unprivileged")
+
+    @unprivileged.setter
+    def unprivileged(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "unprivileged", value)
+
+    @property
+    @pulumi.getter
+    def unuseds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "unuseds")
+
+    @unuseds.setter
+    def unuseds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "unuseds", value)
+
+    @property
+    @pulumi.getter
+    def vmid(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "vmid")
+
+    @vmid.setter
+    def vmid(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "vmid", value)
 
 
 class LXCContainer(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -56,20 +1007,75 @@ class LXCContainer(pulumi.CustomResource):
                  unprivileged: Optional[pulumi.Input[bool]] = None,
                  unuseds: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  vmid: Optional[pulumi.Input[int]] = None,
-                 __props__=None,
-                 __name__=None,
-                 __opts__=None):
+                 __props__=None):
         """
         Create a LXCContainer resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
-        if __name__ is not None:
-            warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
-            resource_name = __name__
-        if __opts__ is not None:
-            warnings.warn("explicit use of __opts__ is deprecated, use 'opts' instead", DeprecationWarning)
-            opts = __opts__
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: LXCContainerArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Create a LXCContainer resource with the given unique name, props, and options.
+        :param str resource_name: The name of the resource.
+        :param LXCContainerArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(LXCContainerArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 arch: Optional[pulumi.Input[str]] = None,
+                 bwlimit: Optional[pulumi.Input[int]] = None,
+                 cmode: Optional[pulumi.Input[str]] = None,
+                 console: Optional[pulumi.Input[bool]] = None,
+                 cores: Optional[pulumi.Input[int]] = None,
+                 cpulimit: Optional[pulumi.Input[int]] = None,
+                 cpuunits: Optional[pulumi.Input[int]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 features: Optional[pulumi.Input[pulumi.InputType['LXCContainerFeaturesArgs']]] = None,
+                 force: Optional[pulumi.Input[bool]] = None,
+                 hookscript: Optional[pulumi.Input[str]] = None,
+                 hostname: Optional[pulumi.Input[str]] = None,
+                 ignore_unpack_errors: Optional[pulumi.Input[bool]] = None,
+                 lock: Optional[pulumi.Input[str]] = None,
+                 memory: Optional[pulumi.Input[int]] = None,
+                 mountpoints: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LXCContainerMountpointArgs']]]]] = None,
+                 nameserver: Optional[pulumi.Input[str]] = None,
+                 networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LXCContainerNetworkArgs']]]]] = None,
+                 onboot: Optional[pulumi.Input[bool]] = None,
+                 ostemplate: Optional[pulumi.Input[str]] = None,
+                 ostype: Optional[pulumi.Input[str]] = None,
+                 password: Optional[pulumi.Input[str]] = None,
+                 pool: Optional[pulumi.Input[str]] = None,
+                 protection: Optional[pulumi.Input[bool]] = None,
+                 restore: Optional[pulumi.Input[bool]] = None,
+                 rootfs: Optional[pulumi.Input[pulumi.InputType['LXCContainerRootfsArgs']]] = None,
+                 searchdomain: Optional[pulumi.Input[str]] = None,
+                 ssh_public_keys: Optional[pulumi.Input[str]] = None,
+                 start: Optional[pulumi.Input[bool]] = None,
+                 startup: Optional[pulumi.Input[str]] = None,
+                 swap: Optional[pulumi.Input[int]] = None,
+                 tags: Optional[pulumi.Input[str]] = None,
+                 target_node: Optional[pulumi.Input[str]] = None,
+                 template: Optional[pulumi.Input[bool]] = None,
+                 tty: Optional[pulumi.Input[int]] = None,
+                 unique: Optional[pulumi.Input[bool]] = None,
+                 unprivileged: Optional[pulumi.Input[bool]] = None,
+                 unuseds: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 vmid: Optional[pulumi.Input[int]] = None,
+                 __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -79,49 +1085,49 @@ class LXCContainer(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = LXCContainerArgs.__new__(LXCContainerArgs)
 
-            __props__['arch'] = arch
-            __props__['bwlimit'] = bwlimit
-            __props__['cmode'] = cmode
-            __props__['console'] = console
-            __props__['cores'] = cores
-            __props__['cpulimit'] = cpulimit
-            __props__['cpuunits'] = cpuunits
-            __props__['description'] = description
-            __props__['features'] = features
-            __props__['force'] = force
-            __props__['hookscript'] = hookscript
-            __props__['hostname'] = hostname
-            __props__['ignore_unpack_errors'] = ignore_unpack_errors
-            __props__['lock'] = lock
-            __props__['memory'] = memory
-            __props__['mountpoints'] = mountpoints
-            __props__['nameserver'] = nameserver
-            __props__['networks'] = networks
-            __props__['onboot'] = onboot
-            __props__['ostemplate'] = ostemplate
-            __props__['ostype'] = ostype
-            __props__['password'] = password
-            __props__['pool'] = pool
-            __props__['protection'] = protection
-            __props__['restore'] = restore
-            __props__['rootfs'] = rootfs
-            __props__['searchdomain'] = searchdomain
-            __props__['ssh_public_keys'] = ssh_public_keys
-            __props__['start'] = start
-            __props__['startup'] = startup
-            __props__['swap'] = swap
-            __props__['tags'] = tags
-            if target_node is None:
+            __props__.__dict__["arch"] = arch
+            __props__.__dict__["bwlimit"] = bwlimit
+            __props__.__dict__["cmode"] = cmode
+            __props__.__dict__["console"] = console
+            __props__.__dict__["cores"] = cores
+            __props__.__dict__["cpulimit"] = cpulimit
+            __props__.__dict__["cpuunits"] = cpuunits
+            __props__.__dict__["description"] = description
+            __props__.__dict__["features"] = features
+            __props__.__dict__["force"] = force
+            __props__.__dict__["hookscript"] = hookscript
+            __props__.__dict__["hostname"] = hostname
+            __props__.__dict__["ignore_unpack_errors"] = ignore_unpack_errors
+            __props__.__dict__["lock"] = lock
+            __props__.__dict__["memory"] = memory
+            __props__.__dict__["mountpoints"] = mountpoints
+            __props__.__dict__["nameserver"] = nameserver
+            __props__.__dict__["networks"] = networks
+            __props__.__dict__["onboot"] = onboot
+            __props__.__dict__["ostemplate"] = ostemplate
+            __props__.__dict__["ostype"] = ostype
+            __props__.__dict__["password"] = password
+            __props__.__dict__["pool"] = pool
+            __props__.__dict__["protection"] = protection
+            __props__.__dict__["restore"] = restore
+            __props__.__dict__["rootfs"] = rootfs
+            __props__.__dict__["searchdomain"] = searchdomain
+            __props__.__dict__["ssh_public_keys"] = ssh_public_keys
+            __props__.__dict__["start"] = start
+            __props__.__dict__["startup"] = startup
+            __props__.__dict__["swap"] = swap
+            __props__.__dict__["tags"] = tags
+            if target_node is None and not opts.urn:
                 raise TypeError("Missing required property 'target_node'")
-            __props__['target_node'] = target_node
-            __props__['template'] = template
-            __props__['tty'] = tty
-            __props__['unique'] = unique
-            __props__['unprivileged'] = unprivileged
-            __props__['unuseds'] = unuseds
-            __props__['vmid'] = vmid
+            __props__.__dict__["target_node"] = target_node
+            __props__.__dict__["template"] = template
+            __props__.__dict__["tty"] = tty
+            __props__.__dict__["unique"] = unique
+            __props__.__dict__["unprivileged"] = unprivileged
+            __props__.__dict__["unuseds"] = unuseds
+            __props__.__dict__["vmid"] = vmid
         super(LXCContainer, __self__).__init__(
             'proxmoxve:index/lXCContainer:LXCContainer',
             resource_name,
@@ -181,47 +1187,47 @@ class LXCContainer(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _LXCContainerState.__new__(_LXCContainerState)
 
-        __props__["arch"] = arch
-        __props__["bwlimit"] = bwlimit
-        __props__["cmode"] = cmode
-        __props__["console"] = console
-        __props__["cores"] = cores
-        __props__["cpulimit"] = cpulimit
-        __props__["cpuunits"] = cpuunits
-        __props__["description"] = description
-        __props__["features"] = features
-        __props__["force"] = force
-        __props__["hookscript"] = hookscript
-        __props__["hostname"] = hostname
-        __props__["ignore_unpack_errors"] = ignore_unpack_errors
-        __props__["lock"] = lock
-        __props__["memory"] = memory
-        __props__["mountpoints"] = mountpoints
-        __props__["nameserver"] = nameserver
-        __props__["networks"] = networks
-        __props__["onboot"] = onboot
-        __props__["ostemplate"] = ostemplate
-        __props__["ostype"] = ostype
-        __props__["password"] = password
-        __props__["pool"] = pool
-        __props__["protection"] = protection
-        __props__["restore"] = restore
-        __props__["rootfs"] = rootfs
-        __props__["searchdomain"] = searchdomain
-        __props__["ssh_public_keys"] = ssh_public_keys
-        __props__["start"] = start
-        __props__["startup"] = startup
-        __props__["swap"] = swap
-        __props__["tags"] = tags
-        __props__["target_node"] = target_node
-        __props__["template"] = template
-        __props__["tty"] = tty
-        __props__["unique"] = unique
-        __props__["unprivileged"] = unprivileged
-        __props__["unuseds"] = unuseds
-        __props__["vmid"] = vmid
+        __props__.__dict__["arch"] = arch
+        __props__.__dict__["bwlimit"] = bwlimit
+        __props__.__dict__["cmode"] = cmode
+        __props__.__dict__["console"] = console
+        __props__.__dict__["cores"] = cores
+        __props__.__dict__["cpulimit"] = cpulimit
+        __props__.__dict__["cpuunits"] = cpuunits
+        __props__.__dict__["description"] = description
+        __props__.__dict__["features"] = features
+        __props__.__dict__["force"] = force
+        __props__.__dict__["hookscript"] = hookscript
+        __props__.__dict__["hostname"] = hostname
+        __props__.__dict__["ignore_unpack_errors"] = ignore_unpack_errors
+        __props__.__dict__["lock"] = lock
+        __props__.__dict__["memory"] = memory
+        __props__.__dict__["mountpoints"] = mountpoints
+        __props__.__dict__["nameserver"] = nameserver
+        __props__.__dict__["networks"] = networks
+        __props__.__dict__["onboot"] = onboot
+        __props__.__dict__["ostemplate"] = ostemplate
+        __props__.__dict__["ostype"] = ostype
+        __props__.__dict__["password"] = password
+        __props__.__dict__["pool"] = pool
+        __props__.__dict__["protection"] = protection
+        __props__.__dict__["restore"] = restore
+        __props__.__dict__["rootfs"] = rootfs
+        __props__.__dict__["searchdomain"] = searchdomain
+        __props__.__dict__["ssh_public_keys"] = ssh_public_keys
+        __props__.__dict__["start"] = start
+        __props__.__dict__["startup"] = startup
+        __props__.__dict__["swap"] = swap
+        __props__.__dict__["tags"] = tags
+        __props__.__dict__["target_node"] = target_node
+        __props__.__dict__["template"] = template
+        __props__.__dict__["tty"] = tty
+        __props__.__dict__["unique"] = unique
+        __props__.__dict__["unprivileged"] = unprivileged
+        __props__.__dict__["unuseds"] = unuseds
+        __props__.__dict__["vmid"] = vmid
         return LXCContainer(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -418,10 +1424,4 @@ class LXCContainer(pulumi.CustomResource):
     @pulumi.getter
     def vmid(self) -> pulumi.Output[Optional[int]]:
         return pulumi.get(self, "vmid")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

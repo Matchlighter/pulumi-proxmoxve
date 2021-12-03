@@ -4,10 +4,11 @@
 package proxmoxve
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
-	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 type LXCContainer struct {
@@ -57,11 +58,12 @@ type LXCContainer struct {
 // NewLXCContainer registers a new resource with the given unique name, arguments, and options.
 func NewLXCContainer(ctx *pulumi.Context,
 	name string, args *LXCContainerArgs, opts ...pulumi.ResourceOption) (*LXCContainer, error) {
-	if args == nil || args.TargetNode == nil {
-		return nil, errors.New("missing required argument 'TargetNode'")
-	}
 	if args == nil {
-		args = &LXCContainerArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.TargetNode == nil {
+		return nil, errors.New("invalid value for required argument 'TargetNode'")
 	}
 	var resource LXCContainer
 	err := ctx.RegisterResource("proxmoxve:index/lXCContainer:LXCContainer", name, args, &resource, opts...)
@@ -259,4 +261,197 @@ type LXCContainerArgs struct {
 
 func (LXCContainerArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*lxccontainerArgs)(nil)).Elem()
+}
+
+type LXCContainerInput interface {
+	pulumi.Input
+
+	ToLXCContainerOutput() LXCContainerOutput
+	ToLXCContainerOutputWithContext(ctx context.Context) LXCContainerOutput
+}
+
+func (*LXCContainer) ElementType() reflect.Type {
+	return reflect.TypeOf((*LXCContainer)(nil))
+}
+
+func (i *LXCContainer) ToLXCContainerOutput() LXCContainerOutput {
+	return i.ToLXCContainerOutputWithContext(context.Background())
+}
+
+func (i *LXCContainer) ToLXCContainerOutputWithContext(ctx context.Context) LXCContainerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LXCContainerOutput)
+}
+
+func (i *LXCContainer) ToLXCContainerPtrOutput() LXCContainerPtrOutput {
+	return i.ToLXCContainerPtrOutputWithContext(context.Background())
+}
+
+func (i *LXCContainer) ToLXCContainerPtrOutputWithContext(ctx context.Context) LXCContainerPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LXCContainerPtrOutput)
+}
+
+type LXCContainerPtrInput interface {
+	pulumi.Input
+
+	ToLXCContainerPtrOutput() LXCContainerPtrOutput
+	ToLXCContainerPtrOutputWithContext(ctx context.Context) LXCContainerPtrOutput
+}
+
+type lxccontainerPtrType LXCContainerArgs
+
+func (*lxccontainerPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LXCContainer)(nil))
+}
+
+func (i *lxccontainerPtrType) ToLXCContainerPtrOutput() LXCContainerPtrOutput {
+	return i.ToLXCContainerPtrOutputWithContext(context.Background())
+}
+
+func (i *lxccontainerPtrType) ToLXCContainerPtrOutputWithContext(ctx context.Context) LXCContainerPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LXCContainerPtrOutput)
+}
+
+// LXCContainerArrayInput is an input type that accepts LXCContainerArray and LXCContainerArrayOutput values.
+// You can construct a concrete instance of `LXCContainerArrayInput` via:
+//
+//          LXCContainerArray{ LXCContainerArgs{...} }
+type LXCContainerArrayInput interface {
+	pulumi.Input
+
+	ToLXCContainerArrayOutput() LXCContainerArrayOutput
+	ToLXCContainerArrayOutputWithContext(context.Context) LXCContainerArrayOutput
+}
+
+type LXCContainerArray []LXCContainerInput
+
+func (LXCContainerArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*LXCContainer)(nil)).Elem()
+}
+
+func (i LXCContainerArray) ToLXCContainerArrayOutput() LXCContainerArrayOutput {
+	return i.ToLXCContainerArrayOutputWithContext(context.Background())
+}
+
+func (i LXCContainerArray) ToLXCContainerArrayOutputWithContext(ctx context.Context) LXCContainerArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LXCContainerArrayOutput)
+}
+
+// LXCContainerMapInput is an input type that accepts LXCContainerMap and LXCContainerMapOutput values.
+// You can construct a concrete instance of `LXCContainerMapInput` via:
+//
+//          LXCContainerMap{ "key": LXCContainerArgs{...} }
+type LXCContainerMapInput interface {
+	pulumi.Input
+
+	ToLXCContainerMapOutput() LXCContainerMapOutput
+	ToLXCContainerMapOutputWithContext(context.Context) LXCContainerMapOutput
+}
+
+type LXCContainerMap map[string]LXCContainerInput
+
+func (LXCContainerMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*LXCContainer)(nil)).Elem()
+}
+
+func (i LXCContainerMap) ToLXCContainerMapOutput() LXCContainerMapOutput {
+	return i.ToLXCContainerMapOutputWithContext(context.Background())
+}
+
+func (i LXCContainerMap) ToLXCContainerMapOutputWithContext(ctx context.Context) LXCContainerMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LXCContainerMapOutput)
+}
+
+type LXCContainerOutput struct{ *pulumi.OutputState }
+
+func (LXCContainerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LXCContainer)(nil))
+}
+
+func (o LXCContainerOutput) ToLXCContainerOutput() LXCContainerOutput {
+	return o
+}
+
+func (o LXCContainerOutput) ToLXCContainerOutputWithContext(ctx context.Context) LXCContainerOutput {
+	return o
+}
+
+func (o LXCContainerOutput) ToLXCContainerPtrOutput() LXCContainerPtrOutput {
+	return o.ToLXCContainerPtrOutputWithContext(context.Background())
+}
+
+func (o LXCContainerOutput) ToLXCContainerPtrOutputWithContext(ctx context.Context) LXCContainerPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LXCContainer) *LXCContainer {
+		return &v
+	}).(LXCContainerPtrOutput)
+}
+
+type LXCContainerPtrOutput struct{ *pulumi.OutputState }
+
+func (LXCContainerPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LXCContainer)(nil))
+}
+
+func (o LXCContainerPtrOutput) ToLXCContainerPtrOutput() LXCContainerPtrOutput {
+	return o
+}
+
+func (o LXCContainerPtrOutput) ToLXCContainerPtrOutputWithContext(ctx context.Context) LXCContainerPtrOutput {
+	return o
+}
+
+func (o LXCContainerPtrOutput) Elem() LXCContainerOutput {
+	return o.ApplyT(func(v *LXCContainer) LXCContainer {
+		if v != nil {
+			return *v
+		}
+		var ret LXCContainer
+		return ret
+	}).(LXCContainerOutput)
+}
+
+type LXCContainerArrayOutput struct{ *pulumi.OutputState }
+
+func (LXCContainerArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LXCContainer)(nil))
+}
+
+func (o LXCContainerArrayOutput) ToLXCContainerArrayOutput() LXCContainerArrayOutput {
+	return o
+}
+
+func (o LXCContainerArrayOutput) ToLXCContainerArrayOutputWithContext(ctx context.Context) LXCContainerArrayOutput {
+	return o
+}
+
+func (o LXCContainerArrayOutput) Index(i pulumi.IntInput) LXCContainerOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LXCContainer {
+		return vs[0].([]LXCContainer)[vs[1].(int)]
+	}).(LXCContainerOutput)
+}
+
+type LXCContainerMapOutput struct{ *pulumi.OutputState }
+
+func (LXCContainerMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]LXCContainer)(nil))
+}
+
+func (o LXCContainerMapOutput) ToLXCContainerMapOutput() LXCContainerMapOutput {
+	return o
+}
+
+func (o LXCContainerMapOutput) ToLXCContainerMapOutputWithContext(ctx context.Context) LXCContainerMapOutput {
+	return o
+}
+
+func (o LXCContainerMapOutput) MapIndex(k pulumi.StringInput) LXCContainerOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) LXCContainer {
+		return vs[0].(map[string]LXCContainer)[vs[1].(string)]
+	}).(LXCContainerOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LXCContainerOutput{})
+	pulumi.RegisterOutputType(LXCContainerPtrOutput{})
+	pulumi.RegisterOutputType(LXCContainerArrayOutput{})
+	pulumi.RegisterOutputType(LXCContainerMapOutput{})
 }

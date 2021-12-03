@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Proxmoxve
 {
+    [ProxmoxveResourceType("proxmoxve:index/lXCDisk:LXCDisk")]
     public partial class LXCDisk : Pulumi.CustomResource
     {
         [Output("acl")]

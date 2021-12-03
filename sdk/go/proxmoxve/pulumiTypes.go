@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 type LXCContainerFeatures struct {
@@ -107,10 +107,11 @@ func (o LXCContainerFeaturesOutput) ToLXCContainerFeaturesPtrOutput() LXCContain
 }
 
 func (o LXCContainerFeaturesOutput) ToLXCContainerFeaturesPtrOutputWithContext(ctx context.Context) LXCContainerFeaturesPtrOutput {
-	return o.ApplyT(func(v LXCContainerFeatures) *LXCContainerFeatures {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LXCContainerFeatures) *LXCContainerFeatures {
 		return &v
 	}).(LXCContainerFeaturesPtrOutput)
 }
+
 func (o LXCContainerFeaturesOutput) Fuse() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LXCContainerFeatures) *bool { return v.Fuse }).(pulumi.BoolPtrOutput)
 }
@@ -142,7 +143,13 @@ func (o LXCContainerFeaturesPtrOutput) ToLXCContainerFeaturesPtrOutputWithContex
 }
 
 func (o LXCContainerFeaturesPtrOutput) Elem() LXCContainerFeaturesOutput {
-	return o.ApplyT(func(v *LXCContainerFeatures) LXCContainerFeatures { return *v }).(LXCContainerFeaturesOutput)
+	return o.ApplyT(func(v *LXCContainerFeatures) LXCContainerFeatures {
+		if v != nil {
+			return *v
+		}
+		var ret LXCContainerFeatures
+		return ret
+	}).(LXCContainerFeaturesOutput)
 }
 
 func (o LXCContainerFeaturesPtrOutput) Fuse() pulumi.BoolPtrOutput {
@@ -602,10 +609,11 @@ func (o LXCContainerRootfsOutput) ToLXCContainerRootfsPtrOutput() LXCContainerRo
 }
 
 func (o LXCContainerRootfsOutput) ToLXCContainerRootfsPtrOutputWithContext(ctx context.Context) LXCContainerRootfsPtrOutput {
-	return o.ApplyT(func(v LXCContainerRootfs) *LXCContainerRootfs {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LXCContainerRootfs) *LXCContainerRootfs {
 		return &v
 	}).(LXCContainerRootfsPtrOutput)
 }
+
 func (o LXCContainerRootfsOutput) Size() pulumi.StringOutput {
 	return o.ApplyT(func(v LXCContainerRootfs) string { return v.Size }).(pulumi.StringOutput)
 }
@@ -633,7 +641,13 @@ func (o LXCContainerRootfsPtrOutput) ToLXCContainerRootfsPtrOutputWithContext(ct
 }
 
 func (o LXCContainerRootfsPtrOutput) Elem() LXCContainerRootfsOutput {
-	return o.ApplyT(func(v *LXCContainerRootfs) LXCContainerRootfs { return *v }).(LXCContainerRootfsOutput)
+	return o.ApplyT(func(v *LXCContainerRootfs) LXCContainerRootfs {
+		if v != nil {
+			return *v
+		}
+		var ret LXCContainerRootfs
+		return ret
+	}).(LXCContainerRootfsOutput)
 }
 
 func (o LXCContainerRootfsPtrOutput) Size() pulumi.StringPtrOutput {
@@ -760,10 +774,11 @@ func (o LXCDiskMountoptionsOutput) ToLXCDiskMountoptionsPtrOutput() LXCDiskMount
 }
 
 func (o LXCDiskMountoptionsOutput) ToLXCDiskMountoptionsPtrOutputWithContext(ctx context.Context) LXCDiskMountoptionsPtrOutput {
-	return o.ApplyT(func(v LXCDiskMountoptions) *LXCDiskMountoptions {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LXCDiskMountoptions) *LXCDiskMountoptions {
 		return &v
 	}).(LXCDiskMountoptionsPtrOutput)
 }
+
 func (o LXCDiskMountoptionsOutput) Noatime() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LXCDiskMountoptions) *bool { return v.Noatime }).(pulumi.BoolPtrOutput)
 }
@@ -795,7 +810,13 @@ func (o LXCDiskMountoptionsPtrOutput) ToLXCDiskMountoptionsPtrOutputWithContext(
 }
 
 func (o LXCDiskMountoptionsPtrOutput) Elem() LXCDiskMountoptionsOutput {
-	return o.ApplyT(func(v *LXCDiskMountoptions) LXCDiskMountoptions { return *v }).(LXCDiskMountoptionsOutput)
+	return o.ApplyT(func(v *LXCDiskMountoptions) LXCDiskMountoptions {
+		if v != nil {
+			return *v
+		}
+		var ret LXCDiskMountoptions
+		return ret
+	}).(LXCDiskMountoptionsOutput)
 }
 
 func (o LXCDiskMountoptionsPtrOutput) Noatime() pulumi.BoolPtrOutput {
@@ -1485,6 +1506,26 @@ func (o QemuVMVgaArrayOutput) Index(i pulumi.IntInput) QemuVMVgaOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*LXCContainerFeaturesInput)(nil)).Elem(), LXCContainerFeaturesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LXCContainerFeaturesPtrInput)(nil)).Elem(), LXCContainerFeaturesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LXCContainerMountpointInput)(nil)).Elem(), LXCContainerMountpointArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LXCContainerMountpointArrayInput)(nil)).Elem(), LXCContainerMountpointArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LXCContainerNetworkInput)(nil)).Elem(), LXCContainerNetworkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LXCContainerNetworkArrayInput)(nil)).Elem(), LXCContainerNetworkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LXCContainerRootfsInput)(nil)).Elem(), LXCContainerRootfsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LXCContainerRootfsPtrInput)(nil)).Elem(), LXCContainerRootfsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LXCDiskMountoptionsInput)(nil)).Elem(), LXCDiskMountoptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LXCDiskMountoptionsPtrInput)(nil)).Elem(), LXCDiskMountoptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*QemuVMDiskInput)(nil)).Elem(), QemuVMDiskArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*QemuVMDiskArrayInput)(nil)).Elem(), QemuVMDiskArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*QemuVMNetworkInput)(nil)).Elem(), QemuVMNetworkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*QemuVMNetworkArrayInput)(nil)).Elem(), QemuVMNetworkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*QemuVMSerialInput)(nil)).Elem(), QemuVMSerialArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*QemuVMSerialArrayInput)(nil)).Elem(), QemuVMSerialArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*QemuVMUnusedDiskInput)(nil)).Elem(), QemuVMUnusedDiskArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*QemuVMUnusedDiskArrayInput)(nil)).Elem(), QemuVMUnusedDiskArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*QemuVMVgaInput)(nil)).Elem(), QemuVMVgaArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*QemuVMVgaArrayInput)(nil)).Elem(), QemuVMVgaArray{})
 	pulumi.RegisterOutputType(LXCContainerFeaturesOutput{})
 	pulumi.RegisterOutputType(LXCContainerFeaturesPtrOutput{})
 	pulumi.RegisterOutputType(LXCContainerMountpointOutput{})

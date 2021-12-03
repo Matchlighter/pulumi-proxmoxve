@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
+import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 export class LXCContainer extends pulumi.CustomResource {
@@ -84,7 +83,8 @@ export class LXCContainer extends pulumi.CustomResource {
     constructor(name: string, args: LXCContainerArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: LXCContainerArgs | LXCContainerState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as LXCContainerState | undefined;
             inputs["arch"] = state ? state.arch : undefined;
             inputs["bwlimit"] = state ? state.bwlimit : undefined;
@@ -127,7 +127,7 @@ export class LXCContainer extends pulumi.CustomResource {
             inputs["vmid"] = state ? state.vmid : undefined;
         } else {
             const args = argsOrState as LXCContainerArgs | undefined;
-            if (!args || args.targetNode === undefined) {
+            if ((!args || args.targetNode === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'targetNode'");
             }
             inputs["arch"] = args ? args.arch : undefined;
@@ -170,12 +170,8 @@ export class LXCContainer extends pulumi.CustomResource {
             inputs["unuseds"] = args ? args.unuseds : undefined;
             inputs["vmid"] = args ? args.vmid : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(LXCContainer.__pulumiType, name, inputs, opts);
     }
@@ -185,88 +181,88 @@ export class LXCContainer extends pulumi.CustomResource {
  * Input properties used for looking up and filtering LXCContainer resources.
  */
 export interface LXCContainerState {
-    readonly arch?: pulumi.Input<string>;
-    readonly bwlimit?: pulumi.Input<number>;
-    readonly cmode?: pulumi.Input<string>;
-    readonly console?: pulumi.Input<boolean>;
-    readonly cores?: pulumi.Input<number>;
-    readonly cpulimit?: pulumi.Input<number>;
-    readonly cpuunits?: pulumi.Input<number>;
-    readonly description?: pulumi.Input<string>;
-    readonly features?: pulumi.Input<inputs.LXCContainerFeatures>;
-    readonly force?: pulumi.Input<boolean>;
-    readonly hookscript?: pulumi.Input<string>;
-    readonly hostname?: pulumi.Input<string>;
-    readonly ignoreUnpackErrors?: pulumi.Input<boolean>;
-    readonly lock?: pulumi.Input<string>;
-    readonly memory?: pulumi.Input<number>;
-    readonly mountpoints?: pulumi.Input<pulumi.Input<inputs.LXCContainerMountpoint>[]>;
-    readonly nameserver?: pulumi.Input<string>;
-    readonly networks?: pulumi.Input<pulumi.Input<inputs.LXCContainerNetwork>[]>;
-    readonly onboot?: pulumi.Input<boolean>;
-    readonly ostemplate?: pulumi.Input<string>;
-    readonly ostype?: pulumi.Input<string>;
-    readonly password?: pulumi.Input<string>;
-    readonly pool?: pulumi.Input<string>;
-    readonly protection?: pulumi.Input<boolean>;
-    readonly restore?: pulumi.Input<boolean>;
-    readonly rootfs?: pulumi.Input<inputs.LXCContainerRootfs>;
-    readonly searchdomain?: pulumi.Input<string>;
-    readonly sshPublicKeys?: pulumi.Input<string>;
-    readonly start?: pulumi.Input<boolean>;
-    readonly startup?: pulumi.Input<string>;
-    readonly swap?: pulumi.Input<number>;
-    readonly tags?: pulumi.Input<string>;
-    readonly targetNode?: pulumi.Input<string>;
-    readonly template?: pulumi.Input<boolean>;
-    readonly tty?: pulumi.Input<number>;
-    readonly unique?: pulumi.Input<boolean>;
-    readonly unprivileged?: pulumi.Input<boolean>;
-    readonly unuseds?: pulumi.Input<pulumi.Input<string>[]>;
-    readonly vmid?: pulumi.Input<number>;
+    arch?: pulumi.Input<string>;
+    bwlimit?: pulumi.Input<number>;
+    cmode?: pulumi.Input<string>;
+    console?: pulumi.Input<boolean>;
+    cores?: pulumi.Input<number>;
+    cpulimit?: pulumi.Input<number>;
+    cpuunits?: pulumi.Input<number>;
+    description?: pulumi.Input<string>;
+    features?: pulumi.Input<inputs.LXCContainerFeatures>;
+    force?: pulumi.Input<boolean>;
+    hookscript?: pulumi.Input<string>;
+    hostname?: pulumi.Input<string>;
+    ignoreUnpackErrors?: pulumi.Input<boolean>;
+    lock?: pulumi.Input<string>;
+    memory?: pulumi.Input<number>;
+    mountpoints?: pulumi.Input<pulumi.Input<inputs.LXCContainerMountpoint>[]>;
+    nameserver?: pulumi.Input<string>;
+    networks?: pulumi.Input<pulumi.Input<inputs.LXCContainerNetwork>[]>;
+    onboot?: pulumi.Input<boolean>;
+    ostemplate?: pulumi.Input<string>;
+    ostype?: pulumi.Input<string>;
+    password?: pulumi.Input<string>;
+    pool?: pulumi.Input<string>;
+    protection?: pulumi.Input<boolean>;
+    restore?: pulumi.Input<boolean>;
+    rootfs?: pulumi.Input<inputs.LXCContainerRootfs>;
+    searchdomain?: pulumi.Input<string>;
+    sshPublicKeys?: pulumi.Input<string>;
+    start?: pulumi.Input<boolean>;
+    startup?: pulumi.Input<string>;
+    swap?: pulumi.Input<number>;
+    tags?: pulumi.Input<string>;
+    targetNode?: pulumi.Input<string>;
+    template?: pulumi.Input<boolean>;
+    tty?: pulumi.Input<number>;
+    unique?: pulumi.Input<boolean>;
+    unprivileged?: pulumi.Input<boolean>;
+    unuseds?: pulumi.Input<pulumi.Input<string>[]>;
+    vmid?: pulumi.Input<number>;
 }
 
 /**
  * The set of arguments for constructing a LXCContainer resource.
  */
 export interface LXCContainerArgs {
-    readonly arch?: pulumi.Input<string>;
-    readonly bwlimit?: pulumi.Input<number>;
-    readonly cmode?: pulumi.Input<string>;
-    readonly console?: pulumi.Input<boolean>;
-    readonly cores?: pulumi.Input<number>;
-    readonly cpulimit?: pulumi.Input<number>;
-    readonly cpuunits?: pulumi.Input<number>;
-    readonly description?: pulumi.Input<string>;
-    readonly features?: pulumi.Input<inputs.LXCContainerFeatures>;
-    readonly force?: pulumi.Input<boolean>;
-    readonly hookscript?: pulumi.Input<string>;
-    readonly hostname?: pulumi.Input<string>;
-    readonly ignoreUnpackErrors?: pulumi.Input<boolean>;
-    readonly lock?: pulumi.Input<string>;
-    readonly memory?: pulumi.Input<number>;
-    readonly mountpoints?: pulumi.Input<pulumi.Input<inputs.LXCContainerMountpoint>[]>;
-    readonly nameserver?: pulumi.Input<string>;
-    readonly networks?: pulumi.Input<pulumi.Input<inputs.LXCContainerNetwork>[]>;
-    readonly onboot?: pulumi.Input<boolean>;
-    readonly ostemplate?: pulumi.Input<string>;
-    readonly ostype?: pulumi.Input<string>;
-    readonly password?: pulumi.Input<string>;
-    readonly pool?: pulumi.Input<string>;
-    readonly protection?: pulumi.Input<boolean>;
-    readonly restore?: pulumi.Input<boolean>;
-    readonly rootfs?: pulumi.Input<inputs.LXCContainerRootfs>;
-    readonly searchdomain?: pulumi.Input<string>;
-    readonly sshPublicKeys?: pulumi.Input<string>;
-    readonly start?: pulumi.Input<boolean>;
-    readonly startup?: pulumi.Input<string>;
-    readonly swap?: pulumi.Input<number>;
-    readonly tags?: pulumi.Input<string>;
-    readonly targetNode: pulumi.Input<string>;
-    readonly template?: pulumi.Input<boolean>;
-    readonly tty?: pulumi.Input<number>;
-    readonly unique?: pulumi.Input<boolean>;
-    readonly unprivileged?: pulumi.Input<boolean>;
-    readonly unuseds?: pulumi.Input<pulumi.Input<string>[]>;
-    readonly vmid?: pulumi.Input<number>;
+    arch?: pulumi.Input<string>;
+    bwlimit?: pulumi.Input<number>;
+    cmode?: pulumi.Input<string>;
+    console?: pulumi.Input<boolean>;
+    cores?: pulumi.Input<number>;
+    cpulimit?: pulumi.Input<number>;
+    cpuunits?: pulumi.Input<number>;
+    description?: pulumi.Input<string>;
+    features?: pulumi.Input<inputs.LXCContainerFeatures>;
+    force?: pulumi.Input<boolean>;
+    hookscript?: pulumi.Input<string>;
+    hostname?: pulumi.Input<string>;
+    ignoreUnpackErrors?: pulumi.Input<boolean>;
+    lock?: pulumi.Input<string>;
+    memory?: pulumi.Input<number>;
+    mountpoints?: pulumi.Input<pulumi.Input<inputs.LXCContainerMountpoint>[]>;
+    nameserver?: pulumi.Input<string>;
+    networks?: pulumi.Input<pulumi.Input<inputs.LXCContainerNetwork>[]>;
+    onboot?: pulumi.Input<boolean>;
+    ostemplate?: pulumi.Input<string>;
+    ostype?: pulumi.Input<string>;
+    password?: pulumi.Input<string>;
+    pool?: pulumi.Input<string>;
+    protection?: pulumi.Input<boolean>;
+    restore?: pulumi.Input<boolean>;
+    rootfs?: pulumi.Input<inputs.LXCContainerRootfs>;
+    searchdomain?: pulumi.Input<string>;
+    sshPublicKeys?: pulumi.Input<string>;
+    start?: pulumi.Input<boolean>;
+    startup?: pulumi.Input<string>;
+    swap?: pulumi.Input<number>;
+    tags?: pulumi.Input<string>;
+    targetNode: pulumi.Input<string>;
+    template?: pulumi.Input<boolean>;
+    tty?: pulumi.Input<number>;
+    unique?: pulumi.Input<boolean>;
+    unprivileged?: pulumi.Input<boolean>;
+    unuseds?: pulumi.Input<pulumi.Input<string>[]>;
+    vmid?: pulumi.Input<number>;
 }

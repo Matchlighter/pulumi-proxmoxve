@@ -4,10 +4,11 @@
 package proxmoxve
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
-	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // The provider type for the proxmoxve package. By default, resources use package-wide configuration
@@ -16,16 +17,32 @@ import (
 // [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
 type Provider struct {
 	pulumi.ProviderResourceState
+
+	// API TokenID e.g. root@pam!mytesttoken
+	PmApiTokenId pulumi.StringPtrOutput `pulumi:"pmApiTokenId"`
+	// The secret uuid corresponding to a TokenID
+	PmApiTokenSecret pulumi.StringPtrOutput `pulumi:"pmApiTokenSecret"`
+	// https://host.fqdn:8006/api2/json
+	PmApiUrl pulumi.StringOutput `pulumi:"pmApiUrl"`
+	// Write logs to this specific file
+	PmLogFile pulumi.StringPtrOutput `pulumi:"pmLogFile"`
+	// OTP 2FA code (if required)
+	PmOtp pulumi.StringPtrOutput `pulumi:"pmOtp"`
+	// Password to authenticate into proxmox
+	PmPassword pulumi.StringPtrOutput `pulumi:"pmPassword"`
+	// Username e.g. myuser or myuser@pam
+	PmUser pulumi.StringPtrOutput `pulumi:"pmUser"`
 }
 
 // NewProvider registers a new resource with the given unique name, arguments, and options.
 func NewProvider(ctx *pulumi.Context,
 	name string, args *ProviderArgs, opts ...pulumi.ResourceOption) (*Provider, error) {
-	if args == nil || args.PmApiUrl == nil {
-		return nil, errors.New("missing required argument 'PmApiUrl'")
-	}
 	if args == nil {
-		args = &ProviderArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.PmApiUrl == nil {
+		return nil, errors.New("invalid value for required argument 'PmApiUrl'")
 	}
 	var resource Provider
 	err := ctx.RegisterResource("pulumi:providers:proxmoxve", name, args, &resource, opts...)
@@ -102,4 +119,105 @@ type ProviderArgs struct {
 
 func (ProviderArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*providerArgs)(nil)).Elem()
+}
+
+type ProviderInput interface {
+	pulumi.Input
+
+	ToProviderOutput() ProviderOutput
+	ToProviderOutputWithContext(ctx context.Context) ProviderOutput
+}
+
+func (*Provider) ElementType() reflect.Type {
+	return reflect.TypeOf((*Provider)(nil))
+}
+
+func (i *Provider) ToProviderOutput() ProviderOutput {
+	return i.ToProviderOutputWithContext(context.Background())
+}
+
+func (i *Provider) ToProviderOutputWithContext(ctx context.Context) ProviderOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderOutput)
+}
+
+func (i *Provider) ToProviderPtrOutput() ProviderPtrOutput {
+	return i.ToProviderPtrOutputWithContext(context.Background())
+}
+
+func (i *Provider) ToProviderPtrOutputWithContext(ctx context.Context) ProviderPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderPtrOutput)
+}
+
+type ProviderPtrInput interface {
+	pulumi.Input
+
+	ToProviderPtrOutput() ProviderPtrOutput
+	ToProviderPtrOutputWithContext(ctx context.Context) ProviderPtrOutput
+}
+
+type providerPtrType ProviderArgs
+
+func (*providerPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**Provider)(nil))
+}
+
+func (i *providerPtrType) ToProviderPtrOutput() ProviderPtrOutput {
+	return i.ToProviderPtrOutputWithContext(context.Background())
+}
+
+func (i *providerPtrType) ToProviderPtrOutputWithContext(ctx context.Context) ProviderPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderPtrOutput)
+}
+
+type ProviderOutput struct{ *pulumi.OutputState }
+
+func (ProviderOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*Provider)(nil))
+}
+
+func (o ProviderOutput) ToProviderOutput() ProviderOutput {
+	return o
+}
+
+func (o ProviderOutput) ToProviderOutputWithContext(ctx context.Context) ProviderOutput {
+	return o
+}
+
+func (o ProviderOutput) ToProviderPtrOutput() ProviderPtrOutput {
+	return o.ToProviderPtrOutputWithContext(context.Background())
+}
+
+func (o ProviderOutput) ToProviderPtrOutputWithContext(ctx context.Context) ProviderPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v Provider) *Provider {
+		return &v
+	}).(ProviderPtrOutput)
+}
+
+type ProviderPtrOutput struct{ *pulumi.OutputState }
+
+func (ProviderPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Provider)(nil))
+}
+
+func (o ProviderPtrOutput) ToProviderPtrOutput() ProviderPtrOutput {
+	return o
+}
+
+func (o ProviderPtrOutput) ToProviderPtrOutputWithContext(ctx context.Context) ProviderPtrOutput {
+	return o
+}
+
+func (o ProviderPtrOutput) Elem() ProviderOutput {
+	return o.ApplyT(func(v *Provider) Provider {
+		if v != nil {
+			return *v
+		}
+		var ret Provider
+		return ret
+	}).(ProviderOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(ProviderOutput{})
+	pulumi.RegisterOutputType(ProviderPtrOutput{})
 }

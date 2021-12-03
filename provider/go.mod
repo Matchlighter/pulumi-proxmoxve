@@ -1,22 +1,15 @@
 module github.com/matchlighter/pulumi-proxmoxve/provider
 
-go 1.14
+go 1.16
 
 replace (
-	github.com/Azure/go-autorest => github.com/Azure/go-autorest v12.4.3+incompatible
-	github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20200910230100-328eb4ff41df
-	github.com/hashicorp/vault => github.com/hashicorp/vault v1.2.0
-)
-
-replace (
-	// github.com/Telmate/terraform-provider-proxmox => github.com/matchlighter/terraform-provider-proxmox v0.0.0-20201216064002-1547dfbe6e24
-	// github.com/Telmate/proxmox-api-go => github.com/matchlighter/proxmox-api-go v0.0.0-20201102231845-1bf8a10baa24
+	github.com/hashicorp/go-getter v1.5.0 => github.com/hashicorp/go-getter v1.4.0
+	github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20210629210550-59d24255d71f
 )
 
 require (
 	github.com/Telmate/terraform-provider-proxmox v0.0.0-20210512182441-01f54a7bc089
 	github.com/hashicorp/terraform-plugin-sdk v1.14.0 // indirect
-	github.com/pulumi/pulumi-terraform-bridge/v2 v2.12.0
-	github.com/pulumi/pulumi/pkg/v2 v2.12.1-0.20201019222817-89c956d18942 // indirect
-	github.com/pulumi/pulumi/sdk/v2 v2.12.0
+	github.com/pulumi/pulumi-terraform-bridge/v3 v3.9.0
+	github.com/pulumi/pulumi/sdk/v3 v3.14.1-0.20211007222624-789e39219452
 )

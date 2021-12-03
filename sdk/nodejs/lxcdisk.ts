@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
+import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 export class LXCDisk extends pulumi.CustomResource {
@@ -57,7 +56,8 @@ export class LXCDisk extends pulumi.CustomResource {
     constructor(name: string, args: LXCDiskArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: LXCDiskArgs | LXCDiskState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as LXCDiskState | undefined;
             inputs["acl"] = state ? state.acl : undefined;
             inputs["backup"] = state ? state.backup : undefined;
@@ -73,19 +73,19 @@ export class LXCDisk extends pulumi.CustomResource {
             inputs["volume"] = state ? state.volume : undefined;
         } else {
             const args = argsOrState as LXCDiskArgs | undefined;
-            if (!args || args.container === undefined) {
+            if ((!args || args.container === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'container'");
             }
-            if (!args || args.mp === undefined) {
+            if ((!args || args.mp === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'mp'");
             }
-            if (!args || args.size === undefined) {
+            if ((!args || args.size === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'size'");
             }
-            if (!args || args.slot === undefined) {
+            if ((!args || args.slot === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'slot'");
             }
-            if (!args || args.storage === undefined) {
+            if ((!args || args.storage === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'storage'");
             }
             inputs["acl"] = args ? args.acl : undefined;
@@ -101,12 +101,8 @@ export class LXCDisk extends pulumi.CustomResource {
             inputs["storage"] = args ? args.storage : undefined;
             inputs["volume"] = args ? args.volume : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(LXCDisk.__pulumiType, name, inputs, opts);
     }
@@ -116,34 +112,34 @@ export class LXCDisk extends pulumi.CustomResource {
  * Input properties used for looking up and filtering LXCDisk resources.
  */
 export interface LXCDiskState {
-    readonly acl?: pulumi.Input<boolean>;
-    readonly backup?: pulumi.Input<boolean>;
-    readonly container?: pulumi.Input<string>;
-    readonly mountoptions?: pulumi.Input<inputs.LXCDiskMountoptions>;
-    readonly mp?: pulumi.Input<string>;
-    readonly quota?: pulumi.Input<boolean>;
-    readonly replicate?: pulumi.Input<boolean>;
-    readonly shared?: pulumi.Input<boolean>;
-    readonly size?: pulumi.Input<string>;
-    readonly slot?: pulumi.Input<number>;
-    readonly storage?: pulumi.Input<string>;
-    readonly volume?: pulumi.Input<string>;
+    acl?: pulumi.Input<boolean>;
+    backup?: pulumi.Input<boolean>;
+    container?: pulumi.Input<string>;
+    mountoptions?: pulumi.Input<inputs.LXCDiskMountoptions>;
+    mp?: pulumi.Input<string>;
+    quota?: pulumi.Input<boolean>;
+    replicate?: pulumi.Input<boolean>;
+    shared?: pulumi.Input<boolean>;
+    size?: pulumi.Input<string>;
+    slot?: pulumi.Input<number>;
+    storage?: pulumi.Input<string>;
+    volume?: pulumi.Input<string>;
 }
 
 /**
  * The set of arguments for constructing a LXCDisk resource.
  */
 export interface LXCDiskArgs {
-    readonly acl?: pulumi.Input<boolean>;
-    readonly backup?: pulumi.Input<boolean>;
-    readonly container: pulumi.Input<string>;
-    readonly mountoptions?: pulumi.Input<inputs.LXCDiskMountoptions>;
-    readonly mp: pulumi.Input<string>;
-    readonly quota?: pulumi.Input<boolean>;
-    readonly replicate?: pulumi.Input<boolean>;
-    readonly shared?: pulumi.Input<boolean>;
-    readonly size: pulumi.Input<string>;
-    readonly slot: pulumi.Input<number>;
-    readonly storage: pulumi.Input<string>;
-    readonly volume?: pulumi.Input<string>;
+    acl?: pulumi.Input<boolean>;
+    backup?: pulumi.Input<boolean>;
+    container: pulumi.Input<string>;
+    mountoptions?: pulumi.Input<inputs.LXCDiskMountoptions>;
+    mp: pulumi.Input<string>;
+    quota?: pulumi.Input<boolean>;
+    replicate?: pulumi.Input<boolean>;
+    shared?: pulumi.Input<boolean>;
+    size: pulumi.Input<string>;
+    slot: pulumi.Input<number>;
+    storage: pulumi.Input<string>;
+    volume?: pulumi.Input<string>;
 }

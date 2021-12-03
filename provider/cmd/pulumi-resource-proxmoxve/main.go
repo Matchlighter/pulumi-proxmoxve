@@ -17,8 +17,7 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfbridge"
-
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	proxmoxve "github.com/matchlighter/pulumi-proxmoxve/provider"
 	"github.com/matchlighter/pulumi-proxmoxve/provider/pkg/version"
 )

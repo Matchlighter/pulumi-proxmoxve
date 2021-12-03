@@ -5,13 +5,230 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
-from . import _utilities, _tables
+from typing import Any, Mapping, Optional, Sequence, Union, overload
+from . import _utilities
 
-__all__ = ['Provider']
+__all__ = ['ProviderArgs', 'Provider']
+
+@pulumi.input_type
+class ProviderArgs:
+    def __init__(__self__, *,
+                 pm_api_url: pulumi.Input[str],
+                 pm_api_token_id: Optional[pulumi.Input[str]] = None,
+                 pm_api_token_secret: Optional[pulumi.Input[str]] = None,
+                 pm_dangerously_ignore_unknown_attributes: Optional[pulumi.Input[bool]] = None,
+                 pm_log_enable: Optional[pulumi.Input[bool]] = None,
+                 pm_log_file: Optional[pulumi.Input[str]] = None,
+                 pm_log_levels: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 pm_otp: Optional[pulumi.Input[str]] = None,
+                 pm_parallel: Optional[pulumi.Input[int]] = None,
+                 pm_password: Optional[pulumi.Input[str]] = None,
+                 pm_timeout: Optional[pulumi.Input[int]] = None,
+                 pm_tls_insecure: Optional[pulumi.Input[bool]] = None,
+                 pm_user: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a Provider resource.
+        :param pulumi.Input[str] pm_api_url: https://host.fqdn:8006/api2/json
+        :param pulumi.Input[str] pm_api_token_id: API TokenID e.g. root@pam!mytesttoken
+        :param pulumi.Input[str] pm_api_token_secret: The secret uuid corresponding to a TokenID
+        :param pulumi.Input[bool] pm_dangerously_ignore_unknown_attributes: By default this provider will exit if an unknown attribute is found. This is to prevent the accidential destruction of
+               VMs or Data when something in the proxmox API has changed/updated and is not confirmed to work with this provider. Set
+               this to true at your own risk. It may allow you to proceed in cases when the provider refuses to work, but be aware of
+               the danger in doing so.
+        :param pulumi.Input[bool] pm_log_enable: Enable provider logging to get proxmox API logs
+        :param pulumi.Input[str] pm_log_file: Write logs to this specific file
+        :param pulumi.Input[Mapping[str, Any]] pm_log_levels: Configure the logging level to display; trace, debug, info, warn, etc
+        :param pulumi.Input[str] pm_otp: OTP 2FA code (if required)
+        :param pulumi.Input[str] pm_password: Password to authenticate into proxmox
+        :param pulumi.Input[bool] pm_tls_insecure: By default, every TLS connection is verified to be secure. This option allows terraform to proceed and operate on
+               servers considered insecure. For example if you're connecting to a remote host and you do not have the CA cert that
+               issued the proxmox api url's certificate.
+        :param pulumi.Input[str] pm_user: Username e.g. myuser or myuser@pam
+        """
+        pulumi.set(__self__, "pm_api_url", pm_api_url)
+        if pm_api_token_id is not None:
+            pulumi.set(__self__, "pm_api_token_id", pm_api_token_id)
+        if pm_api_token_secret is not None:
+            pulumi.set(__self__, "pm_api_token_secret", pm_api_token_secret)
+        if pm_dangerously_ignore_unknown_attributes is not None:
+            pulumi.set(__self__, "pm_dangerously_ignore_unknown_attributes", pm_dangerously_ignore_unknown_attributes)
+        if pm_log_enable is not None:
+            pulumi.set(__self__, "pm_log_enable", pm_log_enable)
+        if pm_log_file is not None:
+            pulumi.set(__self__, "pm_log_file", pm_log_file)
+        if pm_log_levels is not None:
+            pulumi.set(__self__, "pm_log_levels", pm_log_levels)
+        if pm_otp is not None:
+            pulumi.set(__self__, "pm_otp", pm_otp)
+        if pm_parallel is not None:
+            pulumi.set(__self__, "pm_parallel", pm_parallel)
+        if pm_password is not None:
+            pulumi.set(__self__, "pm_password", pm_password)
+        if pm_timeout is not None:
+            pulumi.set(__self__, "pm_timeout", pm_timeout)
+        if pm_tls_insecure is not None:
+            pulumi.set(__self__, "pm_tls_insecure", pm_tls_insecure)
+        if pm_user is not None:
+            pulumi.set(__self__, "pm_user", pm_user)
+
+    @property
+    @pulumi.getter(name="pmApiUrl")
+    def pm_api_url(self) -> pulumi.Input[str]:
+        """
+        https://host.fqdn:8006/api2/json
+        """
+        return pulumi.get(self, "pm_api_url")
+
+    @pm_api_url.setter
+    def pm_api_url(self, value: pulumi.Input[str]):
+        pulumi.set(self, "pm_api_url", value)
+
+    @property
+    @pulumi.getter(name="pmApiTokenId")
+    def pm_api_token_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        API TokenID e.g. root@pam!mytesttoken
+        """
+        return pulumi.get(self, "pm_api_token_id")
+
+    @pm_api_token_id.setter
+    def pm_api_token_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pm_api_token_id", value)
+
+    @property
+    @pulumi.getter(name="pmApiTokenSecret")
+    def pm_api_token_secret(self) -> Optional[pulumi.Input[str]]:
+        """
+        The secret uuid corresponding to a TokenID
+        """
+        return pulumi.get(self, "pm_api_token_secret")
+
+    @pm_api_token_secret.setter
+    def pm_api_token_secret(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pm_api_token_secret", value)
+
+    @property
+    @pulumi.getter(name="pmDangerouslyIgnoreUnknownAttributes")
+    def pm_dangerously_ignore_unknown_attributes(self) -> Optional[pulumi.Input[bool]]:
+        """
+        By default this provider will exit if an unknown attribute is found. This is to prevent the accidential destruction of
+        VMs or Data when something in the proxmox API has changed/updated and is not confirmed to work with this provider. Set
+        this to true at your own risk. It may allow you to proceed in cases when the provider refuses to work, but be aware of
+        the danger in doing so.
+        """
+        return pulumi.get(self, "pm_dangerously_ignore_unknown_attributes")
+
+    @pm_dangerously_ignore_unknown_attributes.setter
+    def pm_dangerously_ignore_unknown_attributes(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "pm_dangerously_ignore_unknown_attributes", value)
+
+    @property
+    @pulumi.getter(name="pmLogEnable")
+    def pm_log_enable(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enable provider logging to get proxmox API logs
+        """
+        return pulumi.get(self, "pm_log_enable")
+
+    @pm_log_enable.setter
+    def pm_log_enable(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "pm_log_enable", value)
+
+    @property
+    @pulumi.getter(name="pmLogFile")
+    def pm_log_file(self) -> Optional[pulumi.Input[str]]:
+        """
+        Write logs to this specific file
+        """
+        return pulumi.get(self, "pm_log_file")
+
+    @pm_log_file.setter
+    def pm_log_file(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pm_log_file", value)
+
+    @property
+    @pulumi.getter(name="pmLogLevels")
+    def pm_log_levels(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        Configure the logging level to display; trace, debug, info, warn, etc
+        """
+        return pulumi.get(self, "pm_log_levels")
+
+    @pm_log_levels.setter
+    def pm_log_levels(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "pm_log_levels", value)
+
+    @property
+    @pulumi.getter(name="pmOtp")
+    def pm_otp(self) -> Optional[pulumi.Input[str]]:
+        """
+        OTP 2FA code (if required)
+        """
+        return pulumi.get(self, "pm_otp")
+
+    @pm_otp.setter
+    def pm_otp(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pm_otp", value)
+
+    @property
+    @pulumi.getter(name="pmParallel")
+    def pm_parallel(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "pm_parallel")
+
+    @pm_parallel.setter
+    def pm_parallel(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "pm_parallel", value)
+
+    @property
+    @pulumi.getter(name="pmPassword")
+    def pm_password(self) -> Optional[pulumi.Input[str]]:
+        """
+        Password to authenticate into proxmox
+        """
+        return pulumi.get(self, "pm_password")
+
+    @pm_password.setter
+    def pm_password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pm_password", value)
+
+    @property
+    @pulumi.getter(name="pmTimeout")
+    def pm_timeout(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "pm_timeout")
+
+    @pm_timeout.setter
+    def pm_timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "pm_timeout", value)
+
+    @property
+    @pulumi.getter(name="pmTlsInsecure")
+    def pm_tls_insecure(self) -> Optional[pulumi.Input[bool]]:
+        """
+        By default, every TLS connection is verified to be secure. This option allows terraform to proceed and operate on
+        servers considered insecure. For example if you're connecting to a remote host and you do not have the CA cert that
+        issued the proxmox api url's certificate.
+        """
+        return pulumi.get(self, "pm_tls_insecure")
+
+    @pm_tls_insecure.setter
+    def pm_tls_insecure(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "pm_tls_insecure", value)
+
+    @property
+    @pulumi.getter(name="pmUser")
+    def pm_user(self) -> Optional[pulumi.Input[str]]:
+        """
+        Username e.g. myuser or myuser@pam
+        """
+        return pulumi.get(self, "pm_user")
+
+    @pm_user.setter
+    def pm_user(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pm_user", value)
 
 
 class Provider(pulumi.ProviderResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -28,9 +245,7 @@ class Provider(pulumi.ProviderResource):
                  pm_timeout: Optional[pulumi.Input[int]] = None,
                  pm_tls_insecure: Optional[pulumi.Input[bool]] = None,
                  pm_user: Optional[pulumi.Input[str]] = None,
-                 __props__=None,
-                 __name__=None,
-                 __opts__=None):
+                 __props__=None):
         """
         The provider type for the proxmoxve package. By default, resources use package-wide configuration
         settings, however an explicit `Provider` instance may be created and passed during resource
@@ -56,12 +271,47 @@ class Provider(pulumi.ProviderResource):
                issued the proxmox api url's certificate.
         :param pulumi.Input[str] pm_user: Username e.g. myuser or myuser@pam
         """
-        if __name__ is not None:
-            warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
-            resource_name = __name__
-        if __opts__ is not None:
-            warnings.warn("explicit use of __opts__ is deprecated, use 'opts' instead", DeprecationWarning)
-            opts = __opts__
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: ProviderArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        The provider type for the proxmoxve package. By default, resources use package-wide configuration
+        settings, however an explicit `Provider` instance may be created and passed during resource
+        construction to achieve fine-grained programmatic control over provider settings. See the
+        [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
+
+        :param str resource_name: The name of the resource.
+        :param ProviderArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(ProviderArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 pm_api_token_id: Optional[pulumi.Input[str]] = None,
+                 pm_api_token_secret: Optional[pulumi.Input[str]] = None,
+                 pm_api_url: Optional[pulumi.Input[str]] = None,
+                 pm_dangerously_ignore_unknown_attributes: Optional[pulumi.Input[bool]] = None,
+                 pm_log_enable: Optional[pulumi.Input[bool]] = None,
+                 pm_log_file: Optional[pulumi.Input[str]] = None,
+                 pm_log_levels: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 pm_otp: Optional[pulumi.Input[str]] = None,
+                 pm_parallel: Optional[pulumi.Input[int]] = None,
+                 pm_password: Optional[pulumi.Input[str]] = None,
+                 pm_timeout: Optional[pulumi.Input[int]] = None,
+                 pm_tls_insecure: Optional[pulumi.Input[bool]] = None,
+                 pm_user: Optional[pulumi.Input[str]] = None,
+                 __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -71,32 +321,82 @@ class Provider(pulumi.ProviderResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = ProviderArgs.__new__(ProviderArgs)
 
-            __props__['pm_api_token_id'] = pm_api_token_id
-            __props__['pm_api_token_secret'] = pm_api_token_secret
-            if pm_api_url is None:
+            __props__.__dict__["pm_api_token_id"] = pm_api_token_id
+            __props__.__dict__["pm_api_token_secret"] = pm_api_token_secret
+            if pm_api_url is None and not opts.urn:
                 raise TypeError("Missing required property 'pm_api_url'")
-            __props__['pm_api_url'] = pm_api_url
-            __props__['pm_dangerously_ignore_unknown_attributes'] = pulumi.Output.from_input(pm_dangerously_ignore_unknown_attributes).apply(pulumi.runtime.to_json) if pm_dangerously_ignore_unknown_attributes is not None else None
-            __props__['pm_log_enable'] = pulumi.Output.from_input(pm_log_enable).apply(pulumi.runtime.to_json) if pm_log_enable is not None else None
-            __props__['pm_log_file'] = pm_log_file
-            __props__['pm_log_levels'] = pulumi.Output.from_input(pm_log_levels).apply(pulumi.runtime.to_json) if pm_log_levels is not None else None
-            __props__['pm_otp'] = pm_otp
-            __props__['pm_parallel'] = pulumi.Output.from_input(pm_parallel).apply(pulumi.runtime.to_json) if pm_parallel is not None else None
-            __props__['pm_password'] = pm_password
-            __props__['pm_timeout'] = pulumi.Output.from_input(pm_timeout).apply(pulumi.runtime.to_json) if pm_timeout is not None else None
-            __props__['pm_tls_insecure'] = pulumi.Output.from_input(pm_tls_insecure).apply(pulumi.runtime.to_json) if pm_tls_insecure is not None else None
-            __props__['pm_user'] = pm_user
+            __props__.__dict__["pm_api_url"] = pm_api_url
+            __props__.__dict__["pm_dangerously_ignore_unknown_attributes"] = pulumi.Output.from_input(pm_dangerously_ignore_unknown_attributes).apply(pulumi.runtime.to_json) if pm_dangerously_ignore_unknown_attributes is not None else None
+            __props__.__dict__["pm_log_enable"] = pulumi.Output.from_input(pm_log_enable).apply(pulumi.runtime.to_json) if pm_log_enable is not None else None
+            __props__.__dict__["pm_log_file"] = pm_log_file
+            __props__.__dict__["pm_log_levels"] = pulumi.Output.from_input(pm_log_levels).apply(pulumi.runtime.to_json) if pm_log_levels is not None else None
+            __props__.__dict__["pm_otp"] = pm_otp
+            __props__.__dict__["pm_parallel"] = pulumi.Output.from_input(pm_parallel).apply(pulumi.runtime.to_json) if pm_parallel is not None else None
+            __props__.__dict__["pm_password"] = pm_password
+            __props__.__dict__["pm_timeout"] = pulumi.Output.from_input(pm_timeout).apply(pulumi.runtime.to_json) if pm_timeout is not None else None
+            __props__.__dict__["pm_tls_insecure"] = pulumi.Output.from_input(pm_tls_insecure).apply(pulumi.runtime.to_json) if pm_tls_insecure is not None else None
+            __props__.__dict__["pm_user"] = pm_user
         super(Provider, __self__).__init__(
             'proxmoxve',
             resource_name,
             __props__,
             opts)
 
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+    @property
+    @pulumi.getter(name="pmApiTokenId")
+    def pm_api_token_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        API TokenID e.g. root@pam!mytesttoken
+        """
+        return pulumi.get(self, "pm_api_token_id")
 
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+    @property
+    @pulumi.getter(name="pmApiTokenSecret")
+    def pm_api_token_secret(self) -> pulumi.Output[Optional[str]]:
+        """
+        The secret uuid corresponding to a TokenID
+        """
+        return pulumi.get(self, "pm_api_token_secret")
+
+    @property
+    @pulumi.getter(name="pmApiUrl")
+    def pm_api_url(self) -> pulumi.Output[str]:
+        """
+        https://host.fqdn:8006/api2/json
+        """
+        return pulumi.get(self, "pm_api_url")
+
+    @property
+    @pulumi.getter(name="pmLogFile")
+    def pm_log_file(self) -> pulumi.Output[Optional[str]]:
+        """
+        Write logs to this specific file
+        """
+        return pulumi.get(self, "pm_log_file")
+
+    @property
+    @pulumi.getter(name="pmOtp")
+    def pm_otp(self) -> pulumi.Output[Optional[str]]:
+        """
+        OTP 2FA code (if required)
+        """
+        return pulumi.get(self, "pm_otp")
+
+    @property
+    @pulumi.getter(name="pmPassword")
+    def pm_password(self) -> pulumi.Output[Optional[str]]:
+        """
+        Password to authenticate into proxmox
+        """
+        return pulumi.get(self, "pm_password")
+
+    @property
+    @pulumi.getter(name="pmUser")
+    def pm_user(self) -> pulumi.Output[Optional[str]]:
+        """
+        Username e.g. myuser or myuser@pam
+        """
+        return pulumi.get(self, "pm_user")
 

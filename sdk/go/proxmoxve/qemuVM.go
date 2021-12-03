@@ -4,10 +4,11 @@
 package proxmoxve
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
-	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 type QemuVM struct {
@@ -93,11 +94,12 @@ type QemuVM struct {
 // NewQemuVM registers a new resource with the given unique name, arguments, and options.
 func NewQemuVM(ctx *pulumi.Context,
 	name string, args *QemuVMArgs, opts ...pulumi.ResourceOption) (*QemuVM, error) {
-	if args == nil || args.TargetNode == nil {
-		return nil, errors.New("missing required argument 'TargetNode'")
-	}
 	if args == nil {
-		args = &QemuVMArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.TargetNode == nil {
+		return nil, errors.New("invalid value for required argument 'TargetNode'")
 	}
 	var resource QemuVM
 	err := ctx.RegisterResource("proxmoxve:index/qemuVM:QemuVM", name, args, &resource, opts...)
@@ -425,4 +427,197 @@ type QemuVMArgs struct {
 
 func (QemuVMArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*qemuVMArgs)(nil)).Elem()
+}
+
+type QemuVMInput interface {
+	pulumi.Input
+
+	ToQemuVMOutput() QemuVMOutput
+	ToQemuVMOutputWithContext(ctx context.Context) QemuVMOutput
+}
+
+func (*QemuVM) ElementType() reflect.Type {
+	return reflect.TypeOf((*QemuVM)(nil))
+}
+
+func (i *QemuVM) ToQemuVMOutput() QemuVMOutput {
+	return i.ToQemuVMOutputWithContext(context.Background())
+}
+
+func (i *QemuVM) ToQemuVMOutputWithContext(ctx context.Context) QemuVMOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(QemuVMOutput)
+}
+
+func (i *QemuVM) ToQemuVMPtrOutput() QemuVMPtrOutput {
+	return i.ToQemuVMPtrOutputWithContext(context.Background())
+}
+
+func (i *QemuVM) ToQemuVMPtrOutputWithContext(ctx context.Context) QemuVMPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(QemuVMPtrOutput)
+}
+
+type QemuVMPtrInput interface {
+	pulumi.Input
+
+	ToQemuVMPtrOutput() QemuVMPtrOutput
+	ToQemuVMPtrOutputWithContext(ctx context.Context) QemuVMPtrOutput
+}
+
+type qemuVMPtrType QemuVMArgs
+
+func (*qemuVMPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**QemuVM)(nil))
+}
+
+func (i *qemuVMPtrType) ToQemuVMPtrOutput() QemuVMPtrOutput {
+	return i.ToQemuVMPtrOutputWithContext(context.Background())
+}
+
+func (i *qemuVMPtrType) ToQemuVMPtrOutputWithContext(ctx context.Context) QemuVMPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(QemuVMPtrOutput)
+}
+
+// QemuVMArrayInput is an input type that accepts QemuVMArray and QemuVMArrayOutput values.
+// You can construct a concrete instance of `QemuVMArrayInput` via:
+//
+//          QemuVMArray{ QemuVMArgs{...} }
+type QemuVMArrayInput interface {
+	pulumi.Input
+
+	ToQemuVMArrayOutput() QemuVMArrayOutput
+	ToQemuVMArrayOutputWithContext(context.Context) QemuVMArrayOutput
+}
+
+type QemuVMArray []QemuVMInput
+
+func (QemuVMArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*QemuVM)(nil)).Elem()
+}
+
+func (i QemuVMArray) ToQemuVMArrayOutput() QemuVMArrayOutput {
+	return i.ToQemuVMArrayOutputWithContext(context.Background())
+}
+
+func (i QemuVMArray) ToQemuVMArrayOutputWithContext(ctx context.Context) QemuVMArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(QemuVMArrayOutput)
+}
+
+// QemuVMMapInput is an input type that accepts QemuVMMap and QemuVMMapOutput values.
+// You can construct a concrete instance of `QemuVMMapInput` via:
+//
+//          QemuVMMap{ "key": QemuVMArgs{...} }
+type QemuVMMapInput interface {
+	pulumi.Input
+
+	ToQemuVMMapOutput() QemuVMMapOutput
+	ToQemuVMMapOutputWithContext(context.Context) QemuVMMapOutput
+}
+
+type QemuVMMap map[string]QemuVMInput
+
+func (QemuVMMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*QemuVM)(nil)).Elem()
+}
+
+func (i QemuVMMap) ToQemuVMMapOutput() QemuVMMapOutput {
+	return i.ToQemuVMMapOutputWithContext(context.Background())
+}
+
+func (i QemuVMMap) ToQemuVMMapOutputWithContext(ctx context.Context) QemuVMMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(QemuVMMapOutput)
+}
+
+type QemuVMOutput struct{ *pulumi.OutputState }
+
+func (QemuVMOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*QemuVM)(nil))
+}
+
+func (o QemuVMOutput) ToQemuVMOutput() QemuVMOutput {
+	return o
+}
+
+func (o QemuVMOutput) ToQemuVMOutputWithContext(ctx context.Context) QemuVMOutput {
+	return o
+}
+
+func (o QemuVMOutput) ToQemuVMPtrOutput() QemuVMPtrOutput {
+	return o.ToQemuVMPtrOutputWithContext(context.Background())
+}
+
+func (o QemuVMOutput) ToQemuVMPtrOutputWithContext(ctx context.Context) QemuVMPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v QemuVM) *QemuVM {
+		return &v
+	}).(QemuVMPtrOutput)
+}
+
+type QemuVMPtrOutput struct{ *pulumi.OutputState }
+
+func (QemuVMPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**QemuVM)(nil))
+}
+
+func (o QemuVMPtrOutput) ToQemuVMPtrOutput() QemuVMPtrOutput {
+	return o
+}
+
+func (o QemuVMPtrOutput) ToQemuVMPtrOutputWithContext(ctx context.Context) QemuVMPtrOutput {
+	return o
+}
+
+func (o QemuVMPtrOutput) Elem() QemuVMOutput {
+	return o.ApplyT(func(v *QemuVM) QemuVM {
+		if v != nil {
+			return *v
+		}
+		var ret QemuVM
+		return ret
+	}).(QemuVMOutput)
+}
+
+type QemuVMArrayOutput struct{ *pulumi.OutputState }
+
+func (QemuVMArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]QemuVM)(nil))
+}
+
+func (o QemuVMArrayOutput) ToQemuVMArrayOutput() QemuVMArrayOutput {
+	return o
+}
+
+func (o QemuVMArrayOutput) ToQemuVMArrayOutputWithContext(ctx context.Context) QemuVMArrayOutput {
+	return o
+}
+
+func (o QemuVMArrayOutput) Index(i pulumi.IntInput) QemuVMOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) QemuVM {
+		return vs[0].([]QemuVM)[vs[1].(int)]
+	}).(QemuVMOutput)
+}
+
+type QemuVMMapOutput struct{ *pulumi.OutputState }
+
+func (QemuVMMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]QemuVM)(nil))
+}
+
+func (o QemuVMMapOutput) ToQemuVMMapOutput() QemuVMMapOutput {
+	return o
+}
+
+func (o QemuVMMapOutput) ToQemuVMMapOutputWithContext(ctx context.Context) QemuVMMapOutput {
+	return o
+}
+
+func (o QemuVMMapOutput) MapIndex(k pulumi.StringInput) QemuVMOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) QemuVM {
+		return vs[0].(map[string]QemuVM)[vs[1].(string)]
+	}).(QemuVMOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(QemuVMOutput{})
+	pulumi.RegisterOutputType(QemuVMPtrOutput{})
+	pulumi.RegisterOutputType(QemuVMArrayOutput{})
+	pulumi.RegisterOutputType(QemuVMMapOutput{})
 }

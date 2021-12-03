@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Proxmoxve
 {
+    [ProxmoxveResourceType("proxmoxve:index/qemuVM:QemuVM")]
     public partial class QemuVM : Pulumi.CustomResource
     {
         [Output("additionalWait")]

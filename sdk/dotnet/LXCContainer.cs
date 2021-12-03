@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Proxmoxve
 {
+    [ProxmoxveResourceType("proxmoxve:index/lXCContainer:LXCContainer")]
     public partial class LXCContainer : Pulumi.CustomResource
     {
         [Output("arch")]

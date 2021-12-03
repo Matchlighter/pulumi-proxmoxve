@@ -2,9 +2,9 @@
 
 Work in Progress Pulumi Provider for use with Proxmox VE
 
-## Installing
+1. Follow the steps above to verify the program runs successfully.
 
-This package is available in many languages in the standard packaging formats.
+## Add End-to-end Testing
 
 ### Installing the Plugin
 1. Download the appropriate archive file from the Releases page:
@@ -14,30 +14,30 @@ This package is available in many languages in the standard packaging formats.
 
 ### Node.js (Java/TypeScript)
 
-To use from JavaScript or TypeScript in Node.js, install using either `npm`:
+1. Add code to `examples_nodejs_test.go` to call the example you created, e.g.:
 
     $ npm install @matchlighter/pulumi-proxmoxve
 
-or `yarn`:
+1. Add a similar function for each example that you want to run in an integration test.  For examples written in other languages, create similar files for `examples_${LANGUAGE}_test.go`.
 
     $ yarn add @matchlighter/pulumi-proxmoxve
 
 ### Python
 _*(Not published. I don't have a present need for this. If you do please open an issue.)*_
 
-To use from Python, install using `pip`:
+    You can also run each test file separately via test tags:
 
     $ pip install pulumi_proxmoxve
 
 ### .NET
 _*(Not published. I don't have a present need for this. If you do please open an issue with some instructions for how to publish a .NET package)*_
 
-### Go
+## Configuring CI with GitHub Actions
 
-To use from Go, use `go get` to grab the latest version of the library
+In this section, we'll add the necessary configuration to work with GitHub Actions for Pulumi's standard CI/CD workflows for providers.
 
     $ go get github.com/matchlighter/pulumi-proxmoxve/sdk/go/...
 
-## Configuration
+1. Ensure that any required secrets are present as repository-level [secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets) in GitHub.  These will be used by the integration tests during the CI/CD process.
 
 Provider configuration is as documented on https://github.com/Telmate/terraform-provider-proxmox

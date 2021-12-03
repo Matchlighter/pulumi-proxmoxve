@@ -5,88 +5,102 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
-from .. import _utilities, _tables
+from typing import Any, Mapping, Optional, Sequence, Union, overload
+from .. import _utilities
 
-__all__ = [
-    'pm_api_token_id',
-    'pm_api_token_secret',
-    'pm_api_url',
-    'pm_dangerously_ignore_unknown_attributes',
-    'pm_log_enable',
-    'pm_log_file',
-    'pm_log_levels',
-    'pm_otp',
-    'pm_parallel',
-    'pm_password',
-    'pm_timeout',
-    'pm_tls_insecure',
-    'pm_user',
-]
+import types
 
 __config__ = pulumi.Config('proxmoxve')
 
-pm_api_token_id = __config__.get('pmApiTokenId')
-"""
-API TokenID e.g. root@pam!mytesttoken
-"""
 
-pm_api_token_secret = __config__.get('pmApiTokenSecret')
-"""
-The secret uuid corresponding to a TokenID
-"""
+class _ExportableConfig(types.ModuleType):
+    @property
+    def pm_api_token_id(self) -> Optional[str]:
+        """
+        API TokenID e.g. root@pam!mytesttoken
+        """
+        return __config__.get('pmApiTokenId')
 
-pm_api_url = __config__.get('pmApiUrl')
-"""
-https://host.fqdn:8006/api2/json
-"""
+    @property
+    def pm_api_token_secret(self) -> Optional[str]:
+        """
+        The secret uuid corresponding to a TokenID
+        """
+        return __config__.get('pmApiTokenSecret')
 
-pm_dangerously_ignore_unknown_attributes = __config__.get('pmDangerouslyIgnoreUnknownAttributes')
-"""
-By default this provider will exit if an unknown attribute is found. This is to prevent the accidential destruction of
-VMs or Data when something in the proxmox API has changed/updated and is not confirmed to work with this provider. Set
-this to true at your own risk. It may allow you to proceed in cases when the provider refuses to work, but be aware of
-the danger in doing so.
-"""
+    @property
+    def pm_api_url(self) -> Optional[str]:
+        """
+        https://host.fqdn:8006/api2/json
+        """
+        return __config__.get('pmApiUrl')
 
-pm_log_enable = __config__.get('pmLogEnable')
-"""
-Enable provider logging to get proxmox API logs
-"""
+    @property
+    def pm_dangerously_ignore_unknown_attributes(self) -> Optional[bool]:
+        """
+        By default this provider will exit if an unknown attribute is found. This is to prevent the accidential destruction of
+        VMs or Data when something in the proxmox API has changed/updated and is not confirmed to work with this provider. Set
+        this to true at your own risk. It may allow you to proceed in cases when the provider refuses to work, but be aware of
+        the danger in doing so.
+        """
+        return __config__.get_bool('pmDangerouslyIgnoreUnknownAttributes')
 
-pm_log_file = __config__.get('pmLogFile')
-"""
-Write logs to this specific file
-"""
+    @property
+    def pm_log_enable(self) -> Optional[bool]:
+        """
+        Enable provider logging to get proxmox API logs
+        """
+        return __config__.get_bool('pmLogEnable')
 
-pm_log_levels = __config__.get('pmLogLevels')
-"""
-Configure the logging level to display; trace, debug, info, warn, etc
-"""
+    @property
+    def pm_log_file(self) -> Optional[str]:
+        """
+        Write logs to this specific file
+        """
+        return __config__.get('pmLogFile')
 
-pm_otp = __config__.get('pmOtp')
-"""
-OTP 2FA code (if required)
-"""
+    @property
+    def pm_log_levels(self) -> Optional[str]:
+        """
+        Configure the logging level to display; trace, debug, info, warn, etc
+        """
+        return __config__.get('pmLogLevels')
 
-pm_parallel = __config__.get('pmParallel')
+    @property
+    def pm_otp(self) -> Optional[str]:
+        """
+        OTP 2FA code (if required)
+        """
+        return __config__.get('pmOtp')
 
-pm_password = __config__.get('pmPassword')
-"""
-Password to authenticate into proxmox
-"""
+    @property
+    def pm_parallel(self) -> Optional[int]:
+        return __config__.get_int('pmParallel')
 
-pm_timeout = __config__.get('pmTimeout')
+    @property
+    def pm_password(self) -> Optional[str]:
+        """
+        Password to authenticate into proxmox
+        """
+        return __config__.get('pmPassword')
 
-pm_tls_insecure = __config__.get('pmTlsInsecure')
-"""
-By default, every TLS connection is verified to be secure. This option allows terraform to proceed and operate on
-servers considered insecure. For example if you're connecting to a remote host and you do not have the CA cert that
-issued the proxmox api url's certificate.
-"""
+    @property
+    def pm_timeout(self) -> Optional[int]:
+        return __config__.get_int('pmTimeout')
 
-pm_user = __config__.get('pmUser')
-"""
-Username e.g. myuser or myuser@pam
-"""
+    @property
+    def pm_tls_insecure(self) -> Optional[bool]:
+        """
+        By default, every TLS connection is verified to be secure. This option allows terraform to proceed and operate on
+        servers considered insecure. For example if you're connecting to a remote host and you do not have the CA cert that
+        issued the proxmox api url's certificate.
+        """
+        return __config__.get_bool('pmTlsInsecure')
+
+    @property
+    def pm_user(self) -> Optional[str]:
+        """
+        Username e.g. myuser or myuser@pam
+        """
+        return __config__.get('pmUser')
 

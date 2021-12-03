@@ -25,6 +25,34 @@ export class Provider extends pulumi.ProviderResource {
         return obj['__pulumiType'] === Provider.__pulumiType;
     }
 
+    /**
+     * API TokenID e.g. root@pam!mytesttoken
+     */
+    public readonly pmApiTokenId!: pulumi.Output<string | undefined>;
+    /**
+     * The secret uuid corresponding to a TokenID
+     */
+    public readonly pmApiTokenSecret!: pulumi.Output<string | undefined>;
+    /**
+     * https://host.fqdn:8006/api2/json
+     */
+    public readonly pmApiUrl!: pulumi.Output<string>;
+    /**
+     * Write logs to this specific file
+     */
+    public readonly pmLogFile!: pulumi.Output<string | undefined>;
+    /**
+     * OTP 2FA code (if required)
+     */
+    public readonly pmOtp!: pulumi.Output<string | undefined>;
+    /**
+     * Password to authenticate into proxmox
+     */
+    public readonly pmPassword!: pulumi.Output<string | undefined>;
+    /**
+     * Username e.g. myuser or myuser@pam
+     */
+    public readonly pmUser!: pulumi.Output<string | undefined>;
 
     /**
      * Create a Provider resource with the given unique name, arguments, and options.
@@ -35,8 +63,9 @@ export class Provider extends pulumi.ProviderResource {
      */
     constructor(name: string, args: ProviderArgs, opts?: pulumi.ResourceOptions) {
         let inputs: pulumi.Inputs = {};
+        opts = opts || {};
         {
-            if (!args || args.pmApiUrl === undefined) {
+            if ((!args || args.pmApiUrl === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'pmApiUrl'");
             }
             inputs["pmApiTokenId"] = args ? args.pmApiTokenId : undefined;
@@ -53,12 +82,8 @@ export class Provider extends pulumi.ProviderResource {
             inputs["pmTlsInsecure"] = pulumi.output(args ? args.pmTlsInsecure : undefined).apply(JSON.stringify);
             inputs["pmUser"] = args ? args.pmUser : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(Provider.__pulumiType, name, inputs, opts);
     }
@@ -71,52 +96,52 @@ export interface ProviderArgs {
     /**
      * API TokenID e.g. root@pam!mytesttoken
      */
-    readonly pmApiTokenId?: pulumi.Input<string>;
+    pmApiTokenId?: pulumi.Input<string>;
     /**
      * The secret uuid corresponding to a TokenID
      */
-    readonly pmApiTokenSecret?: pulumi.Input<string>;
+    pmApiTokenSecret?: pulumi.Input<string>;
     /**
      * https://host.fqdn:8006/api2/json
      */
-    readonly pmApiUrl: pulumi.Input<string>;
+    pmApiUrl: pulumi.Input<string>;
     /**
      * By default this provider will exit if an unknown attribute is found. This is to prevent the accidential destruction of
      * VMs or Data when something in the proxmox API has changed/updated and is not confirmed to work with this provider. Set
      * this to true at your own risk. It may allow you to proceed in cases when the provider refuses to work, but be aware of
      * the danger in doing so.
      */
-    readonly pmDangerouslyIgnoreUnknownAttributes?: pulumi.Input<boolean>;
+    pmDangerouslyIgnoreUnknownAttributes?: pulumi.Input<boolean>;
     /**
      * Enable provider logging to get proxmox API logs
      */
-    readonly pmLogEnable?: pulumi.Input<boolean>;
+    pmLogEnable?: pulumi.Input<boolean>;
     /**
      * Write logs to this specific file
      */
-    readonly pmLogFile?: pulumi.Input<string>;
+    pmLogFile?: pulumi.Input<string>;
     /**
      * Configure the logging level to display; trace, debug, info, warn, etc
      */
-    readonly pmLogLevels?: pulumi.Input<{[key: string]: any}>;
+    pmLogLevels?: pulumi.Input<{[key: string]: any}>;
     /**
      * OTP 2FA code (if required)
      */
-    readonly pmOtp?: pulumi.Input<string>;
-    readonly pmParallel?: pulumi.Input<number>;
+    pmOtp?: pulumi.Input<string>;
+    pmParallel?: pulumi.Input<number>;
     /**
      * Password to authenticate into proxmox
      */
-    readonly pmPassword?: pulumi.Input<string>;
-    readonly pmTimeout?: pulumi.Input<number>;
+    pmPassword?: pulumi.Input<string>;
+    pmTimeout?: pulumi.Input<number>;
     /**
      * By default, every TLS connection is verified to be secure. This option allows terraform to proceed and operate on
      * servers considered insecure. For example if you're connecting to a remote host and you do not have the CA cert that
      * issued the proxmox api url's certificate.
      */
-    readonly pmTlsInsecure?: pulumi.Input<boolean>;
+    pmTlsInsecure?: pulumi.Input<boolean>;
     /**
      * Username e.g. myuser or myuser@pam
      */
-    readonly pmUser?: pulumi.Input<string>;
+    pmUser?: pulumi.Input<string>;
 }
